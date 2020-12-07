@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Odibee+Sans&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+header.top-black-style {
+  width: 100%;
+  height: 15vh;
+  background-color: #0e2f5a;
+}
+
+header.top-black-style nav {
+  width: 100%;
+  height: 100%;
+}
+
+header.top-black-style nav ul {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header.top-black-style nav ul li {
+  display: inline-block;
+  color: #fffcec;
+  font-family: "Raleway", sans-serif;
+  list-style: none;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 10px;
+  margin: 20px;
+  transition: 0.3s;
+  cursor: pointer;
+  border-radius: 2px;
+}
+/* 
+header.top-black-style nav ul li:hover {
+  color: #abdcd6;
+}
+
+header.top-black-style nav ul li.special {
+  font-size: 19px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+} */
+
+img {
+  max-width: 30%;
+  height: auto;
+}
+
+header.top-black-style nav ul li.active {
+  color: #abdcd6;
+}
+
+header.top-black-style nav ul li.active:hover {
+  color: #fff;
+}
+
+header.top-black-style nav ul .separation {
+  margin-left: 70px;
+}
+
+.special, .menu {
+  color: #fffcec;
+}
+.special:hover, .menu:hover {
+  color: #e4ebf1;
+}
