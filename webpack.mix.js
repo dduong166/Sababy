@@ -13,8 +13,4 @@ const mix = require('laravel-mix');
 
 mix.react('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
-    .browserSync({
-        proxy: false,
-        port:'8000',
-        server: {baseDir: 'dev'} 
-    });
+    .browserSync('laravel.test')
