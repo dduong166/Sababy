@@ -72007,24 +72007,37 @@ var AppMain = /*#__PURE__*/function (_Component) {
       var _this2 = this;
 
       console.log("App state: ", this.state);
-      _Http__WEBPACK_IMPORTED_MODULE_3__["default"].defaults.headers.common['Authorization'] = 'Bearer ' + localStorage['auth_token'];
-      _Http__WEBPACK_IMPORTED_MODULE_3__["default"].get('api/isLoggedIn').then(function (response) {
-        console.log("Current user(app): ", response);
 
-        if (response.data.user) {
-          _this2.setState({
-            current_user: response.data.user.name,
-            loading: false
-          });
-        } else {
+      if (localStorage.getItem("auth_token")) {
+        _Http__WEBPACK_IMPORTED_MODULE_3__["default"].defaults.headers.common["Authorization"] = "Bearer " + localStorage["auth_token"];
+        _Http__WEBPACK_IMPORTED_MODULE_3__["default"].get("api/isLoggedIn").then(function (response) {
+          console.log("Current user(app): ", response);
+
+          if (response.data.user) {
+            _this2.setState({
+              current_user: response.data.user.name,
+              loading: false
+            });
+          } else {
+            _this2.setState({
+              current_user: null,
+              loading: false
+            });
+          }
+        })["catch"](function (error) {
+          console.log(error.response.status);
+
           _this2.setState({
             current_user: null,
             loading: false
           });
-        }
-      })["catch"](function (error) {
-        console.log(error.response.status);
-      });
+        });
+      } else {
+        this.setState({
+          current_user: null,
+          loading: false
+        });
+      }
     }
   }, {
     key: "render",
@@ -72060,8 +72073,8 @@ var AppMain = /*#__PURE__*/function (_Component) {
 
 /* harmony default export */ __webpack_exports__["default"] = (AppMain);
 
-if (document.getElementById('app')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(AppMain, null), document.getElementById('app'));
+if (document.getElementById("app")) {
+  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(AppMain, null), document.getElementById("app"));
 }
 
 /***/ }),
