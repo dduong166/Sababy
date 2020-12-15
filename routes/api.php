@@ -24,4 +24,4 @@ Route::get('/user', function (Request $request) {
 Route::post('user/login', 'UserController@login')->name('login');
 Route::post('user/register', 'UserController@register');
 
-
+Route::get('/isLoggedIn', 'UserController@getAuthenticatedUser');

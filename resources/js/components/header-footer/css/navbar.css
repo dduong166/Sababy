@@ -76,3 +76,7 @@ header.top-black-style nav ul .separation {
 .special:hover, .menu:hover {
   color: #e4ebf1;
 }
+
+.logo {
+  /* max-width: 60%; */
+}

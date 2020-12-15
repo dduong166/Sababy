@@ -6389,7 +6389,7 @@ exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Rob
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Odibee+Sans&display=swap);", ""]);
 
 // module
-exports.push([module.i, "* {\r\n  margin: 0;\r\n  padding: 0;\r\n}\r\n\r\nbody {\r\n  overflow-y: scroll;\r\n  overflow-x: hidden;\r\n}\r\n\r\nheader.top-black-style {\r\n  width: 100%;\r\n  height: 15vh;\r\n  background-color: #0e2f5a;\r\n}\r\n\r\nheader.top-black-style nav {\r\n  width: 100%;\r\n  height: 100%;\r\n}\r\n\r\nheader.top-black-style nav ul {\r\n  width: 100%;\r\n  height: 100%;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n}\r\n\r\nheader.top-black-style nav ul li {\r\n  display: inline-block;\r\n  color: #fffcec;\r\n  font-family: \"Raleway\", sans-serif;\r\n  list-style: none;\r\n  font-size: 17px;\r\n  font-weight: 600;\r\n  padding: 10px;\r\n  margin: 20px;\r\n  transition: 0.3s;\r\n  cursor: pointer;\r\n  border-radius: 2px;\r\n}\r\n/* \r\nheader.top-black-style nav ul li:hover {\r\n  color: #abdcd6;\r\n}\r\n\r\nheader.top-black-style nav ul li.special {\r\n  font-size: 19px;\r\n  text-transform: uppercase;\r\n  letter-spacing: 1.2px;\r\n} */\r\n\r\nimg {\r\n  max-width: 30%;\r\n  height: auto;\r\n}\r\n\r\nheader.top-black-style nav ul li.active {\r\n  color: #abdcd6;\r\n}\r\n\r\nheader.top-black-style nav ul li.active:hover {\r\n  color: #fff;\r\n}\r\n\r\nheader.top-black-style nav ul .separation {\r\n  margin-left: 70px;\r\n}\r\n\r\n.special, .menu {\r\n  color: #fffcec;\r\n}\r\n.special:hover, .menu:hover {\r\n  color: #e4ebf1;\r\n}\r\n", ""]);
+exports.push([module.i, "* {\r\n  margin: 0;\r\n  padding: 0;\r\n}\r\n\r\nbody {\r\n  overflow-y: scroll;\r\n  overflow-x: hidden;\r\n}\r\n\r\nheader.top-black-style {\r\n  width: 100%;\r\n  height: 15vh;\r\n  background-color: #0e2f5a;\r\n}\r\n\r\nheader.top-black-style nav {\r\n  width: 100%;\r\n  height: 100%;\r\n}\r\n\r\nheader.top-black-style nav ul {\r\n  width: 100%;\r\n  height: 100%;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n}\r\n\r\nheader.top-black-style nav ul li {\r\n  display: inline-block;\r\n  color: #fffcec;\r\n  font-family: \"Raleway\", sans-serif;\r\n  list-style: none;\r\n  font-size: 17px;\r\n  font-weight: 600;\r\n  padding: 10px;\r\n  margin: 20px;\r\n  transition: 0.3s;\r\n  cursor: pointer;\r\n  border-radius: 2px;\r\n}\r\n/* \r\nheader.top-black-style nav ul li:hover {\r\n  color: #abdcd6;\r\n}\r\n\r\nheader.top-black-style nav ul li.special {\r\n  font-size: 19px;\r\n  text-transform: uppercase;\r\n  letter-spacing: 1.2px;\r\n} */\r\n\r\nimg {\r\n  max-width: 30%;\r\n  height: auto;\r\n}\r\n\r\nheader.top-black-style nav ul li.active {\r\n  color: #abdcd6;\r\n}\r\n\r\nheader.top-black-style nav ul li.active:hover {\r\n  color: #fff;\r\n}\r\n\r\nheader.top-black-style nav ul .separation {\r\n  margin-left: 70px;\r\n}\r\n\r\n.special, .menu {\r\n  color: #fffcec;\r\n}\r\n.special:hover, .menu:hover {\r\n  color: #e4ebf1;\r\n}\r\n\r\n.logo {\r\n  /* max-width: 60%; */\r\n}", ""]);
 
 // exports
 
@@ -72008,12 +72008,12 @@ var AppMain = /*#__PURE__*/function (_Component) {
 
       console.log("App state: ", this.state);
       _Http__WEBPACK_IMPORTED_MODULE_3__["default"].defaults.headers.common['Authorization'] = 'Bearer ' + localStorage['auth_token'];
-      _Http__WEBPACK_IMPORTED_MODULE_3__["default"].get('api/user').then(function (response) {
+      _Http__WEBPACK_IMPORTED_MODULE_3__["default"].get('api/isLoggedIn').then(function (response) {
         console.log("Current user(app): ", response);
 
-        if (response.data.name) {
+        if (response.data.user) {
           _this2.setState({
-            current_user: response.data.name,
+            current_user: response.data.user.name,
             loading: false
           });
         } else {
@@ -72179,13 +72179,7 @@ var Login = /*#__PURE__*/function (_Component) {
       loading: true
     };
     return _this;
-  } // handleChangeEmail(e) {
-  //     this.setState({email: e.target.value});
-  // }
-  // handleChangePassword(e) {
-  //     this.setState({password: e.target.value});
-  // }
-
+  }
 
   _createClass(Login, [{
     key: "componentDidMount",
@@ -72260,19 +72254,7 @@ var Login = /*#__PURE__*/function (_Component) {
       this.setState({
         email: e.target.value
       });
-    } // handleSubmit(e) {
-    //     e.preventDefault();
-    //     let uri = 'api/user/login';
-    //     Http.post(uri, this.state).then((response) => {
-    //         if (response.data.success) {
-    //             console.log(response);
-    //             localStorage.setItem('auth_token',response.data.auth_token)
-    //             Http.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.auth_token;
-    //             this.props.history.push('/')
-    //         }
-    //     })
-    // }
-
+    }
   }, {
     key: "onSignupSubmit",
     value: function onSignupSubmit(e) {
@@ -72315,7 +72297,7 @@ var Login = /*#__PURE__*/function (_Component) {
           console.log(_this3.props);
 
           _this3.props.updateUser({
-            current_user: loginUser.email
+            current_user: response.data.username
           });
 
           _this3.setState({
@@ -72433,7 +72415,7 @@ var Login = /*#__PURE__*/function (_Component) {
         type: "password",
         required: true,
         autoComplete: "off",
-        onChange: "checkPasswordMatch()"
+        onChange: "checkPasswordMatch();"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "confirm-password-error-message"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -72802,7 +72784,7 @@ var Navbar = /*#__PURE__*/function (_Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", null, this.props.current_user ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "special title"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://res.cloudinary.com/dbzfjnlhl/image/upload/v1582727690/2700638601_f82112e0-f68e-402c-8433-174222f676ca_jagmso.png",
+        src: "https://res.cloudinary.com/dbzfjnlhl/image/upload/v1608021610/ca388fd6-d7c8-4ea3-a295-63865140cd51_200x200_1_gb46up.png",
         alt: "logo"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "separation"
@@ -72817,14 +72799,12 @@ var Navbar = /*#__PURE__*/function (_Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "special"
       }, "Hello ", this.props.current_user), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "special"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "special",
         onClick: this.logout
-      }, "LOGOUT"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      }, "LOGOUT")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "special title"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://res.cloudinary.com/dbzfjnlhl/image/upload/v1582727690/2700638601_f82112e0-f68e-402c-8433-174222f676ca_jagmso.png",
+        src: "https://res.cloudinary.com/dbzfjnlhl/image/upload/v1608021610/ca388fd6-d7c8-4ea3-a295-63865140cd51_200x200_1_gb46up.png",
         alt: "logo"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "separation"
@@ -72929,9 +72909,7 @@ var App = /*#__PURE__*/function (_Component) {
   _createClass(App, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "container main-page"
-      }, this.props.children));
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.children);
     }
   }]);
 

@@ -46,11 +46,11 @@ class AppMain extends Component {
   getUser() {
     console.log("App state: ", this.state);
     Http.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage['auth_token'];
-    Http.get('api/user').then((response) => {
+    Http.get('api/isLoggedIn').then((response) => {
       console.log("Current user(app): ", response);
-      if (response.data.name) {
+      if (response.data.user) {
         this.setState({
-          current_user: response.data.name,
+          current_user: response.data.user.name,
           loading: false
         });
       } else {
@@ -79,7 +79,7 @@ class AppMain extends Component {
             render={() => <Login updateUser={this.updateUser} history={history} />}
           />
           {/* <Route path="/auth/profile" render={() => <Profile current_user={this.state.current_user} />} /> */}
-          </App>
+          </App> 
           </Switch>
         </div>
       : <></>}

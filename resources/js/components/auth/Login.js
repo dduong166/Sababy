@@ -23,14 +23,6 @@ class Login extends Component {
       };
     }
 
-    // handleChangeEmail(e) {
-    //     this.setState({email: e.target.value});
-    // }
-
-    // handleChangePassword(e) {
-    //     this.setState({password: e.target.value});
-    // }
-
     componentDidMount() {
       function checkPasswordMatch() {
         var password = $("#new_password").val();
@@ -117,19 +109,6 @@ class Login extends Component {
       });
     }
 
-    // handleSubmit(e) {
-    //     e.preventDefault();
-    //     let uri = 'api/user/login';
-    //     Http.post(uri, this.state).then((response) => {
-    //         if (response.data.success) {
-    //             console.log(response);
-    //             localStorage.setItem('auth_token',response.data.auth_token)
-    //             Http.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.auth_token;
-    //             this.props.history.push('/')
-    //         }
-    //     })
-    // }
-
     onSignupSubmit(e) {
       e.preventDefault();
       let uri = 'api/user/register';
@@ -164,7 +143,7 @@ class Login extends Component {
           console.log(this.props);
           
             this.props.updateUser({
-              current_user: loginUser.email
+              current_user: response.data.username
             });
             this.setState({loading: false});
             console.log("Res:", response);
@@ -294,7 +273,7 @@ render() {
                   type="password"
                   required
                   autoComplete="off"
-                  onChange="checkPasswordMatch()"
+                  onChange="checkPasswordMatch();"
                 />
                 <div id="confirm-password-error-message"></div>
               </div>

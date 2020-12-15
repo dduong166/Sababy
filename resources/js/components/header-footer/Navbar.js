@@ -31,7 +31,7 @@ class Navbar extends Component {
                             <ul>
                                 <li className="special title">
                                     <img
-                                        src="https://res.cloudinary.com/dbzfjnlhl/image/upload/v1582727690/2700638601_f82112e0-f68e-402c-8433-174222f676ca_jagmso.png"
+                                        src="https://res.cloudinary.com/dbzfjnlhl/image/upload/v1608021610/ca388fd6-d7c8-4ea3-a295-63865140cd51_200x200_1_gb46up.png"
                                         alt="logo"
                                     />
                                 </li>
@@ -53,20 +53,15 @@ class Navbar extends Component {
                                 <li className="special">
                                     Hello {this.props.current_user}
                                 </li>
-                                <li className="special">
-                                    <button
-                                        className="special"
-                                        onClick={this.logout}
-                                    >
+                                <li className="special" onClick={this.logout}>
                                         LOGOUT
-                                    </button>
                                 </li>
                             </ul>
                         ) : (
                             <ul>
                                 <li className="special title">
                                     <img
-                                        src="https://res.cloudinary.com/dbzfjnlhl/image/upload/v1582727690/2700638601_f82112e0-f68e-402c-8433-174222f676ca_jagmso.png"
+                                        src="https://res.cloudinary.com/dbzfjnlhl/image/upload/v1608021610/ca388fd6-d7c8-4ea3-a295-63865140cd51_200x200_1_gb46up.png"
                                         alt="logo"
                                     />
                                 </li>
