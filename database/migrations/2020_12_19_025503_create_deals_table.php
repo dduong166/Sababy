@@ -14,7 +14,11 @@ class CreateDealsTable extends Migration
     public function up()
     {
         Schema::create('deals', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('deal_id');
+            $table->integer('user_id');
+            $table->integer('product_id');
+            $table->datetime('rent_type'); //0: day, 1: month, 2:year
+            $table->integer('status');//0: returned, 1:renting
             $table->timestamps();
         });
     }

@@ -43,7 +43,7 @@ class AppMain extends Component {
         if (localStorage.getItem("auth_token")) {
             Http.defaults.headers.common["Authorization"] =
                 "Bearer " + localStorage["auth_token"];
-            Http.get("api/isLoggedIn")
+            Http.get("api/user/isLoggedIn")
                 .then(response => {
                     console.log("Current user(app): ", response);
                     if (response.data.user) {

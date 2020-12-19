@@ -21,7 +21,20 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('user/login', 'UserController@login')->name('login');
-Route::post('user/register', 'UserController@register');
+Route::prefix('user')->group(function () {
+    Route::post('/login', 'UserController@login')->name('login');
+    Route::post('/register', 'UserController@register');
+    Route::get('/isLoggedIn', 'UserController@getAuthenticatedUser');
+    // Route::get('/test', function () {
+    //     return 'Hello World';
+    // });
+});
 
-Route::get('/isLoggedIn', 'UserController@getAuthenticatedUser');
+Route::prefix('category')->group(function () {
+    Route::get('/', 'CategoryController@index');
+});
+
+Route::prefix('product')->group(function () {
+    Route::get('/', 'ProductController@index');
+});
+

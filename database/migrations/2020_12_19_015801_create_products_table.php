@@ -18,10 +18,17 @@ class CreateProductsTable extends Migration
             $table->integer('owner_id');
             $table->string('product_name');
             $table->text('description')->nullable();
-            $table->float('price');
-            $table->float('sale_price')->default(0);
-            $table->float('amount');
-            $table->float('category_id');
+
+            $table->double('buy_price')->nullable();
+            $table->double('buy_price_sale')->default(0);
+
+            $table->double('day_rent_price')->nullable();
+            $table->double('month_rent_price')->nullable();
+            $table->double('year_rent_price')->nullable();
+            $table->double('rent_price_sale')->default(0);
+
+            $table->integer('amount');
+            $table->integer('category_id');
             $table->timestamps();
         });
     }

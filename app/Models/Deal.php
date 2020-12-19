@@ -10,6 +10,6 @@ class Deal extends Model
     use HasFactory;
 
     protected $filltable = [
-        'status'
+        'rent_type'
     ];
 }
