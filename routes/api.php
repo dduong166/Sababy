@@ -36,5 +36,8 @@ Route::prefix('category')->group(function () {
 
 Route::prefix('product')->group(function () {
     Route::get('/', 'ProductController@index');
+    Route::get('/{product_id}', 'ProductController@getProduct');
+    Route::get('/comment/{product_id}', 'ProductController@getProductComment');
+
 });
 

@@ -3,10 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Http\Controllers\DealController;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    protected $DealController;
+    public function __construct(DealController $DealController)
+    {
+        $this->DealController = $DealController;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,6 +23,18 @@ class ProductController extends Controller
     {
         $products = Product::all();
         return response()->json($products);
+    }
+
+    public function getProduct($product_id)
+    {
+        $product = Product::where('product_id', $product_id)->get()->first();
+        return response()->json($product);
+    }
+
+    public function getProductComment($product_id)
+    {
+        $deals = $this->DealController->getDeal($product_id);
+        return $deals;
     }
 
     /**
