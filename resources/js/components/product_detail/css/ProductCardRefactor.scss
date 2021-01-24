@@ -1,0 +1,92 @@
+.product-card {
+    margin-bottom: 30px;
+    .bookmark {
+        span {
+            position: absolute;
+            display: block;
+            width: 34px;
+            border-radius: 50%;
+            border: solid 1px #3490dc;
+            padding: 6px 0;
+            margin-right: 3px;
+            margin-top: 3px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+            color: #fff;
+            font: 100 18px/1 'Lato', sans-serif;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+            text-transform: uppercase;
+            text-align: center;
+            transition: .2s ease-out;
+            &:hover {
+                transform: scale(1.05);
+            }
+            img {
+                width: 60%;
+            }
+        }
+    }
+    .ribbon-top-right::before,
+    .ribbon-top-right::after {
+        border-top-color: transparent;
+        border-right-color: transparent;
+    }
+    .sold_stars {
+        i {
+            color: orange;
+        }
+    }
+    
+    .bbb_deals_featured {
+        width: 100%;
+    }
+    .bbb_deals {
+        width: 100%;
+        margin-right: 7%;
+        padding-top: 80px;
+        padding-left: 25px;
+        padding-right: 25px;
+        padding-bottom: 34px;
+        box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        margin-top: 0px;
+    }
+    .bbb_deals_slider_container {
+        width: 100%;
+    }
+    .bbb_deals_item {
+        width: 100% !important;
+    }
+    .bbb_deals_image {
+        width: 100%;
+        img {
+            width: 100%;
+        }
+    }
+    .bbb_deals_content {
+        margin-top: 33px;
+    }
+    .bbb_deals_item_name {
+        font-size: 16px;
+        font-weight: 400;
+        color: #444;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-weight: 400;
+        margin: 0;
+    }
+    .available {
+        margin-top: 10px;
+    }
+    .available_title {
+        font-size: 16px;
+        color: rgba(0, 0, 0, 0.5);
+        font-weight: 400;
+    }
+    .price {
+        .old_price {
+            color: #666;
+            margin-right: 8px;
+        }
+    }
+}

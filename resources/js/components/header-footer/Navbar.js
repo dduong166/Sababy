@@ -1,14 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import "./css/navbar.css";
+import "./css/navbar.scss";
 import Http from "../../Http";
 
 class Navbar extends Component {
     constructor(props) {
         super(props);
-        // this.state = {
-        //     current_user: this.props.current_user
-        // };
         this.logout = this.logout.bind(this);
     }
     componentDidMount() {
@@ -24,18 +21,19 @@ class Navbar extends Component {
 
     render() {
         return (
-            <div>
+            <div className="navbar-section">
                 <header className="top-black-style">
                     <nav>
                         {this.props.current_user ? (
                             <ul>
                                 <li className="special title">
-                                    <img
-                                        src="https://res.cloudinary.com/dbzfjnlhl/image/upload/v1608021610/ca388fd6-d7c8-4ea3-a295-63865140cd51_200x200_1_gb46up.png"
-                                        alt="logo"
-                                    />
+                                    <a href="/">
+                                        <img
+                                            src="https://res.cloudinary.com/dbzfjnlhl/image/upload/v1608021610/ca388fd6-d7c8-4ea3-a295-63865140cd51_200x200_1_gb46up.png"
+                                            alt="logo"
+                                        />
+                                    </a>
                                 </li>
-                                <div className="separation"></div>
                                 <li>
                                     <Link to="/" className="menu">
                                         Home
@@ -54,18 +52,19 @@ class Navbar extends Component {
                                     Hello {this.props.current_user}
                                 </li>
                                 <li className="special" onClick={this.logout}>
-                                        LOGOUT
+                                    LOGOUT
                                 </li>
                             </ul>
                         ) : (
                             <ul>
                                 <li className="special title">
-                                    <img
-                                        src="https://res.cloudinary.com/dbzfjnlhl/image/upload/v1608021610/ca388fd6-d7c8-4ea3-a295-63865140cd51_200x200_1_gb46up.png"
-                                        alt="logo"
-                                    />
+                                    <Link to="/">
+                                        <img
+                                            src="https://res.cloudinary.com/dbzfjnlhl/image/upload/v1608021610/ca388fd6-d7c8-4ea3-a295-63865140cd51_200x200_1_gb46up.png"
+                                            alt="logo"
+                                        />
+                                    </Link>
                                 </li>
-                                <div className="separation"></div>
                                 <li>
                                     <Link to="/" className="menu">
                                         Home
@@ -88,7 +87,7 @@ class Navbar extends Component {
                             </ul>
                         )}
                     </nav>
-                </header> 
+                </header>
             </div>
         );
     }

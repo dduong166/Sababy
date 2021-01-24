@@ -1,0 +1,46 @@
+.homepage-body{
+    overflow: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    .category-list{
+        display: flex;
+        justify-content: center;
+        .category-card{
+            display: flex !important;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-items: center;
+            position: relative;
+            height: 90px;
+            width: 108px;
+            padding: 4px 0;
+            margin-right: 8px;
+            border-radius: 4.8px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px 0 hsla(0,0%,75.7%,.5);
+            transition: .2s ease-out;
+            &:hover {
+                transform: scale(1.05);
+            }
+            img{
+                width: 40px;
+                height: 40px;
+            }
+            .category-card-title{
+                font-size: 10px;
+                line-height: 1.2;
+                letter-spacing: 1.2px;
+                color: #346aa0;
+                width: 80px;
+                text-align: center;
+                text-transform: uppercase;
+            }
+        }
+    }
+    .product-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
