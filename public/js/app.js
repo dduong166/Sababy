@@ -6427,7 +6427,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".homepage-body {\n  overflow: auto;\n  margin-top: 20px;\n  margin-bottom: 20px;\n}\n.homepage-body .category-list {\n  display: flex;\n  justify-content: center;\n}\n.homepage-body .category-list .category-card {\n  display: flex !important;\n  justify-content: center;\n  flex-wrap: wrap;\n  align-items: center;\n  position: relative;\n  height: 90px;\n  width: 108px;\n  padding: 4px 0;\n  margin-right: 8px;\n  border-radius: 4.8px;\n  background-color: #fff;\n  box-shadow: 0 2px 5px 0 rgba(193, 193, 193, 0.5);\n  transition: 0.2s ease-out;\n}\n.homepage-body .category-list .category-card:hover {\n  transform: scale(1.05);\n}\n.homepage-body .category-list .category-card img {\n  width: 40px;\n  height: 40px;\n}\n.homepage-body .category-list .category-card .category-card-title {\n  font-size: 10px;\n  line-height: 1.2;\n  letter-spacing: 1.2px;\n  color: #346aa0;\n  width: 80px;\n  text-align: center;\n  text-transform: uppercase;\n}\n.homepage-body .product-list {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n}", ""]);
+exports.push([module.i, ".homepage-body {\n  overflow: auto;\n  margin-top: 20px;\n  margin-bottom: 20px;\n}\n.homepage-body .category-list {\n  display: flex;\n  justify-content: center;\n}\n.homepage-body .category-list .category-card {\n  display: flex !important;\n  justify-content: center;\n  flex-wrap: wrap;\n  align-items: center;\n  position: relative;\n  height: 90px;\n  width: 108px;\n  padding: 4px 0;\n  margin-right: 8px;\n  border-radius: 4.8px;\n  background-color: #fff;\n  box-shadow: 0 2px 5px 0 rgba(193, 193, 193, 0.5);\n  transition: 0.2s ease-out;\n}\n.homepage-body .category-list .category-card:hover {\n  transform: scale(1.05);\n}\n.homepage-body .category-list .category-card img {\n  width: 40px;\n  height: 40px;\n}\n.homepage-body .category-list .category-card .category-card-title {\n  font-size: 10px;\n  line-height: 1.2;\n  letter-spacing: 1.2px;\n  color: #346aa0;\n  width: 80px;\n  text-align: center;\n  text-transform: uppercase;\n}\n.homepage-body .product-list {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n}\n.homepage-body .trending_title {\n  position: relative;\n  z-index: 1;\n}", ""]);
 
 // exports
 
@@ -6465,7 +6465,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".product-card {\n  margin-bottom: 30px;\n}\n.product-card .bookmark span {\n  position: absolute;\n  display: block;\n  width: 34px;\n  border-radius: 50%;\n  border: solid 1px #3490dc;\n  padding: 6px 0;\n  margin-right: 3px;\n  margin-top: 3px;\n  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);\n  color: #fff;\n  font: 100 18px/1 \"Lato\", sans-serif;\n  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);\n  text-transform: uppercase;\n  text-align: center;\n  transition: 0.2s ease-out;\n}\n.product-card .bookmark span:hover {\n  transform: scale(1.05);\n}\n.product-card .bookmark span img {\n  width: 60%;\n}\n.product-card .ribbon-top-right::before,\n.product-card .ribbon-top-right::after {\n  border-top-color: transparent;\n  border-right-color: transparent;\n}\n.product-card .sold_stars i {\n  color: orange;\n}\n.product-card .bbb_deals_featured {\n  width: 100%;\n}\n.product-card .bbb_deals {\n  width: 100%;\n  margin-right: 7%;\n  padding-top: 80px;\n  padding-left: 25px;\n  padding-right: 25px;\n  padding-bottom: 34px;\n  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.1);\n  border-radius: 5px;\n  margin-top: 0px;\n}\n.product-card .bbb_deals_slider_container {\n  width: 100%;\n}\n.product-card .bbb_deals_item {\n  width: 100% !important;\n}\n.product-card .bbb_deals_image {\n  width: 100%;\n}\n.product-card .bbb_deals_image img {\n  width: 100%;\n}\n.product-card .bbb_deals_content {\n  margin-top: 33px;\n}\n.product-card .bbb_deals_item_name {\n  font-size: 16px;\n  font-weight: 400;\n  color: #444;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  font-weight: 400;\n  margin: 0;\n}\n.product-card .available {\n  margin-top: 10px;\n}\n.product-card .available_title {\n  font-size: 16px;\n  color: rgba(0, 0, 0, 0.5);\n  font-weight: 400;\n}\n.product-card .price .old_price {\n  color: #666;\n  margin-right: 8px;\n}", ""]);
+exports.push([module.i, ".product-card {\n  margin-bottom: 20px;\n  margin-top: 10px;\n}\n.product-card .product_card_content {\n  width: 100%;\n  margin-right: 7%;\n  padding-bottom: 10px;\n  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.1);\n  border-radius: 5px;\n  margin-top: 0px;\n  background-color: #fff;\n  transition: 0.2s ease-out;\n}\n.product-card .product_card_content:hover {\n  position: relative;\n  background-color: #fff;\n  z-index: 3;\n  box-shadow: 1px 11px 16px 2px rgba(177, 177, 177, 0.5);\n  border-radius: 8px;\n  transform: scale(1.04);\n}\n.product-card .product_card_content .bookmark span {\n  position: absolute;\n  display: block;\n  width: 34px;\n  border-radius: 50%;\n  border: solid 1px #3490dc;\n  padding: 6px 0;\n  margin-right: 3px;\n  margin-top: 3px;\n  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);\n  color: #fff;\n  font: 100 18px/1 \"Lato\", sans-serif;\n  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);\n  text-transform: uppercase;\n  text-align: center;\n  transition: 0.2s ease-out;\n}\n.product-card .product_card_content .bookmark span:hover {\n  transform: scale(1.05);\n  background-color: #fff;\n}\n.product-card .product_card_content .bookmark span img {\n  width: 60%;\n}\n.product-card .product_card_content .product_image {\n  width: 100%;\n}\n.product-card .product_card_content .product_image img {\n  width: 100%;\n}\n.product-card .product_card_content .product_preview_content {\n  margin-top: 8px;\n  margin-left: 16px;\n  margin-right: 16px;\n}\n.product-card .product_card_content .product_preview_content .product_name {\n  font-size: 16px;\n  font-weight: 400;\n  color: #444;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  font-weight: 400;\n  margin: 0;\n}\n.product-card .product_card_content .product_preview_content .product_name:hover {\n  overflow: visible;\n  white-space: normal;\n  height: auto;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate {\n  margin-top: 10px;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate .light_text {\n  font-size: 12px;\n  color: #333;\n  font-weight: 300;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate .rate_number {\n  margin-left: 4px;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate .sold_stars i {\n  color: orange;\n}\n.product-card .product_card_content .product_preview_content .price {\n  margin-top: 25px;\n}\n.product-card .product_card_content .product_preview_content .price .old_price {\n  font-size: 14px;\n  font-weight: 500;\n  color: #666;\n  margin-right: 8px;\n}", ""]);
 
 // exports
 
@@ -73106,7 +73106,9 @@ var HomepageRefactor = /*#__PURE__*/function (_Component) {
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "category-card-title"
         }, category.category_name)));
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "TH\u1ECANH H\xC0NH"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        "class": "trending_title"
+      }, "TH\u1ECANH H\xC0NH"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "product-list"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
@@ -73496,33 +73498,27 @@ var ProductCardRefactor = /*#__PURE__*/function (_Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "product-card col-md-4"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "product_card_content"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "bookmark d-flex flex-row justify-content-end "
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: "https://cdn0.iconfinder.com/data/icons/ui-standard-vol-2/96/Heart-512.png"
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "bbb_deals"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "bbb_deals_slider_container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: " bbb_deals_item"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "bbb_deals_image"
+        className: "product_image"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png",
+        src: "https://assets.furlenco.com/image/upload/c_fit,dpr_1.0,f_auto,q_auto,w_360/v1/furlenco-images/MltlkcLM_mobile_Allen-Queen-Bed-value-Mobile.jpg",
         alt: ""
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "bbb_deals_content"
+        className: "product_preview_content"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "bbb_deals_info_line d-flex flex-row justify-content-start"
+        className: "product_name_line d-flex flex-row justify-content-start"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "bbb_deals_item_name"
+        className: "product_name"
       }, "Bordo Queen Bedroom - Damask with Premium 6\" Mattress")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "available"
+        className: "product_address_and_rate d-flex flex-row justify-content-start"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "available_line d-flex flex-row justify-content-start"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "available_title"
-      }, "From Hanoi"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "light_text"
+      }, "H\xE0 N\u1ED9i"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sold_stars ml-auto"
       }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fa fa-star"
@@ -73534,13 +73530,15 @@ var ProductCardRefactor = /*#__PURE__*/function (_Component) {
         className: "fa fa-star"
       }), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fa fa-star"
-      }), " (100)"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "price d-flex flex-row justify-content-start"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "light_text rate_number"
+      }, "(100)"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "price top-border d-flex flex-row justify-content-start"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "old_price"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strike", null, "7.000.000\u0111/n\u0103m")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "new_price"
-      }, "6.000.000\u0111/n\u0103m")))))));
+      }, "6.000.000\u0111/n\u0103m")))));
     }
   }]);
 

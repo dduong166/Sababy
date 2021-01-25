@@ -54,7 +54,7 @@ class HomepageRefactor extends Component {
                             )
                         )}
                     </div>
-                    <h3>THỊNH HÀNH</h3>
+                    <h3 class="trending_title">THỊNH HÀNH</h3>
                     <div className="product-list">
                         <div className="container">
                             <div className="row">

@@ -42,5 +42,9 @@
         flex-wrap: wrap;
         justify-content: center;
     }
+    .trending_title {
+        position: relative;
+        z-index: 1;
+    }
 }
 
