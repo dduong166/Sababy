@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import Http from '../../Http'
 import $ from "jquery";
-import "./css/login.css";
+import "./css/login.scss";
 
 class Login extends Component {
 
@@ -137,7 +137,6 @@ class Login extends Component {
         email: this.state.email,
         password: this.state.password
       };
-      console.log("login user:", loginUser);
       Http.post(uri, loginUser).then((response) => {
         if (response.data.success) {
           console.log(this.props);
@@ -146,7 +145,6 @@ class Login extends Component {
               current_user: response.data.username
             });
             this.setState({loading: false});
-            console.log("Res:", response);
             localStorage.setItem('auth_token',response.data.auth_token)
             Http.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.auth_token;
             if(!this.state.loading){
@@ -162,24 +160,24 @@ class Login extends Component {
     }
 render() {
   return (
-    <div>
+    <div className="login-app">
       <div className="form">
         <ul className="tab-group">
           <li className="tab">
             <h2 name="#signup">
-              <Link to="">Sign Up</Link>
+              <Link to="">Đăng ký</Link>
             </h2>
           </li>
           <li className="tab active">
             <h2 name="#login">
-              <Link to="">Log In</Link>
+              <Link to="">Đăng nhập</Link>
             </h2>
           </li>
         </ul>
 
         <div className="tab-content">
           <div id="login">
-            <h1>Welcome Back!</h1>
+            <h1>Hãy tận hưởng dịch vụ của Latner!</h1>
 
             <form onSubmit={this.onLoginSubmit}>
               <div className="field-wrap">
@@ -191,13 +189,13 @@ render() {
                   required
                   value={this.state.email}
                   onChange={this.onChangeEmail}
-                  name="username"
+                  name="email"
                 />
               </div>
 
               <div className="field-wrap">
                 <label>
-                  Password<span className="req">*</span>
+                  Mật khẩu<span className="req">*</span>
                 </label>
                 <input
                   type="password"
@@ -208,7 +206,7 @@ render() {
               </div>
 
               <p className="forgot">
-                <Link to="/">Forgot Password?</Link>
+                <Link to="/">Quên mật khẩu?</Link>
               </p>
 
               <button
@@ -216,18 +214,18 @@ render() {
                 type="submit"
                 className="button button-block"
               >
-                Login
+                Đăng nhập
               </button>
             </form>
           </div>
 
           <div id="signup">
-            <h1>Sign Up for Free</h1>
+            <h1>Đăng ký miễn phí ngay</h1>
 
             <form onSubmit={this.onSignupSubmit}>
               <div className="field-wrap">
                 <label>
-                  Username<span className="req">*</span>
+                  Tên người dùng<span className="req">*</span>
                 </label>
                 <input
                   type="text"
@@ -241,19 +239,19 @@ render() {
 
               <div className="field-wrap">
                 <label>
-                  Email Address<span className="req">*</span>
+                  Email<span className="req">*</span>
                 </label>
                 <input
                   type="email"
                   required
-                  value={this.state.email}
+                  // value={this.state.email}
                   onChange={this.onChangeEmail}
                 />
               </div>
 
               <div className="field-wrap">
                 <label>
-                  Password<span className="req">*</span>
+                  Mật khẩu<span className="req">*</span>
                 </label>
                 <input
                   id="new_password"
@@ -266,7 +264,7 @@ render() {
 
               <div className="field-wrap">
                 <label>
-                  Enter your password again<span className="req">*</span>
+                  Nhập lại mật khẩu<span className="req">*</span>
                 </label>
                 <input
                   id="confirm_password"
@@ -283,7 +281,7 @@ render() {
                 type="submit"
                 className="button button-block"
               >
-                Get Started
+                Tạo tài khoản
               </button>
             </form>
           </div>

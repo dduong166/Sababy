@@ -17,6 +17,12 @@ class DealController extends Controller
         //
     }
 
+    public function getDeal($product_id)
+    {
+        $deal = Deal::where('product_id', $product_id)->get();
+        return response()->json($deal);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

@@ -9,10 +9,11 @@ import Http from "./Http";
 import { createBrowserHistory } from "history";
 
 import Login from "./components/auth/Login";
-import Register from "./components/auth/Register";
-import Page from "./components/users/Page";
+import HomepageRefactor from "./components/homepage_refactor/Homepage";
+import Homepage from "./components/homepage/Homepage";
 import App from "./components/page/App";
 import Navbar from "./components/header-footer/Navbar";
+import Footer from "./components/header-footer/Footer";
 
 const history = createBrowserHistory();
 
@@ -35,7 +36,6 @@ class AppMain extends Component {
 
     updateUser(userObject) {
         this.setState(userObject);
-        console.log("update state done!!!");
     }
 
     getUser() {
@@ -45,7 +45,6 @@ class AppMain extends Component {
                 "Bearer " + localStorage["auth_token"];
             Http.get("api/user/isLoggedIn")
                 .then(response => {
-                    console.log("Current user(app): ", response);
                     if (response.data.user) {
                         this.setState({
                             current_user: response.data.user.name,
@@ -85,8 +84,8 @@ class AppMain extends Component {
                                     current_user={this.state.current_user}
                                     history={history}
                                 />
-                                <Route path="/" exact component={Page} />
-                                {/* <Route path='/login' exact component={Login} /> */}
+                                <Route path="/" exact component={Homepage} />
+                                <Route path="/homerefactor" exact component={HomepageRefactor} />
                                 <Route
                                     path="/login"
                                     render={() => (
@@ -96,7 +95,7 @@ class AppMain extends Component {
                                         />
                                     )}
                                 />
-                                {/* <Route path="/auth/profile" render={() => <Profile current_user={this.state.current_user} />} /> */}
+                                <Footer/>
                             </App>
                         </Switch>
                     </div>
