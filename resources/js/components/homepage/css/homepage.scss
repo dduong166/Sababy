@@ -1,0 +1,30 @@
+@import "https://fonts.googleapis.com/css?family=Roboto:300,400,500";
+body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
+    font-family: Roboto, Helvetica Neue, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #333;
+    background-color: #fcfcfe;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.homepage-body{
+    overflow: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    .product-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .trending_title {
+        position: relative;
+        z-index: 1;
+    }
+}
+
