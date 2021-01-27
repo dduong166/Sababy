@@ -2,16 +2,14 @@ require("./bootstrap");
 
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-// import { BrowserRouter as Router, Route } from "react-router-dom";
 import { render, Link, Redirect } from "react-dom";
 import { Router, Route, Switch } from "react-router-dom";
 import Http from "./Http";
 import { createBrowserHistory } from "history";
 
 import Login from "./components/auth/Login";
-import HomepageRefactor from "./components/homepage_refactor/Homepage";
 import Homepage from "./components/homepage/Homepage";
-import App from "./components/page/App";
+import App from "./components/page/App"; 
 import Navbar from "./components/header-footer/Navbar";
 import Footer from "./components/header-footer/Footer";
 
@@ -85,7 +83,6 @@ class AppMain extends Component {
                                     history={history}
                                 />
                                 <Route path="/" exact component={Homepage} />
-                                <Route path="/homerefactor" exact component={HomepageRefactor} />
                                 <Route
                                     path="/login"
                                     render={() => (
