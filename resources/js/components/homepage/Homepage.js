@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Http from "../../Http";
 import { Link } from "react-router-dom";
 import "./css/homepage.scss";
-import ProductCard from "../product_detail/ProductCard";
+import ProductCard from "../product/ProductCard";
 import CategoryList from "../category-list-component/CategoryListComponent";
 
 class Homepage extends Component {

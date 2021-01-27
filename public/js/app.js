@@ -6453,10 +6453,10 @@ exports.push([module.i, "body {\n  height: 100%;\n  padding: 0;\n  margin: 0;\n 
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./resources/js/components/product_detail/css/ProductCard.scss":
-/*!********************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./resources/js/components/product_detail/css/ProductCard.scss ***!
-  \********************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./resources/js/components/product/css/ProductCard.scss":
+/*!*************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./resources/js/components/product/css/ProductCard.scss ***!
+  \*************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -72931,7 +72931,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 /* harmony import */ var _css_homepage_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./css/homepage.scss */ "./resources/js/components/homepage/css/homepage.scss");
 /* harmony import */ var _css_homepage_scss__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_css_homepage_scss__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _product_detail_ProductCard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../product_detail/ProductCard */ "./resources/js/components/product_detail/ProductCard.js");
+/* harmony import */ var _product_ProductCard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../product/ProductCard */ "./resources/js/components/product/ProductCard.js");
 /* harmony import */ var _category_list_component_CategoryListComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../category-list-component/CategoryListComponent */ "./resources/js/components/category-list-component/CategoryListComponent.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -73019,7 +73019,7 @@ var Homepage = /*#__PURE__*/function (_Component) {
         className: "container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_detail_ProductCard__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_detail_ProductCard__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_detail_ProductCard__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_detail_ProductCard__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_detail_ProductCard__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_detail_ProductCard__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_detail_ProductCard__WEBPACK_IMPORTED_MODULE_4__["default"], null))))));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_ProductCard__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_ProductCard__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_ProductCard__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_ProductCard__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_ProductCard__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_ProductCard__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_ProductCard__WEBPACK_IMPORTED_MODULE_4__["default"], null))))));
     }
   }]);
 
@@ -73122,10 +73122,10 @@ var App = /*#__PURE__*/function (_Component) {
 
 /***/ }),
 
-/***/ "./resources/js/components/product_detail/ProductCard.js":
-/*!***************************************************************!*\
-  !*** ./resources/js/components/product_detail/ProductCard.js ***!
-  \***************************************************************/
+/***/ "./resources/js/components/product/ProductCard.js":
+/*!********************************************************!*\
+  !*** ./resources/js/components/product/ProductCard.js ***!
+  \********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -73135,7 +73135,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Http */ "./resources/js/Http.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
-/* harmony import */ var _css_ProductCard_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./css/ProductCard.scss */ "./resources/js/components/product_detail/css/ProductCard.scss");
+/* harmony import */ var _css_ProductCard_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./css/ProductCard.scss */ "./resources/js/components/product/css/ProductCard.scss");
 /* harmony import */ var _css_ProductCard_scss__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_css_ProductCard_scss__WEBPACK_IMPORTED_MODULE_3__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -73261,15 +73261,15 @@ var ProductCardRefactor = /*#__PURE__*/function (_Component) {
 
 /***/ }),
 
-/***/ "./resources/js/components/product_detail/css/ProductCard.scss":
-/*!*********************************************************************!*\
-  !*** ./resources/js/components/product_detail/css/ProductCard.scss ***!
-  \*********************************************************************/
+/***/ "./resources/js/components/product/css/ProductCard.scss":
+/*!**************************************************************!*\
+  !*** ./resources/js/components/product/css/ProductCard.scss ***!
+  \**************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../../../../node_modules/css-loader!../../../../../node_modules/postcss-loader/src??ref--7-2!../../../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!./ProductCard.scss */ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./resources/js/components/product_detail/css/ProductCard.scss");
+var content = __webpack_require__(/*! !../../../../../node_modules/css-loader!../../../../../node_modules/postcss-loader/src??ref--7-2!../../../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!./ProductCard.scss */ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./resources/js/components/product/css/ProductCard.scss");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
