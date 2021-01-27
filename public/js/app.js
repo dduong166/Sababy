@@ -6376,6 +6376,25 @@ exports.push([module.i, ".login-app .form {\n  background: #0e2f5a;\n  padding: 
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./resources/js/components/category-list-component/css/CategoryListComponent.scss":
+/*!***************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./resources/js/components/category-list-component/css/CategoryListComponent.scss ***!
+  \***************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".category-list {\n  display: flex;\n  justify-content: center;\n}\n.category-list .category-card {\n  display: flex !important;\n  justify-content: center;\n  flex-wrap: wrap;\n  align-items: center;\n  position: relative;\n  height: 90px;\n  width: 108px;\n  padding: 4px 0;\n  margin-right: 8px;\n  border-radius: 4.8px;\n  background-color: #fff;\n  box-shadow: 0 2px 5px 0 rgba(193, 193, 193, 0.5);\n  transition: 0.2s ease-out;\n}\n.category-list .category-card:hover {\n  transform: scale(1.05);\n}\n.category-list .category-card img {\n  width: 40px;\n  height: 40px;\n}\n.category-list .category-card .category-card-title {\n  font-size: 10px;\n  line-height: 1.2;\n  letter-spacing: 1.2px;\n  color: #346aa0;\n  width: 80px;\n  text-align: center;\n  text-transform: uppercase;\n}", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./resources/js/components/header-footer/css/footer.scss":
 /*!**************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./resources/js/components/header-footer/css/footer.scss ***!
@@ -6427,7 +6446,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".homepage-body {\n  overflow: auto;\n  margin-top: 20px;\n  margin-bottom: 20px;\n}\n.homepage-body .category-list {\n  display: flex;\n  justify-content: center;\n}\n.homepage-body .category-list .category-card {\n  display: flex !important;\n  justify-content: center;\n  flex-wrap: wrap;\n  align-items: center;\n  position: relative;\n  height: 90px;\n  width: 108px;\n  padding: 4px 0;\n  margin-right: 8px;\n  border-radius: 4.8px;\n  background-color: #fff;\n  box-shadow: 0 2px 5px 0 rgba(193, 193, 193, 0.5);\n  transition: 0.2s ease-out;\n}\n.homepage-body .category-list .category-card:hover {\n  transform: scale(1.05);\n}\n.homepage-body .category-list .category-card img {\n  width: 40px;\n  height: 40px;\n}\n.homepage-body .category-list .category-card .category-card-title {\n  font-size: 10px;\n  line-height: 1.2;\n  letter-spacing: 1.2px;\n  color: #346aa0;\n  width: 80px;\n  text-align: center;\n  text-transform: uppercase;\n}\n.homepage-body .product-list {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n}\n.homepage-body .trending_title {\n  position: relative;\n  z-index: 1;\n}", ""]);
+exports.push([module.i, ".homepage-body {\n  overflow: auto;\n  margin-top: 20px;\n  margin-bottom: 20px;\n}\n.homepage-body .product-list {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n}\n.homepage-body .trending_title {\n  position: relative;\n  z-index: 1;\n}", ""]);
 
 // exports
 
@@ -72574,6 +72593,117 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./resources/js/components/category-list-component/CategoryListComponent.js":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/category-list-component/CategoryListComponent.js ***!
+  \**********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Http */ "./resources/js/Http.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+/* harmony import */ var _css_CategoryListComponent_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./css/CategoryListComponent.scss */ "./resources/js/components/category-list-component/css/CategoryListComponent.scss");
+/* harmony import */ var _css_CategoryListComponent_scss__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_css_CategoryListComponent_scss__WEBPACK_IMPORTED_MODULE_3__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+
+var CategoryList = /*#__PURE__*/function (_Component) {
+  _inherits(CategoryList, _Component);
+
+  var _super = _createSuper(CategoryList);
+
+  function CategoryList() {
+    _classCallCheck(this, CategoryList);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(CategoryList, [{
+    key: "render",
+    value: function render() {
+      var parent_categories = this.props.parent_categories;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "category-list"
+      }, parent_categories.map(function (category, index, categories) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          href: "https://www.furlenco.com/mumbai/bedroom-furniture-on-rent?ref=Home-Explore-Products-Bedroom",
+          key: category.category_id
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "category-card"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: category.category_image_url
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "category-card-title"
+        }, category.category_name)));
+      }));
+    }
+  }]);
+
+  return CategoryList;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (CategoryList);
+
+/***/ }),
+
+/***/ "./resources/js/components/category-list-component/css/CategoryListComponent.scss":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/category-list-component/css/CategoryListComponent.scss ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../../node_modules/css-loader!../../../../../node_modules/postcss-loader/src??ref--7-2!../../../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!./CategoryListComponent.scss */ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./resources/js/components/category-list-component/css/CategoryListComponent.scss");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./resources/js/components/header-footer/Footer.js":
 /*!*********************************************************!*\
   !*** ./resources/js/components/header-footer/Footer.js ***!
@@ -73018,6 +73148,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _css_homepage_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./css/homepage.scss */ "./resources/js/components/homepage_refactor/css/homepage.scss");
 /* harmony import */ var _css_homepage_scss__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_css_homepage_scss__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _product_detail_ProductCardRefactor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../product_detail/ProductCardRefactor */ "./resources/js/components/product_detail/ProductCardRefactor.js");
+/* harmony import */ var _category_list_component_CategoryListComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../category-list-component/CategoryListComponent */ "./resources/js/components/category-list-component/CategoryListComponent.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -73039,6 +73170,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -73093,20 +73225,9 @@ var HomepageRefactor = /*#__PURE__*/function (_Component) {
         className: "homepage-body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "DANH M\u1EE4C S\u1EA2N PH\u1EA8M"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "category-list"
-      }, parent_categories.map(function (category, index, categories) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-          href: "https://www.furlenco.com/mumbai/bedroom-furniture-on-rent?ref=Home-Explore-Products-Bedroom",
-          key: category.category_id
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "category-card"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          src: category.category_image_url
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "category-card-title"
-        }, category.category_name)));
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "DANH M\u1EE4C S\u1EA2N PH\u1EA8M"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_category_list_component_CategoryListComponent__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        parent_categories: parent_categories
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         "class": "trending_title"
       }, "TH\u1ECANH H\xC0NH"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "product-list"

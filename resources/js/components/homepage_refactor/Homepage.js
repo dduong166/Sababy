@@ -3,6 +3,7 @@ import Http from "../../Http";
 import { Link } from "react-router-dom";
 import "./css/homepage.scss";
 import ProductCardRefactor from "../product_detail/ProductCardRefactor";
+import CategoryList from "../category-list-component/CategoryListComponent";
 
 class HomepageRefactor extends Component {
     constructor(props) {
@@ -35,25 +36,7 @@ class HomepageRefactor extends Component {
             <div className="homepage-body">
                 <div className="container">
                     <h3>DANH MỤC SẢN PHẨM</h3>
-                    <div className="category-list">
-                        {parent_categories.map(
-                            (category, index, categories) => (
-                                <a
-                                    href="https://www.furlenco.com/mumbai/bedroom-furniture-on-rent?ref=Home-Explore-Products-Bedroom"
-                                    key={category.category_id}
-                                >
-                                    <div className="category-card">
-                                        <img
-                                            src={category.category_image_url}
-                                        />
-                                        <div className="category-card-title">
-                                            {category.category_name}
-                                        </div>
-                                    </div>
-                                </a>
-                            )
-                        )}
-                    </div>
+                    <CategoryList parent_categories = {parent_categories}/>
                     <h3 class="trending_title">THỊNH HÀNH</h3>
                     <div className="product-list">
                         <div className="container">
