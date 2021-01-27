@@ -65,7 +65,7 @@ class ProductCardRefactor extends Component {
                                 </span>
                             </div>
                         </div>
-                        <div className="price top-border d-flex flex-row justify-content-start">
+                        <div className="price top-border d-flex flex-row justify-content-end align-items-center">
                             <div className="old_price">
                                 <strike>7.000.000đ/năm</strike>
                             </div>

@@ -90,10 +90,17 @@
             .price {
                 margin-top: 25px;
                 .old_price {
-                    font-size: 14px;
+                    font-size: 13px;
                     font-weight: 500;
                     color: #666;
                     margin-right: 8px;
+                }
+                .new_price {
+                    color: #346aa0;
+                    border: 1px solid #346aa0;
+                    border-radius: 12px;
+                    font-size: 16px;
+                    padding: 0 12px;
                 }
             }
         }
