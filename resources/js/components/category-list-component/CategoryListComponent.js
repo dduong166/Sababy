@@ -9,8 +9,8 @@ class CategoryList extends Component {
         return (
             <div className="category-list">
                 {parent_categories.map((category, index, categories) => (
-                    <a
-                        href="https://www.furlenco.com/mumbai/bedroom-furniture-on-rent?ref=Home-Explore-Products-Bedroom"
+                    <Link
+                        to={"/category/" + category.category_id}
                         key={category.category_id}
                     >
                         <div className="category-card">
@@ -19,7 +19,7 @@ class CategoryList extends Component {
                                 {category.category_name}
                             </div>
                         </div>
-                    </a>
+                    </Link>
                 ))}
             </div>
         );

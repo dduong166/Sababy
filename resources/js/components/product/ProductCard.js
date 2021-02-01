@@ -3,35 +3,36 @@ import Http from "../../Http";
 import { Link } from "react-router-dom";
 import "./css/ProductCard.scss";
 
-class ProductCardRefactor extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            categories: []
-        };
-        this.getCategories = this.getCategories.bind(this);
-    }
+class ProductCard extends Component {
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         categories: []
+    //     };
+    //     this.getCategories = this.getCategories.bind(this);
+    // }
 
-    componentDidMount() {
-        this.getCategories();
-    }
+    // componentDidMount() {
+    //     this.getCategories();
+    // }
 
-    getCategories() {
-        let uri = "api/category";
-        Http.get(uri).then(response => {
-            this.setState({
-                categories: response.data
-            });
-            console.log(this.state.categories);
-        });
-    }
+    // getCategories() {
+    //     let uri = "api/category";
+    //     Http.get(uri).then(response => {
+    //         this.setState({
+    //             categories: response.data
+    //         });
+    //         // console.log(this.state.categories);
+    //     });
+    // }
 
     render() {
-        let parent_categories = this.state.categories.filter(category => {
-            return category.parent_category_id === null;
-        });
+        // let parent_categories = this.state.categories.filter(category => {
+        //     return category.parent_category_id === null;
+        // });
         return (
             <div className="product-card col-md-4">
+                <Link to={"/product/product_id"}></Link>
                 <div className="product_card_content">
                     <div className="bookmark d-flex flex-row justify-content-end ">
                         <span>
@@ -77,4 +78,4 @@ class ProductCardRefactor extends Component {
         );
     }
 }
-export default ProductCardRefactor;
+export default ProductCard;

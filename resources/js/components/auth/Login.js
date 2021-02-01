@@ -139,7 +139,7 @@ class Login extends Component {
       };
       Http.post(uri, loginUser).then((response) => {
         if (response.data.success) {
-          console.log(this.props);
+          // console.log(this.props);
           
             this.props.updateUser({
               current_user: response.data.username
