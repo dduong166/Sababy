@@ -36,8 +36,12 @@ Route::prefix('category')->group(function () {
 
 Route::prefix('product')->group(function () {
     Route::get('/', 'ProductController@index');
-    Route::get('/{product_id}', 'ProductController@getProduct');
-    Route::get('/comment/{product_id}', 'ProductController@getProductComment');
+    Route::get('/{product_id}', 'ProductController@getProductByID');
+    Route::get('/category/{category_id}', 'ProductController@getProductByCategoryID');
+    Route::get('/{product_id}/deal', 'ProductController@getProductDeals');
+});
 
+Route::prefix('deal')->group(function () {
+    // Route::get('/rate/{product_id}', 'DealController@getRate');
 });
 

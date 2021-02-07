@@ -18,7 +18,7 @@ class ProductDetail extends Component {
     }
 
     getCategories() {
-        let uri = "api/category";
+        let uri = "http://localhost:8000/api/product";
         Http.get(uri).then(response => {
             this.setState({
                 categories: response.data

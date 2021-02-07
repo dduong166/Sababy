@@ -24,7 +24,6 @@ class Homepage extends Component {
             this.setState({
                 categories: response.data
             });
-            console.log(this.state.categories);
         });
     }
 
@@ -32,15 +31,17 @@ class Homepage extends Component {
         let parent_categories = this.state.categories.filter(category => {
             return category.parent_category_id === null;
         });
+        // console.log(this.state);
         return (
             <div className="homepage-body">
                 <div className="container">
                     <h3>DANH MỤC SẢN PHẨM</h3>
                     <CategoryList parent_categories = {parent_categories}/>
-                    <h3 class="trending_title">THỊNH HÀNH</h3>
+                    <h3 className="trending_title">THỊNH HÀNH</h3>
                     <div className="product-list">
                         <div className="container">
-                            <div className="row">
+                            <div className="row"> 
+                                {/* <ProductCard />
                                 <ProductCard />
                                 <ProductCard />
                                 <ProductCard />
@@ -48,6 +49,8 @@ class Homepage extends Component {
                                 <ProductCard />
                                 <ProductCard />
                                 <ProductCard />
+                                <ProductCard />
+                                <ProductCard /> */}
                             </div>
                         </div>
                     </div>

@@ -8,9 +8,9 @@ class Navbar extends Component {
         super(props);
         this.logout = this.logout.bind(this);
     }
-    componentDidMount() {
-        console.log("navbar render, props: ", this.props);
-    }
+    // componentDidMount() {
+    //     console.log("navbar render, props: ", this.props);
+    // }
 
     logout() {
         this.props.updateUser({

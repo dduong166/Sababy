@@ -25,13 +25,21 @@ class ProductController extends Controller
         return response()->json($products);
     }
 
-    public function getProduct($product_id)
+    public function getProductByID($product_id)
     {
         $product = Product::where('product_id', $product_id)->get()->first();
+        $rate = $this->DealController->getRate($product_id);
+        $product->rate = $rate->original;
         return response()->json($product);
     }
 
-    public function getProductComment($product_id)
+    public function getProductByCategoryID($category_id)
+    {
+        $products = Product::where('category_id', $category_id)->get();
+        return response()->json($products);
+    }
+
+    public function getProductDeals($product_id)
     {
         $deals = $this->DealController->getDeal($product_id);
         return $deals;
