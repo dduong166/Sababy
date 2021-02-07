@@ -1,6 +1,9 @@
 .product-card {
     margin-bottom: 20px;
     margin-top: 10px;
+    a:hover {
+        text-decoration: none;
+    }
     .product_card_content {
         width: 100%;
         margin-right: 7%;

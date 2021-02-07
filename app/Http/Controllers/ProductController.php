@@ -28,6 +28,8 @@ class ProductController extends Controller
     public function getProductByID($product_id)
     {
         $product = Product::where('product_id', $product_id)->get()->first();
+        $rate = $this->DealController->getRate($product_id);
+        $product->rate = $rate->original;
         return response()->json($product);
     }
 
@@ -37,7 +39,7 @@ class ProductController extends Controller
         return response()->json($products);
     }
 
-    public function getProductComment($product_id)
+    public function getProductDeals($product_id)
     {
         $deals = $this->DealController->getDeal($product_id);
         return $deals;

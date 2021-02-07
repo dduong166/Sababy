@@ -17,10 +17,12 @@ class CategoryDetail extends Component {
             products: null
         };
         this.getCategories = this.getCategories.bind(this);
+        this.getProducts = this.getProducts.bind(this);
     }
 
     componentDidMount() {
         this.getCategories();
+        this.getProducts();
     }
 
     componentDidUpdate(prevProps) {
@@ -29,6 +31,7 @@ class CategoryDetail extends Component {
             prevProps.match.params.category_id
         ) {
             this.getCategories();
+            this.getProducts();
         }
     }
 
@@ -65,8 +68,18 @@ class CategoryDetail extends Component {
             .catch(error => console.log(error));
     }
 
-    getProducts(){
-        let uri = "http://localhost:8000/api/product/category" + this.props.match.params.category_id;
+    getProducts() {
+        let uri =
+            "http://localhost:8000/api/product/category/" +
+            this.props.match.params.category_id;
+        Http.get(uri)
+            .then(response => {
+                this.setState({
+                    products: response.data
+                });
+                console.log("products: ", this.state.products);
+            })
+            .catch(error => console.log(error));
     }
 
     render() {
@@ -114,16 +127,11 @@ class CategoryDetail extends Component {
                         <div className="product-list">
                             <div className="container">
                                 <div className="row">
-                                    <ProductCard />
-                                    <ProductCard />
-                                    <ProductCard />
-                                    <ProductCard />
-                                    <ProductCard />
-                                    <ProductCard />
-                                    <ProductCard />
-                                    <ProductCard />
-                                    <ProductCard />
-                                    <ProductCard />
+                                    {
+                                        this.state.products ? this.state.products.map((product, index, products) => (
+                                            <ProductCard product={product} />
+                                        )) : ""
+                                    }
                                 </div>
                             </div>
                         </div>

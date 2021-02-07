@@ -23,6 +23,19 @@ class DealController extends Controller
         return response()->json($deal);
     }
 
+    public function getRate($product_id)
+    {
+        $deals = Deal::where('product_id', $product_id)->get();
+        $sum = 0;
+        $i = 0;
+        foreach ($deals as $deal) {
+            $i++;
+            $sum+=$deal->rate;
+        }
+        $rate = (object) ['rate_value' => ceil($sum*10/$i)/10, 'number_of_rate' => $i];
+        return response()->json($rate);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

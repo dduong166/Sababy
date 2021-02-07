@@ -10,11 +10,11 @@ class Footer extends Component {
 
     render() {
         return (
-            <div className="footer-section">
+            <footer className="footer-section">
                 <div className="triangle"></div>
                 <h1>Thanks for using Latner!</h1>
                 <p>duongdang0508@gmail.com</p>
-            </div>
+            </footer>
         );
     }
 }

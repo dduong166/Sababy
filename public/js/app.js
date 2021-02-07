@@ -6407,7 +6407,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".category-list {\n  display: flex;\n  justify-content: center;\n}\n.category-list a {\n  text-decoration: none;\n}\n.category-list a .category-card {\n  display: flex !important;\n  justify-content: center;\n  flex-wrap: wrap;\n  align-items: center;\n  position: relative;\n  height: 90px;\n  width: 108px;\n  padding: 4px 0;\n  margin-right: 8px;\n  border-radius: 4.8px;\n  background-color: #fff;\n  box-shadow: 0 2px 5px 0 rgba(193, 193, 193, 0.5);\n  transition: 0.2s ease-out;\n}\n.category-list a .category-card:hover {\n  transform: scale(1.05);\n}\n.category-list a .category-card img {\n  width: 40px;\n  height: 40px;\n}\n.category-list a .category-card .category-card-title {\n  font-size: 10px;\n  line-height: 1.2;\n  letter-spacing: 1.2px;\n  color: #346aa0;\n  width: 80px;\n  text-align: center;\n  text-transform: uppercase;\n}", ""]);
+exports.push([module.i, ".category-list {\n  display: flex;\n  justify-content: center;\n  margin-bottom: 10px;\n}\n.category-list a {\n  text-decoration: none;\n}\n.category-list a .category-card {\n  display: flex !important;\n  justify-content: center;\n  flex-wrap: wrap;\n  align-items: center;\n  position: relative;\n  height: 90px;\n  width: 108px;\n  padding: 4px 0;\n  margin-right: 8px;\n  border-radius: 4.8px;\n  background-color: #fff;\n  box-shadow: 0 2px 5px 0 rgba(193, 193, 193, 0.5);\n  transition: 0.2s ease-out;\n}\n.category-list a .category-card:hover {\n  transform: scale(1.05);\n}\n.category-list a .category-card img {\n  width: 40px;\n  height: 40px;\n}\n.category-list a .category-card .category-card-title {\n  font-size: 10px;\n  line-height: 1.2;\n  letter-spacing: 1.2px;\n  color: #346aa0;\n  width: 80px;\n  text-align: center;\n  text-transform: uppercase;\n}", ""]);
 
 // exports
 
@@ -6484,7 +6484,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".product-card {\n  margin-bottom: 20px;\n  margin-top: 10px;\n}\n.product-card .product_card_content {\n  width: 100%;\n  margin-right: 7%;\n  padding-bottom: 10px;\n  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.1);\n  border-radius: 5px;\n  margin-top: 0px;\n  background-color: #fff;\n  transition: 0.2s ease-out;\n}\n.product-card .product_card_content:hover {\n  position: relative;\n  background-color: #fff;\n  z-index: 3;\n  box-shadow: 1px 11px 16px 2px rgba(177, 177, 177, 0.5);\n  border-radius: 8px;\n  transform: scale(1.04);\n}\n.product-card .product_card_content .bookmark span {\n  position: absolute;\n  display: block;\n  width: 34px;\n  border-radius: 50%;\n  border: solid 1px #3490dc;\n  padding: 6px 0;\n  margin-right: 3px;\n  margin-top: 3px;\n  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);\n  color: #fff;\n  font: 100 18px/1 \"Lato\", sans-serif;\n  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);\n  text-transform: uppercase;\n  text-align: center;\n  transition: 0.2s ease-out;\n}\n.product-card .product_card_content .bookmark span:hover {\n  transform: scale(1.05);\n  background-color: #fff;\n}\n.product-card .product_card_content .bookmark span img {\n  width: 60%;\n}\n.product-card .product_card_content .product_image {\n  width: 100%;\n}\n.product-card .product_card_content .product_image img {\n  width: 100%;\n}\n.product-card .product_card_content .product_preview_content {\n  margin-top: 8px;\n  margin-left: 16px;\n  margin-right: 16px;\n}\n.product-card .product_card_content .product_preview_content .product_name {\n  font-size: 16px;\n  font-weight: 400;\n  color: #444;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  font-weight: 400;\n  margin: 0;\n}\n.product-card .product_card_content .product_preview_content .product_name:hover {\n  overflow: visible;\n  white-space: normal;\n  height: auto;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate {\n  margin-top: 10px;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate .light_text {\n  font-size: 12px;\n  color: #333;\n  font-weight: 300;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate .rate_number {\n  margin-left: 4px;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate .sold_stars i {\n  color: orange;\n}\n.product-card .product_card_content .product_preview_content .price {\n  margin-top: 25px;\n}\n.product-card .product_card_content .product_preview_content .price .old_price {\n  font-size: 13px;\n  font-weight: 500;\n  color: #666;\n  margin-right: 8px;\n}\n.product-card .product_card_content .product_preview_content .price .new_price {\n  color: #346aa0;\n  border: 1px solid #346aa0;\n  border-radius: 12px;\n  font-size: 16px;\n  padding: 0 12px;\n}", ""]);
+exports.push([module.i, ".product-card {\n  margin-bottom: 20px;\n  margin-top: 10px;\n}\n.product-card a:hover {\n  text-decoration: none;\n}\n.product-card .product_card_content {\n  width: 100%;\n  margin-right: 7%;\n  padding-bottom: 10px;\n  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.1);\n  border-radius: 5px;\n  margin-top: 0px;\n  background-color: #fff;\n  transition: 0.2s ease-out;\n}\n.product-card .product_card_content:hover {\n  position: relative;\n  background-color: #fff;\n  z-index: 3;\n  box-shadow: 1px 11px 16px 2px rgba(177, 177, 177, 0.5);\n  border-radius: 8px;\n  transform: scale(1.04);\n}\n.product-card .product_card_content .bookmark span {\n  position: absolute;\n  display: block;\n  width: 34px;\n  border-radius: 50%;\n  border: solid 1px #3490dc;\n  padding: 6px 0;\n  margin-right: 3px;\n  margin-top: 3px;\n  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);\n  color: #fff;\n  font: 100 18px/1 \"Lato\", sans-serif;\n  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);\n  text-transform: uppercase;\n  text-align: center;\n  transition: 0.2s ease-out;\n}\n.product-card .product_card_content .bookmark span:hover {\n  transform: scale(1.05);\n  background-color: #fff;\n}\n.product-card .product_card_content .bookmark span img {\n  width: 60%;\n}\n.product-card .product_card_content .product_image {\n  width: 100%;\n}\n.product-card .product_card_content .product_image img {\n  width: 100%;\n}\n.product-card .product_card_content .product_preview_content {\n  margin-top: 8px;\n  margin-left: 16px;\n  margin-right: 16px;\n}\n.product-card .product_card_content .product_preview_content .product_name {\n  font-size: 16px;\n  font-weight: 400;\n  color: #444;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  font-weight: 400;\n  margin: 0;\n}\n.product-card .product_card_content .product_preview_content .product_name:hover {\n  overflow: visible;\n  white-space: normal;\n  height: auto;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate {\n  margin-top: 10px;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate .light_text {\n  font-size: 12px;\n  color: #333;\n  font-weight: 300;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate .rate_number {\n  margin-left: 4px;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate .sold_stars i {\n  color: orange;\n}\n.product-card .product_card_content .product_preview_content .price {\n  margin-top: 25px;\n}\n.product-card .product_card_content .product_preview_content .price .old_price {\n  font-size: 13px;\n  font-weight: 500;\n  color: #666;\n  margin-right: 8px;\n}\n.product-card .product_card_content .product_preview_content .price .new_price {\n  color: #346aa0;\n  border: 1px solid #346aa0;\n  border-radius: 12px;\n  font-size: 16px;\n  padding: 0 12px;\n}", ""]);
 
 // exports
 
@@ -72639,6 +72639,7 @@ var CategoryDetail = /*#__PURE__*/function (_Component) {
       products: null
     };
     _this.getCategories = _this.getCategories.bind(_assertThisInitialized(_this));
+    _this.getProducts = _this.getProducts.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -72646,12 +72647,14 @@ var CategoryDetail = /*#__PURE__*/function (_Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.getCategories();
+      this.getProducts();
     }
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
       if (this.props.match.params.category_id !== prevProps.match.params.category_id) {
         this.getCategories();
+        this.getProducts();
       }
     }
   }, {
@@ -72696,7 +72699,18 @@ var CategoryDetail = /*#__PURE__*/function (_Component) {
   }, {
     key: "getProducts",
     value: function getProducts() {
-      var uri = "http://localhost:8000/api/product/category" + this.props.match.params.category_id;
+      var _this3 = this;
+
+      var uri = "http://localhost:8000/api/product/category/" + this.props.match.params.category_id;
+      _Http__WEBPACK_IMPORTED_MODULE_1__["default"].get(uri).then(function (response) {
+        _this3.setState({
+          products: response.data
+        });
+
+        console.log("products: ", _this3.state.products);
+      })["catch"](function (error) {
+        return console.log(error);
+      });
     }
   }, {
     key: "render",
@@ -72730,7 +72744,11 @@ var CategoryDetail = /*#__PURE__*/function (_Component) {
         className: "container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_ProductCard__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_ProductCard__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_ProductCard__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_ProductCard__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_ProductCard__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_ProductCard__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_ProductCard__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_ProductCard__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_ProductCard__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_ProductCard__WEBPACK_IMPORTED_MODULE_5__["default"], null))))) : "Loading...");
+      }, this.state.products ? this.state.products.map(function (product, index, products) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_ProductCard__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          product: product
+        });
+      }) : "")))) : "Loading...");
     }
   }]);
 
@@ -72938,7 +72956,7 @@ var Footer = /*#__PURE__*/function (_Component) {
   _createClass(Footer, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", {
         className: "footer-section"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "triangle"
@@ -73239,7 +73257,7 @@ var Homepage = /*#__PURE__*/function (_Component) {
         className: "container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_ProductCard__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_ProductCard__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_ProductCard__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_ProductCard__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_ProductCard__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_ProductCard__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_ProductCard__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_ProductCard__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_ProductCard__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_ProductCard__WEBPACK_IMPORTED_MODULE_4__["default"], null))))));
+      })))));
     }
   }]);
 
@@ -73417,11 +73435,12 @@ var ProductCard = /*#__PURE__*/function (_Component) {
     //     });
     // }
     value: function render() {
-      // let parent_categories = this.state.categories.filter(category => {
-      //     return category.parent_category_id === null;
-      // });
+      var product = this.props.product;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "product-card col-md-4"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+        to: "/product/" + product.product_id,
+        key: product.product_id
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "product_card_content"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -73439,11 +73458,11 @@ var ProductCard = /*#__PURE__*/function (_Component) {
         className: "product_name_line d-flex flex-row justify-content-start"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "product_name"
-      }, "Bordo Queen Bedroom - Damask with Premium 6\" Mattress")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, product.product_name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "product_address_and_rate d-flex flex-row justify-content-start"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "light_text"
-      }, "H\xE0 N\u1ED9i"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, product.location), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sold_stars ml-auto"
       }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fa fa-star"
@@ -73459,11 +73478,11 @@ var ProductCard = /*#__PURE__*/function (_Component) {
         className: "light_text rate_number"
       }, "(100)"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "price top-border d-flex flex-row justify-content-end align-items-center"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, product.discount ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "old_price"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strike", null, "7.000.000\u0111/n\u0103m")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strike", null, product.price.toLocaleString(), " \u0111")) : "", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "new_price"
-      }, "6.000.000\u0111/n\u0103m")))));
+      }, (product.price * (100 - product.discount) / 100).toLocaleString(), " \u0111"))))));
     }
   }]);
 

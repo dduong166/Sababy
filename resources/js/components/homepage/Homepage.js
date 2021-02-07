@@ -41,6 +41,7 @@ class Homepage extends Component {
                     <div className="product-list">
                         <div className="container">
                             <div className="row"> 
+                                {/* <ProductCard />
                                 <ProductCard />
                                 <ProductCard />
                                 <ProductCard />
@@ -49,8 +50,7 @@ class Homepage extends Component {
                                 <ProductCard />
                                 <ProductCard />
                                 <ProductCard />
-                                <ProductCard />
-                                <ProductCard />
+                                <ProductCard /> */}
                             </div>
                         </div>
                     </div>
