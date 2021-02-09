@@ -80,7 +80,7 @@ class CategoryDetail extends Component {
                 console.log("products: ", this.state.products);
             })
             .catch(error => console.log(error));
-    }
+    } 
 
     render() {
         return (

@@ -4,15 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Http\Controllers\DealController;
+use App\Http\Controllers\CategoryController;
+use App\Models\ProductMedia;
+use App\Models\Deal;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
     protected $DealController;
-    public function __construct(DealController $DealController)
-    {
+    protected $CategoryController;
+
+    public function __construct(DealController $DealController, CategoryController $CategoryController)
+    {  
+        // header('Access-Control-Allow-Origin: *'); 
+        // dd(123);
         $this->DealController = $DealController;
+        $this->CategoryController = $CategoryController;
     }
+
+
 
     /**
      * Display a listing of the resource.
@@ -28,14 +39,19 @@ class ProductController extends Controller
     public function getProductByID($product_id)
     {
         $product = Product::where('product_id', $product_id)->get()->first();
+        //$product->load('rates'); trường hợp không cần tính toán
         $rate = $this->DealController->getRate($product_id);
         $product->rate = $rate->original;
+
         return response()->json($product);
     }
 
     public function getProductByCategoryID($category_id)
     {
-        $products = Product::where('category_id', $category_id)->get();
+        $categories = Category::where('parent_category_id', $category_id)->pluck('category_id')->toArray();
+        array_push($categories, (integer) $category_id);
+        $products = Product::whereIn('category_id', $categories)->get();
+        $products = $products->load('deals', 'productMedias');
         return response()->json($products);
     }
 

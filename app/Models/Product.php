@@ -8,16 +8,25 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
+    
+    protected $primaryKey = 'product_id';
 
     protected $fillable = [
         'product_name',
         'description',
-        'buy_price',
-        'buy_price_sale',
-        'day_rent_price',
-        'month_rent_price',
-        'year_rent_price',
-        'rent_price_sale',
-        'amount'
+        'price',
+        'discount',
+        'amount',
+        'location'
     ];
+
+    public function productMedias(){
+        return $this->hasMany(ProductMedia::class, 'product_id');
+    }
+
+    public function deals(){
+        return $this->hasMany(Deal::class, 'product_id');
+    }
+
+
 }

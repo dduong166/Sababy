@@ -6426,7 +6426,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".footer-section {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  font-size: calc(10px + 2vmin);\n  background-color: #0e2f5a;\n}\n.footer-section .triangle {\n  width: auto;\n  height: 0;\n  border-left: 50vw solid #0e2f5a;\n  border-right: 50vw solid #0e2f5a;\n  border-top: 80px solid #f1f5f8;\n}\n.footer-section h1, .footer-section h2, .footer-section p {\n  color: #fffcec;\n}", ""]);
+exports.push([module.i, ".footer-section {\n  position: relative;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  font-size: calc(10px + 2vmin);\n  background-color: #0e2f5a;\n}\n.footer-section .triangle {\n  width: auto;\n  height: 0;\n  border-left: 50vw solid #0e2f5a;\n  border-right: 50vw solid #0e2f5a;\n  border-top: 80px solid #f1f5f8;\n}\n.footer-section + h1,\n.footer-section h2,\n.footer-section p {\n  color: #fffcec;\n}", ""]);
 
 // exports
 
@@ -6484,7 +6484,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".product-card {\n  margin-bottom: 20px;\n  margin-top: 10px;\n}\n.product-card a:hover {\n  text-decoration: none;\n}\n.product-card .product_card_content {\n  width: 100%;\n  margin-right: 7%;\n  padding-bottom: 10px;\n  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.1);\n  border-radius: 5px;\n  margin-top: 0px;\n  background-color: #fff;\n  transition: 0.2s ease-out;\n}\n.product-card .product_card_content:hover {\n  position: relative;\n  background-color: #fff;\n  z-index: 3;\n  box-shadow: 1px 11px 16px 2px rgba(177, 177, 177, 0.5);\n  border-radius: 8px;\n  transform: scale(1.04);\n}\n.product-card .product_card_content .bookmark span {\n  position: absolute;\n  display: block;\n  width: 34px;\n  border-radius: 50%;\n  border: solid 1px #3490dc;\n  padding: 6px 0;\n  margin-right: 3px;\n  margin-top: 3px;\n  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);\n  color: #fff;\n  font: 100 18px/1 \"Lato\", sans-serif;\n  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);\n  text-transform: uppercase;\n  text-align: center;\n  transition: 0.2s ease-out;\n}\n.product-card .product_card_content .bookmark span:hover {\n  transform: scale(1.05);\n  background-color: #fff;\n}\n.product-card .product_card_content .bookmark span img {\n  width: 60%;\n}\n.product-card .product_card_content .product_image {\n  width: 100%;\n}\n.product-card .product_card_content .product_image img {\n  width: 100%;\n}\n.product-card .product_card_content .product_preview_content {\n  margin-top: 8px;\n  margin-left: 16px;\n  margin-right: 16px;\n}\n.product-card .product_card_content .product_preview_content .product_name {\n  font-size: 16px;\n  font-weight: 400;\n  color: #444;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  font-weight: 400;\n  margin: 0;\n}\n.product-card .product_card_content .product_preview_content .product_name:hover {\n  overflow: visible;\n  white-space: normal;\n  height: auto;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate {\n  margin-top: 10px;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate .light_text {\n  font-size: 12px;\n  color: #333;\n  font-weight: 300;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate .rate_number {\n  margin-left: 4px;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate .sold_stars i {\n  color: orange;\n}\n.product-card .product_card_content .product_preview_content .price {\n  margin-top: 25px;\n}\n.product-card .product_card_content .product_preview_content .price .old_price {\n  font-size: 13px;\n  font-weight: 500;\n  color: #666;\n  margin-right: 8px;\n}\n.product-card .product_card_content .product_preview_content .price .new_price {\n  color: #346aa0;\n  border: 1px solid #346aa0;\n  border-radius: 12px;\n  font-size: 16px;\n  padding: 0 12px;\n}", ""]);
+exports.push([module.i, ".product-card {\n  margin-bottom: 20px;\n  margin-top: 10px;\n}\n.product-card a:hover {\n  text-decoration: none;\n}\n.product-card .product_card_content {\n  width: 100%;\n  margin-right: 7%;\n  padding-bottom: 10px;\n  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.1);\n  border-radius: 5px;\n  margin-top: 0px;\n  background-color: #fff;\n  transition: 0.2s ease-out;\n}\n.product-card .product_card_content:hover {\n  position: relative;\n  background-color: #fff;\n  z-index: 3;\n  box-shadow: 1px 11px 16px 2px rgba(177, 177, 177, 0.5);\n  border-radius: 8px;\n  transform: scale(1.04);\n}\n.product-card .product_card_content .bookmark span {\n  position: absolute;\n  display: block;\n  width: 34px;\n  border-radius: 50%;\n  border: solid 1px #3490dc;\n  padding: 6px 0;\n  margin-right: 3px;\n  margin-top: 3px;\n  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);\n  color: #fff;\n  font: 100 18px/1 \"Lato\", sans-serif;\n  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);\n  text-transform: uppercase;\n  text-align: center;\n  transition: 0.2s ease-out;\n}\n.product-card .product_card_content .bookmark span:hover {\n  transform: scale(1.05);\n  background-color: #fff;\n}\n.product-card .product_card_content .bookmark span img {\n  width: 60%;\n}\n.product-card .product_card_content .product_image {\n  width: 100%;\n  text-align: center;\n}\n.product-card .product_card_content .product_image img {\n  top: 0;\n  left: 0;\n  max-width: 100%;\n  height: 240px;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.product-card .product_card_content .product_preview_content {\n  margin-top: 8px;\n  margin-left: 16px;\n  margin-right: 16px;\n}\n.product-card .product_card_content .product_preview_content .product_name {\n  font-size: 16px;\n  font-weight: 400;\n  color: #444;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  font-weight: 400;\n  margin: 0;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate {\n  margin-top: 10px;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate .light_text {\n  font-size: 12px;\n  color: #333;\n  font-weight: 300;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate .rate_number {\n  margin-left: 4px;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate .sold_stars i {\n  color: orange;\n}\n.product-card .product_card_content .product_preview_content .price {\n  margin-top: 25px;\n}\n.product-card .product_card_content .product_preview_content .price .old_price {\n  font-size: 13px;\n  font-weight: 500;\n  color: #666;\n  margin-right: 8px;\n}\n.product-card .product_card_content .product_preview_content .price .new_price {\n  color: #346aa0;\n  border: 1px solid #346aa0;\n  border-radius: 12px;\n  font-size: 16px;\n  padding: 0 12px;\n}\n.product-card .product_card_content:hover .product_name {\n  overflow: visible;\n  white-space: normal;\n  height: auto;\n}", ""]);
 
 // exports
 
@@ -73415,25 +73415,6 @@ var ProductCard = /*#__PURE__*/function (_Component) {
 
   _createClass(ProductCard, [{
     key: "render",
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         categories: []
-    //     };
-    //     this.getCategories = this.getCategories.bind(this);
-    // }
-    // componentDidMount() {
-    //     this.getCategories();
-    // }
-    // getCategories() {
-    //     let uri = "api/category";
-    //     Http.get(uri).then(response => {
-    //         this.setState({
-    //             categories: response.data
-    //         });
-    //         // console.log(this.state.categories);
-    //     });
-    // }
     value: function render() {
       var product = this.props.product;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -73449,8 +73430,11 @@ var ProductCard = /*#__PURE__*/function (_Component) {
         src: "https://cdn0.iconfinder.com/data/icons/ui-standard-vol-2/96/Heart-512.png"
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "product_image"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://assets.furlenco.com/image/upload/c_fit,dpr_1.0,f_auto,q_auto,w_360/v1/furlenco-images/MltlkcLM_mobile_Allen-Queen-Bed-value-Mobile.jpg",
+      }, product.product_medias[0] ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: product.product_medias[0].media_url,
+        alt: ""
+      }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/reference_guide/is_your_baby_teething_ref_guide/1800x1200_is_your_baby_teething_ref_guide.jpg?resize=750px:*",
         alt: ""
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "product_preview_content"
@@ -73482,7 +73466,7 @@ var ProductCard = /*#__PURE__*/function (_Component) {
         className: "old_price"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strike", null, product.price.toLocaleString(), " \u0111")) : "", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "new_price"
-      }, (product.price * (100 - product.discount) / 100).toLocaleString(), " \u0111"))))));
+      }, (product.price * (100 - product.discount) / 100).toLocaleString(), " ", "\u0111"))))));
     }
   }]);
 
