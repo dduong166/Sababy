@@ -48,10 +48,9 @@ class ProductController extends Controller
 
     public function getProductByCategoryID($category_id)
     {
-        // $categories = Category::where('parent_category_id', $category_id)->pluck('category_id')->toArray();
-        // array_push($categories, (integer) $category_id);
-        // $products = Product::whereIn('category_id', $categories)->get();
-        $products = Product::all();
+        $categories = Category::where('parent_category_id', $category_id)->pluck('category_id')->toArray();
+        array_push($categories, (integer) $category_id);
+        $products = Product::whereIn('category_id', $categories)->get();
         $products = $products->load('deals', 'productMedias');
         return response()->json($products);
     }

@@ -16,8 +16,6 @@
         &:hover {
             position: relative;
             background-color: #fff;
-            // width: 380px;
-            // height: 380px;
             z-index: 3;
             box-shadow: 1px 11px 16px 2px hsla(0, 0%, 69.4%, 0.5);
             border-radius: 8px;
@@ -51,8 +49,13 @@
         }
         .product_image {
             width: 100%;
+            text-align: center;
             img {
-                width: 100%;
+                top: 0;
+                left: 0;
+                max-width: 100%;
+                height: 240px;
+                object-fit: cover;
             }
         }
         .product_preview_content {
@@ -68,11 +71,11 @@
                 text-overflow: ellipsis;
                 font-weight: 400;
                 margin: 0;
-                &:hover {
-                    overflow: visible;
-                    white-space: normal;
-                    height: auto;
-                }
+                // &:hover {
+                //     overflow: visible;
+                //     white-space: normal;
+                //     height: auto;
+                // }
             }
             .product_address_and_rate {
                 margin-top: 10px;
@@ -105,6 +108,13 @@
                     font-size: 16px;
                     padding: 0 12px;
                 }
+            }
+        }
+        &:hover {
+            .product_name {
+                overflow: visible;
+                white-space: normal;
+                height: auto;
             }
         }
     }
