@@ -1,4 +1,8 @@
 .footer-section {
+    position: relative;
+    right: 0;
+    bottom: 0;
+    left: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -11,8 +15,10 @@
         border-left: 50vw solid #0e2f5a;
         border-right: 50vw solid #0e2f5a;
         border-top: 80px solid #f1f5f8;
-    }
-    h1, h2, p{
+    }+
+    h1,
+    h2,
+    p {
         color: #fffcec;
     }
 }

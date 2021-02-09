@@ -4,28 +4,6 @@ import { Link } from "react-router-dom";
 import "./css/ProductCard.scss";
 
 class ProductCard extends Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         categories: []
-    //     };
-    //     this.getCategories = this.getCategories.bind(this);
-    // }
-
-    // componentDidMount() {
-    //     this.getCategories();
-    // }
-
-    // getCategories() {
-    //     let uri = "api/category";
-    //     Http.get(uri).then(response => {
-    //         this.setState({
-    //             categories: response.data
-    //         });
-    //         // console.log(this.state.categories);
-    //     });
-    // }
-
     render() {
         let product = this.props.product;
         return (

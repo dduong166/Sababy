@@ -20,4 +20,6 @@ class Product extends Model
         'rent_price_sale',
         'amount'
     ];
+
+    
 }

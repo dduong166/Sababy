@@ -6426,7 +6426,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".footer-section {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  font-size: calc(10px + 2vmin);\n  background-color: #0e2f5a;\n}\n.footer-section .triangle {\n  width: auto;\n  height: 0;\n  border-left: 50vw solid #0e2f5a;\n  border-right: 50vw solid #0e2f5a;\n  border-top: 80px solid #f1f5f8;\n}\n.footer-section h1, .footer-section h2, .footer-section p {\n  color: #fffcec;\n}", ""]);
+exports.push([module.i, ".footer-section {\n  position: relative;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  font-size: calc(10px + 2vmin);\n  background-color: #0e2f5a;\n}\n.footer-section .triangle {\n  width: auto;\n  height: 0;\n  border-left: 50vw solid #0e2f5a;\n  border-right: 50vw solid #0e2f5a;\n  border-top: 80px solid #f1f5f8;\n}\n.footer-section + h1,\n.footer-section h2,\n.footer-section p {\n  color: #fffcec;\n}", ""]);
 
 // exports
 
@@ -73415,25 +73415,6 @@ var ProductCard = /*#__PURE__*/function (_Component) {
 
   _createClass(ProductCard, [{
     key: "render",
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         categories: []
-    //     };
-    //     this.getCategories = this.getCategories.bind(this);
-    // }
-    // componentDidMount() {
-    //     this.getCategories();
-    // }
-    // getCategories() {
-    //     let uri = "api/category";
-    //     Http.get(uri).then(response => {
-    //         this.setState({
-    //             categories: response.data
-    //         });
-    //         // console.log(this.state.categories);
-    //     });
-    // }
     value: function render() {
       var product = this.props.product;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
