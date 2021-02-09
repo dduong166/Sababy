@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Deal extends Model
+class ProductMedia extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'deal_id';
-    protected $filltable = [
-        'rent_type', 'comment_content', 'rate'
+    protected $table = 'product_medias';
+    protected $primaryKey = 'product_media_id';
+    protected $fillable = [
+        'product_id', 'media_url', 'media_type'
     ];
 
     public function product()

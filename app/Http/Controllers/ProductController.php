@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Http\Controllers\DealController;
 use App\Http\Controllers\CategoryController;
-use App\Models\Cart;
+use App\Models\ProductMedia;
+use App\Models\Deal;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -47,9 +48,11 @@ class ProductController extends Controller
 
     public function getProductByCategoryID($category_id)
     {
-        $categories = Category::where('parent_category_id', $category_id)->pluck('category_id')->toArray();
-        array_push($categories, (integer) $category_id);
-        $products = Product::whereIn('category_id', $categories)->get();
+        // $categories = Category::where('parent_category_id', $category_id)->pluck('category_id')->toArray();
+        // array_push($categories, (integer) $category_id);
+        // $products = Product::whereIn('category_id', $categories)->get();
+        $products = Product::all();
+        $products = $products->load('deals', 'productMedias');
         return response()->json($products);
     }
 
