@@ -3,6 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 import Http from '../../Http'
 import $ from "jquery";
 import "./css/login.scss";
+import { connect } from "react-redux";
 
 class Login extends Component {
 
@@ -139,11 +140,7 @@ class Login extends Component {
       };
       Http.post(uri, loginUser).then((response) => {
         if (response.data.success) {
-          // console.log(this.props);
-          
-            this.props.updateUser({
-              current_user: response.data.username
-            });
+            this.props.login(response.data.username);
             this.setState({loading: false});
             localStorage.setItem('auth_token',response.data.auth_token)
             Http.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.auth_token;
@@ -159,6 +156,7 @@ class Login extends Component {
       });
     }
 render() {
+  console.log(this.props);
   return (
     <div className="login-app">
       <div className="form">
@@ -230,7 +228,6 @@ render() {
                 <input
                   type="text"
                   required
-                  value={this.state.username}
                   onChange={this.onChangeUsername}
                   name="username"
                   minLength="3"
@@ -244,7 +241,6 @@ render() {
                 <input
                   type="email"
                   required
-                  // value={this.state.email}
                   onChange={this.onChangeEmail}
                 />
               </div>
@@ -292,4 +288,15 @@ render() {
 }
 }
 
-export default Login
+const mapDispatchToProps = dispatch => {
+  return {
+    login: username => {
+      dispatch({
+        type: "LOGIN",
+        payload: username
+      });
+    }
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Login);

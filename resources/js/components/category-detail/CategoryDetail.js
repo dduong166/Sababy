@@ -129,7 +129,7 @@ class CategoryDetail extends Component {
                                 <div className="row">
                                     {
                                         this.state.products ? this.state.products.map((product, index, products) => (
-                                            <ProductCard product={product} />
+                                            <ProductCard key={product.product_id} product={product} />
                                         )) : ""
                                     }
                                 </div>
