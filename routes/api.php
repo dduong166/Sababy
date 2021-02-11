@@ -45,3 +45,7 @@ Route::prefix('deal')->group(function () {
     // Route::get('/rate/{product_id}', 'DealController@getRate');
 });
 
+Route::prefix('bookmark')->group(function () {
+    Route::post('/', 'BookmarkController@store');
+});
+

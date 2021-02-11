@@ -6484,7 +6484,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".product-card {\n  margin-bottom: 20px;\n  margin-top: 10px;\n}\n.product-card a:hover {\n  text-decoration: none;\n}\n.product-card .product_card_content {\n  width: 100%;\n  margin-right: 7%;\n  padding-bottom: 10px;\n  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.1);\n  border-radius: 5px;\n  margin-top: 0px;\n  background-color: #fff;\n  transition: 0.2s ease-out;\n}\n.product-card .product_card_content:hover {\n  position: relative;\n  background-color: #fff;\n  z-index: 3;\n  box-shadow: 1px 11px 16px 2px rgba(177, 177, 177, 0.5);\n  border-radius: 8px;\n  transform: scale(1.04);\n}\n.product-card .product_card_content .bookmark span {\n  position: absolute;\n  display: block;\n  width: 34px;\n  border-radius: 50%;\n  border: solid 1px #3490dc;\n  padding: 6px 0;\n  margin-right: 3px;\n  margin-top: 3px;\n  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);\n  color: #fff;\n  font: 100 18px/1 \"Lato\", sans-serif;\n  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);\n  text-transform: uppercase;\n  text-align: center;\n  transition: 0.2s ease-out;\n}\n.product-card .product_card_content .bookmark span:hover {\n  transform: scale(1.05);\n  background-color: #fff;\n}\n.product-card .product_card_content .bookmark span img {\n  width: 60%;\n}\n.product-card .product_card_content .product_image {\n  width: 100%;\n  text-align: center;\n}\n.product-card .product_card_content .product_image img {\n  top: 0;\n  left: 0;\n  max-width: 100%;\n  height: 240px;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.product-card .product_card_content .product_preview_content {\n  margin-top: 8px;\n  margin-left: 16px;\n  margin-right: 16px;\n}\n.product-card .product_card_content .product_preview_content .product_name {\n  font-size: 16px;\n  font-weight: 400;\n  color: #444;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  font-weight: 400;\n  margin: 0;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate {\n  margin-top: 10px;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate .light_text {\n  font-size: 12px;\n  color: #333;\n  font-weight: 300;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate .rate_number {\n  margin-left: 4px;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate .sold_stars i {\n  color: orange;\n}\n.product-card .product_card_content .product_preview_content .price {\n  margin-top: 25px;\n}\n.product-card .product_card_content .product_preview_content .price .old_price {\n  font-size: 13px;\n  font-weight: 500;\n  color: #666;\n  margin-right: 8px;\n}\n.product-card .product_card_content .product_preview_content .price .new_price {\n  color: #346aa0;\n  border: 1px solid #346aa0;\n  border-radius: 12px;\n  font-size: 16px;\n  padding: 0 12px;\n}\n.product-card .product_card_content:hover .product_name {\n  overflow: visible;\n  white-space: normal;\n  height: auto;\n}", ""]);
+exports.push([module.i, ".product-card {\n  margin-bottom: 20px;\n  margin-top: 10px;\n}\n.product-card a:hover {\n  text-decoration: none;\n}\n.product-card .product_card_content {\n  width: 100%;\n  margin-right: 7%;\n  padding-bottom: 10px;\n  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.1);\n  border-radius: 5px;\n  margin-top: 0px;\n  background-color: #fff;\n  transition: 0.2s ease-out;\n}\n.product-card .product_card_content:hover {\n  position: relative;\n  background-color: #fff;\n  z-index: 3;\n  box-shadow: 1px 11px 16px 2px rgba(177, 177, 177, 0.5);\n  border-radius: 8px;\n  transform: scale(1.04);\n}\n.product-card .product_card_content .bookmark span {\n  position: absolute;\n  display: block;\n  width: 34px;\n  margin-right: 3px;\n  margin-top: 3px;\n  color: #3490dc;\n  transition: 0.2s ease-out;\n}\n.product-card .product_card_content .bookmark span:hover {\n  transform: scale(1.05);\n}\n.product-card .product_card_content .bookmark span img {\n  width: 60%;\n}\n.product-card .product_card_content .product_image {\n  width: 100%;\n  text-align: center;\n}\n.product-card .product_card_content .product_image img {\n  top: 0;\n  left: 0;\n  max-width: 100%;\n  height: 240px;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.product-card .product_card_content .product_preview_content {\n  margin-top: 8px;\n  margin-left: 16px;\n  margin-right: 16px;\n}\n.product-card .product_card_content .product_preview_content .product_name {\n  font-size: 16px;\n  font-weight: 400;\n  color: #444;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  font-weight: 400;\n  margin: 0;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate {\n  margin-top: 10px;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate .light_text {\n  font-size: 12px;\n  color: #333;\n  font-weight: 300;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate .rate_number {\n  margin-left: 4px;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate .sold_stars i {\n  color: orange;\n}\n.product-card .product_card_content .product_preview_content .price {\n  margin-top: 25px;\n}\n.product-card .product_card_content .product_preview_content .price .old_price {\n  font-size: 13px;\n  font-weight: 500;\n  color: #666;\n  margin-right: 8px;\n}\n.product-card .product_card_content .product_preview_content .price .new_price {\n  color: #346aa0;\n  border: 1px solid #346aa0;\n  border-radius: 12px;\n  font-size: 16px;\n  padding: 0 12px;\n}\n.product-card .product_card_content:hover .product_name {\n  overflow: visible;\n  white-space: normal;\n  height: auto;\n}", ""]);
 
 // exports
 
@@ -73026,10 +73026,7 @@ var Navbar = /*#__PURE__*/function (_Component) {
     _this = _super.call(this, props);
     _this.logout = _this.logout.bind(_assertThisInitialized(_this));
     return _this;
-  } // componentDidMount() {
-  //     console.log("navbar render, props: ", this.props);
-  // }
-
+  }
 
   _createClass(Navbar, [{
     key: "logout",
@@ -73415,6 +73412,14 @@ var ProductCard = /*#__PURE__*/function (_Component) {
 
   _createClass(ProductCard, [{
     key: "render",
+    // constructor(props){
+    //     this.showBookmark = this.showBookmark.bind(this);
+    // }
+    // componentDidMount(){
+    //     this.showBookmark();
+    // }
+    // showBookmark(){
+    // }
     value: function render() {
       var product = this.props.product;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -73426,9 +73431,31 @@ var ProductCard = /*#__PURE__*/function (_Component) {
         className: "product_card_content"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "bookmark d-flex flex-row justify-content-end "
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://cdn0.iconfinder.com/data/icons/ui-standard-vol-2/96/Heart-512.png"
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+        "aria-hidden": "true",
+        focusable: "false",
+        "data-prefix": "far",
+        "data-icon": "heart",
+        "class": "svg-inline--fa fa-heart fa-w-16",
+        role: "img",
+        xmlns: "http://www.w3.org/2000/svg",
+        viewBox: "0 0 512 512"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+        fill: "currentColor",
+        d: "M458.4 64.3C400.6 15.7 311.3 23 256 79.3 200.7 23 111.4 15.6 53.6 64.3-21.6 127.6-10.6 230.8 43 285.5l175.4 178.7c10 10.2 23.4 15.9 37.6 15.9 14.3 0 27.6-5.6 37.6-15.8L469 285.6c53.5-54.7 64.7-157.9-10.6-221.3zm-23.6 187.5L259.4 430.5c-2.4 2.4-4.4 2.4-6.8 0L77.2 251.8c-36.5-37.2-43.9-107.6 7.3-150.7 38.9-32.7 98.9-27.8 136.5 10.5l35 35.7 35-35.7c37.8-38.5 97.8-43.2 136.5-10.6 51.1 43.1 43.5 113.9 7.3 150.8z"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+        "aria-hidden": "true",
+        focusable: "false",
+        "data-prefix": "fas",
+        "data-icon": "heart",
+        "class": "svg-inline--fa fa-heart fa-w-16",
+        role: "img",
+        xmlns: "http://www.w3.org/2000/svg",
+        viewBox: "0 0 512 512"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+        fill: "currentColor",
+        d: "M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"
+      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "product_image"
       }, product.product_medias[0] ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: product.product_medias[0].media_url,
