@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import Http from "../../Http";
 import { Link } from "react-router-dom";
-// import "./css/.css";
-
+import "./css/ProductDetail.scss";
 
 class ProductDetail extends Component {
     constructor(props) {
