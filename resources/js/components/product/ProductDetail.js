@@ -2,39 +2,53 @@ import React, { Component } from "react";
 import Http from "../../Http";
 import { Link } from "react-router-dom";
 import "./css/ProductDetail.scss";
+import { connect } from "react-redux";
 
 class ProductDetail extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            categories: []
-        };
-        this.getCategories = this.getCategories.bind(this);
+        this.getProductDetail = this.getProductDetail.bind(this);
     }
 
     componentDidMount() {
-        this.getCategories();
+        this.getProductDetail();
     }
 
-    getCategories() {
-        let uri = "http://localhost:8000/api/product";
-        Http.get(uri).then(response => {
-            this.setState({
-                categories: response.data
-            });
-            console.log(this.state.categories);
-        });
+    getProductDetail(){
+        let uri =
+            "http://localhost:8000/api/product/" +
+            this.props.match.params.product_id;
+        Http.get(uri)
+            .then(response => {
+                this.props.setProductDetail(response.data);
+            })
+            .catch(error => console.log(error));
     }
 
     render() {
-        let parent_categories = this.state.categories.filter((category) =>{
-            return category.parent_category_id === null
-        })
         return (
-            <div className="product-detail">
-              
+            <div className="product-card col-md-4">
+                {this.props.detail.product_name}
             </div>
-            );
+        );
     }
 }
-export default ProductDetail;
+
+const mapStateToProps = state => {
+    return {
+        detail: state.productDetail.detail
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        setProductDetail: (detail) => {
+            dispatch({
+                type: "SET_PRODUCT_DETAIL",
+                payload: detail
+            });
+        }
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductDetail);

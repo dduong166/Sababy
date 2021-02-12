@@ -13,6 +13,7 @@ import rootReducer from "./redux/reducer/rootReducer";
 import Login from "./components/auth/Login";
 import Homepage from "./components/homepage/Homepage";
 import CategoryDetail from "./components/category-detail/CategoryDetail";
+import ProductDetail from "./components/product/ProductDetail";
 import App from "./components/page/App";
 import Navbar from "./components/header-footer/Navbar";
 import Footer from "./components/header-footer/Footer";
@@ -36,11 +37,8 @@ class AppMain extends Component {
                                     />
                                     <Route
                                         path="/login"
-                                        render={() => (
-                                            <Login
-                                                history={history}
-                                            />
-                                        )}
+                                        exact
+                                        component={Login}
                                     />
                                     <Route
                                         path="/"
@@ -51,6 +49,11 @@ class AppMain extends Component {
                                         path="/category/:category_id"
                                         exact
                                         component={CategoryDetail}
+                                    />
+                                    <Route
+                                        path="/product/:product_id"
+                                        exact
+                                        component={ProductDetail}
                                     />
                                     <Footer />
                                 </App>

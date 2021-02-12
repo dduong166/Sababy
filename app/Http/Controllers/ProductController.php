@@ -39,7 +39,6 @@ class ProductController extends Controller
     public function getProductByID($product_id)
     {
         $product = Product::where('product_id', $product_id)->get()->first();
-        //$product->load('rates'); trường hợp không cần tính toán
         $rate = $this->DealController->getRate($product_id);
         $product->rate = $rate->original;
 

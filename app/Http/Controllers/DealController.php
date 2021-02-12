@@ -28,11 +28,15 @@ class DealController extends Controller
         $deals = Deal::where('product_id', $product_id)->get();
         $sum = 0;
         $i = 0;
-        foreach ($deals as $deal) {
-            $i++;
-            $sum+=$deal->rate;
+        if($deals->count()){
+            foreach ($deals as $deal) {
+                $i++;
+                $sum+=$deal->rate;
+            }
+            $rate = (object) ['rate_value' => ceil($sum*10/$i)/10, 'number_of_rate' => $i];
+        }else{
+            $rate = null;
         }
-        $rate = (object) ['rate_value' => ceil($sum*10/$i)/10, 'number_of_rate' => $i];
         return response()->json($rate);
     }
 
