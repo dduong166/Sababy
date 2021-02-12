@@ -26,21 +26,13 @@
                 position: absolute;
                 display: block;
                 width: 34px;
-                border-radius: 50%;
-                border: solid 1px #3490dc;
-                padding: 6px 0;
                 margin-right: 3px;
                 margin-top: 3px;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-                color: #fff;
-                font: 100 18px/1 "Lato", sans-serif;
-                text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-                text-transform: uppercase;
-                text-align: center;
+                color: #3490dc;
                 transition: 0.2s ease-out;
                 &:hover {
                     transform: scale(1.05);
-                    background-color: #fff;
+                    // fill: #3490dc;
                 }
                 img {
                     width: 60%;

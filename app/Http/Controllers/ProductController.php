@@ -39,7 +39,6 @@ class ProductController extends Controller
     public function getProductByID($product_id)
     {
         $product = Product::where('product_id', $product_id)->get()->first();
-        //$product->load('rates'); trường hợp không cần tính toán
         $rate = $this->DealController->getRate($product_id);
         $product->rate = $rate->original;
 
@@ -51,7 +50,7 @@ class ProductController extends Controller
         $categories = Category::where('parent_category_id', $category_id)->pluck('category_id')->toArray();
         array_push($categories, (integer) $category_id);
         $products = Product::whereIn('category_id', $categories)->get();
-        $products = $products->load('deals', 'productMedias');
+        $products = $products->load('deals', 'productMedias', 'bookmarks');
         return response()->json($products);
     }
 

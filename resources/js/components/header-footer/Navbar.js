@@ -2,29 +2,49 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./css/navbar.scss";
 import Http from "../../Http";
+import { connect } from "react-redux";
 
 class Navbar extends Component {
     constructor(props) {
         super(props);
-        this.logout = this.logout.bind(this);
+        this.logoutAccount = this.logoutAccount.bind(this);
+        this.isLoggedIn = this.isLoggedIn.bind(this);
     }
-    // componentDidMount() {
-    //     console.log("navbar render, props: ", this.props);
-    // }
 
-    logout() {
-        this.props.updateUser({
-            current_user: null
-        });
+    componentDidMount(){
+        this.isLoggedIn();
+    }
+
+    isLoggedIn() {
+        if (localStorage.getItem("auth_token")) {
+            Http.defaults.headers.common["Authorization"] =
+                "Bearer " + localStorage["auth_token"];
+            Http.get("api/user/isLoggedIn")
+                .then(response => {
+                    if (response.data.user) {
+                        this.props.login(response.data.user.name);
+                    } 
+                })
+                .catch(error => {
+                    console.log(error.response.status);
+                });
+        } else {
+            console.log("k có auth_token trong Local Storage");
+        }
+    }
+
+    logoutAccount() {
+        this.props.logout();
         localStorage.removeItem("auth_token");
     }
 
     render() {
+        console.log(this.props);
         return (
             <div className="navbar-section">
                 <header className="top-black-style">
                     <nav>
-                        {this.props.current_user ? (
+                        {this.props.currentUser ? (
                             <ul>
                                 <li className="special title">
                                     <a href="/">
@@ -49,9 +69,9 @@ class Navbar extends Component {
                                 <li>Contact</li>
                                 <div className="separation"></div>
                                 <li className="special">
-                                    Hello {this.props.current_user}
+                                    Hello {this.props.currentUser}
                                 </li>
-                                <li className="special" onClick={this.logout}>
+                                <li className="special" onClick={this.logoutAccount}>
                                     LOGOUT
                                 </li>
                             </ul>
@@ -93,4 +113,26 @@ class Navbar extends Component {
     }
 }
 
-export default Navbar;
+const mapStateToProps = state => {
+    return {
+        currentUser: state.auth.currentUser
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        logout: () => {
+            dispatch({
+                type: "LOGOUT"
+            });
+        },
+        login: (username) => {
+            dispatch({
+                type: "LOGIN",
+                payload: username
+            });
+        }
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

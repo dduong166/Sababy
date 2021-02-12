@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Http from "../../Http";
 import { Link } from "react-router-dom";
 import "./css/ProductCard.scss";
+import { connect } from "react-redux";
 
 class ProductCard extends Component {
     render() {
@@ -13,14 +14,12 @@ class ProductCard extends Component {
                     key={product.product_id}
                 >
                     <div className="product_card_content">
-                        <div className="bookmark d-flex flex-row justify-content-end ">
-                            <span>
-                                <img src="https://cdn0.iconfinder.com/data/icons/ui-standard-vol-2/96/Heart-512.png" />
-                            </span>
-                        </div>
                         <div className="product_image">
                             {product.product_medias[0] ? (
-                                <img src={product.product_medias[0].media_url} alt="" /> 
+                                <img
+                                    src={product.product_medias[0].media_url}
+                                    alt=""
+                                />
                             ) : (
                                 <img
                                     src="https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/reference_guide/is_your_baby_teething_ref_guide/1800x1200_is_your_baby_teething_ref_guide.jpg?resize=750px:*"
@@ -76,4 +75,11 @@ class ProductCard extends Component {
         );
     }
 }
-export default ProductCard;
+
+const mapStateToProps = state => {
+    return {
+        currentUser: state.auth.currentUser
+    };
+};
+
+export default connect(mapStateToProps, null)(ProductCard);

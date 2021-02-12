@@ -23,9 +23,11 @@ class Product extends Model
     public function productMedias(){
         return $this->hasMany(ProductMedia::class, 'product_id');
     }
-
     public function deals(){
         return $this->hasMany(Deal::class, 'product_id');
+    }
+    public function bookmarks(){
+        return $this->hasMany(Bookmark::class, 'product_id');
     }
 
 
