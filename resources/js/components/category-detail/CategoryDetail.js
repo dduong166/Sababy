@@ -9,19 +9,13 @@ import { connect } from "react-redux";
 class CategoryDetail extends Component {
     constructor(props) {
         super(props);
-        // this.state = {
-        //     categories: [],
-        //     this_category: null,
-        //     parent_category: null,
-        //     sub_categories: null,
-        //     products: null
-        // };
-        // this.getCategories = this.getCategories.bind(this);
+        this.state = {
+            loading: true
+        };
         this.getProductsAndCategory = this.getProductsAndCategory.bind(this);
     }
 
     componentDidMount() {
-        // this.getCategories();
         this.getProductsAndCategory();
     }
 
@@ -30,43 +24,9 @@ class CategoryDetail extends Component {
             this.props.match.params.category_id !==
             prevProps.match.params.category_id
         ) {
-            // this.getCategories();
             this.getProductsAndCategory();
         }
     }
-
-    // getCategories() {
-    //     let uri = "http://localhost:8000/api/category";
-    //     Http.get(uri)
-    //         .then(response => {
-    //             this.setState({
-    //                 categories: response.data
-    //             });
-    //             var this_category_id = this.props.match.params.category_id; // this category
-    //             var this_category = this.state.categories.filter(category => {
-    //                 return category.category_id == this_category_id;
-    //             });
-    //             var parent_category = null; //parent category
-    //             if (this_category[0].parent_category_id !== null) {
-    //                 parent_category = this.state.categories.filter(category => {
-    //                     return (
-    //                         category.category_id ==
-    //                         this_category[0].parent_category_id
-    //                     );
-    //                 });
-    //             }
-    //             var sub_categories = this.state.categories.filter(category => {
-    //                 //sub category
-    //                 return category.parent_category_id == this_category_id;
-    //             });
-    //             this.setState({
-    //                 this_category: this_category,
-    //                 parent_category: parent_category,
-    //                 sub_categories: sub_categories
-    //             });
-    //         })
-    //         .catch(error => console.log(error));
-    // }
 
     getProductsAndCategory() {
         let uri =
@@ -74,10 +34,11 @@ class CategoryDetail extends Component {
             this.props.match.params.category_id;
         Http.get(uri)
             .then(response => {
-                this.props.setCategoryDetail(response.data)
+                this.props.setCategoryDetail(response.data);
+                this.setState({ loading: false });
             })
             .catch(error => console.log(error));
-    } 
+    }
 
     render() {
         console.log(this.props);
@@ -86,7 +47,7 @@ class CategoryDetail extends Component {
 
         return (
             <div className="homepage-body">
-                {category ? (
+                {!this.state.loading && category ? (
                     <div className="container">
                         <nav aria-label="breadcrumb">
                             <ol className="breadcrumb">
@@ -128,11 +89,16 @@ class CategoryDetail extends Component {
                         <div className="product-list">
                             <div className="container">
                                 <div className="row">
-                                    {
-                                        products ? products.map((product, index, products) => (
-                                            <ProductCard key={product.product_id} product={product} />
-                                        )) : ""
-                                    }
+                                    {products
+                                        ? products.map(
+                                              (product, index, products) => (
+                                                  <ProductCard
+                                                      key={product.product_id}
+                                                      product={product}
+                                                  />
+                                              )
+                                          )
+                                        : ""}
                                 </div>
                             </div>
                         </div>
@@ -153,7 +119,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        setCategoryDetail: (detail) => {
+        setCategoryDetail: detail => {
             dispatch({
                 type: "SET_CATEGORY_DETAIL",
                 payload: detail

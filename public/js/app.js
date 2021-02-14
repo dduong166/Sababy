@@ -75176,15 +75176,10 @@ var CategoryDetail = /*#__PURE__*/function (_Component) {
 
     _classCallCheck(this, CategoryDetail);
 
-    _this = _super.call(this, props); // this.state = {
-    //     categories: [],
-    //     this_category: null,
-    //     parent_category: null,
-    //     sub_categories: null,
-    //     products: null
-    // };
-    // this.getCategories = this.getCategories.bind(this);
-
+    _this = _super.call(this, props);
+    _this.state = {
+      loading: true
+    };
     _this.getProductsAndCategory = _this.getProductsAndCategory.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -75192,49 +75187,15 @@ var CategoryDetail = /*#__PURE__*/function (_Component) {
   _createClass(CategoryDetail, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      // this.getCategories();
       this.getProductsAndCategory();
     }
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
       if (this.props.match.params.category_id !== prevProps.match.params.category_id) {
-        // this.getCategories();
         this.getProductsAndCategory();
       }
-    } // getCategories() {
-    //     let uri = "http://localhost:8000/api/category";
-    //     Http.get(uri)
-    //         .then(response => {
-    //             this.setState({
-    //                 categories: response.data
-    //             });
-    //             var this_category_id = this.props.match.params.category_id; // this category
-    //             var this_category = this.state.categories.filter(category => {
-    //                 return category.category_id == this_category_id;
-    //             });
-    //             var parent_category = null; //parent category
-    //             if (this_category[0].parent_category_id !== null) {
-    //                 parent_category = this.state.categories.filter(category => {
-    //                     return (
-    //                         category.category_id ==
-    //                         this_category[0].parent_category_id
-    //                     );
-    //                 });
-    //             }
-    //             var sub_categories = this.state.categories.filter(category => {
-    //                 //sub category
-    //                 return category.parent_category_id == this_category_id;
-    //             });
-    //             this.setState({
-    //                 this_category: this_category,
-    //                 parent_category: parent_category,
-    //                 sub_categories: sub_categories
-    //             });
-    //         })
-    //         .catch(error => console.log(error));
-    // }
-
+    }
   }, {
     key: "getProductsAndCategory",
     value: function getProductsAndCategory() {
@@ -75243,6 +75204,10 @@ var CategoryDetail = /*#__PURE__*/function (_Component) {
       var uri = "http://localhost:8000/api/product/category/" + this.props.match.params.category_id;
       _Http__WEBPACK_IMPORTED_MODULE_1__["default"].get(uri).then(function (response) {
         _this2.props.setCategoryDetail(response.data);
+
+        _this2.setState({
+          loading: false
+        });
       })["catch"](function (error) {
         return console.log(error);
       });
@@ -75255,7 +75220,7 @@ var CategoryDetail = /*#__PURE__*/function (_Component) {
       var products = this.props.detail.products;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "homepage-body"
-      }, category ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, !this.state.loading && category ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
         "aria-label": "breadcrumb"
