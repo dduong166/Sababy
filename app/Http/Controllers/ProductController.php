@@ -64,11 +64,11 @@ class ProductController extends Controller
         $products = Product::whereIn('category_id', $sub_categories_id)->get();
         $products = $products->load('productMedias', 'bookmarks');
         //get category
-        $category = Category::where('category_id', $category_id)->get();
-        $category[0]->sub_categories = $sub_categories;
-        if($category[0]->parent_category_id){
-            $parent_category = Category::where('category_id', $category[0]->parent_category_id)->pluck('category_name');
-            $category[0]->parent_category_id = $parent_category;
+        $category = Category::where('category_id', $category_id)->get()->first();
+        $category->sub_categories = $sub_categories;
+        if($category->parent_category_id){
+            $parent_category = Category::where('category_id', $category->parent_category_id)->get();
+            $category->parent_category_id = $parent_category;
         }
         //assign into result
         $result = (object)[];
