@@ -75260,6 +75260,7 @@ var CategoryDetail = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
+      console.log(this.state);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "homepage-body"
       }, this.state.this_category ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -76152,7 +76153,7 @@ var ProductDetail = /*#__PURE__*/function (_Component) {
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "product-card col-md-4"
-      }, this.props.detail.product_name);
+      }, this.props.detail.product_name, " ahihi");
     }
   }]);
 

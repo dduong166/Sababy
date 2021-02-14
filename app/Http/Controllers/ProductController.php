@@ -38,20 +38,44 @@ class ProductController extends Controller
 
     public function getProductByID($product_id)
     {
+        //get product
         $product = Product::where('product_id', $product_id)->get()->first();
         $rate = $this->DealController->getRate($product_id);
         $product->rate = $rate->original;
+        //get category
+        $product = $product->load('category');
+        if($product->category->parent_category_id){
+            $parent_category = Category::where('category_id', $product->category->parent_category_id)->pluck('category_name');
+            $product->parent_category = $parent_category;
+        }
 
         return response()->json($product);
     }
 
     public function getProductByCategoryID($category_id)
     {
-        $categories = Category::where('parent_category_id', $category_id)->pluck('category_id')->toArray();
-        array_push($categories, (integer) $category_id);
-        $products = Product::whereIn('category_id', $categories)->get();
-        $products = $products->load('deals', 'productMedias', 'bookmarks');
-        return response()->json($products);
+        //get products
+        $sub_categories = Category::where('parent_category_id', $category_id)->get();
+        $sub_categories_id = [];
+        foreach ($sub_categories as $sub_category){
+            array_push($sub_categories_id, $sub_category->category_id);
+        }
+        array_push($sub_categories_id, (integer) $category_id);
+        $products = Product::whereIn('category_id', $sub_categories_id)->get();
+        $products = $products->load('productMedias', 'bookmarks');
+        //get category
+        $category = Category::where('category_id', $category_id)->get();
+        $category[0]->sub_categories = $sub_categories;
+        if($category[0]->parent_category_id){
+            $parent_category = Category::where('category_id', $category[0]->parent_category_id)->pluck('category_name');
+            $category[0]->parent_category_id = $parent_category;
+        }
+        //assign into result
+        $result = (object)[];
+        $result->products = $products;
+        $result->category = $category;
+        
+        return response()->json($result);
     }
 
     public function getProductDeals($product_id)

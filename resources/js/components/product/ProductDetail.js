@@ -28,7 +28,7 @@ class ProductDetail extends Component {
     render() {
         return (
             <div className="product-card col-md-4">
-                {this.props.detail.product_name}
+                {this.props.detail.product_name} ahihi
             </div>
         );
     }

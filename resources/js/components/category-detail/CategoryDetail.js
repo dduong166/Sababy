@@ -83,6 +83,7 @@ class CategoryDetail extends Component {
     } 
 
     render() {
+        console.log(this.state);
         return (
             <div className="homepage-body">
                 {this.state.this_category ? (
