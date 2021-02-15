@@ -43,9 +43,9 @@ class ProductController extends Controller
         $rate = $this->DealController->getRate($product_id);
         $product->rate = $rate->original;
         //get category
-        $product = $product->load('category');
+        $product = $product->load('category', 'productMedias');
         if($product->category->parent_category_id){
-            $parent_category = Category::where('category_id', $product->category->parent_category_id)->pluck('category_name');
+            $parent_category = Category::where('category_id', $product->category->parent_category_id)->get();
             $product->parent_category = $parent_category;
         }
 
