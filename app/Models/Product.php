@@ -29,6 +29,9 @@ class Product extends Model
     public function bookmarks(){
         return $this->hasMany(Bookmark::class, 'product_id');
     }
+    public function questions(){
+        return $this->hasMany(Question::class, 'product_id');
+    }
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');

@@ -98,40 +98,27 @@ class ProductDetail extends Component {
                                 <div className="product-name">
                                     {detail.product_name}
                                 </div>
-                                {/* <div className="product-location">
-                                    Gửi từ {detail.location}
-                                </div> */}
                                 <div className="product-short-description">
                                     <table>
                                         <tbody>
                                             <tr>
-                                                <th>
-                                                    TÌNH TRẠNG NGOẠI QUAN
-                                                </th>
-                                                <td>
-                                                    {detail.outside_status}
-                                                </td>
+                                                <th>TÌNH TRẠNG NGOẠI QUAN</th>
+                                                <td>{detail.outside_status}</td>
                                             </tr>
                                             <tr>
-                                                <th>
-                                                    TÌNH TRẠNG SỬ DỤNG
-                                                </th>
+                                                <th>TÌNH TRẠNG SỬ DỤNG</th>
                                                 <td>
                                                     {detail.function_status}
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th>
-                                                    GỬI TỪ
-                                                </th>
-                                                <td>
-                                                {detail.location}
-                                                </td>
+                                                <th>GỬI TỪ</th>
+                                                <td>{detail.location}</td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
-                                <hr/>
+                                <hr />
                                 <div className="product-quantity form-group d-flex flex-row justify-content-start align-items-center">
                                     <div className="quantity-title">
                                         Số lượng:
@@ -165,8 +152,116 @@ class ProductDetail extends Component {
                                     </div>
                                 </div>
                                 <div className="add-to-cart-and-buy-button d-flex flex-row justify-content-start align-items-center">
-                                    <button className="add-to-cart-button">THÊM VÀO GIỎ HÀNG</button>
-                                    <button className="buy-button">MUA NGAY</button>
+                                    <button className="add-to-cart-button">
+                                        THÊM VÀO GIỎ HÀNG
+                                    </button>
+                                    <button className="buy-button">
+                                        MUA NGAY
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="product-detail-info row">
+                            <div class="col-lg-12">
+                                <nav>
+                                    <div
+                                        class="nav nav-tabs nav-fill"
+                                        id="nav-tab"
+                                        role="tablist"
+                                    >
+                                        <a
+                                            class="nav-item nav-link active"
+                                            id="nav-home-tab"
+                                            data-toggle="tab"
+                                            href="#nav-home"
+                                            role="tab"
+                                            aria-controls="nav-home"
+                                            aria-selected="true"
+                                        >
+                                            Mô Tả Chi Tiết
+                                        </a>
+                                        <a
+                                            class="nav-item nav-link"
+                                            id="nav-profile-tab"
+                                            data-toggle="tab"
+                                            href="#nav-profile"
+                                            role="tab"
+                                            aria-controls="nav-profile"
+                                            aria-selected="false"
+                                        >
+                                            Câu Hỏi
+                                        </a>
+                                        <a
+                                            class="nav-item nav-link"
+                                            id="nav-contact-tab"
+                                            data-toggle="tab"
+                                            href="#nav-contact"
+                                            role="tab"
+                                            aria-controls="nav-contact"
+                                            aria-selected="false"
+                                        >
+                                            Đánh Giá
+                                        </a>
+                                    </div>
+                                </nav>
+                                <div class="tab-content" id="nav-tabContent">
+                                    <div
+                                        class="tab-pane fade show active"
+                                        id="nav-home"
+                                        role="tabpanel"
+                                        aria-labelledby="nav-home-tab"
+                                    >
+                                        {detail.description}
+                                    </div>
+                                    <div
+                                        class="tab-pane fade"
+                                        id="nav-profile"
+                                        role="tabpanel"
+                                        aria-labelledby="nav-profile-tab"
+                                    >
+                                        <div className="asker-name">Tên người hỏi</div>
+                                        <div className="question-datetime">15:30 12/01/2021</div>
+                                        <div className="question-content">baloadhfsa kjasdhf kashdfkh ádkfh</div>
+                                    </div>
+                                    <div
+                                        class="tab-pane fade"
+                                        id="nav-contact"
+                                        role="tabpanel"
+                                        aria-labelledby="nav-contact-tab"
+                                    >
+                                        <table class="table" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Contest Name</th>
+                                                    <th>Date</th>
+                                                    <th>Award Position</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <a href="#">Work 1</a>
+                                                    </td>
+                                                    <td>Doe</td>
+                                                    <td>john@example.com</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <a href="#">Work 2</a>
+                                                    </td>
+                                                    <td>Moe</td>
+                                                    <td>mary@example.com</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <a href="#">Work 3</a>
+                                                    </td>
+                                                    <td>Dooley</td>
+                                                    <td>july@example.com</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>

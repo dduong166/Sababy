@@ -6530,7 +6530,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".product-detail .breadcrumb {\n  background-color: transparent;\n}\n.product-detail .main-section {\n  display: flex;\n  background-color: white;\n}\n.product-detail .main-section .product-image {\n  width: 50%;\n}\n.product-detail .main-section .product-short-info .product-name {\n  font-size: 24px;\n  font-weight: 400;\n  color: #444;\n}\n.product-detail .main-section .product-short-info .product-short-description {\n  margin-top: 12px;\n  color: #444;\n}\n.product-detail .main-section .product-short-info .product-short-description th {\n  padding-right: 50px;\n  font-weight: 450;\n}\n.product-detail .main-section .product-short-info .product-quantity .quantity-title {\n  margin-right: 20px;\n}\n.product-detail .main-section .product-short-info .product-quantity .quantity-number-input {\n  width: 10%;\n}\n.product-detail .main-section .product-short-info .price {\n  margin-top: 12px;\n}\n.product-detail .main-section .product-short-info .price .old_price {\n  font-size: 14px;\n  font-weight: 500;\n  color: #666;\n  margin-right: 8px;\n}\n.product-detail .main-section .product-short-info .price .new_price {\n  color: #346aa0;\n  border: 1px solid #346aa0;\n  border-radius: 12px;\n  font-size: 22px;\n  padding: 0 12px;\n}\n.product-detail .main-section .product-short-info .add-to-cart-and-buy-button {\n  margin-top: 30px;\n}\n.product-detail .main-section .product-short-info .add-to-cart-and-buy-button .add-to-cart-button {\n  color: white;\n  background-color: #346aa0;\n  border-radius: 12px;\n  padding: 12px;\n  margin-right: 12px;\n  border-color: transparent;\n}\n.product-detail .main-section .product-short-info .add-to-cart-and-buy-button .add-to-cart-button:hover {\n  background-color: #275380;\n}\n.product-detail .main-section .product-short-info .add-to-cart-and-buy-button .buy-button {\n  color: white;\n  background-color: #346aa0;\n  border-radius: 12px;\n  padding: 12px;\n  border-color: transparent;\n  width: 165px;\n}\n.product-detail .main-section .product-short-info .add-to-cart-and-buy-button .buy-button:hover {\n  background-color: #275380;\n}", ""]);
+exports.push([module.i, ".product-detail .breadcrumb {\n  background-color: transparent;\n}\n.product-detail .main-section {\n  display: flex;\n  background-color: white;\n}\n.product-detail .main-section .product-image {\n  width: 50%;\n}\n.product-detail .main-section .product-short-info .product-name {\n  font-size: 24px;\n  font-weight: 400;\n  color: #444;\n}\n.product-detail .main-section .product-short-info .product-short-description {\n  color: #444;\n}\n.product-detail .main-section .product-short-info .product-short-description tr th {\n  padding-right: 50px;\n  padding-top: 12px;\n  font-weight: 400;\n}\n.product-detail .main-section .product-short-info .product-short-description tr td {\n  padding-top: 12px;\n}\n.product-detail .main-section .product-short-info .product-quantity .quantity-title {\n  margin-right: 20px;\n}\n.product-detail .main-section .product-short-info .product-quantity .quantity-number-input {\n  width: 10%;\n}\n.product-detail .main-section .product-short-info .price {\n  margin-top: 12px;\n}\n.product-detail .main-section .product-short-info .price .old_price {\n  font-size: 14px;\n  font-weight: 500;\n  color: #666;\n  margin-right: 8px;\n}\n.product-detail .main-section .product-short-info .price .new_price {\n  color: #346aa0;\n  border: 1px solid #346aa0;\n  border-radius: 12px;\n  font-size: 22px;\n  padding: 0 12px;\n}\n.product-detail .main-section .product-short-info .add-to-cart-and-buy-button {\n  margin-top: 30px;\n}\n.product-detail .main-section .product-short-info .add-to-cart-and-buy-button .add-to-cart-button {\n  color: white;\n  background-color: #346aa0;\n  border-radius: 12px;\n  padding: 12px;\n  margin-right: 12px;\n  border-color: transparent;\n}\n.product-detail .main-section .product-short-info .add-to-cart-and-buy-button .add-to-cart-button:hover {\n  background-color: #275380;\n}\n.product-detail .main-section .product-short-info .add-to-cart-and-buy-button .buy-button {\n  color: white;\n  background-color: #346aa0;\n  border-radius: 12px;\n  padding: 12px;\n  border-color: transparent;\n  width: 165px;\n}\n.product-detail .main-section .product-short-info .add-to-cart-and-buy-button .buy-button:hover {\n  background-color: #275380;\n}\n.product-detail .product-detail-info {\n  background-color: white;\n  margin-top: 20px;\n}\n.product-detail .product-detail-info #tabs {\n  background: #007b5e;\n  color: #eee;\n}\n.product-detail .product-detail-info #tabs h6.section-title {\n  color: #eee;\n}\n.product-detail .product-detail-info #tabs .nav-tabs .nav-item.show .nav-link,\n.product-detail .product-detail-info .nav-tabs .nav-link.active {\n  color: #0062cc;\n  background-color: transparent;\n  border-color: transparent transparent #f3f3f3;\n  border-bottom: 3px solid !important;\n  font-size: 16px;\n  font-weight: bold;\n}\n.product-detail .product-detail-info .nav-link {\n  border: 1px solid transparent;\n  border-top-left-radius: 0.25rem;\n  border-top-right-radius: 0.25rem;\n  color: #0062cc;\n  font-size: 16px;\n  font-weight: 600;\n}\n.product-detail .product-detail-info .nav-link:hover {\n  border: none;\n}\n.product-detail .product-detail-info thead {\n  background: #f3f3f3;\n  color: #333;\n}\n.product-detail .product-detail-info a {\n  text-decoration: none;\n  color: #333;\n  font-weight: 600;\n}\n.product-detail .product-detail-info .tab-pane {\n  border: 1px solid lightgray;\n}\n.product-detail .product-detail-info .tab-pane .asker-name {\n  font-weight: 500;\n  font-size: 14px;\n}\n.product-detail .product-detail-info .tab-pane .question-datetime {\n  font-weight: 300;\n  font-size: 12px;\n}", ""]);
 
 // exports
 
@@ -76226,7 +76226,72 @@ var ProductDetail = /*#__PURE__*/function (_Component) {
         className: "add-to-cart-button"
       }, "TH\xCAM V\xC0O GI\u1ECE H\xC0NG"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "buy-button"
-      }, "MUA NGAY"))))) : "Loading...");
+      }, "MUA NGAY")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "product-detail-info row"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        "class": "col-lg-12"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        "class": "nav nav-tabs nav-fill",
+        id: "nav-tab",
+        role: "tablist"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        "class": "nav-item nav-link active",
+        id: "nav-home-tab",
+        "data-toggle": "tab",
+        href: "#nav-home",
+        role: "tab",
+        "aria-controls": "nav-home",
+        "aria-selected": "true"
+      }, "M\xF4 T\u1EA3 Chi Ti\u1EBFt"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        "class": "nav-item nav-link",
+        id: "nav-profile-tab",
+        "data-toggle": "tab",
+        href: "#nav-profile",
+        role: "tab",
+        "aria-controls": "nav-profile",
+        "aria-selected": "false"
+      }, "C\xE2u H\u1ECFi"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        "class": "nav-item nav-link",
+        id: "nav-contact-tab",
+        "data-toggle": "tab",
+        href: "#nav-contact",
+        role: "tab",
+        "aria-controls": "nav-contact",
+        "aria-selected": "false"
+      }, "\u0110\xE1nh Gi\xE1"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        "class": "tab-content",
+        id: "nav-tabContent"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        "class": "tab-pane fade show active",
+        id: "nav-home",
+        role: "tabpanel",
+        "aria-labelledby": "nav-home-tab"
+      }, detail.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        "class": "tab-pane fade",
+        id: "nav-profile",
+        role: "tabpanel",
+        "aria-labelledby": "nav-profile-tab"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "asker-name"
+      }, "T\xEAn ng\u01B0\u1EDDi h\u1ECFi"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "question-datetime"
+      }, "15:30 12/01/2021"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "question-content"
+      }, "baloadhfsa kjasdhf kashdfkh \xE1dkfh")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        "class": "tab-pane fade",
+        id: "nav-contact",
+        role: "tabpanel",
+        "aria-labelledby": "nav-contact-tab"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
+        "class": "table",
+        cellspacing: "0"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Contest Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Date"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Award Position"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "#"
+      }, "Work 1")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Doe"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "john@example.com")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "#"
+      }, "Work 2")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Moe"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "mary@example.com")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "#"
+      }, "Work 3")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Dooley"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "july@example.com"))))))))) : "Loading...");
     }
   }]);
 

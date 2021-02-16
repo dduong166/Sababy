@@ -8,6 +8,8 @@ use App\Http\Controllers\CategoryController;
 use App\Models\ProductMedia;
 use App\Models\Deal;
 use App\Models\Category;
+use App\Models\Question;
+use App\Models\Answer;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -43,7 +45,7 @@ class ProductController extends Controller
         $rate = $this->DealController->getRate($product_id);
         $product->rate = $rate->original;
         //get category
-        $product = $product->load('category', 'productMedias');
+        $product = $product->load('category', 'productMedias', 'questions', 'questions.answers');
         if($product->category->parent_category_id){
             $parent_category = Category::where('category_id', $product->category->parent_category_id)->get();
             $product->parent_category = $parent_category;
