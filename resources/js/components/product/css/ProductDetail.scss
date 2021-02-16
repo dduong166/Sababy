@@ -4,14 +4,73 @@
     }
     .main-section {
         display: flex;
-        // border: 1px solid red;
-        // .product-image {
-        //     width: 50%;
-        //     border: 1px solid red;
-        // }
-        // .product-short-info {
-        //     border: 1px solid red;
-
-        // }
+        background-color: white;
+        .product-image {
+            width: 50%;
+        }
+        .product-short-info {
+            .product-name {
+                font-size: 24px;
+                font-weight: 400;
+                color: #444;
+            }
+            .product-short-description {
+                margin-top: 12px;
+                color: #444;
+                th {
+                    padding-right: 50px;
+                    font-weight: 450;
+                }
+            }
+            .product-quantity {
+                .quantity-title {
+                    margin-right: 20px;
+                }
+                .quantity-number-input {
+                    width: 10%;
+                }
+            }
+            .price {
+                margin-top: 12px;
+                .old_price {
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: #666;
+                    margin-right: 8px;
+                }
+                .new_price {
+                    color: #346aa0;
+                    border: 1px solid #346aa0;
+                    border-radius: 12px;
+                    font-size: 22px;
+                    padding: 0 12px;
+                }
+            }
+            .add-to-cart-and-buy-button {
+                margin-top: 30px;
+                .add-to-cart-button {
+                    color: white;
+                    background-color: #346aa0;
+                    border-radius: 12px;
+                    padding: 12px;
+                    margin-right: 12px;
+                    border-color: transparent;
+                    &:hover {
+                        background-color: #275380;
+                    }
+                }
+                .buy-button {
+                    color: white;
+                    background-color: #346aa0;
+                    border-radius: 12px;
+                    padding: 12px;
+                    border-color: transparent;
+                    width: 165px;
+                    &:hover {
+                        background-color: #275380;
+                    }
+                }
+            }
+        }
     }
 }

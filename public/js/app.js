@@ -6511,7 +6511,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".product-card {\n  margin-bottom: 20px;\n  margin-top: 10px;\n}\n.product-card a:hover {\n  text-decoration: none;\n}\n.product-card .product_card_content {\n  width: 100%;\n  margin-right: 7%;\n  padding-bottom: 10px;\n  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.1);\n  border-radius: 5px;\n  margin-top: 0px;\n  background-color: #fff;\n  transition: 0.2s ease-out;\n}\n.product-card .product_card_content:hover {\n  position: relative;\n  background-color: #fff;\n  z-index: 3;\n  box-shadow: 1px 11px 16px 2px rgba(177, 177, 177, 0.5);\n  border-radius: 8px;\n  transform: scale(1.04);\n}\n.product-card .product_card_content .bookmark span {\n  position: absolute;\n  display: block;\n  width: 34px;\n  margin-right: 3px;\n  margin-top: 3px;\n  color: #3490dc;\n  transition: 0.2s ease-out;\n}\n.product-card .product_card_content .bookmark span:hover {\n  transform: scale(1.05);\n}\n.product-card .product_card_content .bookmark span img {\n  width: 60%;\n}\n.product-card .product_card_content .product_image {\n  width: 100%;\n  text-align: center;\n}\n.product-card .product_card_content .product_image img {\n  top: 0;\n  left: 0;\n  max-width: 100%;\n  height: 240px;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.product-card .product_card_content .product_preview_content {\n  margin-top: 8px;\n  margin-left: 16px;\n  margin-right: 16px;\n}\n.product-card .product_card_content .product_preview_content .product_name {\n  font-size: 16px;\n  font-weight: 400;\n  color: #444;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  font-weight: 400;\n  margin: 0;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate {\n  margin-top: 10px;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate .light_text {\n  font-size: 12px;\n  color: #333;\n  font-weight: 300;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate .rate_number {\n  margin-left: 4px;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate .sold_stars i {\n  color: orange;\n}\n.product-card .product_card_content .product_preview_content .price {\n  margin-top: 25px;\n}\n.product-card .product_card_content .product_preview_content .price .old_price {\n  font-size: 13px;\n  font-weight: 500;\n  color: #666;\n  margin-right: 8px;\n}\n.product-card .product_card_content .product_preview_content .price .new_price {\n  color: #346aa0;\n  border: 1px solid #346aa0;\n  border-radius: 12px;\n  font-size: 16px;\n  padding: 0 12px;\n}\n.product-card .product_card_content:hover .product_name {\n  overflow: visible;\n  white-space: normal;\n  height: auto;\n}", ""]);
+exports.push([module.i, ".product-card {\n  margin-bottom: 20px;\n  margin-top: 10px;\n}\n.product-card a:hover {\n  text-decoration: none;\n}\n.product-card .product_card_content {\n  width: 100%;\n  margin-right: 7%;\n  padding-bottom: 10px;\n  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.1);\n  border-radius: 5px;\n  margin-top: 0px;\n  background-color: #fff;\n  transition: 0.2s ease-out;\n}\n.product-card .product_card_content:hover {\n  position: relative;\n  background-color: #fff;\n  z-index: 3;\n  box-shadow: 1px 11px 16px 2px rgba(177, 177, 177, 0.5);\n  border-radius: 8px;\n  transform: scale(1.04);\n}\n.product-card .product_card_content .bookmark span {\n  position: absolute;\n  display: block;\n  width: 34px;\n  margin-right: 3px;\n  margin-top: 3px;\n  color: #3490dc;\n  transition: 0.2s ease-out;\n}\n.product-card .product_card_content .bookmark span:hover {\n  transform: scale(1.05);\n}\n.product-card .product_card_content .bookmark span img {\n  width: 60%;\n}\n.product-card .product_card_content .product_image {\n  width: 100%;\n  text-align: center;\n}\n.product-card .product_card_content .product_image img {\n  top: 0;\n  left: 0;\n  max-width: 100%;\n  height: 240px;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.product-card .product_card_content .product_preview_content {\n  margin-top: 8px;\n  margin-left: 16px;\n  margin-right: 16px;\n}\n.product-card .product_card_content .product_preview_content .product_name {\n  font-size: 16px;\n  font-weight: 400;\n  color: #444;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  margin: 0;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate {\n  margin-top: 10px;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate .light_text {\n  font-size: 12px;\n  color: #333;\n  font-weight: 300;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate .rate_number {\n  margin-left: 4px;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate .sold_stars i {\n  color: orange;\n}\n.product-card .product_card_content .product_preview_content .price {\n  margin-top: 25px;\n}\n.product-card .product_card_content .product_preview_content .price .old_price {\n  font-size: 13px;\n  font-weight: 500;\n  color: #666;\n  margin-right: 8px;\n}\n.product-card .product_card_content .product_preview_content .price .new_price {\n  color: #346aa0;\n  border: 1px solid #346aa0;\n  border-radius: 12px;\n  font-size: 16px;\n  padding: 0 12px;\n}\n.product-card .product_card_content:hover .product_name {\n  overflow: visible;\n  white-space: normal;\n  height: auto;\n}", ""]);
 
 // exports
 
@@ -6530,7 +6530,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".product-detail .breadcrumb {\n  background-color: transparent;\n}\n.product-detail .main-section {\n  display: flex;\n}", ""]);
+exports.push([module.i, ".product-detail .breadcrumb {\n  background-color: transparent;\n}\n.product-detail .main-section {\n  display: flex;\n  background-color: white;\n}\n.product-detail .main-section .product-image {\n  width: 50%;\n}\n.product-detail .main-section .product-short-info .product-name {\n  font-size: 24px;\n  font-weight: 400;\n  color: #444;\n}\n.product-detail .main-section .product-short-info .product-short-description {\n  margin-top: 12px;\n  color: #444;\n}\n.product-detail .main-section .product-short-info .product-short-description th {\n  padding-right: 50px;\n  font-weight: 450;\n}\n.product-detail .main-section .product-short-info .product-quantity .quantity-title {\n  margin-right: 20px;\n}\n.product-detail .main-section .product-short-info .product-quantity .quantity-number-input {\n  width: 10%;\n}\n.product-detail .main-section .product-short-info .price {\n  margin-top: 12px;\n}\n.product-detail .main-section .product-short-info .price .old_price {\n  font-size: 14px;\n  font-weight: 500;\n  color: #666;\n  margin-right: 8px;\n}\n.product-detail .main-section .product-short-info .price .new_price {\n  color: #346aa0;\n  border: 1px solid #346aa0;\n  border-radius: 12px;\n  font-size: 22px;\n  padding: 0 12px;\n}\n.product-detail .main-section .product-short-info .add-to-cart-and-buy-button {\n  margin-top: 30px;\n}\n.product-detail .main-section .product-short-info .add-to-cart-and-buy-button .add-to-cart-button {\n  color: white;\n  background-color: #346aa0;\n  border-radius: 12px;\n  padding: 12px;\n  margin-right: 12px;\n  border-color: transparent;\n}\n.product-detail .main-section .product-short-info .add-to-cart-and-buy-button .add-to-cart-button:hover {\n  background-color: #275380;\n}\n.product-detail .main-section .product-short-info .add-to-cart-and-buy-button .buy-button {\n  color: white;\n  background-color: #346aa0;\n  border-radius: 12px;\n  padding: 12px;\n  border-color: transparent;\n  width: 165px;\n}\n.product-detail .main-section .product-short-info .add-to-cart-and-buy-button .buy-button:hover {\n  background-color: #275380;\n}", ""]);
 
 // exports
 
@@ -76116,9 +76116,11 @@ var ProductDetail = /*#__PURE__*/function (_Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      loading: true
+      loading: true,
+      quantity: 1
     };
     _this.getProductDetail = _this.getProductDetail.bind(_assertThisInitialized(_this));
+    _this.onChangeQuantity = _this.onChangeQuantity.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -76141,6 +76143,13 @@ var ProductDetail = /*#__PURE__*/function (_Component) {
         });
       })["catch"](function (error) {
         return console.log(error);
+      });
+    }
+  }, {
+    key: "onChangeQuantity",
+    value: function onChangeQuantity(e) {
+      this.setState({
+        quantity: e.target.value
       });
     }
   }, {
@@ -76191,7 +76200,33 @@ var ProductDetail = /*#__PURE__*/function (_Component) {
         fixedImagesHeight: true
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "product-short-info col-lg-6"
-      }, detail.product_name))) : "Loading...");
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "product-name"
+      }, detail.product_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "product-short-description"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "T\xCCNH TR\u1EA0NG NGO\u1EA0I QUAN"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, detail.outside_status)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "T\xCCNH TR\u1EA0NG S\u1EEC D\u1EE4NG"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, detail.function_status)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "G\u1EECI T\u1EEA"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, detail.location))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "product-quantity form-group d-flex flex-row justify-content-start align-items-center"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "quantity-title"
+      }, "S\u1ED1 l\u01B0\u1EE3ng:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "form-control quantity-number-input",
+        type: "number",
+        min: "1",
+        value: this.state.quantity,
+        onChange: this.onChangeQuantity
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "price d-flex flex-row justify-content-start align-items-center"
+      }, detail.discount ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "old_price"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strike", null, detail.price.toLocaleString(), " ", "\u0111")) : "", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "new_price"
+      }, (detail.price * (100 - detail.discount) / 100).toLocaleString(), " ", "\u0111")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "add-to-cart-and-buy-button d-flex flex-row justify-content-start align-items-center"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "add-to-cart-button"
+      }, "TH\xCAM V\xC0O GI\u1ECE H\xC0NG"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "buy-button"
+      }, "MUA NGAY"))))) : "Loading...");
     }
   }]);
 
