@@ -140,7 +140,11 @@ class Login extends Component {
       };
       Http.post(uri, loginUser).then((response) => {
         if (response.data.success) {
-            this.props.login(response.data.username);
+            var currentUser = {
+              id: response.data.user_id,
+              name: response.data.username
+            }
+            this.props.login(currentUser);
             this.setState({loading: false});
             localStorage.setItem('auth_token',response.data.auth_token)
             Http.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.auth_token;

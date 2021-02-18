@@ -17,6 +17,10 @@ class Question extends Model
     }
     public function answers()
     {
-        return $this->hasMany(Answer::class, 'question_id');
+        return $this->hasMany(Answer::class, 'question_id', 'question_id');
+    }
+    public function asker()
+    {
+        return $this->belongsTo(User::class, 'asker_id');
     }
 }

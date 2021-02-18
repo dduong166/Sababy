@@ -41,11 +41,11 @@ class ProductController extends Controller
     public function getProductByID($product_id)
     {
         //get product
-        $product = Product::where('product_id', $product_id)->get()->first();
+        $product = Product::where('product_id', $product_id)->first();
         $rate = $this->DealController->getRate($product_id);
         $product->rate = $rate->original;
         //get category
-        $product = $product->load('category', 'productMedias', 'questions', 'questions.answers');
+        $product = $product->load('category', 'productMedias', 'questions.asker:id,name', 'questions.answers.answerer:id,name');
         if($product->category->parent_category_id){
             $parent_category = Category::where('category_id', $product->category->parent_category_id)->get();
             $product->parent_category = $parent_category;
