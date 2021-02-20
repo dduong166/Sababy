@@ -5,6 +5,7 @@ import "./css/ProductDetail.scss";
 import SlideShow from "react-image-show";
 import { connect } from "react-redux";
 import moment from "moment";
+import QuestionComponent from './QuestionComponent';
 
 class ProductDetail extends Component {
     constructor(props) {
@@ -17,9 +18,6 @@ class ProductDetail extends Component {
             answer: ""
         };
         this.getProductDetail = this.getProductDetail.bind(this);
-        this.onChangeQuantity = this.onChangeQuantity.bind(this);
-        this.onChangeQuestion = this.onChangeQuestion.bind(this);
-        this.onQuestionSubmit = this.onQuestionSubmit.bind(this);
     }
 
     componentDidMount() {
@@ -42,105 +40,16 @@ class ProductDetail extends Component {
         this.setState({ quantity: e.target.value });
     }
 
-    onChangeQuestion(e) {
-        this.setState({ question: e.target.value });
-    }
-    onQuestionSubmit(e) {
-        e.preventDefault();
-        //Cần validator
-        let uri = "http://localhost:8000/api/question";
-        const newQuestion = {
-            asker_id: this.props.auth.currentUser.user_id,
-            product_id: this.props.detail.product_id,
-            content: this.state.question
-        };
-        Http.post(uri, newQuestion).then(response => {
-            if (response.data.success) {
-                this.getProductDetail();
-                this.setState({
-                    question: ""
-                });
-            }
-        });
-        
-    }
-
-    showQuestions(questions) {
-        return (
-            <React.Fragment>
-            {this.props.auth.currentUser ? (
-                <div className="question-textarea d-flex flex-column align-items-end">
-                    <textarea placeholder="Nhập câu hỏi" rows="4" onChange={this.onChangeQuestion}/>
-                    <button onClick={this.onQuestionSubmit}>Gửi câu hỏi</button>
-                </div>
-            ) : (
-                <div>
-                    Đăng nhập để có thể đặt câu hỏi
-                </div>
-            )}
-                
-                <hr />
-                {questions.map((question, index, questions) => (
-                    <React.Fragment key={question.question_id}>
-                        <div className="asker-answerer-name">
-                            {question.asker.name}
-                        </div>
-                        <div className="question-answer-datetime">
-                            {moment(question.created_at).format(
-                                "hh:mm, DD/MM/YYYY"
-                            )}
-                        </div>
-                        <div className="question-answer-content">
-                            {question.content}
-                        </div>
-                        <div className="answer-content d-flex flex-column">
-                            {question.answers
-                                ? question.answers.map(
-                                      (answer, index, answers) => (
-                                          <div
-                                              className="answer"
-                                              key={answer.answer_id}
-                                          >
-                                              <hr />
-                                              <div className="asker-answerer-name">
-                                                  {answer.answerer
-                                                      ? answer.answerer.name
-                                                      : null}
-                                              </div>
-                                              <div className="question-answer-datetime">
-                                                  {moment(
-                                                      answer.created_at
-                                                  ).format("hh:mm, DD/MM/YYYY")}
-                                              </div>
-                                              <div className="question-answer-content">
-                                                  {answer.content}
-                                              </div>
-                                          </div>
-                                      )
-                                  )
-                                : null}
-                            <div className="reply d-flex flex-column align-items-end">
-                                <textarea
-                                    placeholder="Nhập câu trả lời"
-                                    rows="3"
-                                />
-                                <button>Trả lời</button>
-                            </div>
-                        </div>
-                    </React.Fragment>
-                ))}
-            </React.Fragment>
-        );
-    }
-
     render() {
         var detail = this.props.detail;
+        // console.log(this.props);
         if (detail) {
             var images = detail.product_medias.map((media, index, medias) => {
                 return media.media_url;
             });
         }
-        console.log("ppppp", this.props);
+        // console.log(this.state.loading);
+        // console.log("ppppp", this.props);
         return (
             <div className="product-detail">
                 {!this.state.loading && detail ? (
@@ -319,11 +228,7 @@ class ProductDetail extends Component {
                                         role="tabpanel"
                                         aria-labelledby="nav-profile-tab"
                                     >
-                                        {detail.questions
-                                            ? this.showQuestions(
-                                                  detail.questions
-                                              )
-                                            : null}
+                                        <QuestionComponent/>
                                     </div>
                                     <div
                                         className="tab-pane fade"

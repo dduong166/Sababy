@@ -40,9 +40,10 @@ class QuestionController extends Controller
         $question->product_id = $request->product_id;
         $question->content = $request->content;
         $question->save();
-        $response = ['success' => true, 'data' => $question];
+        $question = $question->load(['asker:id,name', 'answers.answerer:id,name']);
+        // $response = ['success' => true, 'data' => $question];
         
-        return response()->json($response);
+        return response()->json($question);
     }
 
     /**

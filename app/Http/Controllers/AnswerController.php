@@ -40,9 +40,10 @@ class AnswerController extends Controller
         $answer->answerer_id = $request->answerer_id;
         $answer->content = $request->content;
         $answer->save();
-        $response = ['success' => true, 'data' => $answer];
+        $answer = $answer->load(['answerer:id,name']);
+        // $response = ['success' => true, 'data' => $answer];
         
-        return response()->json($response);
+        return response()->json($answer);
     }
 
     /**

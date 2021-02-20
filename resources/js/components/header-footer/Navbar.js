@@ -22,7 +22,7 @@ class Navbar extends Component {
                 "Bearer " + localStorage["auth_token"];
             Http.get("http://localhost:8000/api/user/isLoggedIn")
                 .then(response => {
-                    console.log(response);
+                    // console.log(response);
                     if (response.data.user) {
                         var currentUser = {
                             id: response.data.user.id,
@@ -74,7 +74,7 @@ class Navbar extends Component {
                                 <li>Contact</li>
                                 <div className="separation"></div>
                                 <li className="special">
-                                    Hello {this.props.currentUser.username}
+                                    Hello {this.props.currentUser.name}
                                 </li>
                                 <li className="special" onClick={this.logoutAccount}>
                                     LOGOUT
