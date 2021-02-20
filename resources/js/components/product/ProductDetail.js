@@ -42,14 +42,11 @@ class ProductDetail extends Component {
 
     render() {
         var detail = this.props.detail;
-        // console.log(this.props);
         if (detail) {
             var images = detail.product_medias.map((media, index, medias) => {
                 return media.media_url;
             });
         }
-        // console.log(this.state.loading);
-        // console.log("ppppp", this.props);
         return (
             <div className="product-detail">
                 {!this.state.loading && detail ? (

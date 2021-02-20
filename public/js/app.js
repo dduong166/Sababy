@@ -103619,15 +103619,13 @@ var ProductDetail = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var detail = this.props.detail; // console.log(this.props);
+      var detail = this.props.detail;
 
       if (detail) {
         var images = detail.product_medias.map(function (media, index, medias) {
           return media.media_url;
         });
-      } // console.log(this.state.loading);
-      // console.log("ppppp", this.props);
-
+      }
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "product-detail"
@@ -103799,6 +103797,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_5__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -103846,7 +103856,7 @@ var QuestionComponent = /*#__PURE__*/function (_Component) {
     _this.state = {
       quantity: 1,
       question: "",
-      answer: "",
+      answer: [],
       error: {
         question: "",
         answer: ""
@@ -103918,8 +103928,15 @@ var QuestionComponent = /*#__PURE__*/function (_Component) {
   }, {
     key: "onChangeAnswer",
     value: function onChangeAnswer(e) {
-      this.setState({
-        answer: e.target.value
+      var index = e.target.dataset.index;
+      var value = e.target.value;
+      this.setState(function (prevState) {
+        var answer = _toConsumableArray(prevState.answer);
+
+        answer[index] = value;
+        return {
+          answer: answer
+        };
       });
     }
   }, {
@@ -103927,11 +103944,9 @@ var QuestionComponent = /*#__PURE__*/function (_Component) {
     value: function onAnswerSubmit(e) {
       var _this3 = this;
 
-      console.log(e.target.dataset.questionid);
-      console.log(e.target.dataset.index);
       var index = e.target.dataset.index;
 
-      if (!this.state.answer && this._isMounted) {
+      if (!this.state.answer[index] && this._isMounted) {
         this.setState(function (prevState) {
           var error = _objectSpread({}, prevState.error);
 
@@ -103945,20 +103960,28 @@ var QuestionComponent = /*#__PURE__*/function (_Component) {
         var newAnswer = {
           question_id: e.target.dataset.questionid,
           answerer_id: this.props.auth.currentUser.id,
-          content: this.state.answer
+          content: this.state.answer[index]
         };
-        console.log(newAnswer);
         _Http__WEBPACK_IMPORTED_MODULE_1__["default"].post(uri, newAnswer).then(function (response) {
           if (response.data && _this3._isMounted) {
-            _this3.props.setProductAnswer(response.data, index);
+            response.data.index = index;
+
+            _this3.props.setProductAnswer(response.data);
 
             if (_this3._isMounted) {
-              _this3.setState({
-                error: {
+              _this3.setState(function (prevState) {
+                var error = {
                   question: "",
                   answer: ""
-                },
-                answer: ""
+                };
+
+                var answer = _toConsumableArray(prevState.answer);
+
+                answer[index] = "";
+                return {
+                  error: error,
+                  answer: answer
+                };
               });
             }
           }
@@ -103970,7 +103993,6 @@ var QuestionComponent = /*#__PURE__*/function (_Component) {
     value: function showQuestions(questions) {
       var _this4 = this;
 
-      // console.log(questions);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, this.props.auth.currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "question-textarea d-flex flex-column align-items-end"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
@@ -104009,10 +104031,11 @@ var QuestionComponent = /*#__PURE__*/function (_Component) {
         }) : null, _this4.props.auth.currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "reply d-flex flex-column align-items-end"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+          "data-index": index,
           placeholder: "Nh\u1EADp c\xE2u tr\u1EA3 l\u1EDDi",
           rows: "3",
           onChange: _this4.onChangeAnswer,
-          value: _this4.state.answer
+          value: _this4.state.answer[index]
         }), _this4.state.error.answer && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "validate"
         }, _this4.state.error.answer), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -104026,7 +104049,6 @@ var QuestionComponent = /*#__PURE__*/function (_Component) {
     key: "render",
     value: function render() {
       var questions = this.props.detail.questions;
-      console.log(questions);
       return questions ? this.showQuestions(questions) : null;
     }
   }]);
@@ -104049,11 +104071,10 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
         payload: question
       });
     },
-    setProductAnswer: function setProductAnswer(answer, index) {
+    setProductAnswer: function setProductAnswer(answer) {
       dispatch({
         type: "SET_PRODUCT_ANSWER",
-        payload: answer,
-        index: index
+        payload: answer
       });
     }
   };
@@ -104252,8 +104273,9 @@ var productDetailReducer = function productDetailReducer() {
       });
 
     case "SET_PRODUCT_ANSWER":
+      var index = action.payload.index;
       var draft = fromJS(_objectSpread({}, state));
-      draft = draft.updateIn(['detail', 'questions', action.index, 'answers'], function (list) {
+      draft = draft.updateIn(['detail', 'questions', index, 'answers'], function (list) {
         return list.push(action.payload);
       });
       console.log(draft.toJS());

@@ -11,7 +11,7 @@ class QuestionComponent extends Component {
         this.state = {
             quantity: 1,
             question: "",
-            answer: "",
+            answer: [],
             error: { question: "", answer: "" }
         };
         this._isMounted = false;
@@ -57,13 +57,17 @@ class QuestionComponent extends Component {
         }
     }
     onChangeAnswer(e) {
-        this.setState({ answer: e.target.value });
+        let index = e.target.dataset.index;
+        let value = e.target.value;
+        this.setState(prevState => {
+            let answer = [...prevState.answer];
+            answer[index]= value;
+            return {answer};
+        });
     }
     onAnswerSubmit(e) {
-        console.log(e.target.dataset.questionid);
-        console.log(e.target.dataset.index);
         var index = e.target.dataset.index;
-        if (!this.state.answer && this._isMounted) {
+        if (!this.state.answer[index] && this._isMounted) {
             this.setState(prevState => {
                 let error = { ...prevState.error };
                 error.answer = "Hãy nhập nội dung câu trả lời!";
@@ -74,16 +78,18 @@ class QuestionComponent extends Component {
             const newAnswer = {
                 question_id: e.target.dataset.questionid,
                 answerer_id: this.props.auth.currentUser.id,
-                content: this.state.answer
+                content: this.state.answer[index]
             }; 
-            console.log(newAnswer);
             Http.post(uri, newAnswer).then(response => {
                 if (response.data && this._isMounted) {
-                    this.props.setProductAnswer(response.data, index);
+                    response.data.index = index;
+                    this.props.setProductAnswer(response.data);
                     if(this._isMounted){
-                        this.setState({
-                            error: { question: "", answer: "" },
-                            answer: ""
+                        this.setState(prevState =>{
+                            let error = { question: "", answer: "" };
+                            let answer = [...prevState.answer];
+                            answer[index] = "";
+                            return {error, answer};
                         });
                     }
                 }
@@ -91,7 +97,6 @@ class QuestionComponent extends Component {
         }
     }
     showQuestions(questions) {
-        // console.log(questions);
         return (
             <React.Fragment>
                 {this.props.auth.currentUser ? (
@@ -160,10 +165,11 @@ class QuestionComponent extends Component {
                             {this.props.auth.currentUser ? (
                                 <div className="reply d-flex flex-column align-items-end">
                                     <textarea
+                                        data-index={index}
                                         placeholder="Nhập câu trả lời"
                                         rows="3"
                                         onChange={this.onChangeAnswer}
-                                        value={this.state.answer}
+                                        value={this.state.answer[index]}
                                     />
                                     {this.state.error.answer && (
                                         <div className="validate">
@@ -184,7 +190,6 @@ class QuestionComponent extends Component {
 
     render() {
         let questions = this.props.detail.questions;
-        console.log(questions);
         return questions ? this.showQuestions(questions) : null;
     }
 }
@@ -204,11 +209,10 @@ const mapDispatchToProps = dispatch => {
                 payload: question
             });
         },
-        setProductAnswer: (answer, index) => {
+        setProductAnswer: answer => {
             dispatch({
                 type: "SET_PRODUCT_ANSWER",
-                payload: answer,
-                index: index
+                payload: answer
             });
         }
     };
