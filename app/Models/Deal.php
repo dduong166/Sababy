@@ -9,7 +9,6 @@ class Deal extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'deal_id';
     protected $filltable = [
         'rent_type', 'comment_content', 'rate'
     ];

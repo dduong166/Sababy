@@ -10,8 +10,8 @@ class CategoryList extends Component {
             <div className="category-list">
                 {parent_categories.map((category, index, categories) => (
                     <Link
-                        to={"/category/" + category.category_id}
-                        key={category.category_id}
+                        to={"/category/" + category.id}
+                        key={category.id}
                     >
                         <div className="category-card">
                             <img src={category.category_image_url} />

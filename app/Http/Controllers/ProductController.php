@@ -8,6 +8,8 @@ use App\Http\Controllers\CategoryController;
 use App\Models\ProductMedia;
 use App\Models\Deal;
 use App\Models\Category;
+use App\Models\Question;
+use App\Models\Answer;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -16,7 +18,7 @@ class ProductController extends Controller
     protected $CategoryController;
 
     public function __construct(DealController $DealController, CategoryController $CategoryController)
-    {  
+    {
         // header('Access-Control-Allow-Origin: *'); 
         // dd(123);
         $this->DealController = $DealController;
@@ -38,20 +40,48 @@ class ProductController extends Controller
 
     public function getProductByID($product_id)
     {
-        $product = Product::where('product_id', $product_id)->get()->first();
+        //get product
+        $product = Product::where('id', $product_id)->first();
         $rate = $this->DealController->getRate($product_id);
         $product->rate = $rate->original;
-
+        //get category
+        $product = $product->load(['category', 'productMedias', 'questions.asker:id,name', 'questions.answers.answerer:id,name', 'questions' => function ($query) {
+            $query->orderBy('created_at', 'desc');
+        }, 'questions.answers' => function ($query) {
+            $query->orderBy('created_at', 'asc');
+        }]);
+        if ($product->category->parent_category_id) {
+            $parent_category = Category::where('id', $product->category->parent_category_id)->get();
+            $product->parent_category = $parent_category;
+        }
+        // dd(gettype($product->questions->answers));
         return response()->json($product);
     }
 
     public function getProductByCategoryID($category_id)
     {
-        $categories = Category::where('parent_category_id', $category_id)->pluck('category_id')->toArray();
-        array_push($categories, (integer) $category_id);
-        $products = Product::whereIn('category_id', $categories)->get();
-        $products = $products->load('deals', 'productMedias', 'bookmarks');
-        return response()->json($products);
+        //get products
+        $sub_categories = Category::where('parent_category_id', $category_id)->get();
+        $sub_categories_id = [];
+        foreach ($sub_categories as $sub_category) {
+            array_push($sub_categories_id, $sub_category->id);
+        }
+        array_push($sub_categories_id, (int) $category_id);
+        $products = Product::whereIn('category_id', $sub_categories_id)->get();
+        $products = $products->load('productMedias', 'bookmarks');
+        //get category
+        $category = Category::where('id', $category_id)->get()->first();
+        $category->sub_categories = $sub_categories;
+        if ($category->parent_category_id) {
+            $parent_category = Category::where('id', $category->parent_category_id)->get();
+            $category->parent_category_id = $parent_category;
+        }
+        //assign into result
+        $result = (object)[];
+        $result->products = $products;
+        $result->category = $category;
+
+        return response()->json($result);
     }
 
     public function getProductDeals($product_id)

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Deal;
+use App\Models\Question;
 use Illuminate\Http\Request;
 
-class DealController extends Controller
+class QuestionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,29 +15,6 @@ class DealController extends Controller
     public function index()
     {
         //
-    }
-
-    public function getDeal($product_id)
-    {
-        $deal = Deal::where('id', $product_id)->get();
-        return response()->json($deal);
-    }
-
-    public function getRate($product_id)
-    {
-        $deals = Deal::where('id', $product_id)->get();
-        $sum = 0;
-        $i = 0;
-        if($deals->count()){
-            foreach ($deals as $deal) {
-                $i++;
-                $sum+=$deal->rate;
-            }
-            $rate = (object) ['rate_value' => ceil($sum*10/$i)/10, 'number_of_rate' => $i];
-        }else{
-            $rate = null;
-        }
-        return response()->json($rate);
     }
 
     /**
@@ -58,16 +35,24 @@ class DealController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $question = new Question;
+        $question->asker_id = $request->asker_id;
+        $question->product_id = $request->product_id;
+        $question->content = $request->content;
+        $question->save();
+        $question = $question->load(['asker:id,name', 'answers.answerer:id,name']);
+        // $response = ['success' => true, 'data' => $question];
+        
+        return response()->json($question);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Deal  $deal
+     * @param  \App\Models\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function show(Deal $deal)
+    public function show(Question $question)
     {
         //
     }
@@ -75,10 +60,10 @@ class DealController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Deal  $deal
+     * @param  \App\Models\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function edit(Deal $deal)
+    public function edit(Question $question)
     {
         //
     }
@@ -87,10 +72,10 @@ class DealController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Deal  $deal
+     * @param  \App\Models\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Deal $deal)
+    public function update(Request $request, Question $question)
     {
         //
     }
@@ -98,10 +83,10 @@ class DealController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Deal  $deal
+     * @param  \App\Models\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Deal $deal)
+    public function destroy(Question $question)
     {
         //
     }

@@ -16,13 +16,19 @@ class Navbar extends Component {
     }
 
     isLoggedIn() {
+        // console.log(localStorage.getItem("auth_token"));
         if (localStorage.getItem("auth_token")) {
             Http.defaults.headers.common["Authorization"] =
                 "Bearer " + localStorage["auth_token"];
-            Http.get("api/user/isLoggedIn")
+            Http.get("http://localhost:8000/api/user/isLoggedIn")
                 .then(response => {
+                    // console.log(response);
                     if (response.data.user) {
-                        this.props.login(response.data.user.name);
+                        var currentUser = {
+                            id: response.data.user.id,
+                            name: response.data.user.name
+                        }
+                        this.props.login(currentUser);
                     } 
                 })
                 .catch(error => {
@@ -39,7 +45,6 @@ class Navbar extends Component {
     }
 
     render() {
-        console.log(this.props);
         return (
             <div className="navbar-section">
                 <header className="top-black-style">
@@ -69,7 +74,7 @@ class Navbar extends Component {
                                 <li>Contact</li>
                                 <div className="separation"></div>
                                 <li className="special">
-                                    Hello {this.props.currentUser}
+                                    Hello {this.props.currentUser.name}
                                 </li>
                                 <li className="special" onClick={this.logoutAccount}>
                                     LOGOUT

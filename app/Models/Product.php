@@ -9,8 +9,6 @@ class Product extends Model
 {
     use HasFactory;
     
-    protected $primaryKey = 'product_id';
-
     protected $fillable = [
         'product_name',
         'description',
@@ -28,6 +26,13 @@ class Product extends Model
     }
     public function bookmarks(){
         return $this->hasMany(Bookmark::class, 'product_id');
+    }
+    public function questions(){
+        return $this->hasMany(Question::class, 'product_id');
+    }
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
 

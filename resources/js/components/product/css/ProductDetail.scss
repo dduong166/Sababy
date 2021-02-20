@@ -1,0 +1,173 @@
+.product-detail {
+    .breadcrumb {
+        background-color: transparent;
+    }
+    .main-section {
+        display: flex;
+        background-color: white;
+        .product-image {
+            width: 50%;
+        }
+        .product-short-info {
+            .product-name {
+                font-size: 24px;
+                font-weight: 400;
+                color: #444;
+            }
+            .product-short-description {
+                color: #444;
+                tr {
+                    th {
+                        padding-right: 50px;
+                        padding-top: 12px;
+                        font-weight: 400;
+                    }
+                    td {
+                        padding-top: 12px;
+                    }
+                }
+            }
+            .product-quantity {
+                .quantity-title {
+                    margin-right: 20px;
+                }
+                .quantity-number-input {
+                    width: 10%;
+                }
+            }
+            .price {
+                margin-top: 12px;
+                .old_price {
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: #666;
+                    margin-right: 8px;
+                }
+                .new_price {
+                    color: #346aa0;
+                    border: 1px solid #346aa0;
+                    border-radius: 12px;
+                    font-size: 22px;
+                    padding: 0 12px;
+                }
+            }
+            .add-to-cart-and-buy-button {
+                margin-top: 30px;
+                .add-to-cart-button {
+                    color: white;
+                    background-color: #346aa0;
+                    border-radius: 12px;
+                    padding: 12px;
+                    margin-right: 12px;
+                    border-color: transparent;
+                    &:hover {
+                        background-color: #275380;
+                    }
+                }
+                .buy-button {
+                    color: white;
+                    background-color: #346aa0;
+                    border-radius: 12px;
+                    padding: 12px;
+                    border-color: transparent;
+                    width: 165px;
+                    &:hover {
+                        background-color: #275380;
+                    }
+                }
+            }
+        }
+    }
+    .product-detail-info {
+        background-color: white;
+        margin-top: 20px;
+        #tabs {
+            background: #007b5e;
+            color: #eee;
+        }
+        #tabs h6.section-title {
+            color: #eee;
+        }
+        #tabs .nav-tabs .nav-item.show .nav-link,
+        .nav-tabs .nav-link.active {
+            color: #0062cc;
+            background-color: transparent;
+            border-color: transparent transparent #f3f3f3;
+            border-bottom: 3px solid !important;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .nav-link {
+            border: 1px solid transparent;
+            border-top-left-radius: 0.25rem;
+            border-top-right-radius: 0.25rem;
+            color: #0062cc;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        .nav-link:hover {
+            border: none;
+        }
+        thead {
+            background: #f3f3f3;
+            color: #333;
+        }
+        a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+        }
+        .tab-pane {
+            .asker-answerer-name {
+                font-weight: 500;
+                font-size: 14px;
+            }
+            .question-answer-datetime {
+                font-weight: 300;
+                font-size: 12px;
+            }
+            .answer {
+                margin-left: 66px;
+            }
+            .answer-content {
+                textarea {
+                    margin: 26px 0 6px 0;
+                    padding: 2px 0 0 4px;
+                    width: 94%;
+                }
+                button {
+                    color: white;
+                    background-color: #346aa0;
+                    border-radius: 12px;
+                    padding: 3px;
+                    border-color: transparent;
+                    width: 85px;
+                    &:hover {
+                        background-color: #275380;
+                    }
+                }
+            }
+            .question-textarea {
+                textarea {
+                    width: 100%;
+                    padding: 2px 0 0 4px;
+                    margin: 26px 0 6px 0;
+                }
+                button {
+                    color: white;
+                    background-color: #346aa0;
+                    border-radius: 12px;
+                    padding: 3px;
+                    border-color: transparent;
+                    width: 85px;
+                    &:hover {
+                        background-color: #275380;
+                    }
+                }
+            }
+            a {
+                color: blue;
+            }
+        }
+    }
+}
