@@ -60,7 +60,7 @@ class CategoryDetail extends Component {
                                             to={
                                                 "/category/" +
                                                 category.parent_category_id[0]
-                                                    .category_id
+                                                    .id
                                             }
                                         >
                                             {
@@ -93,7 +93,7 @@ class CategoryDetail extends Component {
                                         ? products.map(
                                               (product, index, products) => (
                                                   <ProductCard
-                                                      key={product.product_id}
+                                                      key={product.id}
                                                       product={product}
                                                   />
                                               )

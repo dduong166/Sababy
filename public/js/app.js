@@ -102695,7 +102695,7 @@ var CategoryDetail = /*#__PURE__*/function (_Component) {
       }, "Trang ch\u1EE7")), category.parent_category_id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "breadcrumb-item"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-        to: "/category/" + category.parent_category_id[0].category_id
+        to: "/category/" + category.parent_category_id[0].id
       }, category.parent_category_id[0].category_name)) : "", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "breadcrumb-item active",
         "aria-current": "page"
@@ -102711,7 +102711,7 @@ var CategoryDetail = /*#__PURE__*/function (_Component) {
         className: "row"
       }, products ? products.map(function (product, index, products) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_ProductCard__WEBPACK_IMPORTED_MODULE_5__["default"], {
-          key: product.product_id,
+          key: product.id,
           product: product
         });
       }) : "")))) : "Loading...");
@@ -102833,8 +102833,8 @@ var CategoryList = /*#__PURE__*/function (_Component) {
         className: "category-list"
       }, parent_categories.map(function (category, index, categories) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-          to: "/category/" + category.category_id,
-          key: category.category_id
+          to: "/category/" + category.id,
+          key: category.id
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "category-card"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -103455,8 +103455,8 @@ var ProductCard = /*#__PURE__*/function (_Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "product-card col-md-4"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-        to: "/product/" + product.product_id,
-        key: product.product_id
+        to: "/product/" + product.id,
+        key: product.id
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "product_card_content"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -103581,7 +103581,6 @@ var ProductDetail = /*#__PURE__*/function (_Component) {
       loading: true,
       quantity: 1,
       question: "",
-      question_id: "",
       answer: ""
     };
     _this.getProductDetail = _this.getProductDetail.bind(_assertThisInitialized(_this));
@@ -103642,7 +103641,7 @@ var ProductDetail = /*#__PURE__*/function (_Component) {
       }, "Trang ch\u1EE7")), detail.parent_category[0].category_name ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "breadcrumb-item"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-        to: "/category/" + detail.parent_category[0].category_id
+        to: "/category/" + detail.parent_category[0].id
       }, detail.parent_category[0].category_name)) : "", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "breadcrumb-item active",
         "aria-current": "page"
@@ -103907,7 +103906,7 @@ var QuestionComponent = /*#__PURE__*/function (_Component) {
         var uri = "http://localhost:8000/api/question";
         var newQuestion = {
           asker_id: this.props.auth.currentUser.id,
-          product_id: this.props.detail.product_id,
+          product_id: this.props.detail.id,
           content: this.state.question
         };
         _Http__WEBPACK_IMPORTED_MODULE_1__["default"].post(uri, newQuestion).then(function (response) {
@@ -104040,7 +104039,7 @@ var QuestionComponent = /*#__PURE__*/function (_Component) {
           className: "validate"
         }, _this4.state.error.answer), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           "data-index": index,
-          "data-questionid": question.question_id,
+          "data-questionid": question.id,
           onClick: _this4.onAnswerSubmit
         }, "Tr\u1EA3 l\u1EDDi")) : null));
       }));

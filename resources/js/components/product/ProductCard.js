@@ -10,8 +10,8 @@ class ProductCard extends Component {
         return (
             <div className="product-card col-md-4">
                 <Link
-                    to={"/product/" + product.product_id}
-                    key={product.product_id}
+                    to={"/product/" + product.id}
+                    key={product.id}
                 >
                     <div className="product_card_content">
                         <div className="product_image">

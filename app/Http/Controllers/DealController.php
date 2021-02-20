@@ -19,13 +19,13 @@ class DealController extends Controller
 
     public function getDeal($product_id)
     {
-        $deal = Deal::where('product_id', $product_id)->get();
+        $deal = Deal::where('id', $product_id)->get();
         return response()->json($deal);
     }
 
     public function getRate($product_id)
     {
-        $deals = Deal::where('product_id', $product_id)->get();
+        $deals = Deal::where('id', $product_id)->get();
         $sum = 0;
         $i = 0;
         if($deals->count()){

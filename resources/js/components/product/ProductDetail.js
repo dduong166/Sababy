@@ -14,7 +14,6 @@ class ProductDetail extends Component {
             loading: true,
             quantity: 1,
             question: "",
-            question_id: "",
             answer: ""
         };
         this.getProductDetail = this.getProductDetail.bind(this);
@@ -62,7 +61,7 @@ class ProductDetail extends Component {
                                             to={
                                                 "/category/" +
                                                 detail.parent_category[0]
-                                                    .category_id
+                                                    .id
                                             }
                                         >
                                             {

@@ -42,7 +42,7 @@ class QuestionComponent extends Component {
             let uri = "http://localhost:8000/api/question";
             const newQuestion = {
                 asker_id: this.props.auth.currentUser.id,
-                product_id: this.props.detail.product_id,
+                product_id: this.props.detail.id,
                 content: this.state.question
             };
             Http.post(uri, newQuestion).then(response => {
@@ -176,7 +176,7 @@ class QuestionComponent extends Component {
                                             {this.state.error.answer}
                                         </div>
                                     )}
-                                    <button data-index={index} data-questionid={question.question_id} onClick={this.onAnswerSubmit}>
+                                    <button data-index={index} data-questionid={question.id} onClick={this.onAnswerSubmit}>
                                         Trả lời
                                     </button>
                                 </div>
