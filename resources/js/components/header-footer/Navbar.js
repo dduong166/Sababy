@@ -11,7 +11,7 @@ class Navbar extends Component {
         this.isLoggedIn = this.isLoggedIn.bind(this);
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.isLoggedIn();
     }
 
@@ -27,9 +27,9 @@ class Navbar extends Component {
                         var currentUser = {
                             id: response.data.user.id,
                             name: response.data.user.name
-                        }
+                        };
                         this.props.login(currentUser);
-                    } 
+                    }
                 })
                 .catch(error => {
                     console.log(error.response.status);
@@ -47,70 +47,33 @@ class Navbar extends Component {
     render() {
         return (
             <div className="navbar-section">
-                <header className="top-black-style">
-                    <nav>
-                        {this.props.currentUser ? (
-                            <ul>
-                                <li className="special title">
-                                    <a href="/">
-                                        <img
-                                            src="https://res.cloudinary.com/dbzfjnlhl/image/upload/v1608021610/ca388fd6-d7c8-4ea3-a295-63865140cd51_200x200_1_gb46up.png"
-                                            alt="logo"
-                                        />
-                                    </a>
-                                </li>
-                                <li>
-                                    <Link to="/" className="menu">
-                                        Home
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link to="auth/profile" className="menu">
-                                        Profile
-                                    </Link>
-                                </li>
-                                <li>Work</li>
-                                <li>Portfolio</li>
-                                <li>Contact</li>
-                                <div className="separation"></div>
-                                <li className="special">
-                                    Hello {this.props.currentUser.name}
-                                </li>
-                                <li className="special" onClick={this.logoutAccount}>
-                                    LOGOUT
-                                </li>
-                            </ul>
-                        ) : (
-                            <ul>
-                                <li className="special title">
-                                    <Link to="/">
-                                        <img
-                                            src="https://res.cloudinary.com/dbzfjnlhl/image/upload/v1608021610/ca388fd6-d7c8-4ea3-a295-63865140cd51_200x200_1_gb46up.png"
-                                            alt="logo"
-                                        />
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link to="/" className="menu">
-                                        Home
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link to="auth/profile" className="menu">
-                                        Profile
-                                    </Link>
-                                </li>
-                                <li>Work</li>
-                                <li>Portfolio</li>
-                                <li>Contact</li>
-                                <div className="separation"></div>
-                                <li>
-                                    <Link to="/login" className="special">
-                                        LOGIN
-                                    </Link>
-                                </li>
-                            </ul>
-                        )}
+                <header className="top-black-style d-flex justify-content-center align-items-center">
+                    <nav className="d-flex justify-content-between align-items-center">
+                        <Link to="/">
+                            <img
+                                src="https://res.cloudinary.com/dbzfjnlhl/image/upload/v1613919232/27b6792e-38bd-471c-b46e-177a0e5a1af0_200x200_lb4mcd.png"
+                                alt="logo"
+                            />
+                        </Link>
+                        <div className="login-logout">
+                            {this.props.currentUser ? (
+                                <div>
+                                    <div className="special">
+                                        Hello {this.props.currentUser.name}
+                                    </div>
+                                    <div
+                                        className="special"
+                                        onClick={this.logoutAccount}
+                                    >
+                                        LOGOUT
+                                    </div>
+                                </div>
+                            ) : (
+                                <div className="special">
+                                    <Link to="/login">LOGIN</Link>
+                                </div>
+                            )}
+                        </div>
                     </nav>
                 </header>
             </div>
@@ -131,7 +94,7 @@ const mapDispatchToProps = dispatch => {
                 type: "LOGOUT"
             });
         },
-        login: (username) => {
+        login: username => {
             dispatch({
                 type: "LOGIN",
                 payload: username

@@ -6453,7 +6453,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".footer-section {\n  position: relative;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  font-size: calc(10px + 2vmin);\n  background-color: #0e2f5a;\n}\n.footer-section .triangle {\n  width: auto;\n  height: 0;\n  border-left: 50vw solid #0e2f5a;\n  border-right: 50vw solid #0e2f5a;\n  border-top: 80px solid #f1f5f8;\n}\n.footer-section + h1,\n.footer-section h2,\n.footer-section p {\n  color: #fffcec;\n}", ""]);
+exports.push([module.i, ".footer-section {\n  position: absolute;\n  background-color: #efefef;\n  width: 100%;\n}\n.footer-section .footer-text {\n  padding: 30px 0 30px 0;\n}", ""]);
 
 // exports
 
@@ -6473,7 +6473,7 @@ exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Rob
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Odibee+Sans&display=swap);", ""]);
 
 // module
-exports.push([module.i, "* {\n  margin: 0;\n  padding: 0;\n}\n\n.navbar-section body {\n  overflow-y: scroll;\n  overflow-x: hidden;\n}\n.navbar-section header.top-black-style {\n  width: 100%;\n  height: 15vh;\n  background-color: #0e2f5a;\n}\n.navbar-section header.top-black-style nav {\n  width: 100%;\n  height: 100%;\n}\n.navbar-section header.top-black-style nav ul {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.navbar-section header.top-black-style nav ul li {\n  display: inline-block;\n  color: #fffcec;\n  font-family: \"Raleway\", sans-serif;\n  list-style: none;\n  font-size: 17px;\n  font-weight: 600;\n  padding: 10px;\n  margin: 20px;\n  transition: 0.3s;\n  cursor: pointer;\n  border-radius: 2px;\n}\n.navbar-section header.top-black-style nav ul li.active {\n  color: #abdcd6;\n}\n.navbar-section header.top-black-style nav ul li.active:hover {\n  color: #fff;\n}\n.navbar-section header.top-black-style nav ul .separation {\n  margin-left: 70px;\n}\n.navbar-section .special {\n  color: #fffcec;\n}\n.navbar-section .special:hover {\n  color: #e4ebf1;\n}\n.navbar-section .special img {\n  width: 50%;\n}\n.navbar-section .menu {\n  color: #fffcec;\n}\n.navbar-section .menu:hover {\n  color: #e4ebf1;\n}", ""]);
+exports.push([module.i, "* {\n  margin: 0;\n  padding: 0;\n}\n\n.navbar-section body {\n  overflow-y: scroll;\n  overflow-x: hidden;\n}\n.navbar-section header.top-black-style {\n  width: 100%;\n  height: 70px;\n  background-color: #efefef;\n}\n.navbar-section header.top-black-style nav {\n  width: 80%;\n  height: 100%;\n}\n.navbar-section header.top-black-style nav img {\n  width: 50%;\n}\n.navbar-section header.top-black-style nav .login-logout {\n  display: inline-block;\n  color: #333;\n  font-size: 17px;\n  font-weight: 400;\n  padding: 10px;\n  margin: 20px;\n  transition: 0.3s;\n  cursor: pointer;\n}\n.navbar-section header.top-black-style nav .login-logout .special a {\n  color: #333;\n  text-decoration: none;\n}\n.navbar-section header.top-black-style nav .login-logout .special a:hover {\n  color: #346aa0;\n}\n.navbar-section header.top-black-style nav .login-logout .special:hover {\n  color: #346aa0;\n}\n.navbar-section .menu {\n  color: #fffcec;\n}\n.navbar-section .menu:hover {\n  color: #e4ebf1;\n}", ""]);
 
 // exports
 
@@ -102942,8 +102942,12 @@ var Footer = /*#__PURE__*/function (_Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", {
         className: "footer-section"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "triangle"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Thanks for using Latner!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "duongdang0508@gmail.com"));
+        className: "footer-text d-flex justify-content-around align-items-center"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "thanks"
+      }, "C\u1EA3m \u01A1n v\xEC \u0111\xE3 s\u1EED d\u1EE5ng Sababy.", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Mong r\u1EB1ng Sababy c\xF3 th\u1EC3 mang \u0111\u1EBFn s\u1EF1 ch\u0103m s\xF3c t\u1EADn t\xECnh nh\u1EA5t cho b\xE9 y\xEAu c\u1EE7a gia \u0111\xECnh b\u1EA1n.", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "\u0110\u1EEBng ng\u1EA7n ng\u1EA1i t\xECm ki\u1EBFm nh\u1EEFng m\xF3n \u0111\u1ED3 m\xECnh c\u1EA7n tr\xEAn Sababy, v\xE0 \u0111\u0103ng b\xE1n nh\u1EEFng \u0111\u1ED3 m\xECnh kh\xF4ng c\xF2n d\xF9ng n\u1EEFa.", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "contact"
+      }, "B\u1EA1n s\u1EBD lu\xF4n \u0111\u01B0\u1EE3c h\u1ED7 tr\u1EE3 chu \u0111\xE1o.", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "N\u1EBFu c\u1EA7n th\xEC li\xEAn h\u1EC7 m\xECnh nh\xE9: duongdang0508@gmail.com", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null))));
     }
   }]);
 
@@ -103056,45 +103060,25 @@ var Navbar = /*#__PURE__*/function (_Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "navbar-section"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
-        className: "top-black-style"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", null, this.props.currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "special title"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "/"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://res.cloudinary.com/dbzfjnlhl/image/upload/v1608021610/ca388fd6-d7c8-4ea3-a295-63865140cd51_200x200_1_gb46up.png",
-        alt: "logo"
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/",
-        className: "menu"
-      }, "Home")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "auth/profile",
-        className: "menu"
-      }, "Profile")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Work"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Portfolio"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Contact"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "separation"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "special"
-      }, "Hello ", this.props.currentUser.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "special",
-        onClick: this.logoutAccount
-      }, "LOGOUT")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "special title"
+        className: "top-black-style d-flex justify-content-center align-items-center"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
+        className: "d-flex justify-content-between align-items-center"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://res.cloudinary.com/dbzfjnlhl/image/upload/v1608021610/ca388fd6-d7c8-4ea3-a295-63865140cd51_200x200_1_gb46up.png",
+        src: "https://res.cloudinary.com/dbzfjnlhl/image/upload/v1613919232/27b6792e-38bd-471c-b46e-177a0e5a1af0_200x200_lb4mcd.png",
         alt: "logo"
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/",
-        className: "menu"
-      }, "Home")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "auth/profile",
-        className: "menu"
-      }, "Profile")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Work"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Portfolio"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Contact"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "separation"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/login",
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "login-logout"
+      }, this.props.currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "special"
+      }, "Hello ", this.props.currentUser.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "special",
+        onClick: this.logoutAccount
+      }, "LOGOUT")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "special"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/login"
       }, "LOGIN"))))));
     }
   }]);

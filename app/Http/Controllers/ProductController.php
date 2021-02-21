@@ -36,7 +36,6 @@ class ProductController extends Controller
     {
         $products = Product::all();
         $products = $products->load('productMedias', 'bookmarks');
-
         return response()->json($products);
     }
 
