@@ -17,6 +17,7 @@ class ProductDetail extends Component {
             answer: ""
         };
         this.getProductDetail = this.getProductDetail.bind(this);
+        this.onChangeQuantity = this.onChangeQuantity.bind(this);
     }
 
     componentDidMount() {
@@ -55,7 +56,7 @@ class ProductDetail extends Component {
                                 <li className="breadcrumb-item">
                                     <Link to={"/"}>Trang chủ</Link>
                                 </li>
-                                {detail.parent_category[0].category_name ? (
+                                {detail.parent_category ? (
                                     <li className="breadcrumb-item">
                                         <Link
                                             to={
@@ -180,7 +181,7 @@ class ProductDetail extends Component {
                                             aria-controls="nav-home"
                                             aria-selected="true"
                                         >
-                                            Mô Tả Chi Tiết
+                                            MÔ TẢ CHI TIẾT
                                         </a>
                                         <a
                                             className="nav-item nav-link"
@@ -191,9 +192,9 @@ class ProductDetail extends Component {
                                             aria-controls="nav-profile"
                                             aria-selected="false"
                                         >
-                                            Câu Hỏi
+                                            CÂU HỎI
                                         </a>
-                                        <a
+                                        {/* <a
                                             className="nav-item nav-link"
                                             id="nav-contact-tab"
                                             data-toggle="tab"
@@ -203,7 +204,7 @@ class ProductDetail extends Component {
                                             aria-selected="false"
                                         >
                                             Đánh Giá
-                                        </a>
+                                        </a> */}
                                     </div>
                                 </nav>
                                 <div
@@ -226,7 +227,7 @@ class ProductDetail extends Component {
                                     >
                                         <QuestionComponent/>
                                     </div>
-                                    <div
+                                    {/* <div
                                         className="tab-pane fade"
                                         id="nav-contact"
                                         role="tabpanel"
@@ -267,7 +268,7 @@ class ProductDetail extends Component {
                                                 </tr>
                                             </tbody>
                                         </table>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </div>

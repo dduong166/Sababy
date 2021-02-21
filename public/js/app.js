@@ -6530,7 +6530,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".product-detail .breadcrumb {\n  background-color: transparent;\n}\n.product-detail .main-section {\n  display: flex;\n  background-color: white;\n}\n.product-detail .main-section .product-image {\n  width: 50%;\n}\n.product-detail .main-section .product-short-info .product-name {\n  font-size: 24px;\n  font-weight: 400;\n  color: #444;\n}\n.product-detail .main-section .product-short-info .product-short-description {\n  color: #444;\n}\n.product-detail .main-section .product-short-info .product-short-description tr th {\n  padding-right: 50px;\n  padding-top: 12px;\n  font-weight: 400;\n}\n.product-detail .main-section .product-short-info .product-short-description tr td {\n  padding-top: 12px;\n}\n.product-detail .main-section .product-short-info .product-quantity .quantity-title {\n  margin-right: 20px;\n}\n.product-detail .main-section .product-short-info .product-quantity .quantity-number-input {\n  width: 10%;\n}\n.product-detail .main-section .product-short-info .price {\n  margin-top: 12px;\n}\n.product-detail .main-section .product-short-info .price .old_price {\n  font-size: 14px;\n  font-weight: 500;\n  color: #666;\n  margin-right: 8px;\n}\n.product-detail .main-section .product-short-info .price .new_price {\n  color: #346aa0;\n  border: 1px solid #346aa0;\n  border-radius: 12px;\n  font-size: 22px;\n  padding: 0 12px;\n}\n.product-detail .main-section .product-short-info .add-to-cart-and-buy-button {\n  margin-top: 30px;\n}\n.product-detail .main-section .product-short-info .add-to-cart-and-buy-button .add-to-cart-button {\n  color: white;\n  background-color: #346aa0;\n  border-radius: 12px;\n  padding: 12px;\n  margin-right: 12px;\n  border-color: transparent;\n}\n.product-detail .main-section .product-short-info .add-to-cart-and-buy-button .add-to-cart-button:hover {\n  background-color: #275380;\n}\n.product-detail .main-section .product-short-info .add-to-cart-and-buy-button .buy-button {\n  color: white;\n  background-color: #346aa0;\n  border-radius: 12px;\n  padding: 12px;\n  border-color: transparent;\n  width: 165px;\n}\n.product-detail .main-section .product-short-info .add-to-cart-and-buy-button .buy-button:hover {\n  background-color: #275380;\n}\n.product-detail .product-detail-info {\n  background-color: white;\n  margin-top: 20px;\n}\n.product-detail .product-detail-info #tabs {\n  background: #007b5e;\n  color: #eee;\n}\n.product-detail .product-detail-info #tabs h6.section-title {\n  color: #eee;\n}\n.product-detail .product-detail-info #tabs .nav-tabs .nav-item.show .nav-link,\n.product-detail .product-detail-info .nav-tabs .nav-link.active {\n  color: #0062cc;\n  background-color: transparent;\n  border-color: transparent transparent #f3f3f3;\n  border-bottom: 3px solid !important;\n  font-size: 16px;\n  font-weight: bold;\n}\n.product-detail .product-detail-info .nav-link {\n  border: 1px solid transparent;\n  border-top-left-radius: 0.25rem;\n  border-top-right-radius: 0.25rem;\n  color: #0062cc;\n  font-size: 16px;\n  font-weight: 600;\n}\n.product-detail .product-detail-info .nav-link:hover {\n  border: none;\n}\n.product-detail .product-detail-info thead {\n  background: #f3f3f3;\n  color: #333;\n}\n.product-detail .product-detail-info a {\n  text-decoration: none;\n  color: #333;\n  font-weight: 600;\n}\n.product-detail .product-detail-info .tab-pane .asker-answerer-name {\n  font-weight: 500;\n  font-size: 14px;\n}\n.product-detail .product-detail-info .tab-pane .question-answer-datetime {\n  font-weight: 300;\n  font-size: 12px;\n}\n.product-detail .product-detail-info .tab-pane .answer {\n  margin-left: 66px;\n}\n.product-detail .product-detail-info .tab-pane .answer-content textarea {\n  margin: 26px 0 6px 0;\n  padding: 2px 0 0 4px;\n  width: 94%;\n}\n.product-detail .product-detail-info .tab-pane .answer-content button {\n  color: white;\n  background-color: #346aa0;\n  border-radius: 12px;\n  padding: 3px;\n  border-color: transparent;\n  width: 85px;\n}\n.product-detail .product-detail-info .tab-pane .answer-content button:hover {\n  background-color: #275380;\n}\n.product-detail .product-detail-info .tab-pane .question-textarea textarea {\n  width: 100%;\n  padding: 2px 0 0 4px;\n  margin: 26px 0 6px 0;\n}\n.product-detail .product-detail-info .tab-pane .question-textarea button {\n  color: white;\n  background-color: #346aa0;\n  border-radius: 12px;\n  padding: 3px;\n  border-color: transparent;\n  width: 85px;\n}\n.product-detail .product-detail-info .tab-pane .question-textarea button:hover {\n  background-color: #275380;\n}\n.product-detail .product-detail-info .tab-pane a {\n  color: blue;\n}", ""]);
+exports.push([module.i, ".product-detail .breadcrumb {\n  background-color: transparent;\n}\n.product-detail .main-section {\n  display: flex;\n  background-color: white;\n}\n.product-detail .main-section .product-image {\n  width: 50%;\n}\n.product-detail .main-section .product-short-info .product-name {\n  font-size: 24px;\n  font-weight: 400;\n  color: #444;\n}\n.product-detail .main-section .product-short-info .product-short-description {\n  color: #444;\n}\n.product-detail .main-section .product-short-info .product-short-description tr th {\n  padding-right: 50px;\n  padding-top: 12px;\n  font-weight: 400;\n}\n.product-detail .main-section .product-short-info .product-short-description tr td {\n  padding-top: 12px;\n}\n.product-detail .main-section .product-short-info .product-quantity .quantity-title {\n  margin-right: 20px;\n}\n.product-detail .main-section .product-short-info .product-quantity .quantity-number-input {\n  width: 10%;\n}\n.product-detail .main-section .product-short-info .price {\n  margin-top: 12px;\n}\n.product-detail .main-section .product-short-info .price .old_price {\n  font-size: 14px;\n  font-weight: 500;\n  color: #666;\n  margin-right: 8px;\n}\n.product-detail .main-section .product-short-info .price .new_price {\n  color: #346aa0;\n  border: 1px solid #346aa0;\n  border-radius: 12px;\n  font-size: 22px;\n  padding: 0 12px;\n}\n.product-detail .main-section .product-short-info .add-to-cart-and-buy-button {\n  margin-top: 30px;\n}\n.product-detail .main-section .product-short-info .add-to-cart-and-buy-button .add-to-cart-button {\n  color: white;\n  background-color: #346aa0;\n  border-radius: 12px;\n  padding: 12px;\n  margin-right: 12px;\n  border-color: transparent;\n}\n.product-detail .main-section .product-short-info .add-to-cart-and-buy-button .add-to-cart-button:hover {\n  background-color: #275380;\n}\n.product-detail .main-section .product-short-info .add-to-cart-and-buy-button .buy-button {\n  color: white;\n  background-color: #346aa0;\n  border-radius: 12px;\n  padding: 12px;\n  border-color: transparent;\n  width: 165px;\n}\n.product-detail .main-section .product-short-info .add-to-cart-and-buy-button .buy-button:hover {\n  background-color: #275380;\n}\n.product-detail .product-detail-info {\n  background-color: white;\n  margin-top: 20px;\n}\n.product-detail .product-detail-info #tabs {\n  background: #007b5e;\n  color: #eee;\n}\n.product-detail .product-detail-info #tabs h6.section-title {\n  color: #eee;\n}\n.product-detail .product-detail-info #tabs .nav-tabs .nav-item.show .nav-link,\n.product-detail .product-detail-info .nav-tabs .nav-link.active {\n  color: #0062cc;\n  background-color: transparent;\n  border-color: transparent transparent #f3f3f3;\n  border-bottom: 1px solid !important;\n  font-size: 16px;\n  font-weight: 500;\n}\n.product-detail .product-detail-info .nav-link {\n  border: 1px solid transparent;\n  border-top-left-radius: 0.25rem;\n  border-top-right-radius: 0.25rem;\n  color: #0062cc;\n  font-size: 16px;\n  font-weight: 400;\n}\n.product-detail .product-detail-info .nav-link:hover {\n  border: none;\n}\n.product-detail .product-detail-info thead {\n  background: #f3f3f3;\n  color: #333;\n}\n.product-detail .product-detail-info a {\n  text-decoration: none;\n  color: #333;\n  font-weight: 600;\n}\n.product-detail .product-detail-info .tab-pane .asker-answerer-name {\n  font-weight: 500;\n  font-size: 14px;\n}\n.product-detail .product-detail-info .tab-pane .question-answer-datetime {\n  font-weight: 300;\n  font-size: 12px;\n}\n.product-detail .product-detail-info .tab-pane .answer {\n  margin-left: 66px;\n}\n.product-detail .product-detail-info .tab-pane .answer-content textarea {\n  margin: 26px 0 6px 0;\n  padding: 2px 0 0 4px;\n  width: 94%;\n}\n.product-detail .product-detail-info .tab-pane .answer-content button {\n  color: white;\n  background-color: #346aa0;\n  border-radius: 12px;\n  padding: 3px;\n  border-color: transparent;\n  width: 85px;\n}\n.product-detail .product-detail-info .tab-pane .answer-content button:hover {\n  background-color: #275380;\n}\n.product-detail .product-detail-info .tab-pane .question-textarea textarea {\n  width: 100%;\n  padding: 2px 0 0 4px;\n  margin: 26px 0 6px 0;\n}\n.product-detail .product-detail-info .tab-pane .question-textarea button {\n  color: white;\n  background-color: #346aa0;\n  border-radius: 12px;\n  padding: 3px;\n  border-color: transparent;\n  width: 85px;\n}\n.product-detail .product-detail-info .tab-pane .question-textarea button:hover {\n  background-color: #275380;\n}\n.product-detail .product-detail-info .tab-pane a {\n  color: blue;\n}", ""]);
 
 // exports
 
@@ -102709,7 +102709,7 @@ var CategoryDetail = /*#__PURE__*/function (_Component) {
         className: "container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
-      }, products ? products.map(function (product, index, products) {
+      }, products ? products.map(function (product, index) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_ProductCard__WEBPACK_IMPORTED_MODULE_5__["default"], {
           key: product.id,
           product: product
@@ -103205,6 +103205,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _css_homepage_scss__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_css_homepage_scss__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _product_ProductCard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../product/ProductCard */ "./resources/js/components/product/ProductCard.js");
 /* harmony import */ var _category_list_component_CategoryListComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../category-list-component/CategoryListComponent */ "./resources/js/components/category-list-component/CategoryListComponent.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -103234,6 +103235,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var Homepage = /*#__PURE__*/function (_Component) {
   _inherits(Homepage, _Component);
 
@@ -103249,6 +103251,7 @@ var Homepage = /*#__PURE__*/function (_Component) {
       categories: []
     };
     _this.getCategories = _this.getCategories.bind(_assertThisInitialized(_this));
+    _this.getProducts = _this.getProducts.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -103256,6 +103259,7 @@ var Homepage = /*#__PURE__*/function (_Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.getCategories();
+      this.getProducts();
     }
   }, {
     key: "getCategories",
@@ -103264,17 +103268,35 @@ var Homepage = /*#__PURE__*/function (_Component) {
 
       var uri = "http://localhost:8000/api/category";
       _Http__WEBPACK_IMPORTED_MODULE_1__["default"].get(uri).then(function (response) {
-        _this2.setState({
-          categories: response.data
-        });
+        // this.setState({
+        //     categories: response.data
+        // });
+        _this2.props.setCategories(response.data);
+      });
+    }
+  }, {
+    key: "getProducts",
+    value: function getProducts() {
+      var _this3 = this;
+
+      var uri = "http://localhost:8000/api/product";
+      _Http__WEBPACK_IMPORTED_MODULE_1__["default"].get(uri).then(function (response) {
+        // this.setState({
+        //     categories: response.data
+        // });
+        _this3.props.setProducts(response.data);
       });
     }
   }, {
     key: "render",
     value: function render() {
-      var parent_categories = this.state.categories.filter(function (category) {
-        return category.parent_category_id === null;
-      }); // console.log(this.state);
+      var parent_categories = [];
+
+      if (this.props.categories) {
+        parent_categories = this.props.categories.filter(function (category) {
+          return category.parent_category_id === null;
+        });
+      }
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "homepage-body"
@@ -103284,20 +103306,49 @@ var Homepage = /*#__PURE__*/function (_Component) {
         parent_categories: parent_categories
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "trending_title"
-      }, "TH\u1ECANH H\xC0NH"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "T\u1EA4T C\u1EA2 S\u1EA2N PH\u1EA8M"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "product-list"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
-      })))));
+      }, this.props.products ? this.props.products.map(function (product, index) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_ProductCard__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          key: product.id,
+          product: product
+        });
+      }) : "")))));
     }
   }]);
 
   return Homepage;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (Homepage);
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    categories: state.categoryDetail.categories,
+    products: state.productDetail.products
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    setCategories: function setCategories(categories) {
+      dispatch({
+        type: "SET_CATEGORIES",
+        payload: categories
+      });
+    },
+    setProducts: function setProducts(products) {
+      dispatch({
+        type: "SET_PRODUCTS",
+        payload: products
+      });
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_6__["connect"])(mapStateToProps, mapDispatchToProps)(Homepage));
 
 /***/ }),
 
@@ -103584,6 +103635,7 @@ var ProductDetail = /*#__PURE__*/function (_Component) {
       answer: ""
     };
     _this.getProductDetail = _this.getProductDetail.bind(_assertThisInitialized(_this));
+    _this.onChangeQuantity = _this.onChangeQuantity.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -103638,7 +103690,7 @@ var ProductDetail = /*#__PURE__*/function (_Component) {
         className: "breadcrumb-item"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
         to: "/"
-      }, "Trang ch\u1EE7")), detail.parent_category[0].category_name ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      }, "Trang ch\u1EE7")), detail.parent_category ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "breadcrumb-item"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
         to: "/category/" + detail.parent_category[0].id
@@ -103704,7 +103756,7 @@ var ProductDetail = /*#__PURE__*/function (_Component) {
         role: "tab",
         "aria-controls": "nav-home",
         "aria-selected": "true"
-      }, "M\xF4 T\u1EA3 Chi Ti\u1EBFt"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      }, "M\xD4 T\u1EA2 CHI TI\u1EBET"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "nav-item nav-link",
         id: "nav-profile-tab",
         "data-toggle": "tab",
@@ -103712,15 +103764,7 @@ var ProductDetail = /*#__PURE__*/function (_Component) {
         role: "tab",
         "aria-controls": "nav-profile",
         "aria-selected": "false"
-      }, "C\xE2u H\u1ECFi"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        className: "nav-item nav-link",
-        id: "nav-contact-tab",
-        "data-toggle": "tab",
-        href: "#nav-contact",
-        role: "tab",
-        "aria-controls": "nav-contact",
-        "aria-selected": "false"
-      }, "\u0110\xE1nh Gi\xE1"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "C\xC2U H\u1ECEI"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "tab-content",
         id: "nav-tabContent"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -103733,21 +103777,7 @@ var ProductDetail = /*#__PURE__*/function (_Component) {
         id: "nav-profile",
         role: "tabpanel",
         "aria-labelledby": "nav-profile-tab"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_QuestionComponent__WEBPACK_IMPORTED_MODULE_7__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "tab-pane fade",
-        id: "nav-contact",
-        role: "tabpanel",
-        "aria-labelledby": "nav-contact-tab"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
-        className: "table",
-        cellSpacing: "0"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Contest Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Date"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Award Position"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#"
-      }, "Work 1")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Doe"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "john@example.com")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#"
-      }, "Work 2")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Moe"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "mary@example.com")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#"
-      }, "Work 3")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Dooley"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "july@example.com"))))))))) : "Loading...");
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_QuestionComponent__WEBPACK_IMPORTED_MODULE_7__["default"], null)))))) : "Loading...");
     }
   }]);
 
@@ -104201,7 +104231,8 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var initialState = {
-  detail: ""
+  detail: "",
+  categories: ""
 };
 var categoryDetailReducer = function categoryDetailReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
@@ -104211,6 +104242,11 @@ var categoryDetailReducer = function categoryDetailReducer() {
     case "SET_CATEGORY_DETAIL":
       return _objectSpread(_objectSpread({}, state), {}, {
         detail: action.payload
+      });
+
+    case "SET_CATEGORIES":
+      return _objectSpread(_objectSpread({}, state), {}, {
+        categories: action.payload
       });
 
     default:
@@ -104252,13 +104288,19 @@ var _require = __webpack_require__(/*! immutable */ "./node_modules/immutable/di
     fromJS = _require.fromJS;
 
 var initialState = {
-  detail: ""
+  detail: "",
+  products: ""
 };
 var productDetailReducer = function productDetailReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
+    case "SET_PRODUCTS":
+      return _objectSpread(_objectSpread({}, state), {}, {
+        products: action.payload
+      });
+
     case "SET_PRODUCT_DETAIL":
       return _objectSpread(_objectSpread({}, state), {}, {
         detail: action.payload
