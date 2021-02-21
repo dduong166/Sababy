@@ -35,6 +35,8 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
+        $products = $products->load('productMedias', 'bookmarks');
+
         return response()->json($products);
     }
 

@@ -1,10 +1,16 @@
 const {fromJS} = require('immutable');
 const initialState = {
-    detail: ""
+    detail: "",
+    products: ""
 };
 
 export const productDetailReducer = (state = initialState, action) => {
     switch (action.type) {
+        case "SET_PRODUCTS":
+            return {
+                ...state,
+                products: action.payload
+            };
         case "SET_PRODUCT_DETAIL":
             return {
                 ...state,

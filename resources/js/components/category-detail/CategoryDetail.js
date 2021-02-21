@@ -91,7 +91,7 @@ class CategoryDetail extends Component {
                                 <div className="row">
                                     {products
                                         ? products.map(
-                                              (product, index, products) => (
+                                              (product, index) => (
                                                   <ProductCard
                                                       key={product.id}
                                                       product={product}
