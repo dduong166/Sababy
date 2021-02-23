@@ -16,13 +16,11 @@ class Navbar extends Component {
     }
 
     isLoggedIn() {
-        // console.log(localStorage.getItem("auth_token"));
         if (localStorage.getItem("auth_token")) {
             Http.defaults.headers.common["Authorization"] =
                 "Bearer " + localStorage["auth_token"];
             Http.get("http://localhost:8000/api/user/isLoggedIn")
                 .then(response => {
-                    // console.log(response);
                     if (response.data.user) {
                         var currentUser = {
                             id: response.data.user.id,

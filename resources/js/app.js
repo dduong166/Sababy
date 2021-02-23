@@ -29,7 +29,6 @@ class AppMain extends Component {
         return (
             <Provider store={store}>
                 <Router history={history}>
-                        <div className="app">
                             <Switch>
                                 <App>
                                     <Navbar
@@ -58,7 +57,6 @@ class AppMain extends Component {
                                     <Footer />
                                 </App>
                             </Switch>
-                        </div>
                 </Router>
             </Provider>
         );

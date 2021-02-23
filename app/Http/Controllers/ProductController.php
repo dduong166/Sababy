@@ -11,6 +11,7 @@ use App\Models\Category;
 use App\Models\Question;
 use App\Models\Answer;
 use Illuminate\Http\Request;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class ProductController extends Controller
 {
@@ -34,8 +35,32 @@ class ProductController extends Controller
      */
     public function index()
     {
+        $auth = true;
+        if(JWTAuth::getToken()){
+            try {
+                if (!$user = JWTAuth::parseToken()->authenticate()) {
+                    $auth = false;
+                }
+            } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+                $auth = false;
+            } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+                $auth = false;
+            } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
+                $auth = false;
+            }
+        }else {
+            $auth = false;
+        }
+        
+
         $products = Product::all();
-        $products = $products->load('productMedias', 'bookmarks');
+        $products = $products->load('productMedias');
+        if ($auth) {
+            $user = JWTAuth::parseToken()->authenticate();
+            $products = $products->load(['bookmarks' => function ($query) use ($user) {
+                $query->where('user_id', $user->id);
+            }]);
+        }
         return response()->json($products);
     }
 
@@ -69,7 +94,15 @@ class ProductController extends Controller
         }
         array_push($sub_categories_id, (int) $category_id);
         $products = Product::whereIn('category_id', $sub_categories_id)->get();
-        $products = $products->load('productMedias', 'bookmarks');
+        $products = $products->load('productMedias');
+        if (JWTAuth::getToken()) {
+            if ($user = JWTAuth::parseToken()->authenticate()) {
+                $products = $products->load(['bookmarks' => function ($query) use ($user) {
+                    $query->where('user_id', $user->id);
+                }]);
+            }
+        }
+
         //get category
         $category = Category::where('id', $category_id)->get()->first();
         $category->sub_categories = $sub_categories;

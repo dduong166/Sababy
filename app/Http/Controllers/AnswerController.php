@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Answer;
 use Illuminate\Http\Request;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AnswerController extends Controller
 {
@@ -35,9 +36,12 @@ class AnswerController extends Controller
      */
     public function store(Request $request)
     {
+        if (!$user = JWTAuth::parseToken()->authenticate()) {
+            return response()->json(['user_not_found'], 404);
+        }
         $answer = new Answer;
         $answer->question_id = $request->question_id;
-        $answer->answerer_id = $request->answerer_id;
+        $answer->answerer_id = $user->id;
         $answer->content = $request->content;
         $answer->save();
         $answer = $answer->load(['answerer:id,name']);

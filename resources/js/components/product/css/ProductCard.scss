@@ -19,26 +19,9 @@
             z-index: 3;
             box-shadow: 1px 11px 16px 2px hsla(0, 0%, 69.4%, 0.5);
             border-radius: 8px;
-            transform: scale(1.04);
+            transform: scale(1.01);
         }
-        .bookmark {
-            span {
-                position: absolute;
-                display: block;
-                width: 34px;
-                margin-right: 3px;
-                margin-top: 3px;
-                color: #3490dc;
-                transition: 0.2s ease-out;
-                &:hover {
-                    transform: scale(1.05);
-                    // fill: #3490dc;
-                }
-                img {
-                    width: 60%;
-                }
-            }
-        }
+        
         .product_image {
             width: 100%;
             text-align: center;
@@ -63,6 +46,42 @@
                 text-overflow: ellipsis;
                 margin: 0;
             }
+            .bookmark-and-price {
+                margin-top: 25px;
+                .bookmark {
+                    i {
+                        font-size: 25px;
+                    }
+                    // display: block;
+                    // width: 34px;
+                    margin-right: 3px;
+                    margin-top: 3px;
+                    color: #3490dc;
+                    transition: 0.2s ease-out;
+                    &:hover {
+                        transform: scale(1.05);
+                        // fill: #3490dc;
+                    }
+                    img {
+                        width: 60%;
+                    }
+                }
+                .price {
+                    .old_price {
+                        font-size: 13px;
+                        font-weight: 500;
+                        color: #666;
+                        margin-right: 8px;
+                    }
+                    .new_price {
+                        color: #346aa0;
+                        border: 1px solid #346aa0;
+                        border-radius: 12px;
+                        font-size: 16px;
+                        padding: 0 12px;
+                    }
+                }
+            }
             .product_address_and_rate {
                 margin-top: 10px;
                 .light_text {
@@ -77,22 +96,6 @@
                     i {
                         color: orange;
                     }
-                }
-            }
-            .price {
-                margin-top: 25px;
-                .old_price {
-                    font-size: 13px;
-                    font-weight: 500;
-                    color: #666;
-                    margin-right: 8px;
-                }
-                .new_price {
-                    color: #346aa0;
-                    border: 1px solid #346aa0;
-                    border-radius: 12px;
-                    font-size: 16px;
-                    padding: 0 12px;
                 }
             }
         }

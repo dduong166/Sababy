@@ -6453,7 +6453,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".footer-section {\n  position: absolute;\n  background-color: #efefef;\n  width: 100%;\n}\n.footer-section .footer-text {\n  padding: 30px 0 30px 0;\n}", ""]);
+exports.push([module.i, ".footer-section {\n  background-color: #efefef;\n  width: 100%;\n}\n.footer-section .footer-text {\n  padding: 30px 0 30px 0;\n}", ""]);
 
 // exports
 
@@ -6511,7 +6511,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".product-card {\n  margin-bottom: 20px;\n  margin-top: 10px;\n}\n.product-card a:hover {\n  text-decoration: none;\n}\n.product-card .product_card_content {\n  width: 100%;\n  margin-right: 7%;\n  padding-bottom: 10px;\n  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.1);\n  border-radius: 5px;\n  margin-top: 0px;\n  background-color: #fff;\n  transition: 0.2s ease-out;\n}\n.product-card .product_card_content:hover {\n  position: relative;\n  background-color: #fff;\n  z-index: 3;\n  box-shadow: 1px 11px 16px 2px rgba(177, 177, 177, 0.5);\n  border-radius: 8px;\n  transform: scale(1.04);\n}\n.product-card .product_card_content .bookmark span {\n  position: absolute;\n  display: block;\n  width: 34px;\n  margin-right: 3px;\n  margin-top: 3px;\n  color: #3490dc;\n  transition: 0.2s ease-out;\n}\n.product-card .product_card_content .bookmark span:hover {\n  transform: scale(1.05);\n}\n.product-card .product_card_content .bookmark span img {\n  width: 60%;\n}\n.product-card .product_card_content .product_image {\n  width: 100%;\n  text-align: center;\n}\n.product-card .product_card_content .product_image img {\n  top: 0;\n  left: 0;\n  max-width: 100%;\n  height: 240px;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.product-card .product_card_content .product_preview_content {\n  margin-top: 8px;\n  margin-left: 16px;\n  margin-right: 16px;\n}\n.product-card .product_card_content .product_preview_content .product_name {\n  font-size: 16px;\n  font-weight: 400;\n  color: #444;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  margin: 0;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate {\n  margin-top: 10px;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate .light_text {\n  font-size: 12px;\n  color: #333;\n  font-weight: 300;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate .rate_number {\n  margin-left: 4px;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate .sold_stars i {\n  color: orange;\n}\n.product-card .product_card_content .product_preview_content .price {\n  margin-top: 25px;\n}\n.product-card .product_card_content .product_preview_content .price .old_price {\n  font-size: 13px;\n  font-weight: 500;\n  color: #666;\n  margin-right: 8px;\n}\n.product-card .product_card_content .product_preview_content .price .new_price {\n  color: #346aa0;\n  border: 1px solid #346aa0;\n  border-radius: 12px;\n  font-size: 16px;\n  padding: 0 12px;\n}\n.product-card .product_card_content:hover .product_name {\n  overflow: visible;\n  white-space: normal;\n  height: auto;\n}", ""]);
+exports.push([module.i, ".product-card {\n  margin-bottom: 20px;\n  margin-top: 10px;\n}\n.product-card a:hover {\n  text-decoration: none;\n}\n.product-card .product_card_content {\n  width: 100%;\n  margin-right: 7%;\n  padding-bottom: 10px;\n  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.1);\n  border-radius: 5px;\n  margin-top: 0px;\n  background-color: #fff;\n  transition: 0.2s ease-out;\n}\n.product-card .product_card_content:hover {\n  position: relative;\n  background-color: #fff;\n  z-index: 3;\n  box-shadow: 1px 11px 16px 2px rgba(177, 177, 177, 0.5);\n  border-radius: 8px;\n  transform: scale(1.01);\n}\n.product-card .product_card_content .product_image {\n  width: 100%;\n  text-align: center;\n}\n.product-card .product_card_content .product_image img {\n  top: 0;\n  left: 0;\n  max-width: 100%;\n  height: 240px;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.product-card .product_card_content .product_preview_content {\n  margin-top: 8px;\n  margin-left: 16px;\n  margin-right: 16px;\n}\n.product-card .product_card_content .product_preview_content .product_name {\n  font-size: 16px;\n  font-weight: 400;\n  color: #444;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  margin: 0;\n}\n.product-card .product_card_content .product_preview_content .bookmark-and-price {\n  margin-top: 25px;\n}\n.product-card .product_card_content .product_preview_content .bookmark-and-price .bookmark {\n  margin-right: 3px;\n  margin-top: 3px;\n  color: #3490dc;\n  transition: 0.2s ease-out;\n}\n.product-card .product_card_content .product_preview_content .bookmark-and-price .bookmark i {\n  font-size: 25px;\n}\n.product-card .product_card_content .product_preview_content .bookmark-and-price .bookmark:hover {\n  transform: scale(1.05);\n}\n.product-card .product_card_content .product_preview_content .bookmark-and-price .bookmark img {\n  width: 60%;\n}\n.product-card .product_card_content .product_preview_content .bookmark-and-price .price .old_price {\n  font-size: 13px;\n  font-weight: 500;\n  color: #666;\n  margin-right: 8px;\n}\n.product-card .product_card_content .product_preview_content .bookmark-and-price .price .new_price {\n  color: #346aa0;\n  border: 1px solid #346aa0;\n  border-radius: 12px;\n  font-size: 16px;\n  padding: 0 12px;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate {\n  margin-top: 10px;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate .light_text {\n  font-size: 12px;\n  color: #333;\n  font-weight: 300;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate .rate_number {\n  margin-left: 4px;\n}\n.product-card .product_card_content .product_preview_content .product_address_and_rate .sold_stars i {\n  color: orange;\n}\n.product-card .product_card_content:hover .product_name {\n  overflow: visible;\n  white-space: normal;\n  height: auto;\n}", ""]);
 
 // exports
 
@@ -102128,8 +102128,6 @@ var AppMain = /*#__PURE__*/function (_Component) {
         store: store
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Router"], {
         history: history
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "app"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_page_App__WEBPACK_IMPORTED_MODULE_12__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_header_footer_Navbar__WEBPACK_IMPORTED_MODULE_13__["default"], {
         history: history
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
@@ -102148,7 +102146,7 @@ var AppMain = /*#__PURE__*/function (_Component) {
         path: "/product/:product_id",
         exact: true,
         component: _components_product_ProductDetail__WEBPACK_IMPORTED_MODULE_11__["default"]
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_header_footer_Footer__WEBPACK_IMPORTED_MODULE_14__["default"], null))))));
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_header_footer_Footer__WEBPACK_IMPORTED_MODULE_14__["default"], null)))));
     }
   }]);
 
@@ -103028,11 +103026,9 @@ var Navbar = /*#__PURE__*/function (_Component) {
     value: function isLoggedIn() {
       var _this2 = this;
 
-      // console.log(localStorage.getItem("auth_token"));
       if (localStorage.getItem("auth_token")) {
         _Http__WEBPACK_IMPORTED_MODULE_3__["default"].defaults.headers.common["Authorization"] = "Bearer " + localStorage["auth_token"];
         _Http__WEBPACK_IMPORTED_MODULE_3__["default"].get("http://localhost:8000/api/user/isLoggedIn").then(function (response) {
-          // console.log(response);
           if (response.data.user) {
             var currentUser = {
               id: response.data.user.id,
@@ -103252,9 +103248,6 @@ var Homepage = /*#__PURE__*/function (_Component) {
 
       var uri = "http://localhost:8000/api/category";
       _Http__WEBPACK_IMPORTED_MODULE_1__["default"].get(uri).then(function (response) {
-        // this.setState({
-        //     categories: response.data
-        // });
         _this2.props.setCategories(response.data);
       });
     }
@@ -103265,15 +103258,21 @@ var Homepage = /*#__PURE__*/function (_Component) {
 
       var uri = "http://localhost:8000/api/product";
       _Http__WEBPACK_IMPORTED_MODULE_1__["default"].get(uri).then(function (response) {
-        // this.setState({
-        //     categories: response.data
-        // });
         _this3.props.setProducts(response.data);
       });
     }
   }, {
+    key: "handleBookmark",
+    value: function handleBookmark(bookmark, index) {
+      console.log("handle Bookmark");
+      console.log(index);
+      console.log(this.props); // this.props.setBookmark(bookmark, index);
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this4 = this;
+
       var parent_categories = [];
 
       if (this.props.categories) {
@@ -103299,7 +103298,9 @@ var Homepage = /*#__PURE__*/function (_Component) {
       }, this.props.products ? this.props.products.map(function (product, index) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_ProductCard__WEBPACK_IMPORTED_MODULE_4__["default"], {
           key: product.id,
-          product: product
+          product: product,
+          index: index,
+          setBookmark: _this4.handleBookmark
         });
       }) : "")))));
     }
@@ -103311,7 +103312,8 @@ var Homepage = /*#__PURE__*/function (_Component) {
 var mapStateToProps = function mapStateToProps(state) {
   return {
     categories: state.categoryDetail.categories,
-    products: state.productDetail.products
+    products: state.productDetail.products,
+    auth: state.auth
   };
 };
 
@@ -103327,6 +103329,13 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
       dispatch({
         type: "SET_PRODUCTS",
         payload: products
+      });
+    },
+    setBookmark: function setBookmark(bookmark, index) {
+      dispatch({
+        type: "SET_BOOKMARK",
+        payload: bookmark,
+        index: index
       });
     }
   };
@@ -103415,9 +103424,7 @@ var App = /*#__PURE__*/function (_Component) {
   _createClass(App, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "app-body"
-      }, this.props.children);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, this.props.children);
     }
   }]);
 
@@ -103477,16 +103484,44 @@ var ProductCard = /*#__PURE__*/function (_Component) {
 
   var _super = _createSuper(ProductCard);
 
-  function ProductCard() {
+  function ProductCard(props) {
+    var _this;
+
     _classCallCheck(this, ProductCard);
 
-    return _super.apply(this, arguments);
+    _this = _super.call(this, props);
+    _this.BookmarkClick = _this.BookmarkClick.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(ProductCard, [{
+    key: "BookmarkClick",
+    value: function BookmarkClick(e) {
+      var _this2 = this;
+
+      var productId = e.target.dataset.productid;
+      var uri = "http://localhost:8000/api/bookmark";
+      var newBookmark = {
+        product_id: productId
+      };
+      _Http__WEBPACK_IMPORTED_MODULE_1__["default"].post(uri, newBookmark).then(function (response) {
+        if (response.data) {
+          // response.data.index = index;
+          // this.props.setProductAnswer(response.data);
+          console.log(response.data);
+
+          _this2.props.setBookmark(response.data, _this2.props.index);
+        }
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       var product = this.props.product;
+      var bookmark = {
+        cac: "vcl dau cat moi"
+      }; // this.props.setBookmark(bookmark);
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "product-card col-md-4"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
@@ -103527,12 +103562,22 @@ var ProductCard = /*#__PURE__*/function (_Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "light_text rate_number"
       }, "(100)"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "bookmark-and-price d-flex flex-row justify-content-between"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "bookmark"
+      }, this.props.currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, product.bookmarks[0] ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fa fa-heart"
+      }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fa fa-heart-o",
+        "data-productid": product.id,
+        onClick: this.BookmarkClick
+      })) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "price top-border d-flex flex-row justify-content-end align-items-center"
       }, product.discount ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "old_price"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strike", null, product.price.toLocaleString(), " \u0111")) : "", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strike", null, product.price.toLocaleString(), " ", "\u0111")) : "", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "new_price"
-      }, (product.price * (100 - product.discount) / 100).toLocaleString(), " ", "\u0111"))))));
+      }, (product.price * (100 - product.discount) / 100).toLocaleString(), " ", "\u0111")))))));
     }
   }]);
 
@@ -103917,9 +103962,14 @@ var QuestionComponent = /*#__PURE__*/function (_Component) {
           };
         });
       } else {
+        if (this.props.auth.currentUser) {
+          _Http__WEBPACK_IMPORTED_MODULE_1__["default"].defaults.headers.common["Authorization"] = "Bearer " + localStorage["auth_token"];
+        } else {
+          console.log("Chưa login");
+        }
+
         var uri = "http://localhost:8000/api/question";
         var newQuestion = {
-          asker_id: this.props.auth.currentUser.id,
           product_id: this.props.detail.id,
           content: this.state.question
         };
@@ -103972,7 +104022,6 @@ var QuestionComponent = /*#__PURE__*/function (_Component) {
         var uri = "http://localhost:8000/api/answer";
         var newAnswer = {
           question_id: e.target.dataset.questionid,
-          answerer_id: this.props.auth.currentUser.id,
           content: this.state.answer[index]
         };
         _Http__WEBPACK_IMPORTED_MODULE_1__["default"].post(uri, newAnswer).then(function (response) {
@@ -104300,11 +104349,20 @@ var productDetailReducer = function productDetailReducer() {
     case "SET_PRODUCT_ANSWER":
       var index = action.payload.index;
       var draft = fromJS(_objectSpread({}, state));
-      draft = draft.updateIn(['detail', 'questions', index, 'answers'], function (list) {
+      draft = draft.updateIn(["detail", "questions", index, "answers"], function (list) {
         return list.push(action.payload);
       });
-      console.log(draft.toJS());
       return draft.toJS();
+
+    case "SET_BOOKMARK":
+      // return {
+      //     ...state,
+      //     detail: {
+      //         ...state.detail,
+      //         questions: [action.payload, ...state.detail.questions]
+      //     }
+      // };
+      console.log(action.payload);
 
     default:
       return _objectSpread({}, state);

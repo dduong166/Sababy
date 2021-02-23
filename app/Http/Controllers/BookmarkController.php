@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Bookmark;
 use Illuminate\Http\Request;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class BookmarkController extends Controller
 {
@@ -35,13 +36,15 @@ class BookmarkController extends Controller
      */
     public function store(Request $request)
     {
+        if (!$user = JWTAuth::parseToken()->authenticate()) {
+            return response()->json(['user_not_found'], 404);
+        }
         $bookmark = new Bookmark;
-        $bookmark->user_id = $request->user_id;
+        $bookmark->user_id = $user->id;
         $bookmark->product_id = $request->product_id;
         $bookmark->save();
-        $response = ['success' => true, 'data' => $bookmark];
         
-        return response()->json($response);
+        return response()->json($bookmark);
 
     }
 
