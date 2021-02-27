@@ -3,6 +3,7 @@ import Http from "../../Http";
 import { Link } from "react-router-dom";
 import "./css/homepage.scss";
 import ProductCard from "../product/ProductCard";
+import DistanceSort from "./DistanceComponent";
 import CategoryList from "../category-list-component/CategoryListComponent";
 import { connect } from "react-redux";
 
@@ -22,22 +23,22 @@ class Homepage extends Component {
     }
 
     getCategories() {
-        let uri = "http://localhost:8000/api/category";
+        const uri = "http://localhost:8000/api/category";
         Http.get(uri).then(response => {
-            // this.setState({
-            //     categories: response.data
-            // });
             this.props.setCategories(response.data);
         });
     }
     getProducts() {
-        let uri = "http://localhost:8000/api/product";
+        const uri = "http://localhost:8000/api/product";
         Http.get(uri).then(response => {
-            // this.setState({
-            //     categories: response.data
-            // });
             this.props.setProducts(response.data);
         });
+    }
+    handleBookmark(bookmark, index){
+        console.log("handle Bookmark");
+        console.log(index);
+        console.log(this.props);
+        // this.props.setBookmark(bookmark, index);
     }
 
     render() {
@@ -47,9 +48,14 @@ class Homepage extends Component {
                 return category.parent_category_id === null;
             });
         }
+
         return (
             <div className="homepage-body">
                 <div className="container">
+                    {
+                        this.props.products ? (<DistanceSort products={this.props.products}/>) : null
+                    }
+                    
                     <h3>DANH MỤC SẢN PHẨM</h3>
                     <CategoryList parent_categories={parent_categories} />
                     <h3 className="trending_title">TẤT CẢ SẢN PHẨM</h3>
@@ -62,6 +68,8 @@ class Homepage extends Component {
                                               <ProductCard
                                                   key={product.id}
                                                   product={product}
+                                                  index={index}
+                                                  setBookmark={this.handleBookmark}
                                               />
                                           )
                                       )
@@ -77,7 +85,8 @@ class Homepage extends Component {
 const mapStateToProps = state => {
     return {
         categories: state.categoryDetail.categories,
-        products: state.productDetail.products
+        products: state.productDetail.products,
+        auth: state.auth
     };
 };
 
@@ -93,6 +102,13 @@ const mapDispatchToProps = dispatch => {
             dispatch({
                 type: "SET_PRODUCTS",
                 payload: products
+            });
+        },
+        setBookmark: (bookmark, index) => {
+            dispatch({
+                type: "SET_BOOKMARK",
+                payload: bookmark,
+                index: index
             });
         }
     };

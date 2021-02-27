@@ -1,4 +1,4 @@
-const {fromJS} = require('immutable');
+const { fromJS } = require("immutable");
 const initialState = {
     detail: "",
     products: ""
@@ -26,11 +26,21 @@ export const productDetailReducer = (state = initialState, action) => {
             };
         case "SET_PRODUCT_ANSWER":
             let index = action.payload.index;
-            let draft = fromJS({...state});
-            draft = draft.updateIn(['detail', 'questions', index, 'answers'], list => list.push(action.payload));
-            console.log(draft.toJS());
+            let draft = fromJS({ ...state });
+            draft = draft.updateIn(
+                ["detail", "questions", index, "answers"],
+                list => list.push(action.payload)
+            );
             return draft.toJS();
-                
+        case "SET_BOOKMARK":
+            // return {
+            //     ...state,
+            //     detail: {
+            //         ...state.detail,
+            //         questions: [action.payload, ...state.detail.questions]
+            //     }
+            // };
+            console.log(action.payload);
         default:
             return { ...state };
     }

@@ -4,9 +4,9 @@ class App extends Component {
 
     render () {
         return (
-            <div className="app-body">
+            <React.Fragment>
                 {this.props.children}
-            </div>
+            </React.Fragment>
         )
     }
 }

@@ -5,7 +5,8 @@ import "./css/ProductDetail.scss";
 import SlideShow from "react-image-show";
 import { connect } from "react-redux";
 import moment from "moment";
-import QuestionComponent from './QuestionComponent';
+import QuestionComponent from "./QuestionComponent";
+import PlacesAutocomplete from 'react-places-autocomplete';
 
 class ProductDetail extends Component {
     constructor(props) {
@@ -14,10 +15,12 @@ class ProductDetail extends Component {
             loading: true,
             quantity: 1,
             question: "",
-            answer: ""
+            answer: "",
+            destination: ""
         };
         this.getProductDetail = this.getProductDetail.bind(this);
         this.onChangeQuantity = this.onChangeQuantity.bind(this);
+        this.onChangeDestination = this.onChangeDestination.bind(this);
     }
 
     componentDidMount() {
@@ -39,6 +42,15 @@ class ProductDetail extends Component {
     onChangeQuantity(e) {
         this.setState({ quantity: e.target.value });
     }
+    onChangeDestination(destination) {
+        this.setState({ destination });
+    }
+    // handleDestinationSelect = address => {
+    //     geocodeByAddress(address)
+    //       .then(results => getLatLng(results[0]))
+    //       .then(latLng => console.log('Success', latLng))
+    //       .catch(error => console.error('Error', error));
+    //   };
 
     render() {
         var detail = this.props.detail;
@@ -61,8 +73,7 @@ class ProductDetail extends Component {
                                         <Link
                                             to={
                                                 "/category/" +
-                                                detail.parent_category[0]
-                                                    .id
+                                                detail.parent_category[0].id
                                             }
                                         >
                                             {
@@ -116,7 +127,49 @@ class ProductDetail extends Component {
                                             </tr>
                                             <tr>
                                                 <th>GỬI TỪ</th>
-                                                <td>{detail.location}</td>
+                                                <td>{detail.city}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>GỬI ĐẾN</th>
+                                                <td>
+                                                <PlacesAutocomplete
+                                                    value={this.state.destination}
+                                                    onChange={this.onChangeDestination}
+                                                >
+                                                    {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                                                    <div>
+                                                        <input
+                                                        {...getInputProps({
+                                                            placeholder: 'Nhập địa điểm nhận hàng',
+                                                            className: 'location-search-input',
+                                                        })}
+                                                        />
+                                                        <div className="autocomplete-dropdown-container">
+                                                        {loading && <div>Loading...</div>}
+                                                        {suggestions.map(suggestion => {
+                                                            const className = suggestion.active
+                                                            ? 'suggestion-item--active'
+                                                            : 'suggestion-item';
+                                                            // inline style for demonstration purpose
+                                                            const style = suggestion.active
+                                                            ? { backgroundColor: '#fafafa', cursor: 'pointer' }
+                                                            : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                                                            return (
+                                                            <div
+                                                                {...getSuggestionItemProps(suggestion, {
+                                                                className,
+                                                                style,
+                                                                })}
+                                                            >
+                                                                <span>{suggestion.description}</span>
+                                                            </div>
+                                                            );
+                                                        })}
+                                                        </div>
+                                                    </div>
+                                                    )}
+                                                </PlacesAutocomplete>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -225,7 +278,7 @@ class ProductDetail extends Component {
                                         role="tabpanel"
                                         aria-labelledby="nav-profile-tab"
                                     >
-                                        <QuestionComponent/>
+                                        <QuestionComponent />
                                     </div>
                                     {/* <div
                                         className="tab-pane fade"

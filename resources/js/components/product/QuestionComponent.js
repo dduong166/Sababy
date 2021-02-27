@@ -21,10 +21,10 @@ class QuestionComponent extends Component {
         this.onChangeAnswer = this.onChangeAnswer.bind(this);
         this.onAnswerSubmit = this.onAnswerSubmit.bind(this);
     }
-    componentDidMount(){
+    componentDidMount() {
         this._isMounted = true;
     }
-    componentWillUnmount(){
+    componentWillUnmount() {
         this._isMounted = false;
     }
     onChangeQuestion(e) {
@@ -39,9 +39,14 @@ class QuestionComponent extends Component {
                 return { error };
             });
         } else {
+            if (this.props.auth.currentUser) {
+                Http.defaults.headers.common["Authorization"] =
+                    "Bearer " + localStorage["auth_token"];
+            } else {
+                console.log("Chưa login");
+            }
             let uri = "http://localhost:8000/api/question";
             const newQuestion = {
-                asker_id: this.props.auth.currentUser.id,
                 product_id: this.props.detail.id,
                 content: this.state.question
             };
@@ -61,8 +66,8 @@ class QuestionComponent extends Component {
         let value = e.target.value;
         this.setState(prevState => {
             let answer = [...prevState.answer];
-            answer[index]= value;
-            return {answer};
+            answer[index] = value;
+            return { answer };
         });
     }
     onAnswerSubmit(e) {
@@ -77,19 +82,18 @@ class QuestionComponent extends Component {
             let uri = "http://localhost:8000/api/answer";
             const newAnswer = {
                 question_id: e.target.dataset.questionid,
-                answerer_id: this.props.auth.currentUser.id,
                 content: this.state.answer[index]
-            }; 
+            };
             Http.post(uri, newAnswer).then(response => {
                 if (response.data && this._isMounted) {
                     response.data.index = index;
                     this.props.setProductAnswer(response.data);
-                    if(this._isMounted){
-                        this.setState(prevState =>{
+                    if (this._isMounted) {
+                        this.setState(prevState => {
                             let error = { question: "", answer: "" };
                             let answer = [...prevState.answer];
                             answer[index] = "";
-                            return {error, answer};
+                            return { error, answer };
                         });
                     }
                 }
@@ -118,13 +122,14 @@ class QuestionComponent extends Component {
                     </div>
                 ) : (
                     <div>
-                        <Link to="/login">Đăng nhập</Link> để có thể đặt và trả lời câu hỏi
+                        <Link to="/login">Đăng nhập</Link> để có thể đặt và trả
+                        lời câu hỏi
                     </div>
                 )}
 
                 {questions.map((question, index) => (
                     <React.Fragment key={index}>
-                        <hr/>
+                        <hr />
                         <div className="asker-answerer-name">
                             {question.asker.name}
                         </div>
@@ -138,29 +143,24 @@ class QuestionComponent extends Component {
                         </div>
                         <div className="answer-content d-flex flex-column">
                             {question.answers
-                                ? question.answers.map(
-                                      (answer, index) => (
-                                          <div
-                                              className="answer"
-                                              key={index}
-                                          >
-                                              <hr />
-                                              <div className="asker-answerer-name">
-                                                  {answer.answerer
-                                                      ? answer.answerer.name
-                                                      : null}
-                                              </div>
-                                              <div className="question-answer-datetime">
-                                                  {moment(
-                                                      answer.created_at
-                                                  ).format("hh:mm, DD/MM/YYYY")}
-                                              </div>
-                                              <div className="question-answer-content">
-                                                  {answer.content}
-                                              </div>
+                                ? question.answers.map((answer, index) => (
+                                      <div className="answer" key={index}>
+                                          <hr />
+                                          <div className="asker-answerer-name">
+                                              {answer.answerer
+                                                  ? answer.answerer.name
+                                                  : null}
                                           </div>
-                                      )
-                                  )
+                                          <div className="question-answer-datetime">
+                                              {moment(answer.created_at).format(
+                                                  "hh:mm, DD/MM/YYYY"
+                                              )}
+                                          </div>
+                                          <div className="question-answer-content">
+                                              {answer.content}
+                                          </div>
+                                      </div>
+                                  ))
                                 : null}
                             {this.props.auth.currentUser ? (
                                 <div className="reply d-flex flex-column align-items-end">
@@ -176,7 +176,11 @@ class QuestionComponent extends Component {
                                             {this.state.error.answer}
                                         </div>
                                     )}
-                                    <button data-index={index} data-questionid={question.id} onClick={this.onAnswerSubmit}>
+                                    <button
+                                        data-index={index}
+                                        data-questionid={question.id}
+                                        onClick={this.onAnswerSubmit}
+                                    >
                                         Trả lời
                                     </button>
                                 </div>

@@ -13,18 +13,21 @@ class UserController extends Controller
     //Check if user is logged in? 
     public function getAuthenticatedUser()
     {
-        // dd( JWTAuth::parseToken()->authenticate());  
+
         try {
             if (!$user = JWTAuth::parseToken()->authenticate()) {
                 return response()->json(['user_not_found'], 404);
             }
         } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
-            return response()->json(['token_expired'], $e->getStatusCode());
+            // return response()->json(['token_expired'], $e->getStatusCode());
+            JWTAuth::setToken(JWTAuth::refresh());
+            $user = JWTAuth::authenticate();
         } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
             return response()->json(['token_invalid'], $e->getStatusCode());
         } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
             return response()->json(['token_absent'], $e->getStatusCode());
         }
+        // dd(Auth::user()->id);
 
         // the token is valid and we have found the user via the sub claim
         return response()->json(compact('user'));
