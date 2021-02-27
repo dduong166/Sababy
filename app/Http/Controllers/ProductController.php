@@ -111,6 +111,13 @@ class ProductController extends Controller
         return response()->json($result);
     }
 
+    public function sortDistanceIncrease($a, $b){
+        if($a == $b){
+            return 0;
+        }
+        return ($a->distance > $b->distance) ? 1 : -1;
+    }
+
     public function sortByDistance(Request $request)
     {
         if(JWTAuth::getToken()){
@@ -142,6 +149,8 @@ class ProductController extends Controller
         foreach($products as $key => $product){
             $product->distance = $distance[$key]["distance"]["value"];
         }
+        $products = $products->sortBy('distance')->values();
+        
         return response()->json($products);
     }
 

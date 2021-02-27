@@ -55,7 +55,8 @@ class ProductCard extends Component {
                             </div>
                             <div className="product_address_and_rate d-flex flex-row justify-content-start">
                                 <div className="light_text">
-                                    {product.city}
+                                    {product.city}{" "}
+                                    {product.distance ? (<span>(cách {(Math.round(product.distance/100)/10).toLocaleString()}km)</span>) : null}
                                 </div>
                                 <div className="sold_stars ml-auto">
                                     {" "}
@@ -73,7 +74,8 @@ class ProductCard extends Component {
                                 <div className="bookmark">
                                     {this.props.currentUser ? (
                                         <React.Fragment>
-                                            {product.bookmarks && product.bookmarks.length ? (
+                                            {product.bookmarks &&
+                                            product.bookmarks.length ? (
                                                 <i className="fa fa-heart"></i>
                                             ) : (
                                                 <i

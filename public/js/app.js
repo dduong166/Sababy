@@ -111169,6 +111169,8 @@ var DistanceSort = /*#__PURE__*/function (_Component) {
   _createClass(DistanceSort, [{
     key: "SortByDistance",
     value: function SortByDistance(e) {
+      var _this2 = this;
+
       // if (navigator && navigator.geolocation) {
       //     navigator.geolocation.getCurrentPosition(pos => {
       //         const currentPosition = {
@@ -111193,17 +111195,13 @@ var DistanceSort = /*#__PURE__*/function (_Component) {
       // } else {
       //     console.log("Fail to get current location");
       // }
-      var products = this.props.products;
       var uri = "http://localhost:8000/api/product/distance";
-      products = {
+      var request = {
         origins: "Đại học Bách Khoa Hà Nội"
       };
-      _Http__WEBPACK_IMPORTED_MODULE_1__["default"].post(uri, products).then(function (response) {
+      _Http__WEBPACK_IMPORTED_MODULE_1__["default"].post(uri, request).then(function (response) {
         if (response) {
-          // response.data.index = index;
-          // this.props.setProductAnswer(response.data);
-          console.log(1111);
-          console.log(response); // this.props.setBookmark(response.data, this.props.index);
+          _this2.props.setProducts(response.data);
         } else {
           console.log("vllllllllll");
         }
@@ -111295,6 +111293,7 @@ var Homepage = /*#__PURE__*/function (_Component) {
     };
     _this.getCategories = _this.getCategories.bind(_assertThisInitialized(_this));
     _this.getProducts = _this.getProducts.bind(_assertThisInitialized(_this));
+    _this.getProductsWithDistance = _this.getProductsWithDistance.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -111325,6 +111324,11 @@ var Homepage = /*#__PURE__*/function (_Component) {
       });
     }
   }, {
+    key: "getProductsWithDistance",
+    value: function getProductsWithDistance(products) {
+      this.props.setProducts(products);
+    }
+  }, {
     key: "handleBookmark",
     value: function handleBookmark(bookmark, index) {
       console.log("handle Bookmark");
@@ -111349,7 +111353,7 @@ var Homepage = /*#__PURE__*/function (_Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
       }, this.props.products ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_DistanceComponent__WEBPACK_IMPORTED_MODULE_5__["default"], {
-        products: this.props.products
+        setProducts: this.getProductsWithDistance
       }) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "DANH M\u1EE4C S\u1EA2N PH\u1EA8M"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_category_list_component_CategoryListComponent__WEBPACK_IMPORTED_MODULE_6__["default"], {
         parent_categories: parent_categories
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
@@ -111612,7 +111616,7 @@ var ProductCard = /*#__PURE__*/function (_Component) {
         className: "product_address_and_rate d-flex flex-row justify-content-start"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "light_text"
-      }, product.city), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, product.city, " ", product.distance ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "(c\xE1ch ", (Math.round(product.distance / 100) / 10).toLocaleString(), "km)") : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sold_stars ml-auto"
       }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fa fa-star"

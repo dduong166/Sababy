@@ -33,18 +33,13 @@ class DistanceSort extends Component {
         // } else {
         //     console.log("Fail to get current location");
         // }
-        var products = this.props.products;
         let uri = "http://localhost:8000/api/product/distance";
-        products = {
+        let request = {
             origins: "Đại học Bách Khoa Hà Nội"
         }
-        Http.post(uri, products).then(response => {
+        Http.post(uri, request).then(response => {
             if (response) {
-                // response.data.index = index;
-                // this.props.setProductAnswer(response.data);
-                console.log(1111);
-                console.log(response);
-                // this.props.setBookmark(response.data, this.props.index);
+                this.props.setProducts(response.data);
             }else{
                 console.log("vllllllllll");
             }

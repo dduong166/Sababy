@@ -15,6 +15,7 @@ class Homepage extends Component {
         };
         this.getCategories = this.getCategories.bind(this);
         this.getProducts = this.getProducts.bind(this);
+        this.getProductsWithDistance = this.getProductsWithDistance.bind(this);
     }
 
     componentDidMount() {
@@ -34,7 +35,10 @@ class Homepage extends Component {
             this.props.setProducts(response.data);
         });
     }
-    handleBookmark(bookmark, index){
+    getProductsWithDistance(products) {
+        this.props.setProducts(products);
+    }
+    handleBookmark(bookmark, index) {
         console.log("handle Bookmark");
         console.log(index);
         console.log(this.props);
@@ -52,10 +56,12 @@ class Homepage extends Component {
         return (
             <div className="homepage-body">
                 <div className="container">
-                    {
-                        this.props.products ? (<DistanceSort products={this.props.products}/>) : null
-                    }
-                    
+                    {this.props.products ? (
+                        <DistanceSort
+                            setProducts={this.getProductsWithDistance}
+                        />
+                    ) : null}
+
                     <h3>DANH MỤC SẢN PHẨM</h3>
                     <CategoryList parent_categories={parent_categories} />
                     <h3 className="trending_title">TẤT CẢ SẢN PHẨM</h3>
@@ -69,7 +75,9 @@ class Homepage extends Component {
                                                   key={product.id}
                                                   product={product}
                                                   index={index}
-                                                  setBookmark={this.handleBookmark}
+                                                  setBookmark={
+                                                      this.handleBookmark
+                                                  }
                                               />
                                           )
                                       )
