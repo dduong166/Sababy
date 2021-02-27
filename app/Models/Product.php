@@ -15,7 +15,12 @@ class Product extends Model
         'price',
         'discount',
         'amount',
-        'location'
+        'location',
+        'city'
+    ];
+
+    protected $hidden = [
+        'location',
     ];
 
     public function productMedias(){

@@ -35,23 +35,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $auth = true;
-        if(JWTAuth::getToken()){
-            try {
-                if (!$user = JWTAuth::parseToken()->authenticate()) {
-                    $auth = false;
-                }
-            } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
-                $auth = false;
-            } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
-                $auth = false;
-            } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
-                $auth = false;
-            }
-        }else {
+        if (JWTAuth::getToken()) {
+            $auth = JWTAuth::parseToken()->check();
+        } else {
             $auth = false;
         }
-        
 
         $products = Product::all();
         $products = $products->load('productMedias');
@@ -64,7 +52,7 @@ class ProductController extends Controller
         return response()->json($products);
     }
 
-    public function getProductByID($product_id)
+    public function getProductByID($product_id) //product detail
     {
         //get product
         $product = Product::where('id', $product_id)->first();
@@ -84,7 +72,7 @@ class ProductController extends Controller
         return response()->json($product);
     }
 
-    public function getProductByCategoryID($category_id)
+    public function getProductByCategoryID($category_id) //category detail
     {
         //get products
         $sub_categories = Category::where('parent_category_id', $category_id)->get();
@@ -96,6 +84,11 @@ class ProductController extends Controller
         $products = Product::whereIn('category_id', $sub_categories_id)->get();
         $products = $products->load('productMedias');
         if (JWTAuth::getToken()) {
+            $auth = JWTAuth::parseToken()->check();
+        } else {
+            $auth = false;
+        }
+        if ($auth) {
             if ($user = JWTAuth::parseToken()->authenticate()) {
                 $products = $products->load(['bookmarks' => function ($query) use ($user) {
                     $query->where('user_id', $user->id);
@@ -116,6 +109,40 @@ class ProductController extends Controller
         $result->category = $category;
 
         return response()->json($result);
+    }
+
+    public function sortByDistance(Request $request)
+    {
+        if(JWTAuth::getToken()){
+            $auth = JWTAuth::parseToken()->check();
+        }else{
+            $auth = false;
+        }
+
+        $products = Product::all();
+        $products = $products->load('productMedias');
+        if ($auth) {
+            $user = JWTAuth::parseToken()->authenticate();
+            $products = $products->load(['bookmarks' => function ($query) use ($user) {
+                $query->where('user_id', $user->id);
+            }]);
+        }
+        $locations = [];
+        foreach($products as $product){
+            array_push($locations, $product->location);
+        }
+        $locations = join("|", $locations);
+
+        $distance = \GoogleMaps::load('distancematrix')
+            ->setEndpoint('json')
+            ->setParamByKey('origins', $request->origins)
+            ->setParamByKey('destinations', $locations)
+            ->getResponseByKey('rows.elements');
+        $distance = $distance["rows"][0]["elements"];
+        foreach($products as $key => $product){
+            $product->distance = $distance[$key]["distance"]["value"];
+        }
+        return response()->json($products);
     }
 
     public function getProductDeals($product_id)

@@ -19,7 +19,9 @@ class UserController extends Controller
                 return response()->json(['user_not_found'], 404);
             }
         } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
-            return response()->json(['token_expired'], $e->getStatusCode());
+            // return response()->json(['token_expired'], $e->getStatusCode());
+            JWTAuth::setToken(JWTAuth::refresh());
+            $user = JWTAuth::authenticate();
         } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
             return response()->json(['token_invalid'], $e->getStatusCode());
         } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {

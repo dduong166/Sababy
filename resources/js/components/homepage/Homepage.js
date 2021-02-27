@@ -3,6 +3,7 @@ import Http from "../../Http";
 import { Link } from "react-router-dom";
 import "./css/homepage.scss";
 import ProductCard from "../product/ProductCard";
+import DistanceSort from "./DistanceComponent";
 import CategoryList from "../category-list-component/CategoryListComponent";
 import { connect } from "react-redux";
 
@@ -51,6 +52,10 @@ class Homepage extends Component {
         return (
             <div className="homepage-body">
                 <div className="container">
+                    {
+                        this.props.products ? (<DistanceSort products={this.props.products}/>) : null
+                    }
+                    
                     <h3>DANH MỤC SẢN PHẨM</h3>
                     <CategoryList parent_categories={parent_categories} />
                     <h3 className="trending_title">TẤT CẢ SẢN PHẨM</h3>

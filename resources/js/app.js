@@ -17,6 +17,7 @@ import ProductDetail from "./components/product/ProductDetail";
 import App from "./components/page/App";
 import Navbar from "./components/header-footer/Navbar";
 import Footer from "./components/header-footer/Footer";
+import DistanceComponent from "./components/homepage/DistanceComponent"
 
 const store = createStore(
     rootReducer,
@@ -33,6 +34,10 @@ class AppMain extends Component {
                                 <App>
                                     <Navbar
                                         history={history}
+                                    />
+                                    <Route
+                                        path="/distance"
+                                        component={DistanceComponent}
                                     />
                                     <Route
                                         path="/login"

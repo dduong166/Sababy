@@ -55,7 +55,7 @@ class ProductCard extends Component {
                             </div>
                             <div className="product_address_and_rate d-flex flex-row justify-content-start">
                                 <div className="light_text">
-                                    {product.location}
+                                    {product.city}
                                 </div>
                                 <div className="sold_stars ml-auto">
                                     {" "}
@@ -73,7 +73,7 @@ class ProductCard extends Component {
                                 <div className="bookmark">
                                     {this.props.currentUser ? (
                                         <React.Fragment>
-                                            {product.bookmarks[0] ? (
+                                            {product.bookmarks && product.bookmarks.length ? (
                                                 <i className="fa fa-heart"></i>
                                             ) : (
                                                 <i
