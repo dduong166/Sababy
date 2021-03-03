@@ -139,10 +139,11 @@ class ProductController extends Controller
             array_push($locations, $product->location);
         }
         $locations = join("|", $locations);
+        $origin = strval($request->lat).','.strval($request->lng);
 
         $distance = \GoogleMaps::load('distancematrix')
             ->setEndpoint('json')
-            ->setParamByKey('origins', $request->origins)
+            ->setParamByKey('origins', $origin)
             ->setParamByKey('destinations', $locations)
             ->getResponseByKey('rows.elements');
         $distance = $distance["rows"][0]["elements"];
@@ -150,7 +151,7 @@ class ProductController extends Controller
             $product->distance = $distance[$key]["distance"]["value"];
         }
         $products = $products->sortBy('distance')->values();
-        
+
         return response()->json($products);
     }
 
