@@ -14,6 +14,7 @@ import Login from "./components/auth/Login";
 import Homepage from "./components/homepage/Homepage";
 import CategoryDetail from "./components/category-detail/CategoryDetail";
 import ProductDetail from "./components/product/ProductDetail";
+import ProductSearch from "./components/product/ProductSearch";
 import App from "./components/page/App";
 import Navbar from "./components/header-footer/Navbar";
 import Footer from "./components/header-footer/Footer";
@@ -58,6 +59,11 @@ class AppMain extends Component {
                                         path="/product/:product_id"
                                         exact
                                         component={ProductDetail}
+                                    />
+                                    <Route
+                                        path="/search"
+                                        exact
+                                        component={ProductSearch}
                                     />
                                     <Footer />
                                 </App>

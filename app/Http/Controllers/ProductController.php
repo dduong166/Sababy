@@ -72,6 +72,32 @@ class ProductController extends Controller
         return response()->json($product);
     }
 
+    public function filter(Request $request){
+        //filter
+        $products = Product::query();
+        if($request->has('product_name')){
+            $products->where('product_name', 'LIKE', '%' . $request->product_name . '%');
+        }
+        if($request->has('city')){
+            $products->where('city', 'LIKE', '%' . $request->city . '%');
+        }
+        //get media and bookmark
+        if (JWTAuth::getToken()) {
+            $auth = JWTAuth::parseToken()->check();
+        } else {
+            $auth = false;
+        }
+        $products = $products->get();
+        $products = $products->load('productMedias');
+        if ($auth) {
+            $user = JWTAuth::parseToken()->authenticate();
+            $products = $products->load(['bookmarks' => function ($query) use ($user) {
+                $query->where('user_id', $user->id);
+            }]);
+        }
+        return response()->json($products);
+    }
+
     public function getProductByCategoryID($category_id) //category detail
     {
         //get products

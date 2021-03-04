@@ -19,14 +19,13 @@ class Homepage extends Component {
         };
         this.getCategories = this.getCategories.bind(this);
         this.getProducts = this.getProducts.bind(this);
-        this.getProductsWithDistance = this.getProductsWithDistance.bind(this);
+        // this.getProductsWithDistance = this.getProductsWithDistance.bind(this);
         this.setIsProductLoading = this.setIsProductLoading.bind(this);
     }
 
     componentDidMount() {
         this.getCategories();
         this.getProducts();
-        this.setState({ isLoading: false, isProductLoading: false });
     }
 
     setIsProductLoading(status) {
@@ -45,11 +44,12 @@ class Homepage extends Component {
         const uri = "http://localhost:8000/api/product";
         Http.get(uri).then(response => {
             this.props.setProducts(response.data);
+            this.setState({ isLoading: false, isProductLoading: false });
         });
     }
-    getProductsWithDistance(products) {
-        this.props.setProducts(products);
-    }
+    // getProductsWithDistance(products) {
+    //     this.props.setProducts(products);
+    // }
     handleBookmark(bookmark, index) {
         console.log("handle Bookmark");
         console.log(index);
@@ -64,18 +64,16 @@ class Homepage extends Component {
                 return category.parent_category_id === null;
             });
         }
-        console.log(this.state.isProductLoading);
         return (
             <div className="homepage-body">
                 {!this.state.isLoading ? (
                     <div className="container">
                         {this.props.products ? (
-                            <DistanceSort
-                                setProducts={this.getProductsWithDistance}
-                                setIsProductLoading={
-                                    this.setIsProductLoading
-                                }
-                            />
+                            <div className="filter-and-sort d-flex justify-content-end">
+                                <DistanceSort
+                                    setProducts={this.props.setProducts}
+                                />
+                            </div>
                         ) : null}
 
                         <h3>DANH MỤC SẢN PHẨM</h3>

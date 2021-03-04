@@ -33,6 +33,7 @@
         "history": "^5.0.0",
         "immutable": "^4.0.0-rc.12",
         "moment": "^2.29.1",
+        "query-string": "^6.14.1",
         "react-bootstrap": "^1.5.0",
         "react-google-maps": "^9.4.5",
         "react-image-show": "^0.3.4",

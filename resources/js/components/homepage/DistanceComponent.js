@@ -120,7 +120,7 @@ class DistanceSort extends Component {
         }
     }
     SortByDistance() {
-        this.props.setIsProductLoading(true);
+        // this.props.setIsProductLoading(true);
         if (this.state.lat && this.state.lng) {
             this.setModalVisible(false);
             const uri = "http://localhost:8000/api/product/distance";
@@ -131,7 +131,7 @@ class DistanceSort extends Component {
             Http.post(uri, request).then(response => {
                 if (response) {
                     this.props.setProducts(response.data);
-                    this.props.setIsProductLoading(false);
+                    // this.props.setIsProductLoading(false);
                 } else {
                     console.log("Tính khoảng cách thất bại.");
                 }
@@ -145,7 +145,6 @@ class DistanceSort extends Component {
     }
 
     render() {
-        console.log(this.props);
         return (
             <div className="google-place-autocomplete">
                 <Button

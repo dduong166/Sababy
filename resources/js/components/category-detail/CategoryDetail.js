@@ -41,7 +41,6 @@ class CategoryDetail extends Component {
     }
 
     render() {
-        console.log(this.props);
         var category = this.props.detail.category;
         var products = this.props.detail.products;
 
