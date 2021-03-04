@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Http from "../../Http";
 import { Link } from "react-router-dom";
 import "./css/homepage.scss";
+import "./css/DistanceComponent.scss";
+import { Spin } from "antd";
 import ProductCard from "../product/ProductCard";
 import DistanceSort from "./DistanceComponent";
 import CategoryList from "../category-list-component/CategoryListComponent";
@@ -11,15 +13,25 @@ class Homepage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            categories: []
+            categories: [],
+            isLoading: true,
+            isProductLoading: true
         };
         this.getCategories = this.getCategories.bind(this);
         this.getProducts = this.getProducts.bind(this);
+        // this.getProductsWithDistance = this.getProductsWithDistance.bind(this);
+        this.setIsProductLoading = this.setIsProductLoading.bind(this);
     }
 
     componentDidMount() {
         this.getCategories();
         this.getProducts();
+    }
+
+    setIsProductLoading(status) {
+        this.setState({
+            isProductLoading: status
+        });
     }
 
     getCategories() {
@@ -32,9 +44,13 @@ class Homepage extends Component {
         const uri = "http://localhost:8000/api/product";
         Http.get(uri).then(response => {
             this.props.setProducts(response.data);
+            this.setState({ isLoading: false, isProductLoading: false });
         });
     }
-    handleBookmark(bookmark, index){
+    // getProductsWithDistance(products) {
+    //     this.props.setProducts(products);
+    // }
+    handleBookmark(bookmark, index) {
         console.log("handle Bookmark");
         console.log(index);
         console.log(this.props);
@@ -48,36 +64,52 @@ class Homepage extends Component {
                 return category.parent_category_id === null;
             });
         }
-
         return (
             <div className="homepage-body">
-                <div className="container">
-                    {
-                        this.props.products ? (<DistanceSort products={this.props.products}/>) : null
-                    }
-                    
-                    <h3>DANH MỤC SẢN PHẨM</h3>
-                    <CategoryList parent_categories={parent_categories} />
-                    <h3 className="trending_title">TẤT CẢ SẢN PHẨM</h3>
-                    <div className="product-list">
-                        <div className="container">
-                            <div className="row">
-                                {this.props.products
-                                    ? this.props.products.map(
-                                          (product, index) => (
-                                              <ProductCard
-                                                  key={product.id}
-                                                  product={product}
-                                                  index={index}
-                                                  setBookmark={this.handleBookmark}
-                                              />
-                                          )
-                                      )
-                                    : ""}
+                {!this.state.isLoading ? (
+                    <div className="container">
+                        {this.props.products ? (
+                            <div className="filter-and-sort d-flex justify-content-end">
+                                <DistanceSort
+                                    setProducts={this.props.setProducts}
+                                />
+                            </div>
+                        ) : null}
+
+                        <h3>DANH MỤC SẢN PHẨM</h3>
+                        <CategoryList parent_categories={parent_categories} />
+                        <h3 className="trending_title">TẤT CẢ SẢN PHẨM</h3>
+                        <div className="product-list">
+                            <div className="container">
+                                <div className="row">
+                                    {!this.state.IsProductLoading &&
+                                    this.props.products ? (
+                                        this.props.products.map(
+                                            (product, index) => (
+                                                <ProductCard
+                                                    key={product.id}
+                                                    product={product}
+                                                    index={index}
+                                                    setBookmark={
+                                                        this.handleBookmark
+                                                    }
+                                                />
+                                            )
+                                        )
+                                    ) : (
+                                        <div className="loading d-flex justify-content-center align-items-center">
+                                            <Spin />
+                                        </div>
+                                    )}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                ) : (
+                    <div className="loading d-flex justify-content-center align-items-center">
+                        <Spin />
+                    </div>
+                )}
             </div>
         );
     }

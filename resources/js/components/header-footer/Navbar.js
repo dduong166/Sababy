@@ -1,18 +1,44 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./css/navbar.scss";
+import { Input } from "antd";
 import Http from "../../Http";
 import { connect } from "react-redux";
+const queryString = require("query-string");
 
+const { Search } = Input;
 class Navbar extends Component {
     constructor(props) {
         super(props);
         this.logoutAccount = this.logoutAccount.bind(this);
         this.isLoggedIn = this.isLoggedIn.bind(this);
+        this.onSearch = this.onSearch.bind(this);
     }
 
     componentDidMount() {
         this.isLoggedIn();
+    }
+
+    onSearch(value) {
+        const condition = queryString.parse(location.search);
+        if (!value) {
+            if (condition.k) {
+                delete condition.k;
+            } else {
+                return;
+            }
+        } else {
+            condition.k = value;
+        }
+        let stringified = queryString.stringify(condition);
+        if(stringified) stringified = '?' + stringified;
+        this.props.history.push({
+            pathname: "/search",
+            search: stringified
+        });
+
+        // const url = "/search?k=" + value;
+        // window.history.pushState({}, '', url);
     }
 
     isLoggedIn() {
@@ -45,34 +71,40 @@ class Navbar extends Component {
     render() {
         return (
             <div className="navbar-section">
-                <header className="top-black-style d-flex justify-content-center align-items-center">
-                    <nav className="d-flex justify-content-between align-items-center">
-                        <Link to="/">
-                            <img
-                                src="https://res.cloudinary.com/dbzfjnlhl/image/upload/v1613919232/27b6792e-38bd-471c-b46e-177a0e5a1af0_200x200_lb4mcd.png"
-                                alt="logo"
-                            />
-                        </Link>
-                        <div className="login-logout">
-                            {this.props.currentUser ? (
-                                <div>
-                                    <div className="special">
-                                        Hello {this.props.currentUser.name}
-                                    </div>
-                                    <div
-                                        className="special"
-                                        onClick={this.logoutAccount}
-                                    >
-                                        LOGOUT
-                                    </div>
-                                </div>
-                            ) : (
+                <header className="top-black-style d-flex justify-content-between align-items-center">
+                    <Link className="logo" to="/">
+                        <img
+                            src="https://res.cloudinary.com/dbzfjnlhl/image/upload/v1613919232/27b6792e-38bd-471c-b46e-177a0e5a1af0_200x200_lb4mcd.png"
+                            alt="logo"
+                        />
+                    </Link>
+                    <div className="searchbar d-flex justify-content-center">
+                        <Search
+                            placeholder="Nhập tên sản phẩm"
+                            allowClear
+                            enterButton
+                            onSearch={this.onSearch}
+                        />
+                    </div>
+                    <div className="login-logout">
+                        {this.props.currentUser ? (
+                            <div>
                                 <div className="special">
-                                    <Link to="/login">LOGIN</Link>
+                                    Hello {this.props.currentUser.name}
                                 </div>
-                            )}
-                        </div>
-                    </nav>
+                                <div
+                                    className="special"
+                                    onClick={this.logoutAccount}
+                                >
+                                    LOGOUT
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="special">
+                                <Link to="/login">LOGIN</Link>
+                            </div>
+                        )}
+                    </div>
                 </header>
             </div>
         );
@@ -96,6 +128,12 @@ const mapDispatchToProps = dispatch => {
             dispatch({
                 type: "LOGIN",
                 payload: username
+            });
+        },
+        setProducts: products => {
+            dispatch({
+                type: "SET_PRODUCTS",
+                payload: products
             });
         }
     };

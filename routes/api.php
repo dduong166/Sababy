@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,7 @@ Route::prefix('product')->group(function () {
     Route::get('/category/{category_id}', 'ProductController@getProductByCategoryID');
     Route::get('/{product_id}/deal', 'ProductController@getProductDeals');
     Route::post('/distance', 'ProductController@sortByDistance');
+    Route::post('/filter', 'ProductController@filter');
 });
 Route::prefix('deal')->group(function () {
     // Route::get('/rate/{product_id}', 'DealController@getRate');

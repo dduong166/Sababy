@@ -72,6 +72,32 @@ class ProductController extends Controller
         return response()->json($product);
     }
 
+    public function filter(Request $request){
+        //filter
+        $products = Product::query();
+        if($request->has('product_name')){
+            $products->where('product_name', 'LIKE', '%' . $request->product_name . '%');
+        }
+        if($request->has('city')){
+            $products->where('city', 'LIKE', '%' . $request->city . '%');
+        }
+        //get media and bookmark
+        if (JWTAuth::getToken()) {
+            $auth = JWTAuth::parseToken()->check();
+        } else {
+            $auth = false;
+        }
+        $products = $products->get();
+        $products = $products->load('productMedias');
+        if ($auth) {
+            $user = JWTAuth::parseToken()->authenticate();
+            $products = $products->load(['bookmarks' => function ($query) use ($user) {
+                $query->where('user_id', $user->id);
+            }]);
+        }
+        return response()->json($products);
+    }
+
     public function getProductByCategoryID($category_id) //category detail
     {
         //get products
@@ -111,6 +137,13 @@ class ProductController extends Controller
         return response()->json($result);
     }
 
+    public function sortDistanceIncrease($a, $b){
+        if($a == $b){
+            return 0;
+        }
+        return ($a->distance > $b->distance) ? 1 : -1;
+    }
+
     public function sortByDistance(Request $request)
     {
         if(JWTAuth::getToken()){
@@ -132,16 +165,19 @@ class ProductController extends Controller
             array_push($locations, $product->location);
         }
         $locations = join("|", $locations);
+        $origin = strval($request->lat).','.strval($request->lng);
 
         $distance = \GoogleMaps::load('distancematrix')
             ->setEndpoint('json')
-            ->setParamByKey('origins', $request->origins)
+            ->setParamByKey('origins', $origin)
             ->setParamByKey('destinations', $locations)
             ->getResponseByKey('rows.elements');
         $distance = $distance["rows"][0]["elements"];
         foreach($products as $key => $product){
             $product->distance = $distance[$key]["distance"]["value"];
         }
+        $products = $products->sortBy('distance')->values();
+
         return response()->json($products);
     }
 
