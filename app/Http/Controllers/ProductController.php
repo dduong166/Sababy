@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\Product;
 use App\Http\Controllers\DealController;
@@ -81,6 +82,12 @@ class ProductController extends Controller
         if($request->has('city')){
             $products->where('city', 'LIKE', '%' . $request->city . '%');
         }
+        if($request->has('priceSort')){
+            if($request->priceSort === "increase")
+                $products->orderBy(DB::raw('price*(100-discount)/100'), 'ASC');
+            elseif($request->priceSort === "decrease")
+            $products->orderBy(DB::raw('price*(100-discount)/100'), 'DESC');
+        }
         //get media and bookmark
         if (JWTAuth::getToken()) {
             $auth = JWTAuth::parseToken()->check();
@@ -132,7 +139,7 @@ class ProductController extends Controller
         //assign into result
         $result = (object)[];
         $result->products = $products;
-        $result->category = $category;
+        $result->category_detail = $category;
 
         return response()->json($result);
     }

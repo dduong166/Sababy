@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { isEqual } from 'lodash';
+import { Link, withRouter } from "react-router-dom";
 import "./css/navbar.scss";
 import { Input } from "antd";
 import Http from "../../Http";
@@ -17,6 +18,12 @@ class Navbar extends Component {
 
     componentDidMount() {
         this.isLoggedIn();
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.location.pathname != '/search') {
+            this.searchRef.setValue('');
+        }
     }
 
     onSearch(value) {
@@ -80,6 +87,7 @@ class Navbar extends Component {
                     </Link>
                     <div className="searchbar d-flex justify-content-center">
                         <Search
+                            ref={c => this.searchRef = c}
                             placeholder="Nhập tên sản phẩm"
                             allowClear
                             enterButton
@@ -139,4 +147,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Navbar));
