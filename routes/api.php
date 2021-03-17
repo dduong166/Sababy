@@ -42,6 +42,7 @@ Route::prefix('deal')->group(function () {
 });
 Route::prefix('bookmark')->group(function () {
     Route::post('/', 'BookmarkController@store');
+    Route::delete('/{product_id}', 'BookmarkController@destroy');
 });
 Route::prefix('question')->group(function () {
     Route::post('/', 'QuestionController@store');

@@ -1,7 +1,19 @@
 .homepage-body {
     .filter-and-sort {
-        .ant-select {
-            margin-right: 10px;
+        .ant-dropdown-trigger {
+            svg {
+                vertical-align: initial;
+            }
         }
+        .ant-select-selection-item {
+            svg {
+                vertical-align: initial;
+            }
+        }
+        // .rc-virtual-list {
+        //     svg {
+        //         vertical-align: initial;
+        //     }
+        // }
     }
 }

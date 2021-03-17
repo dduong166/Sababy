@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import Http from "../../Http";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { Spin, Select } from "antd";
 import "./css/ProductSearch.scss";
 import ProductCard from "./ProductCard";
-import DistanceSort from "../homepage/DistanceComponent";
+import FilterSort from "./FilterSortComponent";
 import { connect } from "react-redux";
+import { createBrowserHistory } from "history";
 
+const history = createBrowserHistory();
 const queryString = require("query-string");
 const { Option } = Select;
 
@@ -14,81 +16,25 @@ class Homepage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLoading: true,
+            isLoading: false, 
             keyword: "",
             cities: []
         };
-        this.getProductSearchResult = this.getProductSearchResult.bind(this);
         this.handleBookmark = this.handleBookmark.bind(this);
-        this.onCityChange = this.onCityChange.bind(this);
-        this.getCityList = this.getCityList.bind(this);
+        this.setStateKeyword = this.setStateKeyword.bind(this);
+
     }
     componentDidMount() {
-        this.getProductSearchResult();
-        this.getCityList();
-    }
-    componentDidUpdate(prevProps) {
-        if (
-            location.search !== undefined &&
-            location.search !== prevProps.location.search
-        ) {
-            this.getProductSearchResult();
-        }
-    }
-    getCityList() {
-        Http.defaults.headers.common["token"] =
-            "08ed659a-4f05-11eb-b7e7-eeaa791b204b";
-        Http.get(
-            "https://online-gateway.ghn.vn/shiip/public-api/master-data/province"
-        )
-            .then(response => {
-                if (response.data) {
-                    this.setState({ cities: response.data.data });
-                } else {
-                    console.log("Lấy danh sách tỉnh thành phố thất bại.");
-                }
-            })
-            .catch(error => {
-                console.log(error.response.status);
-            });
-    }
-    onCityChange(value) {
-        console.log(value);
         const condition = queryString.parse(location.search);
-        if(value === "Toàn quốc"){
-            if(condition.city){
-                delete condition.city;
-            }else{
-                return;
-            }
-        }else{
-            condition.city = value;
-        }
-        let stringified = queryString.stringify(condition);
-        if(stringified) stringified = '?' + stringified;
+        this.setStateKeyword(condition.k);
+    }
+    componentWillUnmount() {
         this.props.history.push({
-            pathname: "/search",
-            search: stringified
+            search: ""
         });
     }
-
-    getProductSearchResult() {
-        const condition = queryString.parse(location.search);
-        this.setState({ keyword: condition.k });
-        const uri = "http://localhost:8000/api/product/filter";
-        const request = {
-            product_name: condition.k,
-            city: condition.city
-        };
-        console.log(request);
-        Http.post(uri, request).then(response => {
-            if (response) {
-                this.props.setProducts(response.data);
-                this.setState({ isLoading: false });
-            } else {
-                console.log("Tìm kiếm thất bại");
-            }
-        });
+    setStateKeyword(value){
+        this.setState({ keyword: value });
     }
 
     handleBookmark(bookmark, index) {
@@ -98,39 +44,15 @@ class Homepage extends Component {
         // this.props.setBookmark(bookmark, index);
     }
     render() {
+        console.log("1",this.props.history);
+        console.log( 2, history);
         return (
             <div className="homepage-body">
                 {!this.state.isLoading ? (
                     <div className="container">
+                        <FilterSort location={this.props.location} history={this.props.history} setStateKeyword={this.setStateKeyword}/>
                         {this.props.products ? (
                             <React.Fragment>
-                                <div className="filter-and-sort d-flex justify-content-end">
-                                    <Select
-                                        showSearch
-                                        style={{ width: 110 }}
-                                        placeholder="Toàn quốc"
-                                        optionFilterProp="children"
-                                        onChange={this.onCityChange}
-                                        filterOption={(input, option) =>
-                                            option.children
-                                                .toLowerCase()
-                                                .indexOf(input.toLowerCase()) >=
-                                            0
-                                        }
-                                    >
-                                        <Option value="Toàn quốc">Toàn quốc</Option>
-                                        {
-                                            this.state.cities ? (
-                                                this.state.cities.map((city, index) => (
-                                                    <Option value={city.ProvinceName}>{city.ProvinceName}</Option>
-                                                ))
-                                            ) : null
-                                        }
-                                    </Select>
-                                    <DistanceSort
-                                        setProducts={this.props.setProducts}
-                                    />
-                                </div>
                                 {this.state.keyword ? (
                                     <div className="search-result-text">
                                         Kết quả tìm kiếm cho từ khóa '
@@ -144,6 +66,9 @@ class Homepage extends Component {
                                 <div className="product-list">
                                     <div className="container">
                                         <div className="row">
+                                            {
+                                                this.props.isLoading && 'loading....'
+                                            }
                                             {this.props.products.map(
                                                 (product, index) => (
                                                     <ProductCard
@@ -201,4 +126,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Homepage);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Homepage));

@@ -91,7 +91,10 @@ class Homepage extends Component {
                                                     product={product}
                                                     index={index}
                                                     setBookmark={
-                                                        this.handleBookmark
+                                                        this.props.setBookmark
+                                                    }
+                                                    setUnbookmark={
+                                                        this.props.setUnbookmark
                                                     }
                                                 />
                                             )
@@ -140,6 +143,12 @@ const mapDispatchToProps = dispatch => {
             dispatch({
                 type: "SET_BOOKMARK",
                 payload: bookmark,
+                index: index
+            });
+        },
+        setUnbookmark: (index) => {
+            dispatch({
+                type: "SET_UNBOOKMARK",
                 index: index
             });
         }

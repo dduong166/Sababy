@@ -5,6 +5,7 @@
         text-decoration: none;
     }
     .product_card_content {
+        position: relative;
         width: 100%;
         margin-right: 7%;
         padding-bottom: 10px;
@@ -13,6 +14,7 @@
         margin-top: 0px;
         background-color: #fff;
         transition: 0.2s ease-out;
+        cursor: pointer;
         &:hover {
             position: relative;
             background-color: #fff;
@@ -20,6 +22,22 @@
             box-shadow: 1px 11px 16px 2px hsla(0, 0%, 69.4%, 0.5);
             border-radius: 8px;
             transform: scale(1.01);
+        }
+        .bookmark {
+            position: absolute;
+            right: 5px;   
+            top: 5px;
+            padding: 0 6px 0 6px;
+            border: 1px solid #3490dc;
+            border-radius: 30px;
+            font-size: 20px;
+            color: #3490dc;
+            transition: 0.2s ease-out;
+            background-color: transparent;
+            &:hover {
+                transform: scale(1.05);
+                background-color: white;
+            }
         }
         
         .product_image {
@@ -46,26 +64,8 @@
                 text-overflow: ellipsis;
                 margin: 0;
             }
-            .bookmark-and-price {
+            .price-line {
                 margin-top: 25px;
-                .bookmark {
-                    i {
-                        font-size: 25px;
-                    }
-                    // display: block;
-                    // width: 34px;
-                    margin-right: 3px;
-                    margin-top: 3px;
-                    color: #3490dc;
-                    transition: 0.2s ease-out;
-                    &:hover {
-                        transform: scale(1.05);
-                        // fill: #3490dc;
-                    }
-                    img {
-                        width: 60%;
-                    }
-                }
                 .price {
                     .old_price {
                         font-size: 13px;

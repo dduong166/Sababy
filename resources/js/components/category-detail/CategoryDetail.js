@@ -41,8 +41,8 @@ class CategoryDetail extends Component {
     }
 
     render() {
-        var category = this.props.detail.category;
-        var products = this.props.detail.products;
+        var category = this.props.category_detail;
+        var products = this.props.products;
 
         return (
             <div className="homepage-body">
@@ -89,14 +89,19 @@ class CategoryDetail extends Component {
                             <div className="container">
                                 <div className="row">
                                     {products
-                                        ? products.map(
-                                              (product, index) => (
-                                                  <ProductCard
-                                                      key={product.id}
-                                                      product={product}
-                                                  />
-                                              )
-                                          )
+                                        ? products.map((product, index) => (
+                                              <ProductCard
+                                                  key={product.id}
+                                                  product={product}
+                                                  index={index}
+                                                  setBookmark={
+                                                      this.props.setBookmark
+                                                  }
+                                                  setUnbookmark={
+                                                      this.props.setUnbookmark
+                                                  }
+                                              />
+                                          ))
                                         : ""}
                                 </div>
                             </div>
@@ -112,7 +117,8 @@ class CategoryDetail extends Component {
 
 const mapStateToProps = state => {
     return {
-        detail: state.categoryDetail.detail
+        products: state.categoryDetail.products,
+        category_detail: state.categoryDetail.category_detail
     };
 };
 
@@ -122,6 +128,19 @@ const mapDispatchToProps = dispatch => {
             dispatch({
                 type: "SET_CATEGORY_DETAIL",
                 payload: detail
+            });
+        },
+        setBookmark: (bookmark, index) => {
+            dispatch({
+                type: "SET_BOOKMARK",
+                payload: bookmark,
+                index: index
+            });
+        },
+        setUnbookmark: index => {
+            dispatch({
+                type: "SET_UNBOOKMARK",
+                index: index
             });
         }
     };

@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import Http from "../../Http";
 import { Link } from "react-router-dom";
 import "./css/ProductDetail.scss";
+import { Spin } from "antd";
 import SlideShow from "react-image-show";
 import { connect } from "react-redux";
 import moment from "moment";
 import QuestionComponent from "./QuestionComponent";
-import PlacesAutocomplete from 'react-places-autocomplete';
 
 class ProductDetail extends Component {
     constructor(props) {
@@ -15,12 +15,10 @@ class ProductDetail extends Component {
             loading: true,
             quantity: 1,
             question: "",
-            answer: "",
-            destination: ""
+            answer: ""
         };
         this.getProductDetail = this.getProductDetail.bind(this);
         this.onChangeQuantity = this.onChangeQuantity.bind(this);
-        this.onChangeDestination = this.onChangeDestination.bind(this);
     }
 
     componentDidMount() {
@@ -42,16 +40,6 @@ class ProductDetail extends Component {
     onChangeQuantity(e) {
         this.setState({ quantity: e.target.value });
     }
-    onChangeDestination(destination) {
-        this.setState({ destination });
-    }
-    // handleDestinationSelect = address => {
-    //     geocodeByAddress(address)
-    //       .then(results => getLatLng(results[0]))
-    //       .then(latLng => console.log('Success', latLng))
-    //       .catch(error => console.error('Error', error));
-    //   };
-
     render() {
         var detail = this.props.detail;
         if (detail) {
@@ -129,48 +117,6 @@ class ProductDetail extends Component {
                                                 <th>GỬI TỪ</th>
                                                 <td>{detail.city}</td>
                                             </tr>
-                                            <tr>
-                                                <th>GỬI ĐẾN</th>
-                                                <td>
-                                                <PlacesAutocomplete
-                                                    value={this.state.destination}
-                                                    onChange={this.onChangeDestination}
-                                                >
-                                                    {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                                                    <div>
-                                                        <input
-                                                        {...getInputProps({
-                                                            placeholder: 'Nhập địa điểm nhận hàng',
-                                                            className: 'location-search-input',
-                                                        })}
-                                                        />
-                                                        <div className="autocomplete-dropdown-container">
-                                                        {loading && <div>Loading...</div>}
-                                                        {suggestions.map(suggestion => {
-                                                            const className = suggestion.active
-                                                            ? 'suggestion-item--active'
-                                                            : 'suggestion-item';
-                                                            // inline style for demonstration purpose
-                                                            const style = suggestion.active
-                                                            ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-                                                            : { backgroundColor: '#ffffff', cursor: 'pointer' };
-                                                            return (
-                                                            <div
-                                                                {...getSuggestionItemProps(suggestion, {
-                                                                className,
-                                                                style,
-                                                                })}
-                                                            >
-                                                                <span>{suggestion.description}</span>
-                                                            </div>
-                                                            );
-                                                        })}
-                                                        </div>
-                                                    </div>
-                                                    )}
-                                                </PlacesAutocomplete>
-                                                </td>
-                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -247,17 +193,6 @@ class ProductDetail extends Component {
                                         >
                                             CÂU HỎI
                                         </a>
-                                        {/* <a
-                                            className="nav-item nav-link"
-                                            id="nav-contact-tab"
-                                            data-toggle="tab"
-                                            href="#nav-contact"
-                                            role="tab"
-                                            aria-controls="nav-contact"
-                                            aria-selected="false"
-                                        >
-                                            Đánh Giá
-                                        </a> */}
                                     </div>
                                 </nav>
                                 <div
@@ -280,54 +215,14 @@ class ProductDetail extends Component {
                                     >
                                         <QuestionComponent />
                                     </div>
-                                    {/* <div
-                                        className="tab-pane fade"
-                                        id="nav-contact"
-                                        role="tabpanel"
-                                        aria-labelledby="nav-contact-tab"
-                                    >
-                                        <table
-                                            className="table"
-                                            cellSpacing="0"
-                                        >
-                                            <thead>
-                                                <tr>
-                                                    <th>Contest Name</th>
-                                                    <th>Date</th>
-                                                    <th>Award Position</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <a href="#">Work 1</a>
-                                                    </td>
-                                                    <td>Doe</td>
-                                                    <td>john@example.com</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <a href="#">Work 2</a>
-                                                    </td>
-                                                    <td>Moe</td>
-                                                    <td>mary@example.com</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <a href="#">Work 3</a>
-                                                    </td>
-                                                    <td>Dooley</td>
-                                                    <td>july@example.com</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div> */}
                                 </div>
                             </div>
                         </div>
                     </div>
                 ) : (
-                    "Loading..."
+                    <div className="loading d-flex justify-content-center align-items-center">
+                        <Spin />
+                    </div>
                 )}
             </div>
         );

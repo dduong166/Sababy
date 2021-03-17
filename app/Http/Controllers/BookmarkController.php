@@ -88,8 +88,14 @@ class BookmarkController extends Controller
      * @param  \App\Models\Bookmark  $bookmark
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Bookmark $bookmark)
+    public function destroy($product_id)
     {
-        //
+        if (!$user = JWTAuth::parseToken()->authenticate()) {
+            return response()->json(['user_not_found'], 404);
+        }
+        $bookmark = Bookmark::where('user_id', $user->id)->where('product_id', $product_id);
+        $temp = $bookmark->get();
+        $bookmark->delete();
+        return response()->json($temp);
     }
 }
