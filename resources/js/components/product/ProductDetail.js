@@ -77,7 +77,11 @@ class ProductDetail extends Component {
                                     className="breadcrumb-item active"
                                     aria-current="page"
                                 >
-                                    {detail.category.category_name}
+                                    <Link
+                                        to={"/category/" + detail.category.id}
+                                    >
+                                        {detail.category.category_name}
+                                    </Link>
                                 </li>
                             </ol>
                         </nav>
@@ -114,14 +118,49 @@ class ProductDetail extends Component {
                                                 </td>
                                             </tr>
                                             <tr>
+                                                <th>SỐ LƯỢNG</th>
+                                                <td>{detail.amount}</td>
+                                            </tr>
+                                            <tr>
                                                 <th>GỬI TỪ</th>
                                                 <td>{detail.city}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>SỐ ĐIỆN THOẠI</th>
+                                                <td>
+                                                    {detail.owner.phonenumber}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>GIÁ</th>
+                                                <td>
+                                                    <div className="price d-flex flex-row justify-content-start align-items-center">
+                                                        {detail.discount ? (
+                                                            <div className="old_price">
+                                                                <strike>
+                                                                    {detail.price.toLocaleString()}{" "}
+                                                                    đ
+                                                                </strike>
+                                                            </div>
+                                                        ) : (
+                                                            ""
+                                                        )}
+                                                        <div className="new_price">
+                                                            {(
+                                                                (detail.price *
+                                                                    (100 -
+                                                                        detail.discount)) /
+                                                                100
+                                                            ).toLocaleString()}{" "}
+                                                            đ
+                                                        </div>
+                                                    </div>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
-                                <hr />
-                                <div className="product-quantity form-group d-flex flex-row justify-content-start align-items-center">
+                                {/* <div className="product-quantity form-group d-flex flex-row justify-content-start align-items-center">
                                     <div className="quantity-title">
                                         Số lượng:
                                     </div>
@@ -132,8 +171,8 @@ class ProductDetail extends Component {
                                         value={this.state.quantity}
                                         onChange={this.onChangeQuantity}
                                     />
-                                </div>
-                                <div className="price d-flex flex-row justify-content-start align-items-center">
+                                </div> */}
+                                {/* <div className="price d-flex flex-row justify-content-start align-items-center">
                                     {detail.discount ? (
                                         <div className="old_price">
                                             <strike>
@@ -152,15 +191,15 @@ class ProductDetail extends Component {
                                         ).toLocaleString()}{" "}
                                         đ
                                     </div>
-                                </div>
-                                <div className="add-to-cart-and-buy-button d-flex flex-row justify-content-start align-items-center">
+                                </div> */}
+                                {/* <div className="add-to-cart-and-buy-button d-flex flex-row justify-content-start align-items-center">
                                     <button className="add-to-cart-button">
                                         THÊM VÀO GIỎ HÀNG
                                     </button>
                                     <button className="buy-button">
                                         MUA NGAY
                                     </button>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                         <div className="product-detail-info row">

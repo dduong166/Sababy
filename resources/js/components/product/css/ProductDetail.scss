@@ -15,6 +15,7 @@
                 color: #444;
             }
             .product-short-description {
+                margin-top: 30px;
                 color: #444;
                 tr {
                     th {
@@ -27,9 +28,7 @@
                         width: 55%;
                     }
                 }
-                .shipping-destination {
-                    margin-top: 12px;
-                }
+               
             }
             .product-quantity {
                 .quantity-title {
@@ -40,7 +39,6 @@
                 }
             }
             .price {
-                margin-top: 12px;
                 .old_price {
                     font-size: 14px;
                     font-weight: 500;
@@ -55,31 +53,31 @@
                     padding: 0 12px;
                 }
             }
-            .add-to-cart-and-buy-button {
-                margin-top: 30px;
-                .add-to-cart-button {
-                    color: white;
-                    background-color: #346aa0;
-                    border-radius: 12px;
-                    padding: 12px;
-                    margin-right: 12px;
-                    border-color: transparent;
-                    &:hover {
-                        background-color: #275380;
-                    }
-                }
-                .buy-button {
-                    color: white;
-                    background-color: #346aa0;
-                    border-radius: 12px;
-                    padding: 12px;
-                    border-color: transparent;
-                    width: 165px;
-                    &:hover {
-                        background-color: #275380;
-                    }
-                }
-            }
+            // .add-to-cart-and-buy-button {
+            //     margin-top: 30px;
+            //     .add-to-cart-button {
+            //         color: white;
+            //         background-color: #346aa0;
+            //         border-radius: 12px;
+            //         padding: 12px;
+            //         margin-right: 12px;
+            //         border-color: transparent;
+            //         &:hover {
+            //             background-color: #275380;
+            //         }
+            //     }
+            //     .buy-button {
+            //         color: white;
+            //         background-color: #346aa0;
+            //         border-radius: 12px;
+            //         padding: 12px;
+            //         border-color: transparent;
+            //         width: 165px;
+            //         &:hover {
+            //             background-color: #275380;
+            //         }
+            //     }
+            // }
         }
     }
     .product-detail-info {
