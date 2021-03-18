@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { isEqual } from 'lodash';
+import { isEqual } from "lodash";
 import { Link, withRouter } from "react-router-dom";
 import "./css/navbar.scss";
 import { Input } from "antd";
@@ -21,8 +21,8 @@ class Navbar extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.location.pathname != '/search') {
-            this.searchRef.setValue('');
+        if (nextProps.location.pathname != "/search") {
+            this.searchRef.setValue("");
         }
     }
 
@@ -38,14 +38,12 @@ class Navbar extends Component {
             condition.k = value;
         }
         let stringified = queryString.stringify(condition);
-        if(stringified) stringified = '?' + stringified;
+        if (stringified) stringified = "?" + stringified;
         this.props.history.push({
             pathname: "/search",
             search: stringified
         });
 
-        // const url = "/search?k=" + value;
-        // window.history.pushState({}, '', url);
     }
 
     isLoggedIn() {
@@ -85,33 +83,38 @@ class Navbar extends Component {
                             alt="logo"
                         />
                     </Link>
-                    <div className="searchbar d-flex justify-content-center">
+                    <div className="searchbar">
                         <Search
-                            ref={c => this.searchRef = c}
+                            ref={c => (this.searchRef = c)}
                             placeholder="Nhập tên sản phẩm"
                             allowClear
                             enterButton
                             onSearch={this.onSearch}
                         />
                     </div>
-                    <div className="login-logout">
+                    <div className="my-product-and-login-logout d-flex justify-content-start align-items-center">
                         {this.props.currentUser ? (
-                            <div>
+                            <Link className="my-products" to="/my-products">SẢN PHẨM CỦA TÔI</Link>
+                        ) : null}
+                        <div className="login-logout">
+                            {this.props.currentUser ? (
+                                <div>
+                                    <div className="username">
+                                        Hello {this.props.currentUser.name}
+                                    </div>
+                                    <div
+                                        className="logout"
+                                        onClick={this.logoutAccount}
+                                    >
+                                        LOGOUT
+                                    </div>
+                                </div>
+                            ) : (
                                 <div className="special">
-                                    Hello {this.props.currentUser.name}
+                                    <Link to="/login">LOGIN</Link>
                                 </div>
-                                <div
-                                    className="special"
-                                    onClick={this.logoutAccount}
-                                >
-                                    LOGOUT
-                                </div>
-                            </div>
-                        ) : (
-                            <div className="special">
-                                <Link to="/login">LOGIN</Link>
-                            </div>
-                        )}
+                            )}
+                        </div>
                     </div>
                 </header>
             </div>

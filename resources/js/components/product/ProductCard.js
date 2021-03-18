@@ -77,7 +77,6 @@ class ProductCard extends Component {
 
     render() {
         let product = this.props.product;
-        // this.props.setBookmark(bookmark);
         return (
             <div className="product-card col-md-4">
                 {/* <Link to={"/product/" + product.id} key={product.id}> */}

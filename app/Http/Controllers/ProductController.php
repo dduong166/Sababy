@@ -60,7 +60,7 @@ class ProductController extends Controller
         $rate = $this->DealController->getRate($product_id);
         $product->rate = $rate->original;
         //get category
-        $product = $product->load(['category', 'productMedias', 'questions.asker:id,name', 'questions.answers.answerer:id,name', 'questions' => function ($query) {
+        $product = $product->load(['owner','category', 'productMedias', 'questions.asker:id,name', 'questions.answers.answerer:id,name', 'questions' => function ($query) {
             $query->orderBy('created_at', 'desc');
         }, 'questions.answers' => function ($query) {
             $query->orderBy('created_at', 'asc');

@@ -18,7 +18,8 @@ import ProductSearch from "./components/product/ProductSearch";
 import App from "./components/page/App";
 import Navbar from "./components/header-footer/Navbar";
 import Footer from "./components/header-footer/Footer";
-import DistanceComponent from "./components/homepage/DistanceComponent"
+import DistanceComponent from "./components/homepage/DistanceComponent";
+import MyProducts from "./components/product/MyProducts"
 
 const store = createStore(
     rootReducer,
@@ -64,6 +65,11 @@ class AppMain extends Component {
                                         path="/search"
                                         exact
                                         component={ProductSearch}
+                                    />
+                                    <Route
+                                        path="/my-products"
+                                        exact
+                                        component={MyProducts}
                                     />
                                     <Footer />
                                 </App>
