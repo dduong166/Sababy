@@ -148,21 +148,8 @@ class ProductCard extends Component {
                         </div>
                         <div className="price-line d-flex flex-row justify-content-end">
                             <div className="price top-border d-flex flex-row justify-content-end align-items-center">
-                                {product.discount ? (
-                                    <div className="old_price">
-                                        <strike>
-                                            {product.price.toLocaleString()} đ
-                                        </strike>
-                                    </div>
-                                ) : (
-                                    ""
-                                )}
                                 <div className="new_price">
-                                    {(
-                                        (product.price *
-                                            (100 - product.discount)) /
-                                        100
-                                    ).toLocaleString()}{" "}
+                                    {product.price.toLocaleString()}{" "}
                                     đ
                                 </div>
                             </div>

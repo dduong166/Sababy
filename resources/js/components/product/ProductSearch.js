@@ -44,8 +44,6 @@ class Homepage extends Component {
         // this.props.setBookmark(bookmark, index);
     }
     render() {
-        console.log("1",this.props.history);
-        console.log( 2, history);
         return (
             <div className="homepage-body">
                 {!this.state.isLoading ? (

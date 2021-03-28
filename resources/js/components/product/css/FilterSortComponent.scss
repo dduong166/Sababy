@@ -1,0 +1,17 @@
+.filter-and-sort {
+    .city-seletected {
+        .ant-select-selector {
+            border: 1px solid red !important;
+            .ant-select-selection-item {
+                color: red;
+            }
+        }
+        .ant-select-arrow {
+            color: red;
+        }
+        .ant-select-clear {
+            color: red;
+        }
+    }
+    
+}
