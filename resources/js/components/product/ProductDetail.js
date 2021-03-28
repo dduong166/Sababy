@@ -135,23 +135,8 @@ class ProductDetail extends Component {
                                                 <th>GIÁ</th>
                                                 <td>
                                                     <div className="price d-flex flex-row justify-content-start align-items-center">
-                                                        {detail.discount ? (
-                                                            <div className="old_price">
-                                                                <strike>
-                                                                    {detail.price.toLocaleString()}{" "}
-                                                                    đ
-                                                                </strike>
-                                                            </div>
-                                                        ) : (
-                                                            ""
-                                                        )}
                                                         <div className="new_price">
-                                                            {(
-                                                                (detail.price *
-                                                                    (100 -
-                                                                        detail.discount)) /
-                                                                100
-                                                            ).toLocaleString()}{" "}
+                                                            {detail.price.toLocaleString()}{" "}
                                                             đ
                                                         </div>
                                                     </div>

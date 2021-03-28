@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\DB;
 
 use App\Models\Product;
@@ -60,7 +61,7 @@ class ProductController extends Controller
         $rate = $this->DealController->getRate($product_id);
         $product->rate = $rate->original;
         //get category
-        $product = $product->load(['owner','category', 'productMedias', 'questions.asker:id,name', 'questions.answers.answerer:id,name', 'questions' => function ($query) {
+        $product = $product->load(['owner', 'category', 'productMedias', 'questions.asker:id,name', 'questions.answers.answerer:id,name', 'questions' => function ($query) {
             $query->orderBy('created_at', 'desc');
         }, 'questions.answers' => function ($query) {
             $query->orderBy('created_at', 'asc');
@@ -73,20 +74,39 @@ class ProductController extends Controller
         return response()->json($product);
     }
 
-    public function filter(Request $request){
+    public function filter(Request $request)
+    {
         //filter
         $products = Product::query();
-        if($request->has('product_name')){
+        if ($request->has('product_name')) {
             $products->where('product_name', 'LIKE', '%' . $request->product_name . '%');
         }
-        if($request->has('city')){
+        if ($request->has('city')) {
             $products->where('city', 'LIKE', '%' . $request->city . '%');
         }
-        if($request->has('priceSort')){
-            if($request->priceSort === "increase")
-                $products->orderBy(DB::raw('price*(100-discount)/100'), 'ASC');
-            elseif($request->priceSort === "decrease")
-            $products->orderBy(DB::raw('price*(100-discount)/100'), 'DESC');
+        if ($request->has('price')) {
+            $products->whereBetween('price', $request->price);
+        }
+        $products = $products->get();
+        if ($request->has('location') && $products->count()) {
+            $locations = [];
+            foreach ($products as $product) {
+                array_push($locations, $product->location);
+            }
+            $locations = join("|", $locations);
+            // $origin = strval($request->lat) . ',' . strval($request->lng);
+            $distance = \GoogleMaps::load('distancematrix')
+                ->setEndpoint('json')
+                ->setParamByKey('origins', $request->location)
+                ->setParamByKey('destinations', $locations)
+                ->getResponseByKey('rows.elements');
+            // return response()->json($distance);         
+            // dd($distance);
+            $distance = $distance["rows"][0]["elements"];
+            foreach ($products as $key => $product) {
+                $product->distance = $distance[$key]["distance"]["value"];
+            }
+            $products = $products->sortBy('distance')->values();
         }
         //get media and bookmark
         if (JWTAuth::getToken()) {
@@ -94,7 +114,6 @@ class ProductController extends Controller
         } else {
             $auth = false;
         }
-        $products = $products->get();
         $products = $products->load('productMedias');
         if ($auth) {
             $user = JWTAuth::parseToken()->authenticate();
@@ -142,50 +161,6 @@ class ProductController extends Controller
         $result->category_detail = $category;
 
         return response()->json($result);
-    }
-
-    public function sortDistanceIncrease($a, $b){
-        if($a == $b){
-            return 0;
-        }
-        return ($a->distance > $b->distance) ? 1 : -1;
-    }
-
-    public function sortByDistance(Request $request)
-    {
-        if(JWTAuth::getToken()){
-            $auth = JWTAuth::parseToken()->check();
-        }else{
-            $auth = false;
-        }
-
-        $products = Product::all();
-        $products = $products->load('productMedias');
-        if ($auth) {
-            $user = JWTAuth::parseToken()->authenticate();
-            $products = $products->load(['bookmarks' => function ($query) use ($user) {
-                $query->where('user_id', $user->id);
-            }]);
-        }
-        $locations = [];
-        foreach($products as $product){
-            array_push($locations, $product->location);
-        }
-        $locations = join("|", $locations);
-        $origin = strval($request->lat).','.strval($request->lng);
-
-        $distance = \GoogleMaps::load('distancematrix')
-            ->setEndpoint('json')
-            ->setParamByKey('origins', $origin)
-            ->setParamByKey('destinations', $locations)
-            ->getResponseByKey('rows.elements');
-        $distance = $distance["rows"][0]["elements"];
-        foreach($products as $key => $product){
-            $product->distance = $distance[$key]["distance"]["value"];
-        }
-        $products = $products->sortBy('distance')->values();
-
-        return response()->json($products);
     }
 
     public function getProductDeals($product_id)

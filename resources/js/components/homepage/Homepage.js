@@ -2,10 +2,8 @@ import React, { Component } from "react";
 import Http from "../../Http";
 import { Link } from "react-router-dom";
 import "./css/homepage.scss";
-import "./css/DistanceComponent.scss";
 import { Spin } from "antd";
 import ProductCard from "../product/ProductCard";
-import DistanceSort from "./DistanceComponent";
 import CategoryList from "../category-list-component/CategoryListComponent";
 import { connect } from "react-redux";
 
@@ -68,13 +66,13 @@ class Homepage extends Component {
             <div className="homepage-body">
                 {!this.state.isLoading ? (
                     <div className="container">
-                        {this.props.products ? (
+                        {/* {this.props.products ? (
                             <div className="filter-and-sort d-flex justify-content-end">
                                 <DistanceSort
                                     setProducts={this.props.setProducts}
                                 />
                             </div>
-                        ) : null}
+                        ) : null} */}
 
                         <h3>DANH MỤC SẢN PHẨM</h3>
                         <CategoryList parent_categories={parent_categories} />

@@ -34,7 +34,6 @@ Route::prefix('product')->group(function () {
     Route::get('/{product_id}', 'ProductController@getProductByID');
     Route::get('/category/{category_id}', 'ProductController@getProductByCategoryID');
     Route::get('/{product_id}/deal', 'ProductController@getProductDeals');
-    Route::post('/distance', 'ProductController@sortByDistance');
     Route::post('/filter', 'ProductController@filter');
 });
 Route::prefix('deal')->group(function () {

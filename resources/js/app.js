@@ -18,7 +18,6 @@ import ProductSearch from "./components/product/ProductSearch";
 import App from "./components/page/App";
 import Navbar from "./components/header-footer/Navbar";
 import Footer from "./components/header-footer/Footer";
-import DistanceComponent from "./components/homepage/DistanceComponent";
 import MyProducts from "./components/product/MyProducts"
 
 const store = createStore(
@@ -36,10 +35,6 @@ class AppMain extends Component {
                                 <App>
                                     <Navbar
                                         history={history}
-                                    />
-                                    <Route
-                                        path="/distance"
-                                        component={DistanceComponent}
                                     />
                                     <Route
                                         path="/login"

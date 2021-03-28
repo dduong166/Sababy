@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import Http from "../../Http";
 import { useHistory } from "react-router-dom";
 import { createBrowserHistory } from "history";
-// import "./css/ProductCard.scss";
 import { Spin, Select, Space } from "antd";
-import { ArrowUpOutlined, ArrowDownOutlined } from "@ant-design/icons";
-import DistanceSort from "../homepage/DistanceComponent";
+import "./css/FilterSortComponent.scss";
+import DistanceSort from "./DistanceComponent";
+import PriceFilterComponent from "./priceFilterComponent";
 import { connect } from "react-redux";
 
 const queryString = require("query-string");
@@ -20,12 +20,13 @@ class FilterSort extends Component {
             keyword: "",
             cities: [],
             city: undefined,
-            priceSort: undefined
+            price: [], //min=price[0]; max=price[1];
+            location: [], //lat=location[0]; lng=location[1];
         };
         this.getProductSearchResult = this.getProductSearchResult.bind(this);
         this.onCityChange = this.onCityChange.bind(this);
         this.getCityList = this.getCityList.bind(this);
-        this.onPriceSortChange = this.onPriceSortChange.bind(this);
+        // this.onPriceSortChange = this.onPriceSortChange.bind(this);
     }
 
     componentDidMount() {
@@ -58,27 +59,7 @@ class FilterSort extends Component {
                 console.log(error.response.status);
             });
     }
-    onPriceSortChange(value) {
-        console.log("menu clicked", value);
-        const condition = queryString.parse(location.search);
-        if (value === undefined) {
-            if (condition.priceSort) {
-                delete condition.priceSort;
-            } else {
-                return;
-            }
-        } else {
-            condition.priceSort = value;
-        }
-        let stringified = queryString.stringify(condition);
-        if (stringified) stringified = "?" + stringified;
-        this.props.history.push({
-            pathname: location.pathname,
-            search: stringified
-        });
-    }
     onCityChange(value) {
-        console.log(value);
         const condition = queryString.parse(location.search);
         if (value === undefined) {
             if (condition.city) {
@@ -99,13 +80,16 @@ class FilterSort extends Component {
 
     getProductSearchResult() {
         const condition = queryString.parse(location.search);
-        console.log(condition);
-            this.setState({ city: condition.city, priceSort: condition.priceSort });
+        if(condition.price){
+            condition.price = condition.price.split("-");
+        }
+        this.setState({ city: condition.city, price: condition.price, location: condition.location });
         const uri = "http://localhost:8000/api/product/filter";
         const request = {
             product_name: condition.k,
             city: condition.city,
-            priceSort: condition.priceSort
+            price: condition.price,
+            location: condition.location
         };
         Http.post(uri, request).then(response => {
             if (response) {
@@ -119,11 +103,13 @@ class FilterSort extends Component {
     }
 
     render() {
+        console.log(this.state);
         return (
             <div className="filter-and-sort d-flex justify-content-end">
                 {!this.state.isLoading ? (
                     <Space>
                         <Select
+                            className={this.state.city ? "city-seletected" : "city-not-seletected"}
                             allowClear
                             defaultValue={this.state.city}
                             showSearch
@@ -148,17 +134,8 @@ class FilterSort extends Component {
                                   ))
                                 : null}
                         </Select>
-                        <Select
-                            style={{ width: 130 }}
-                            onChange={this.onPriceSortChange}
-                            placeholder="Giá tiền"
-                            allowClear
-                            defaultValue={this.state.priceSort}
-                        >
-                            <Option value="increase">Giá tăng dần</Option>
-                            <Option value="decrease">Giá giảm dần</Option>
-                        </Select>
-                        <DistanceSort setProducts={this.props.setProducts} />
+                        <PriceFilterComponent location={this.props.location} history={this.props.history} />
+                        <DistanceSort location={this.props.location} history={this.props.history} />
                     </Space>
                 ) : null}
             </div>
