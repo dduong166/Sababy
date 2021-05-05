@@ -1,48 +1,103 @@
 import React, { Component } from "react";
 import Http from "../../Http";
 import { Link } from "react-router-dom";
-import { Spin, Button, Modal, Form, Input, Cascader, InputNumber} from "antd";
+import { Spin, Button, Modal, Form, Input, Cascader, InputNumber } from "antd";
 import "./css/MyProducts.scss";
 import { connect } from "react-redux";
 import moment from "moment";
+import AddProductComponent from "./AddProductComponent";
 
 const { TextArea } = Input;
 
 class MyProducts extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            visible: false,
-            confirmLoading: false,
-            quantity: 1
-        };
-        this.setModalVisible = this.setModalVisible.bind(this);
-        this.setConfirmLoading = this.setConfirmLoading.bind(this);
-        this.handleOk = this.handleOk.bind(this);
-        this.onChangeQuantity = this.onChangeQuantity.bind(this);
-    }
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         visible: false,
+    //         confirmLoading: false,
+    //         category_id: null,
+    //         product_name: null,
+    //         description: null,
+    //         price: null,
+    //         quantity: 1,
+    //         outside_status: null,
+    //         function_status: null,
+    //         modal_step: 1
+    //     };
+    //     this.setModalVisible = this.setModalVisible.bind(this);
+    //     this.setConfirmLoading = this.setConfirmLoading.bind(this);
+    //     this.handleOk = this.handleOk.bind(this);
+    //     this.onChangeCategory = this.onChangeCategory.bind(this);
+    //     this.onChangeProductName = this.onChangeProductName.bind(this);
+    //     this.onChangeDescription = this.onChangeDescription.bind(this);
+    //     this.onChangePrice = this.onChangePrice.bind(this);
+    //     this.onChangeQuantity = this.onChangeQuantity.bind(this);
+    //     this.onChangeOutsideStatus = this.onChangeOutsideStatus.bind(this);
+    //     this.onChangeFunctionStatus = this.onChangeFunctionStatus.bind(this);
+    //     this.changeModalStep = this.changeModalStep.bind(this);
+    // }
 
-    onChangeQuantity(value) {
-        this.setState({quantity: value});
-    }
+    // onChangeCategory(value) {
+    //     this.setState({ category_id: value[value.length - 1] });
+    // }
+    // onChangeProductName(e) {
+    //     this.setState({ product_name: e.target.value });
+    // }
+    // onChangeDescription(e) {
+    //     this.setState({ description: e.target.value });
+    // }
+    // onChangePrice(value) {
+    //     this.setState({ price: value });
+    // }
+    // onChangeQuantity(value) {
+    //     this.setState({ quantity: value });
+    // }
+    // onChangeOutsideStatus(e) {
+    //     this.setState({ outside_status: e.target.value });
+    // }
+    // onChangeFunctionStatus(e) {
+    //     this.setState({ function_status: e.target.value });
+    // }
+    // changeModalStep(step) {
+    //     this.setState({ modal_step: step });
+    // }
 
-    setModalVisible(status) {
-        this.setState({ visible: status });
-    }
+    // setModalVisible(status) {
+    //     if (status === true && !this.props.categories) {
+    //         const uri = "http://localhost:8000/api/category";
+    //         Http.get(uri).then(response => {
+    //             this.props.setCategories(response.data);
+    //         });
+    //     }
+    //     this.setState({ visible: status });
+    // }
 
-    setConfirmLoading(status) {
-        this.setState({ confirmLoading: status });
-    }
+    // setConfirmLoading(status) {
+    //     this.setState({ confirmLoading: status });
+    // }
 
-    handleOk() {
-        this.setConfirmLoading(true);
-        setTimeout(() => {
-            this.setModalVisible(false);
-            this.setConfirmLoading(false);
-        }, 2000);
-    }
+    // handleOk() {
+    //     this.setConfirmLoading(true);
+    //     setTimeout(() => {
+    //         this.setModalVisible(false);
+    //         this.setConfirmLoading(false);
+    //     }, 2000);
+    //     console.log(this.state);
+    // }
     render() {
-        console.log(this.state);
+        // let categories = this.props.categories;
+        // if (categories) {
+        //     categories = categories.map((category, index) => ({
+        //         value: category.id,
+        //         label: category.category_name,
+        //         children: category.sub_categories.map(
+        //             (sub_category, index) => ({
+        //                 value: sub_category.id,
+        //                 label: sub_category.category_name
+        //             })
+        //         )
+        //     }));
+        // }
         return (
             <div className="my-products-page container">
                 <div className="my-products-banner">
@@ -87,69 +142,7 @@ class MyProducts extends Component {
                                 role="tabpanel"
                                 aria-labelledby="nav-onsale-tab"
                             >
-                                <div className="add-product-btn d-flex justify-content-end">
-                                    <Button
-                                        type="primary"
-                                        onClick={() =>
-                                            this.setModalVisible(true)
-                                        }
-                                    >
-                                        Thêm sản phẩm mới
-                                    </Button>
-                                    <Modal
-                                        title="Thêm sản phẩm mới"
-                                        visible={this.state.visible}
-                                        onOk={() => this.handleOk()}
-                                        confirmLoading={
-                                            this.state.confirmLoading
-                                        }
-                                        onCancel={() =>
-                                            this.setModalVisible(false)
-                                        }
-                                    >
-                                        <Form
-                                            labelCol={{
-                                                span: 6
-                                            }}
-                                            wrapperCol={{
-                                                span: 14
-                                            }}
-                                            layout="horizontal"
-                                        >
-                                            <Form.Item label="Tên sản phẩm">
-                                                <Input />
-                                            </Form.Item>
-                                            <Form.Item label="Danh mục">
-                                                <Cascader
-                                                    placeholder="Lựa chọn danh mục sản phẩm"
-                                                    options={[
-                                                        {
-                                                            value: "zhejiang",
-                                                            label: "Zhejiang",
-                                                            children: [
-                                                                {
-                                                                    value:
-                                                                        "hangzhou",
-                                                                    label:
-                                                                        "Hangzhou"
-                                                                }
-                                                            ]
-                                                        }
-                                                    ]}
-                                                />
-                                            </Form.Item>
-                                            <Form.Item label="Số lượng">
-                                                <InputNumber defaultValue={1} min={1} onChange={this.onChangeQuantity}/>
-                                            </Form.Item>
-                                            <Form.Item label="Mô tả">
-                                                <TextArea rows={4}/>
-                                            </Form.Item>
-                                            <Form.Item label="Giá tiền (VND)">
-                                                <InputNumber min={1} onChange={this.onChangeQuantity}/>
-                                            </Form.Item>
-                                        </Form>
-                                    </Modal>
-                                </div>
+                                <AddProductComponent />
                             </div>
                             <div
                                 className="tab-pane fade"
@@ -169,19 +162,40 @@ class MyProducts extends Component {
 
 const mapStateToProps = state => {
     return {
+        categories: state.categoryDetail.categories,
+        products: state.productDetail.products,
         auth: state.auth
     };
 };
 
-// const mapDispatchToProps = dispatch => {
-//     return {
-//         setProductDetail: detail => {
-//             dispatch({
-//                 type: "SET_PRODUCT_DETAIL",
-//                 payload: detail
-//             });
-//         }
-//     };
-// };
+const mapDispatchToProps = dispatch => {
+    return {
+        setCategories: categories => {
+            dispatch({
+                type: "SET_CATEGORIES",
+                payload: categories
+            });
+        },
+        setProducts: products => {
+            dispatch({
+                type: "SET_PRODUCTS",
+                payload: products
+            });
+        },
+        setBookmark: (bookmark, index) => {
+            dispatch({
+                type: "SET_BOOKMARK",
+                payload: bookmark,
+                index: index
+            });
+        },
+        setUnbookmark: index => {
+            dispatch({
+                type: "SET_UNBOOKMARK",
+                index: index
+            });
+        }
+    };
+};
 
-export default connect(mapStateToProps, null)(MyProducts);
+export default connect(mapStateToProps, mapDispatchToProps)(MyProducts);

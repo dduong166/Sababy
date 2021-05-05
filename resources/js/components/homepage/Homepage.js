@@ -56,26 +56,12 @@ class Homepage extends Component {
     }
 
     render() {
-        let parent_categories = [];
-        if (this.props.categories) {
-            parent_categories = this.props.categories.filter(category => {
-                return category.parent_category_id === null;
-            });
-        }
         return (
             <div className="homepage-body">
                 {!this.state.isLoading ? (
                     <div className="container">
-                        {/* {this.props.products ? (
-                            <div className="filter-and-sort d-flex justify-content-end">
-                                <DistanceSort
-                                    setProducts={this.props.setProducts}
-                                />
-                            </div>
-                        ) : null} */}
-
                         <h3>DANH MỤC SẢN PHẨM</h3>
-                        <CategoryList parent_categories={parent_categories} />
+                        <CategoryList categories={this.props.categories} />
                         <h3 className="trending_title">TẤT CẢ SẢN PHẨM</h3>
                         <div className="product-list">
                             <div className="container">

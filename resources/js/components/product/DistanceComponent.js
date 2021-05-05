@@ -226,68 +226,6 @@ class DistanceSort extends Component {
                         <span id="place-address"></span>
                     </div>
                 </Modal>
-                {/* <button
-                    type="button"
-                    className="btn btn-primary openMapButton"
-                    data-toggle="modal"
-                    data-target=".bd-example-modal-lg"
-                    onClick={this.initMap}
-                >
-                    Sắp xếp theo khoảng cách
-                </button> */}
-
-                {/* <div
-                    className="modal fade bd-example-modal-lg"
-                    tabIndex="-1"
-                    role="dialog"
-                    aria-labelledby="myLargeModalLabel"
-                    aria-hidden="true"
-                >
-                    <div className="modal-dialog modal-lg">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <h5
-                                    className="modal-title"
-                                    id="exampleModalLongTitle"
-                                >
-                                    Xác định vị trí nhận hàng
-                                </h5>
-                                <button
-                                    type="button"
-                                    className="close"
-                                    data-dismiss="modal"
-                                    aria-label="Close"
-                                >
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div className="modal-body">aaa</div>
-                            <div className="modal-footer">
-                                <button
-                                    type="button"
-                                    className="btn btn-secondary"
-                                    data-dismiss="modal"
-                                >
-                                    Đóng
-                                </button>
-                                <button
-                                    type="button"
-                                    className="btn btn-primary"
-                                    onClick={this.SortByDistance}
-                                >
-                                    Xác nhận
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div> */}
-                {/* <button
-                    type="button"
-                    className="btn btn-primary"
-                    onClick={this.SortByDistance}
-                >
-                    Vị trí hiện tại
-                </button> */}
             </div>
         );
     }

@@ -14,7 +14,7 @@ class CreateAnswersTable extends Migration
     public function up()
     {
         Schema::create('answers', function (Blueprint $table) {
-            $table->bigIncrements('answer_id');
+            $table->id();
             $table->integer('answerer_id');
             $table->integer('question_id');
             $table->string('content');

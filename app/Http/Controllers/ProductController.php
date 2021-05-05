@@ -187,7 +187,25 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'category_id' => 'required',
+            'product_name' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'quantity' => 'required|min:1',
+            'outside_status' => 'required',
+            'function_status' => 'required',
+            'location' => 'required',
+            'city' => 'required',
+        ]);
+        if (!$user = JWTAuth::parseToken()->authenticate()) {
+            return response()->json(['user_not_found'], 404);
+        }
+        $product = $request->all();
+        $product->owner_id = $user->id;
+        dd($product);
+        $product = Product::create($product);
+        return response()->json($product);
     }
 
     /**

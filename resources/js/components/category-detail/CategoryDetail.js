@@ -86,7 +86,7 @@ class CategoryDetail extends Component {
                             <h2>{category.category_name}</h2>
                         </div>
                         <CategoryList
-                            parent_categories={category.sub_categories}
+                            categories={category.sub_categories}
                         />
                         <div className="product-list">
                             <div className="container">

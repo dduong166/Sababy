@@ -14,7 +14,7 @@ class CreateProductMediasTable extends Migration
     public function up()
     {
         Schema::create('product_medias', function (Blueprint $table) {
-            $table->bigIncrements('product_media_id');
+            $table->id();
             $table->integer('product_id');
             $table->string('media_url');
             $table->integer('media_type'); //0: image, 1: video

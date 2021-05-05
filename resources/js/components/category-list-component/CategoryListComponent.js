@@ -5,10 +5,10 @@ import "./css/CategoryListComponent.scss";
 
 class CategoryList extends Component {
     render() {
-        let parent_categories = this.props.parent_categories;
+        let categories = this.props.categories;
         return (
             <div className="category-list">
-                {parent_categories.map((category, index, categories) => (
+                {categories.map((category, index) => (
                     <Link
                         to={"/category/" + category.id}
                         key={category.id}
