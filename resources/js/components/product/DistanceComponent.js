@@ -80,12 +80,11 @@ class DistanceSort extends Component {
             var marker = new google.maps.Marker({
                 map
             });
-            google.maps.event.addListener(map, "click", e => {
-                var latLng = e.latLng;
-                this.setState({
-                    lat: e.latLng.lat(),
-                    lng: e.latLng.lng()
-                });
+            if (this.state.lat && this.state.lng) {
+                //Nếu như trước đó đã được chọn vị trí -> hiện marker
+                let latLng = { lat: this.state.lat, lng: this.state.lng };
+                console.log(latLng);
+                infowindow.close();
                 if (marker && marker.setMap) {
                     marker.setMap(null);
                 }
@@ -93,47 +92,75 @@ class DistanceSort extends Component {
                     position: latLng,
                     map: map
                 });
-                map.panTo(marker.getPosition());
-                input.value = "";
-            });
-            autocomplete.addListener("place_changed", () => {
-                infowindow.close();
-                const place = autocomplete.getPlace();
-                console.log(place);
-
-                if (!place.geometry || !place.geometry.location) {
-                    // window.alert(
-                    //     "Không tìm thấy vị trí " +
-                    //         place.name +
-                    //         " .Vui lòng chọn trên bản đồ."
-                    // );
-                    notification["error"]({
-                        message:
-                            "Không tìm thấy vị trí " +
-                            place.name +
-                            " .Vui lòng chọn trên bản đồ."
-                    });
-                    return;
-                }
-                this.setState({
-                    lat: place.geometry.location.lat(),
-                    lng: place.geometry.location.lng()
-                });
-                if (marker && marker.setMap) {
-                    marker.setMap(null);
-                }
-                marker = new google.maps.Marker({
-                    position: place.geometry.location,
-                    map: map
-                });
-                map.panTo(marker.getPosition());
                 map.setZoom(16);
-                infowindowContent.children["place-name"].textContent =
-                    place.name;
-                infowindowContent.children["place-address"].textContent =
-                    place.formatted_address;
+                infowindowContent.children[
+                    "place-name"
+                ].textContent = `(${this.state.lat},${this.state.lng})`;
+                infowindowContent.children["place-address"].textContent = "";
                 infowindow.open(map, marker);
-            });
+            }
+            google.maps.event.addListener(
+                map,
+                "click",
+                e => {
+                    var latLng = e.latLng;
+                    this.setState({
+                        lat: e.latLng.lat(),
+                        lng: e.latLng.lng()
+                    });
+                    if (marker && marker.setMap) {
+                        marker.setMap(null);
+                    }
+                    marker = new google.maps.Marker({
+                        position: latLng,
+                        map: map
+                    });
+                    input.value = "";
+                    map.setZoom(16);
+                    infowindowContent.children[
+                        "place-name"
+                    ].textContent = latLng;
+                    infowindowContent.children["place-address"].textContent =
+                        "";
+                    infowindow.open(map, marker);
+                }
+            );
+            autocomplete.addListener(
+                "place_changed",
+                () => {
+                    infowindow.close();
+                    const place = autocomplete.getPlace();
+                    console.log(place);
+
+                    if (!place.geometry || !place.geometry.location) {
+                        notification["error"]({
+                            message:
+                                "Không tìm thấy vị trí " +
+                                place.name +
+                                " .Vui lòng chọn trên bản đồ."
+                        });
+                        return;
+                    }
+                    this.setState({
+                        lat: place.geometry.location.lat(),
+                        lng: place.geometry.location.lng()
+                    });
+                    if (marker && marker.setMap) {
+                        marker.setMap(null);
+                    }
+                    marker = new google.maps.Marker({
+                        position: place.geometry.location,
+                        map: map
+                    });
+                    map.panTo(marker.getPosition());
+                    map.setZoom(16);
+                    infowindowContent.children["place-name"].textContent =
+                        place.name;
+                    infowindowContent.children["place-address"].textContent =
+                        place.formatted_address;
+                    infowindow.open(map, marker);
+                }
+            );
         }
     }
 

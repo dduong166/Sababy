@@ -1,7 +1,16 @@
 import React, { Component } from "react";
 import Http from "../../Http";
 import { Link } from "react-router-dom";
-import { Spin, Button, Modal, Form, Input, Cascader, InputNumber } from "antd";
+import {
+    Spin,
+    Button,
+    Modal,
+    Form,
+    Input,
+    Cascader,
+    InputNumber,
+    notification
+} from "antd";
 import "./css/AddProductComponent.scss";
 import { connect } from "react-redux";
 import moment from "moment";
@@ -23,6 +32,7 @@ class AddProductComponent extends Component {
             function_status: null,
             lat: null,
             lng: null,
+            city: null,
             modal_step: 1
         };
         this.setModalVisible = this.setModalVisible.bind(this);
@@ -117,7 +127,28 @@ class AddProductComponent extends Component {
             var marker = new google.maps.Marker({
                 map
             });
+            if (this.state.lat && this.state.lng) {
+                //Nếu như trước đó đã được chọn vị trí -> hiện marker
+                let latLng = { lat: this.state.lat, lng: this.state.lng };
+                console.log(latLng);
+                infowindow.close();
+                if (marker && marker.setMap) {
+                    marker.setMap(null);
+                }
+                marker = new google.maps.Marker({
+                    position: latLng,
+                    map: map
+                });
+                map.setZoom(16);
+                infowindowContent.children[
+                    "place-name"
+                ].textContent = `(${this.state.lat},${this.state.lng})`;
+                infowindowContent.children["place-address"].textContent = "";
+                infowindow.open(map, marker);
+            }
             google.maps.event.addListener(map, "click", e => {
+                //Trường hợp chọn vị trí bằng click
+                infowindow.close();
                 var latLng = e.latLng;
                 this.setState({
                     lat: e.latLng.lat(),
@@ -130,20 +161,20 @@ class AddProductComponent extends Component {
                     position: latLng,
                     map: map
                 });
-                map.panTo(marker.getPosition());
+                // map.panTo(marker.getPosition());
                 input.value = "";
+                map.setZoom(16);
+                infowindowContent.children["place-name"].textContent = latLng;
+                infowindowContent.children["place-address"].textContent = "";
+                infowindow.open(map, marker);
             });
             autocomplete.addListener("place_changed", () => {
+                //Trường hợp dùng autocomplete
                 infowindow.close();
                 const place = autocomplete.getPlace();
                 console.log(place);
 
                 if (!place.geometry || !place.geometry.location) {
-                    // window.alert(
-                    //     "Không tìm thấy vị trí " +
-                    //         place.name +
-                    //         " .Vui lòng chọn trên bản đồ."
-                    // );
                     notification["error"]({
                         message:
                             "Không tìm thấy vị trí " +
@@ -177,7 +208,26 @@ class AddProductComponent extends Component {
     handleOk() {
         this.setConfirmLoading(true);
         if (this.state.modal_step === 3) {
-            console.log("Save to db");
+            const latLng = { lat: this.state.lat, lng: this.state.lng };
+            const geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ location: latLng }, (results, status) => {
+                if (status === "OK") {
+                    if (results[0]) {
+                        const city = results[4].address_components.filter(
+                            addr =>
+                                addr.types[0] == "administrative_area_level_1"
+                        );
+                        if (city) {
+                            this.setState({city: city[0].long_name});
+                        } else {
+                            notification["error"]({
+                                message:
+                                    "Lấy vị trí thất bại. Hãy chọn lại vị trí"
+                            });
+                        }
+                    }
+                }
+            });
             this.setModalVisible(false);
             this.setConfirmLoading(false);
         } else {
@@ -201,7 +251,9 @@ class AddProductComponent extends Component {
         }
         let modal;
         let footer;
+        let title;
         if (this.state.modal_step === 1) {
+            title = "Nhập thông tin cơ bản của sản phẩm";
             modal = (
                 <Form
                     labelCol={{
@@ -344,6 +396,9 @@ class AddProductComponent extends Component {
                 </Button>
             ];
         } else if (this.state.modal_step === 2) {
+            if (this.state.lat && this.state.lng)
+                title = `Vị trí sản phẩm: (${this.state.lat},${this.state.lng})`;
+            else title = "Nhập vị trí sản phẩm";
             modal = (
                 <div className="google-place-autocomplete">
                     <div className="pac-card" id="pac-card">
@@ -376,6 +431,7 @@ class AddProductComponent extends Component {
                 </Button>
             ];
         } else {
+            title = "Tải lên ảnh/video sản phẩm";
             modal = <p>ahihihi 3</p>;
             footer = [
                 <Button key="back" onClick={() => this.changeModalStep(2)}>
@@ -400,7 +456,7 @@ class AddProductComponent extends Component {
                     Thêm sản phẩm mới
                 </Button>
                 <Modal
-                    title="Thêm sản phẩm mới"
+                    title={title}
                     visible={this.state.visible}
                     onOk={() => this.handleOk()}
                     confirmLoading={this.state.confirmLoading}
