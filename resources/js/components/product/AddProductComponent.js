@@ -9,8 +9,10 @@ import {
     Input,
     Cascader,
     InputNumber,
-    notification
+    notification,
+    Space
 } from "antd";
+import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import "./css/AddProductComponent.scss";
 import { connect } from "react-redux";
 import moment from "moment";
@@ -24,6 +26,7 @@ class AddProductComponent extends Component {
             visible: false,
             confirmLoading: false,
             category_id: null,
+            category_cascader: [],
             product_name: null,
             description: null,
             price: null,
@@ -33,6 +36,7 @@ class AddProductComponent extends Component {
             lat: null,
             lng: null,
             city: null,
+            images: [],
             modal_step: 1
         };
         this.setModalVisible = this.setModalVisible.bind(this);
@@ -45,12 +49,16 @@ class AddProductComponent extends Component {
         this.onChangeQuantity = this.onChangeQuantity.bind(this);
         this.onChangeOutsideStatus = this.onChangeOutsideStatus.bind(this);
         this.onChangeFunctionStatus = this.onChangeFunctionStatus.bind(this);
+        this.onAddImage = this.onAddImage.bind(this);
         this.changeModalStep = this.changeModalStep.bind(this);
         this.initMap = this.initMap.bind(this);
     }
 
     onChangeCategory(value) {
-        this.setState({ category_id: value[value.length - 1] });
+        this.setState({
+            category_id: value[value.length - 1],
+            category_cascader: value
+        });
     }
     onChangeProductName(e) {
         this.setState({ product_name: e.target.value });
@@ -76,6 +84,9 @@ class AddProductComponent extends Component {
         } else {
             this.setState({ modal_step: step });
         }
+    }
+    onAddImage(value) {
+        this.setState({ images: value });
     }
 
     setModalVisible(status) {
@@ -218,7 +229,7 @@ class AddProductComponent extends Component {
                                 addr.types[0] == "administrative_area_level_1"
                         );
                         if (city) {
-                            this.setState({city: city[0].long_name});
+                            this.setState({ city: city[0].long_name });
                         } else {
                             notification["error"]({
                                 message:
@@ -230,6 +241,15 @@ class AddProductComponent extends Component {
             });
             this.setModalVisible(false);
             this.setConfirmLoading(false);
+        } else if(this.state.modal_step === 2){
+            if(!this.state.lat || !this.state.lng) {
+                notification["error"]({
+                    message:
+                        "Hãy chọn vị trí sản phẩm"
+                });
+            } else {
+                this.changeModalStep(this.state.modal_step + 1);
+            }
         } else {
             this.changeModalStep(this.state.modal_step + 1);
         }
@@ -256,6 +276,7 @@ class AddProductComponent extends Component {
             title = "Nhập thông tin cơ bản của sản phẩm";
             modal = (
                 <Form
+                    id="product-basic-info"
                     labelCol={{
                         span: 6
                     }}
@@ -267,6 +288,37 @@ class AddProductComponent extends Component {
                     initialValues={{
                         size: "small"
                     }}
+                    onFinish={this.handleOk}
+                    fields={[
+                        {
+                            name: ["category"],
+                            value: this.state.category_cascader
+                        },
+                        {
+                            name: ["productName"],
+                            value: this.state.product_name
+                        },
+                        {
+                            name: ["description"],
+                            value: this.state.description
+                        },
+                        {
+                            name: ["price"],
+                            value: this.state.price
+                        },
+                        {
+                            name: ["quantity"],
+                            value: this.state.quantity
+                        },
+                        {
+                            name: ["outsideStatus"],
+                            value: this.state.outside_status
+                        },
+                        {
+                            name: ["functionStatus"],
+                            value: this.state.function_status
+                        }
+                    ]}
                 >
                     <Form.Item
                         label="Danh mục"
@@ -334,14 +386,11 @@ class AddProductComponent extends Component {
                     <Form.Item
                         label="Số lượng"
                         name="quantity"
-                        rules={[
-                            {
-                                required: true,
-                                message: "Hãy nhập số lượng sản phẩm"
-                            }
-                        ]}
                     >
-                        <InputNumber min={1} onChange={this.onChangeQuantity} />
+                        <InputNumber
+                            min={1}
+                            onChange={this.onChangeQuantity}
+                        />
                     </Form.Item>
                     <Form.Item
                         label="Tình trạng ngoại quan"
@@ -388,9 +437,11 @@ class AddProductComponent extends Component {
                     Đóng
                 </Button>,
                 <Button
+                    form="product-basic-info"
                     key="submit"
                     type="primary"
-                    onClick={() => this.handleOk()}
+                    htmlType="submit"
+                    // onClick={() => this.handleOk()}
                 >
                     Tiếp theo
                 </Button>
@@ -432,7 +483,76 @@ class AddProductComponent extends Component {
             ];
         } else {
             title = "Tải lên ảnh/video sản phẩm";
-            modal = <p>ahihihi 3</p>;
+            modal = (
+                <Form
+                    name="dynamic_form_nest_item"
+                    onFinish={this.onAddImage}
+                    autoComplete="off"
+                    labelCol={{
+                        span: 6
+                    }}
+                    wrapperCol={{
+                        span: 16
+                    }}
+                    layout="horizontal"
+                    size="small"
+                    initialValues={{
+                        size: "small"
+                    }}
+                >
+                    <Form.List name="images">
+                        {(fields, { add, remove }) => (
+                            <>
+                                {fields.map(
+                                    ({ key, name, fieldKey, ...restField }) => (
+                                        <Space
+                                            key={key}
+                                            style={{
+                                                display: "flex",
+                                                marginBottom: 8
+                                            }}
+                                            align="baseline"
+                                        >
+                                            <Form.Item
+                                                {...restField}
+                                                name={[name, "first"]}
+                                                fieldKey={[fieldKey, "first"]}
+                                                rules={[
+                                                    {
+                                                        required: true,
+                                                        message:
+                                                            "Hãy nhập url ảnh sản phẩm"
+                                                    }
+                                                ]}
+                                            >
+                                                <Input placeholder="URL ảnh sản phẩm" />
+                                            </Form.Item>
+                                            <MinusCircleOutlined
+                                                onClick={() => remove(name)}
+                                            />
+                                        </Space>
+                                    )
+                                )}
+                                <Form.Item>
+                                    <Button
+                                        type="dashed"
+                                        onClick={() => add()}
+                                        block
+                                        icon={<PlusOutlined />}
+                                    >
+                                        Add field
+                                    </Button>
+                                </Form.Item>
+                            </>
+                        )}
+                    </Form.List>
+                    <Form.Item>
+                        <Button type="primary" htmlType="submit">
+                            Submit
+                        </Button>
+                    </Form.Item>
+                </Form>
+            );
             footer = [
                 <Button key="back" onClick={() => this.changeModalStep(2)}>
                     Quay lại
