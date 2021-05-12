@@ -229,7 +229,26 @@ class AddProductComponent extends Component {
                                 addr.types[0] == "administrative_area_level_1"
                         );
                         if (city) {
-                            this.setState({ city: city[0].long_name });
+                            this.setState({ city: city[0].long_name }, () => {
+                                let uri = "http://localhost:8000/api/product";
+                                const newProduct = {
+                                    category_id: this.state.category_id,
+                                    product_name: this.state.product_name,
+                                    description: this.state.description,
+                                    price: this.state.price,
+                                    quantity: this.state.quantity,
+                                    outside_status: this.state.outside_status,
+                                    function_status: this.state.function_status,
+                                    location: `(${this.state.lat},${this.state.lng})`,
+                                    city: this.state.city,
+                                    images: this.state.images
+                                };
+                                Http.post(uri, newProduct).then(response => {
+                                    if (response) {
+                                        console.log(response);
+                                    }
+                                });
+                            });
                         } else {
                             notification["error"]({
                                 message:
@@ -239,13 +258,13 @@ class AddProductComponent extends Component {
                     }
                 }
             });
+
             this.setModalVisible(false);
             this.setConfirmLoading(false);
-        } else if(this.state.modal_step === 2){
-            if(!this.state.lat || !this.state.lng) {
+        } else if (this.state.modal_step === 2) {
+            if (!this.state.lat || !this.state.lng) {
                 notification["error"]({
-                    message:
-                        "Hãy chọn vị trí sản phẩm"
+                    message: "Hãy chọn vị trí sản phẩm"
                 });
             } else {
                 this.changeModalStep(this.state.modal_step + 1);
@@ -383,14 +402,8 @@ class AddProductComponent extends Component {
                             onChange={this.onChangePrice}
                         />
                     </Form.Item>
-                    <Form.Item
-                        label="Số lượng"
-                        name="quantity"
-                    >
-                        <InputNumber
-                            min={1}
-                            onChange={this.onChangeQuantity}
-                        />
+                    <Form.Item label="Số lượng" name="quantity">
+                        <InputNumber min={1} onChange={this.onChangeQuantity} />
                     </Form.Item>
                     <Form.Item
                         label="Tình trạng ngoại quan"

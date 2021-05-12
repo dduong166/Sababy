@@ -33,12 +33,10 @@ Route::prefix('product')->group(function () {
     Route::get('/', 'ProductController@index');
     Route::get('/{product_id}', 'ProductController@getProductByID');
     Route::get('/category/{category_id}', 'ProductController@getProductByCategoryID');
-    Route::get('/{product_id}/deal', 'ProductController@getProductDeals');
     Route::post('/filter', 'ProductController@filter');
+    Route::post('/', 'ProductController@store');
 });
-Route::prefix('deal')->group(function () {
-    // Route::get('/rate/{product_id}', 'DealController@getRate');
-});
+
 Route::prefix('bookmark')->group(function () {
     Route::post('/', 'BookmarkController@store');
     Route::delete('/{product_id}', 'BookmarkController@destroy');

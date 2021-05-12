@@ -119,7 +119,7 @@ class ProductDetail extends Component {
                                             </tr>
                                             <tr>
                                                 <th>SỐ LƯỢNG</th>
-                                                <td>{detail.amount}</td>
+                                                <td>{detail.quantity}</td>
                                             </tr>
                                             <tr>
                                                 <th>GỬI TỪ</th>
