@@ -10,9 +10,10 @@ import {
     Cascader,
     InputNumber,
     notification,
-    Space
+    Image
 } from "antd";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
+import { Widget, WidgetLoader } from "react-cloudinary-upload-widget";
 import "./css/AddProductComponent.scss";
 import { connect } from "react-redux";
 import moment from "moment";
@@ -86,7 +87,8 @@ class AddProductComponent extends Component {
         }
     }
     onAddImage(value) {
-        this.setState({ images: value });
+        var joined = this.state.images.concat(value.info.secure_url);
+        this.setState({ images: joined });
     }
 
     setModalVisible(status) {
@@ -110,7 +112,6 @@ class AddProductComponent extends Component {
 
     initMap() {
         //Mỗi lần modal step = 2, phải init lại 1 lần vì các thẻ html map đã bị reload lại chứ không tồn tại luôn luôn như bên sort
-        console.log("init ne");
         if (this.state.visible) {
             let map = new google.maps.Map(document.getElementById("map"), {
                 center: { lat: 21.0277644, lng: 105.8341598 },
@@ -228,7 +229,7 @@ class AddProductComponent extends Component {
                             addr =>
                                 addr.types[0] == "administrative_area_level_1"
                         );
-                        if (city) {
+                        if (city[0]) {
                             this.setState({ city: city[0].long_name }, () => {
                                 let uri = "http://localhost:8000/api/product";
                                 const newProduct = {
@@ -250,6 +251,7 @@ class AddProductComponent extends Component {
                                 });
                             });
                         } else {
+                            console.log(`(${this.state.lat},${this.state.lng})`);
                             notification["error"]({
                                 message:
                                     "Lấy vị trí thất bại. Hãy chọn lại vị trí"
@@ -497,74 +499,34 @@ class AddProductComponent extends Component {
         } else {
             title = "Tải lên ảnh/video sản phẩm";
             modal = (
-                <Form
-                    name="dynamic_form_nest_item"
-                    onFinish={this.onAddImage}
-                    autoComplete="off"
-                    labelCol={{
-                        span: 6
-                    }}
-                    wrapperCol={{
-                        span: 16
-                    }}
-                    layout="horizontal"
-                    size="small"
-                    initialValues={{
-                        size: "small"
-                    }}
-                >
-                    <Form.List name="images">
-                        {(fields, { add, remove }) => (
-                            <>
-                                {fields.map(
-                                    ({ key, name, fieldKey, ...restField }) => (
-                                        <Space
-                                            key={key}
-                                            style={{
-                                                display: "flex",
-                                                marginBottom: 8
-                                            }}
-                                            align="baseline"
-                                        >
-                                            <Form.Item
-                                                {...restField}
-                                                name={[name, "first"]}
-                                                fieldKey={[fieldKey, "first"]}
-                                                rules={[
-                                                    {
-                                                        required: true,
-                                                        message:
-                                                            "Hãy nhập url ảnh sản phẩm"
-                                                    }
-                                                ]}
-                                            >
-                                                <Input placeholder="URL ảnh sản phẩm" />
-                                            </Form.Item>
-                                            <MinusCircleOutlined
-                                                onClick={() => remove(name)}
-                                            />
-                                        </Space>
-                                    )
-                                )}
-                                <Form.Item>
-                                    <Button
-                                        type="dashed"
-                                        onClick={() => add()}
-                                        block
-                                        icon={<PlusOutlined />}
-                                    >
-                                        Add field
-                                    </Button>
-                                </Form.Item>
-                            </>
-                        )}
-                    </Form.List>
-                    <Form.Item>
-                        <Button type="primary" htmlType="submit">
-                            Submit
-                        </Button>
-                    </Form.Item>
-                </Form>
+                <React.Fragment>
+                    <WidgetLoader />
+                    <Widget
+                        sources={["local", "url"]}
+                        resourceType={"image"}
+                        cloudName={"dbzfjnlhl"}
+                        uploadPreset={"c8mhcoqp"} // check that an upload preset exists and check mode is signed or unisgned
+                        buttonText={"Tải ảnh"} // default 'Upload Files'
+                        style={{
+                            color: "white",
+                            border: "none",
+                            width: "120px",
+                            backgroundColor: "green",
+                            borderRadius: "4px",
+                            height: "25px"
+                        }} // inline styling only or style id='cloudinary_upload_button'
+                        folder={"Sababy"} // set cloudinary folder name to send file
+                        cropping={false} // set ability to crop images -> default = true
+                        onSuccess={res => this.onAddImage(res)} // add success callback -> returns result
+                        onFailure={res => console.log(res)} // add failure callback -> returns 'response.error' + 'response.result'
+                        logging={true}
+                    />
+                    {this.state.images.length
+                        ? this.state.images.map((image, index) => (
+                              <Image width={100} src={image} key={index}/>
+                          ))
+                        : null}
+                </React.Fragment>
             );
             footer = [
                 <Button key="back" onClick={() => this.changeModalStep(2)}>
@@ -579,7 +541,6 @@ class AddProductComponent extends Component {
                 </Button>
             ];
         }
-
         return (
             <div className="add-product-btn d-flex justify-content-end">
                 <Button

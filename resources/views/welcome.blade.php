@@ -15,6 +15,7 @@
                 'csrfToken' => csrf_token(),
             ]) !!};
         </script>
+        <script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>
     </head>
     <body>
         <div id="app"></div>
