@@ -4,13 +4,11 @@ import { Link } from "react-router-dom";
 import { Spin, Button, Modal, Form, Input, Cascader, InputNumber } from "antd";
 import "./css/MyProducts.scss";
 import { connect } from "react-redux";
-import moment from "moment";
 import AddProductComponent from "./AddProductComponent";
-
-const { TextArea } = Input;
 
 class MyProducts extends Component {
     render() {
+        console.log(this.props.auth);
         return (
             <div className="my-products-page container">
                 <div className="my-products-banner">

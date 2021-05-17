@@ -51,6 +51,7 @@ class AddProductComponent extends Component {
         this.onChangeOutsideStatus = this.onChangeOutsideStatus.bind(this);
         this.onChangeFunctionStatus = this.onChangeFunctionStatus.bind(this);
         this.onAddImage = this.onAddImage.bind(this);
+        this.onDeleteImage = this.onDeleteImage.bind(this);
         this.changeModalStep = this.changeModalStep.bind(this);
         this.initMap = this.initMap.bind(this);
     }
@@ -89,6 +90,9 @@ class AddProductComponent extends Component {
     onAddImage(value) {
         var joined = this.state.images.concat(value.info.secure_url);
         this.setState({ images: joined });
+    }
+    onDeleteImage() {
+        this.setState({ images: [] });
     }
 
     setModalVisible(status) {
@@ -220,56 +224,61 @@ class AddProductComponent extends Component {
     handleOk() {
         this.setConfirmLoading(true);
         if (this.state.modal_step === 3) {
-            const latLng = { lat: this.state.lat, lng: this.state.lng };
-            const geocoder = new google.maps.Geocoder();
-            geocoder.geocode({ location: latLng }, (results, status) => {
-                if (status === "OK") {
-                    if (results[0]) {
-                        const city = results[4].address_components.filter(
-                            addr =>
-                                addr.types[0] == "administrative_area_level_1"
-                        );
-                        if (city[0]) {
-                            this.setState({ city: city[0].long_name }, () => {
-                                let uri = "http://localhost:8000/api/product";
-                                const newProduct = {
-                                    category_id: this.state.category_id,
-                                    product_name: this.state.product_name,
-                                    description: this.state.description,
-                                    price: this.state.price,
-                                    quantity: this.state.quantity,
-                                    outside_status: this.state.outside_status,
-                                    function_status: this.state.function_status,
-                                    location: `(${this.state.lat},${this.state.lng})`,
-                                    city: this.state.city,
-                                    images: this.state.images
-                                };
-                                Http.post(uri, newProduct).then(response => {
-                                    if (response) {
-                                        console.log(response);
-                                    }
-                                });
-                            });
-                        } else {
-                            console.log(`(${this.state.lat},${this.state.lng})`);
-                            notification["error"]({
-                                message:
-                                    "Lấy vị trí thất bại. Hãy chọn lại vị trí"
-                            });
-                        }
+            if (this.state.images.length) {
+                let uri = "http://localhost:8000/api/product";
+                const newProduct = {
+                    category_id: this.state.category_id,
+                    product_name: this.state.product_name,
+                    description: this.state.description,
+                    price: this.state.price,
+                    quantity: this.state.quantity,
+                    outside_status: this.state.outside_status,
+                    function_status: this.state.function_status,
+                    location: `(${this.state.lat},${this.state.lng})`,
+                    city: this.state.city,
+                    images: this.state.images
+                };
+                Http.post(uri, newProduct).then(response => {
+                    if (response) {
+                        console.log(response);
                     }
-                }
-            });
-
-            this.setModalVisible(false);
-            this.setConfirmLoading(false);
+                });
+                this.setModalVisible(false);
+                this.setConfirmLoading(false);
+            } else {
+                notification["error"]({
+                    message: "Hãy tải lên ảnh sản phẩm."
+                });
+            }
         } else if (this.state.modal_step === 2) {
             if (!this.state.lat || !this.state.lng) {
                 notification["error"]({
                     message: "Hãy chọn vị trí sản phẩm"
                 });
             } else {
-                this.changeModalStep(this.state.modal_step + 1);
+                const latLng = { lat: this.state.lat, lng: this.state.lng };
+                const geocoder = new google.maps.Geocoder();
+                geocoder.geocode({ location: latLng }, (results, status) => {
+                    if (status === "OK") {
+                        console.log(results);
+                        if (results[0]) {
+                            const city = results[0].address_components.filter(
+                                addr =>
+                                    addr.types[0] ==
+                                    "administrative_area_level_1"
+                            );
+                            if (city[0]) {
+                                this.setState({ city: city[0].long_name });
+                                this.changeModalStep(this.state.modal_step + 1);
+                            } else {
+                                notification["error"]({
+                                    message:
+                                        "Lấy thông tin thành phố thất bại. Hãy chọn lại vị trí"
+                                });
+                            }
+                        }
+                    }
+                });
             }
         } else {
             this.changeModalStep(this.state.modal_step + 1);
@@ -500,6 +509,11 @@ class AddProductComponent extends Component {
             title = "Tải lên ảnh/video sản phẩm";
             modal = (
                 <React.Fragment>
+                    {this.state.images.length
+                        ? this.state.images.map((image, index) => (
+                              <Image height={300} src={image} key={index} />
+                          ))
+                        : null}
                     <WidgetLoader />
                     <Widget
                         sources={["local", "url"]}
@@ -508,12 +522,14 @@ class AddProductComponent extends Component {
                         uploadPreset={"c8mhcoqp"} // check that an upload preset exists and check mode is signed or unisgned
                         buttonText={"Tải ảnh"} // default 'Upload Files'
                         style={{
-                            color: "white",
+                            color: "#fff",
                             border: "none",
-                            width: "120px",
-                            backgroundColor: "green",
+                            width: "60px",
+                            backgroundColor: "#1890ff",
                             borderRadius: "4px",
-                            height: "25px"
+                            height: "60px",
+                            display: "block",
+                            margin: "auto"
                         }} // inline styling only or style id='cloudinary_upload_button'
                         folder={"Sababy"} // set cloudinary folder name to send file
                         cropping={false} // set ability to crop images -> default = true
@@ -521,16 +537,14 @@ class AddProductComponent extends Component {
                         onFailure={res => console.log(res)} // add failure callback -> returns 'response.error' + 'response.result'
                         logging={true}
                     />
-                    {this.state.images.length
-                        ? this.state.images.map((image, index) => (
-                              <Image width={100} src={image} key={index}/>
-                          ))
-                        : null}
                 </React.Fragment>
             );
             footer = [
                 <Button key="back" onClick={() => this.changeModalStep(2)}>
                     Quay lại
+                </Button>,
+                <Button key="delete-image" onClick={() => this.onDeleteImage()}>
+                    Xóa hết ảnh
                 </Button>,
                 <Button
                     key="submit"
@@ -569,7 +583,7 @@ const mapStateToProps = state => {
     return {
         categories: state.categoryDetail.categories,
         products: state.productDetail.products,
-        auth: state.auth
+        currentUser: state.auth.currentUser
     };
 };
 

@@ -1,6 +1,10 @@
 .add-product-btn {
     padding: 10px;
-    // .modal-add-product-form {
-    //     padding-top: 10px;
-    // }
+}
+.ant-modal-content {
+    .ant-modal-body {
+        .ant-image-img {
+            width: auto !important;
+        }
+    }
 }

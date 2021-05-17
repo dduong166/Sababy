@@ -58,6 +58,8 @@ class Navbar extends Component {
                             name: response.data.user.name
                         };
                         this.props.login(currentUser);
+                    }else {
+                        this.props.logout();
                     }
                 })
                 .catch(error => {
@@ -65,6 +67,7 @@ class Navbar extends Component {
                 });
         } else {
             console.log("k có auth_token trong Local Storage");
+            this.props.logout();
         }
     }
 

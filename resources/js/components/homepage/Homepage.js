@@ -45,14 +45,11 @@ class Homepage extends Component {
             this.setState({ isLoading: false, isProductLoading: false });
         });
     }
-    // getProductsWithDistance(products) {
-    //     this.props.setProducts(products);
-    // }
+   
     handleBookmark(bookmark, index) {
         console.log("handle Bookmark");
         console.log(index);
         console.log(this.props);
-        // this.props.setBookmark(bookmark, index);
     }
 
     render() {
@@ -104,8 +101,7 @@ class Homepage extends Component {
 const mapStateToProps = state => {
     return {
         categories: state.categoryDetail.categories,
-        products: state.productDetail.products,
-        auth: state.auth
+        products: state.productDetail.products
     };
 };
 

@@ -8,7 +8,7 @@ class CategoryList extends Component {
         let categories = this.props.categories;
         return (
             <div className="category-list">
-                {categories.map((category, index) => (
+                {categories ? categories.map((category, index) => (
                     <Link
                         to={"/category/" + category.id}
                         key={category.id}
@@ -20,7 +20,7 @@ class CategoryList extends Component {
                             </div>
                         </div>
                     </Link>
-                ))}
+                )) : null }
             </div>
         );
     }

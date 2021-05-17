@@ -5,7 +5,6 @@ import "./css/ProductDetail.scss";
 import { Spin } from "antd";
 import SlideShow from "react-image-show";
 import { connect } from "react-redux";
-import moment from "moment";
 import QuestionComponent from "./QuestionComponent";
 
 class ProductDetail extends Component {
@@ -43,10 +42,15 @@ class ProductDetail extends Component {
     render() {
         var detail = this.props.detail;
         if (detail) {
-            var images = detail.product_medias.map((media, index, medias) => {
+            var images = detail.product_medias.map((media, index) => {
                 return media.media_url;
             });
         }
+        if(this.props.auth.currentUser) {
+            console.log(1111);
+        }
+        console.log(this.props);
+
         return (
             <div className="product-detail">
                 {!this.state.loading && detail ? (
@@ -97,7 +101,6 @@ class ProductDetail extends Component {
                                     infinite
                                     indicators
                                     thumbnails
-                                    fixedImagesHeight
                                 />
                             </div>
                             <div className="product-short-info col-lg-6">
@@ -145,46 +148,6 @@ class ProductDetail extends Component {
                                         </tbody>
                                     </table>
                                 </div>
-                                {/* <div className="product-quantity form-group d-flex flex-row justify-content-start align-items-center">
-                                    <div className="quantity-title">
-                                        Số lượng:
-                                    </div>
-                                    <input
-                                        className="form-control quantity-number-input"
-                                        type="number"
-                                        min="1"
-                                        value={this.state.quantity}
-                                        onChange={this.onChangeQuantity}
-                                    />
-                                </div> */}
-                                {/* <div className="price d-flex flex-row justify-content-start align-items-center">
-                                    {detail.discount ? (
-                                        <div className="old_price">
-                                            <strike>
-                                                {detail.price.toLocaleString()}{" "}
-                                                đ
-                                            </strike>
-                                        </div>
-                                    ) : (
-                                        ""
-                                    )}
-                                    <div className="new_price">
-                                        {(
-                                            (detail.price *
-                                                (100 - detail.discount)) /
-                                            100
-                                        ).toLocaleString()}{" "}
-                                        đ
-                                    </div>
-                                </div> */}
-                                {/* <div className="add-to-cart-and-buy-button d-flex flex-row justify-content-start align-items-center">
-                                    <button className="add-to-cart-button">
-                                        THÊM VÀO GIỎ HÀNG
-                                    </button>
-                                    <button className="buy-button">
-                                        MUA NGAY
-                                    </button>
-                                </div> */}
                             </div>
                         </div>
                         <div className="product-detail-info row">
