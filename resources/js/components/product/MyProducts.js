@@ -1,14 +1,36 @@
 import React, { Component } from "react";
 import Http from "../../Http";
 import { Link } from "react-router-dom";
-import { Spin, Button, Modal, Form, Input, Cascader, InputNumber } from "antd";
+import { notification } from "antd";
 import "./css/MyProducts.scss";
 import { connect } from "react-redux";
 import AddProductComponent from "./AddProductComponent";
+import ProductCard from "./ProductCard";
 
 class MyProducts extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            categories: [],
+            isLoading: true
+        };
+        this.getProducts = this.getProducts.bind(this);
+    }
+
+    componentDidMount() {
+        this.getProducts();
+    }
+
+    getProducts() {
+        const uri = "http://localhost:8000/api/product/selling";
+        Http.get(uri).then(response => {
+            this.props.setProducts(response.data);
+        });
+    }
+
     render() {
-        console.log(this.props.auth);
+        var products = this.props.products;
+
         return (
             <div className="my-products-page container">
                 <div className="my-products-banner">
@@ -54,6 +76,27 @@ class MyProducts extends Component {
                                 aria-labelledby="nav-onsale-tab"
                             >
                                 <AddProductComponent />
+                                <div className="product-list">
+                            <div className="container">
+                                <div className="row">
+                                    {products
+                                        ? products.map((product, index) => (
+                                              <ProductCard
+                                                  key={product.id}
+                                                  product={product}
+                                                  index={index}
+                                                //   setBookmark={
+                                                //       this.props.setBookmark
+                                                //   }
+                                                //   setUnbookmark={
+                                                //       this.props.setUnbookmark
+                                                //   }
+                                              />
+                                          ))
+                                        : ""}
+                                </div>
+                            </div>
+                        </div>
                             </div>
                             <div
                                 className="tab-pane fade"
@@ -73,7 +116,6 @@ class MyProducts extends Component {
 
 const mapStateToProps = state => {
     return {
-        categories: state.categoryDetail.categories,
         products: state.productDetail.products,
         auth: state.auth
     };

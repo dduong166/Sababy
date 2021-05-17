@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Http from "../../Http";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import {
     Spin,
     Button,
@@ -241,6 +241,12 @@ class AddProductComponent extends Component {
                 Http.post(uri, newProduct).then(response => {
                     if (response) {
                         console.log(response);
+                        notification["success"]({
+                            message: "Thêm sản phẩm thành công.",
+                            description:
+                                "Nhấn vào đây để chuyển sang màn xem chi tiết sản phẩm.",
+                            onClick: () => {this.props.history.push(`/product/${response.data.product.id}`)}
+                        });
                     }
                 });
                 this.setModalVisible(false);
@@ -617,7 +623,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(AddProductComponent);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AddProductComponent));

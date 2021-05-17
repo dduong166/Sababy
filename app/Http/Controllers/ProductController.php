@@ -50,6 +50,27 @@ class ProductController extends Controller
         return response()->json($products);
     }
 
+    public function sellingProducts(){
+        if (JWTAuth::getToken()) {
+            $auth = JWTAuth::parseToken()->check();
+        } else {
+            $auth = false;
+        }
+        if ($auth) {
+            $user = JWTAuth::parseToken()->authenticate();
+            $products = Product::where('owner_id', $user->id)->get();
+            $products = $products->load('productMedias');
+            $products = $products->load(['bookmarks' => function ($query) use ($user) {
+                $query->where('user_id', $user->id);
+            }]);
+        }else{
+            return response()->json([
+                'message' => "Not authenticated"
+            ]);
+        }
+        return response()->json($products);
+    }
+
     public function getProductByID($product_id) //product detail
     {
         //get product
