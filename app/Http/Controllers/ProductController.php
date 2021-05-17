@@ -5,10 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\Product;
-use App\Http\Controllers\DealController;
 use App\Http\Controllers\CategoryController;
 use App\Models\ProductMedia;
-use App\Models\Deal;
 use App\Models\Category;
 use App\Models\Question;
 use App\Models\Answer;
@@ -17,14 +15,12 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class ProductController extends Controller
 {
-    protected $DealController;
     protected $CategoryController;
 
-    public function __construct(DealController $DealController, CategoryController $CategoryController)
+    public function __construct(CategoryController $CategoryController)
     {
         // header('Access-Control-Allow-Origin: *'); 
         // dd(123);
-        $this->DealController = $DealController;
         $this->CategoryController = $CategoryController;
     }
 
@@ -54,12 +50,31 @@ class ProductController extends Controller
         return response()->json($products);
     }
 
+    public function sellingProducts(){
+        if (JWTAuth::getToken()) {
+            $auth = JWTAuth::parseToken()->check();
+        } else {
+            $auth = false;
+        }
+        if ($auth) {
+            $user = JWTAuth::parseToken()->authenticate();
+            $products = Product::where('owner_id', $user->id)->get();
+            $products = $products->load('productMedias');
+            $products = $products->load(['bookmarks' => function ($query) use ($user) {
+                $query->where('user_id', $user->id);
+            }]);
+        }else{
+            return response()->json([
+                'message' => "Not authenticated"
+            ]);
+        }
+        return response()->json($products);
+    }
+
     public function getProductByID($product_id) //product detail
     {
         //get product
         $product = Product::where('id', $product_id)->first();
-        $rate = $this->DealController->getRate($product_id);
-        $product->rate = $rate->original;
         //get category
         $product = $product->load(['owner', 'category', 'productMedias', 'questions.asker:id,name', 'questions.answers.answerer:id,name', 'questions' => function ($query) {
             $query->orderBy('created_at', 'desc');
@@ -163,12 +178,6 @@ class ProductController extends Controller
         return response()->json($result);
     }
 
-    public function getProductDeals($product_id)
-    {
-        $deals = $this->DealController->getDeal($product_id);
-        return $deals;
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -187,7 +196,47 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'category_id' => 'required',
+            'product_name' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'quantity' => 'required|min:1',
+            'outside_status' => 'required',
+            'function_status' => 'required',
+            'location' => 'required',
+            'city' => 'required',
+            'images' => 'required'
+        ]);
+        if (!$user = JWTAuth::parseToken()->authenticate()) {
+            return response()->json(['user_not_found'], 404);
+        }
+        $product = new Product;
+        $product->owner_id = $user->id;
+        $product->category_id = $request->category_id;
+        $product->product_name = $request->product_name;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->quantity = $request->quantity;
+        $product->outside_status = $request->outside_status;
+        $product->function_status = $request->function_status;
+        $product->location = $request->location;
+        $product->city = $request->city;
+        $product->save();
+
+        $images = $request->images;
+        $product_medias = [];
+
+        foreach($request->images as $image) {
+            $product_medias[] = ['product_id' => $product->id, 'media_url' => $image, 'media_type' => 0];
+        }
+
+        ProductMedia::insert($product_medias);
+
+        return response()->json([
+            'product' => $product, 
+            'product_media' => $product_medias
+        ]);
     }
 
     /**

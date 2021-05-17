@@ -48,7 +48,7 @@ class Homepage extends Component {
             <div className="homepage-body">
                 {!this.state.isLoading ? (
                     <div className="container">
-                        <FilterSort location={this.props.location} history={this.props.history} setStateKeyword={this.setStateKeyword}/>
+                        <FilterSort location={this.props.location} history={this.props.history}/>
                         {this.props.products ? (
                             <React.Fragment>
                                 {this.state.keyword ? (

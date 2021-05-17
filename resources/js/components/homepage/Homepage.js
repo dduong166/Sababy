@@ -45,37 +45,20 @@ class Homepage extends Component {
             this.setState({ isLoading: false, isProductLoading: false });
         });
     }
-    // getProductsWithDistance(products) {
-    //     this.props.setProducts(products);
-    // }
+   
     handleBookmark(bookmark, index) {
         console.log("handle Bookmark");
         console.log(index);
         console.log(this.props);
-        // this.props.setBookmark(bookmark, index);
     }
 
     render() {
-        let parent_categories = [];
-        if (this.props.categories) {
-            parent_categories = this.props.categories.filter(category => {
-                return category.parent_category_id === null;
-            });
-        }
         return (
             <div className="homepage-body">
                 {!this.state.isLoading ? (
                     <div className="container">
-                        {/* {this.props.products ? (
-                            <div className="filter-and-sort d-flex justify-content-end">
-                                <DistanceSort
-                                    setProducts={this.props.setProducts}
-                                />
-                            </div>
-                        ) : null} */}
-
                         <h3>DANH MỤC SẢN PHẨM</h3>
-                        <CategoryList parent_categories={parent_categories} />
+                        <CategoryList categories={this.props.categories} />
                         <h3 className="trending_title">TẤT CẢ SẢN PHẨM</h3>
                         <div className="product-list">
                             <div className="container">
@@ -118,8 +101,7 @@ class Homepage extends Component {
 const mapStateToProps = state => {
     return {
         categories: state.categoryDetail.categories,
-        products: state.productDetail.products,
-        auth: state.auth
+        products: state.productDetail.products
     };
 };
 

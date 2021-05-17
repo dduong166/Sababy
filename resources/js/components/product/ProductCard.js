@@ -84,7 +84,7 @@ class ProductCard extends Component {
                     className="product_card_content"
                     onClick={this.handleShowDetail}
                 >
-                    {this.props.currentUser ? (
+                    {/* {this.props.currentUser ? (
                         <div className="bookmark">
                             {product.bookmarks && product.bookmarks.length ? (
                                 <i
@@ -100,7 +100,7 @@ class ProductCard extends Component {
                                 ></i>
                             )}
                         </div>
-                    ) : null}
+                    ) : null} */}
                     <div className="product_image">
                         {product.product_medias[0] ? (
                             <img

@@ -9,6 +9,7 @@ import { createBrowserHistory } from "history";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import rootReducer from "./redux/reducer/rootReducer";
+import PrivateRoute from "./PrivateRoute";
 
 import Login from "./components/auth/Login";
 import Homepage from "./components/homepage/Homepage";
@@ -18,7 +19,7 @@ import ProductSearch from "./components/product/ProductSearch";
 import App from "./components/page/App";
 import Navbar from "./components/header-footer/Navbar";
 import Footer from "./components/header-footer/Footer";
-import MyProducts from "./components/product/MyProducts"
+import MyProducts from "./components/product/MyProducts";
 
 const store = createStore(
     rootReducer,
@@ -31,44 +32,33 @@ class AppMain extends Component {
         return (
             <Provider store={store}>
                 <Router history={history}>
-                            <Switch>
-                                <App>
-                                    <Navbar
-                                        history={history}
-                                    />
-                                    <Route
-                                        path="/login"
-                                        exact
-                                        component={Login}
-                                    />
-                                    <Route
-                                        path="/"
-                                        exact
-                                        component={Homepage}
-                                    />
-                                    <Route
-                                        path="/category/:category_id"
-                                        exact
-                                        component={CategoryDetail}
-                                    />
-                                    <Route
-                                        path="/product/:product_id"
-                                        exact
-                                        component={ProductDetail}
-                                    />
-                                    <Route
-                                        path="/search"
-                                        exact
-                                        component={ProductSearch}
-                                    />
-                                    <Route
-                                        path="/my-products"
-                                        exact
-                                        component={MyProducts}
-                                    />
-                                    <Footer />
-                                </App>
-                            </Switch>
+                    <Switch>
+                        <App>
+                            <Navbar history={history} />
+                            <Route path="/login" exact component={Login} />
+                            <Route path="/" exact component={Homepage} />
+                            <Route
+                                path="/category/:category_id"
+                                exact
+                                component={CategoryDetail}
+                            />
+                            <Route
+                                path="/product/:product_id"
+                                exact
+                                component={ProductDetail}
+                            />
+                            <Route
+                                path="/search"
+                                exact
+                                component={ProductSearch}
+                            />
+                            <PrivateRoute
+                                path="/my-products"
+                                component={MyProducts}
+                            />
+                            <Footer />
+                        </App>
+                    </Switch>
                 </Router>
             </Provider>
         );

@@ -53,7 +53,6 @@ class DistanceSort extends Component {
         }
     }
     initMap() {
-        console.log("init map nè");
         if (this.state.visible) {
             let map = new google.maps.Map(document.getElementById("map"), {
                 center: { lat: 21.0277644, lng: 105.8341598 },
@@ -81,12 +80,11 @@ class DistanceSort extends Component {
             var marker = new google.maps.Marker({
                 map
             });
-            google.maps.event.addListener(map, "click", e => {
-                var latLng = e.latLng;
-                this.setState({
-                    lat: e.latLng.lat(),
-                    lng: e.latLng.lng()
-                });
+            if (this.state.lat && this.state.lng) {
+                //Nếu như trước đó đã được chọn vị trí -> hiện marker
+                let latLng = { lat: this.state.lat, lng: this.state.lng };
+                console.log(latLng);
+                infowindow.close();
                 if (marker && marker.setMap) {
                     marker.setMap(null);
                 }
@@ -94,47 +92,75 @@ class DistanceSort extends Component {
                     position: latLng,
                     map: map
                 });
-                map.panTo(marker.getPosition());
-                input.value = "";
-            });
-            autocomplete.addListener("place_changed", () => {
-                infowindow.close();
-                const place = autocomplete.getPlace();
-                console.log(place);
-
-                if (!place.geometry || !place.geometry.location) {
-                    // window.alert(
-                    //     "Không tìm thấy vị trí " +
-                    //         place.name +
-                    //         " .Vui lòng chọn trên bản đồ."
-                    // );
-                    notification["error"]({
-                        message:
-                            "Không tìm thấy vị trí " +
-                            place.name +
-                            " .Vui lòng chọn trên bản đồ."
-                    });
-                    return;
-                }
-                this.setState({
-                    lat: place.geometry.location.lat(),
-                    lng: place.geometry.location.lng()
-                });
-                if (marker && marker.setMap) {
-                    marker.setMap(null);
-                }
-                marker = new google.maps.Marker({
-                    position: place.geometry.location,
-                    map: map
-                });
-                map.panTo(marker.getPosition());
                 map.setZoom(16);
-                infowindowContent.children["place-name"].textContent =
-                    place.name;
-                infowindowContent.children["place-address"].textContent =
-                    place.formatted_address;
+                infowindowContent.children[
+                    "place-name"
+                ].textContent = `(${this.state.lat},${this.state.lng})`;
+                infowindowContent.children["place-address"].textContent = "";
                 infowindow.open(map, marker);
-            });
+            }
+            google.maps.event.addListener(
+                map,
+                "click",
+                e => {
+                    var latLng = e.latLng;
+                    this.setState({
+                        lat: e.latLng.lat(),
+                        lng: e.latLng.lng()
+                    });
+                    if (marker && marker.setMap) {
+                        marker.setMap(null);
+                    }
+                    marker = new google.maps.Marker({
+                        position: latLng,
+                        map: map
+                    });
+                    input.value = "";
+                    map.setZoom(16);
+                    infowindowContent.children[
+                        "place-name"
+                    ].textContent = latLng;
+                    infowindowContent.children["place-address"].textContent =
+                        "";
+                    infowindow.open(map, marker);
+                }
+            );
+            autocomplete.addListener(
+                "place_changed",
+                () => {
+                    infowindow.close();
+                    const place = autocomplete.getPlace();
+                    console.log(place);
+
+                    if (!place.geometry || !place.geometry.location) {
+                        notification["error"]({
+                            message:
+                                "Không tìm thấy vị trí " +
+                                place.name +
+                                " .Vui lòng chọn trên bản đồ."
+                        });
+                        return;
+                    }
+                    this.setState({
+                        lat: place.geometry.location.lat(),
+                        lng: place.geometry.location.lng()
+                    });
+                    if (marker && marker.setMap) {
+                        marker.setMap(null);
+                    }
+                    marker = new google.maps.Marker({
+                        position: place.geometry.location,
+                        map: map
+                    });
+                    map.panTo(marker.getPosition());
+                    map.setZoom(16);
+                    infowindowContent.children["place-name"].textContent =
+                        place.name;
+                    infowindowContent.children["place-address"].textContent =
+                        place.formatted_address;
+                    infowindow.open(map, marker);
+                }
+            );
         }
     }
 
@@ -227,68 +253,6 @@ class DistanceSort extends Component {
                         <span id="place-address"></span>
                     </div>
                 </Modal>
-                {/* <button
-                    type="button"
-                    className="btn btn-primary openMapButton"
-                    data-toggle="modal"
-                    data-target=".bd-example-modal-lg"
-                    onClick={this.initMap}
-                >
-                    Sắp xếp theo khoảng cách
-                </button> */}
-
-                {/* <div
-                    className="modal fade bd-example-modal-lg"
-                    tabIndex="-1"
-                    role="dialog"
-                    aria-labelledby="myLargeModalLabel"
-                    aria-hidden="true"
-                >
-                    <div className="modal-dialog modal-lg">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <h5
-                                    className="modal-title"
-                                    id="exampleModalLongTitle"
-                                >
-                                    Xác định vị trí nhận hàng
-                                </h5>
-                                <button
-                                    type="button"
-                                    className="close"
-                                    data-dismiss="modal"
-                                    aria-label="Close"
-                                >
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div className="modal-body">aaa</div>
-                            <div className="modal-footer">
-                                <button
-                                    type="button"
-                                    className="btn btn-secondary"
-                                    data-dismiss="modal"
-                                >
-                                    Đóng
-                                </button>
-                                <button
-                                    type="button"
-                                    className="btn btn-primary"
-                                    onClick={this.SortByDistance}
-                                >
-                                    Xác nhận
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div> */}
-                {/* <button
-                    type="button"
-                    className="btn btn-primary"
-                    onClick={this.SortByDistance}
-                >
-                    Vị trí hiện tại
-                </button> */}
             </div>
         );
     }

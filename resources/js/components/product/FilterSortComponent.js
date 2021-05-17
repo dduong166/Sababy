@@ -95,7 +95,6 @@ class FilterSort extends Component {
             if (response) {
                 this.props.setProducts(response.data);
                 this.setState({ isLoading: false });
-                this.props.setStateKeyword(condition.k);
             } else {
                 console.log("Tìm kiếm thất bại");
             }
@@ -103,7 +102,6 @@ class FilterSort extends Component {
     }
 
     render() {
-        console.log(this.state);
         return (
             <div className="filter-and-sort d-flex justify-content-end">
                 {!this.state.isLoading ? (

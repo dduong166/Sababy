@@ -1,5 +1,6 @@
 const initialState = {
-    currentUser: ""
+    currentUser: "",
+    loading: true // k thay hien tren redux
 };
 
 export const AuthReducer = (state = initialState, action) => {
@@ -7,12 +8,14 @@ export const AuthReducer = (state = initialState, action) => {
         case "LOGOUT":
             return {
                 ...state,
-                currentUser: ""
+                currentUser: "",
+                loading: false
             };
         case "LOGIN":
             return {
                 ...state,
-                currentUser: action.payload
+                currentUser: action.payload,
+                loading: false
             }
         default:
             return { ...state};

@@ -15,12 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-Route::get('/user', function (Request $request) {
+Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+// Route::get('/user', function (Request $request) {
+//     return $request->user();
+// });
 Route::prefix('user')->group(function () {
     Route::post('/login', 'UserController@login')->name('login');
     Route::post('/register', 'UserController@register');
@@ -31,21 +31,20 @@ Route::prefix('category')->group(function () {
 });
 Route::prefix('product')->group(function () {
     Route::get('/', 'ProductController@index');
+    Route::middleware('auth:api')->get('/selling', 'ProductController@sellingProducts');
     Route::get('/{product_id}', 'ProductController@getProductByID');
     Route::get('/category/{category_id}', 'ProductController@getProductByCategoryID');
-    Route::get('/{product_id}/deal', 'ProductController@getProductDeals');
     Route::post('/filter', 'ProductController@filter');
+    Route::middleware('auth:api')->post('/', 'ProductController@store');
 });
-Route::prefix('deal')->group(function () {
-    // Route::get('/rate/{product_id}', 'DealController@getRate');
-});
-Route::prefix('bookmark')->group(function () {
+
+Route::middleware('auth:api')->prefix('bookmark')->group(function () {
     Route::post('/', 'BookmarkController@store');
     Route::delete('/{product_id}', 'BookmarkController@destroy');
 });
 Route::prefix('question')->group(function () {
-    Route::post('/', 'QuestionController@store');
+    Route::middleware('auth:api')->post('/', 'QuestionController@store');
 });
 Route::prefix('answer')->group(function () {
-    Route::post('/', 'AnswerController@store');
+    Route::middleware('auth:api')->post('/', 'AnswerController@store');
 });

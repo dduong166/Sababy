@@ -15,10 +15,11 @@
                 'csrfToken' => csrf_token(),
             ]) !!};
         </script>
+        <script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>
     </head>
     <body>
         <div id="app"></div>
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDL-mENJ7NamXqaEropaAeCsFC42q9lLb4&libraries=places"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDL-mENJ7NamXqaEropaAeCsFC42q9lLb4&libraries=places&language=vi"></script>
     </body>
 </html>

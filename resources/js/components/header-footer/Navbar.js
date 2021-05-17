@@ -58,6 +58,8 @@ class Navbar extends Component {
                             name: response.data.user.name
                         };
                         this.props.login(currentUser);
+                    }else {
+                        this.props.logout();
                     }
                 })
                 .catch(error => {
@@ -65,6 +67,7 @@ class Navbar extends Component {
                 });
         } else {
             console.log("k có auth_token trong Local Storage");
+            this.props.logout();
         }
     }
 
@@ -100,18 +103,18 @@ class Navbar extends Component {
                             {this.props.currentUser ? (
                                 <div>
                                     <div className="username">
-                                        Hello {this.props.currentUser.name}
+                                        Chào {this.props.currentUser.name}
                                     </div>
                                     <div
                                         className="logout"
                                         onClick={this.logoutAccount}
                                     >
-                                        LOGOUT
+                                        Đăng xuất
                                     </div>
                                 </div>
                             ) : (
                                 <div className="special">
-                                    <Link to="/login">LOGIN</Link>
+                                    <Link to="/login">Đăng nhập</Link>
                                 </div>
                             )}
                         </div>

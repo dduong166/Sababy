@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 import Http from "../../Http";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import "./css/CategoryDetail.scss";
 import CategoryList from "../category-list-component/CategoryListComponent";
 import ProductCard from "../product/ProductCard";
+import FilterSort from "../product/FilterSortComponent";
 import { connect } from "react-redux";
+import { createBrowserHistory } from "history";
+
+const history = createBrowserHistory();
 
 class CategoryDetail extends Component {
     constructor(props) {
@@ -43,7 +47,6 @@ class CategoryDetail extends Component {
     render() {
         var category = this.props.category_detail;
         var products = this.props.products;
-
         return (
             <div className="homepage-body">
                 {!this.state.loading && category ? (
@@ -83,7 +86,7 @@ class CategoryDetail extends Component {
                             <h2>{category.category_name}</h2>
                         </div>
                         <CategoryList
-                            parent_categories={category.sub_categories}
+                            categories={category.sub_categories}
                         />
                         <div className="product-list">
                             <div className="container">
@@ -146,4 +149,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryDetail);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CategoryDetail));
