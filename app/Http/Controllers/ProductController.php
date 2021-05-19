@@ -71,6 +71,11 @@ class ProductController extends Controller
         return response()->json($products);
     }
 
+    public function getProductCity() {
+        $cities = Product::groupBy('city')->pluck('city');
+        return response()->json($cities);
+    }
+
     public function getProductByID($product_id) //product detail
     {
         //get product

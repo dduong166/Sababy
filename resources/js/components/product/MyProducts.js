@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Http from "../../Http";
 import { Link } from "react-router-dom";
-import { notification } from "antd";
 import "./css/MyProducts.scss";
 import { connect } from "react-redux";
 import AddProductComponent from "./AddProductComponent";

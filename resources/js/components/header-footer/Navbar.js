@@ -64,6 +64,7 @@ class Navbar extends Component {
                 })
                 .catch(error => {
                     console.log(error.response.status);
+                    this.props.logout();
                 });
         } else {
             console.log("k có auth_token trong Local Storage");
