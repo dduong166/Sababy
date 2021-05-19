@@ -46,11 +46,11 @@ class FilterSort extends Component {
         Http.defaults.headers.common["token"] =
             "08ed659a-4f05-11eb-b7e7-eeaa791b204b";
         Http.get(
-            "https://online-gateway.ghn.vn/shiip/public-api/master-data/province"
+            "http://localhost:8000/api/product/cities"
         )
             .then(response => {
                 if (response.data) {
-                    this.setState({ cities: response.data.data });
+                    this.setState({ cities: response.data });
                 } else {
                     console.log("Lấy danh sách tỉnh thành phố thất bại.");
                 }
@@ -102,6 +102,7 @@ class FilterSort extends Component {
     }
 
     render() {
+        console.log(this.state);
         return (
             <div className="filter-and-sort d-flex justify-content-end">
                 {!this.state.isLoading ? (
@@ -124,10 +125,10 @@ class FilterSort extends Component {
                             {this.state.cities
                                 ? this.state.cities.map((city, index) => (
                                       <Option
-                                          value={city.ProvinceName}
+                                          value={city}
                                           key={index}
                                       >
-                                          {city.ProvinceName}
+                                          {city}
                                       </Option>
                                   ))
                                 : null}

@@ -3,6 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 import Http from "../../Http";
 import $ from "jquery";
 import "./css/login.scss";
+import { notification } from "antd";
 import { connect } from "react-redux";
 
 class Login extends Component {
@@ -121,11 +122,13 @@ class Login extends Component {
         Http.post(uri, newUser).then(response => {
             if (response.data.success) {
                 console.log(response);
-                if (window.history.length > 1) {
-                    window.history.back();
-                } else {
-                    this.props.history.push("/");
-                }
+                window.location.reload();
+            } else {
+                console.log(response);
+                notification["error"]({
+                    message:
+                        "Đăng ký tài khoản thất bại."
+                });
             }
         });
         this.setState({
@@ -169,7 +172,6 @@ class Login extends Component {
         });
     }
     render() {
-        console.log(this.props);
         return (
             <div className="login-app">
                 <div className="form">
