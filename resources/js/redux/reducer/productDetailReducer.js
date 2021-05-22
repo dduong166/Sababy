@@ -1,7 +1,8 @@
 const { fromJS, removeIn } = require("immutable");
 const initialState = {
     detail: "",
-    products: ""
+    products: "",
+    sold_products: ""
 };
 
 export const productDetailReducer = (state = initialState, action) => {
@@ -12,6 +13,11 @@ export const productDetailReducer = (state = initialState, action) => {
             return {
                 ...state,
                 products: action.payload
+            };
+        case "SET_SOLD_PRODUCTS":
+            return {
+                ...state,
+                sold_products: action.payload
             };
         case "SET_PRODUCT_DETAIL":
             return {
@@ -40,14 +46,16 @@ export const productDetailReducer = (state = initialState, action) => {
             draft = draft.updateIn(["products", index, "bookmarks"], list =>
                 list.push(action.payload)
             );
-            console.log('set bm');
+            console.log("set bm");
             return draft.toJS();
         case "SET_UNBOOKMARK":
             index = action.index;
             draft = fromJS({ ...state });
             draft = removeIn(draft, ["products", index, "bookmarks", 0]);
-            console.log('set unbm');
+            console.log("set unbm");
             return draft.toJS();
+        case "CHANGE_TO_SOLD_STATUS":
+            console.log("action payload: ", action.payload);
         default:
             return { ...state };
     }

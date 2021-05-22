@@ -28,6 +28,8 @@
         "sass-loader": "^8.0.0"
     },
     "dependencies": {
+        "@babel/core": "^7.14.3",
+        "@babel/preset-env": "^7.14.2",
         "antd": "^4.13.0",
         "google-maps-react": "^2.0.6",
         "history": "^5.0.0",

@@ -21,14 +21,20 @@ class MyProducts extends Component {
     }
 
     getProducts() {
-        const uri = "http://localhost:8000/api/product/selling";
-        Http.get(uri).then(response => {
+        const selling = "http://localhost:8000/api/product/selling";
+        Http.get(selling).then(response => {
             this.props.setProducts(response.data);
+        });
+        const sold = "http://localhost:8000/api/product/sold";
+        Http.get(sold).then(response => {
+            this.props.setSoldProducts(response.data);
+            console.log(response);
         });
     }
 
     render() {
         var products = this.props.products;
+        var sold_products = this.props.sold_products;
 
         return (
             <div className="my-products-page container">
@@ -76,26 +82,29 @@ class MyProducts extends Component {
                             >
                                 <AddProductComponent />
                                 <div className="product-list">
-                            <div className="container">
-                                <div className="row">
-                                    {products
-                                        ? products.map((product, index) => (
-                                              <ProductCard
-                                                  key={product.id}
-                                                  product={product}
-                                                  index={index}
-                                                //   setBookmark={
-                                                //       this.props.setBookmark
-                                                //   }
-                                                //   setUnbookmark={
-                                                //       this.props.setUnbookmark
-                                                //   }
-                                              />
-                                          ))
-                                        : ""}
+                                    <div className="container">
+                                        <div className="row">
+                                            {products
+                                                ? products.map(
+                                                      (product, index) => (
+                                                          <ProductCard
+                                                              key={product.id}
+                                                              product={product}
+                                                              index={index}
+                                                              myProduct={true}
+                                                              //   setBookmark={
+                                                              //       this.props.setBookmark
+                                                              //   }
+                                                              //   setUnbookmark={
+                                                              //       this.props.setUnbookmark
+                                                              //   }
+                                                          />
+                                                      )
+                                                  )
+                                                : ""}
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
                             </div>
                             <div
                                 className="tab-pane fade"
@@ -103,7 +112,31 @@ class MyProducts extends Component {
                                 role="tabpanel"
                                 aria-labelledby="nav-sold-tab"
                             >
-                                blah blha
+                                <div className="product-list">
+                                    <div className="container">
+                                        <div className="row">
+                                            {sold_products
+                                                ? sold_products.map(
+                                                      (product, index) => (
+                                                          <ProductCard
+                                                              key={product.id}
+                                                              product={product}
+                                                              index={index}
+                                                              myProduct={true}
+                                                              soldProduct={true}
+                                                              //   setBookmark={
+                                                              //       this.props.setBookmark
+                                                              //   }
+                                                              //   setUnbookmark={
+                                                              //       this.props.setUnbookmark
+                                                              //   }
+                                                          />
+                                                      )
+                                                  )
+                                                : ""}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -116,6 +149,7 @@ class MyProducts extends Component {
 const mapStateToProps = state => {
     return {
         products: state.productDetail.products,
+        sold_products: state.productDetail.sold_products,
         auth: state.auth
     };
 };
@@ -131,6 +165,12 @@ const mapDispatchToProps = dispatch => {
         setProducts: products => {
             dispatch({
                 type: "SET_PRODUCTS",
+                payload: products
+            });
+        },
+        setSoldProducts: products => {
+            dispatch({
+                type: "SET_SOLD_PRODUCTS",
                 payload: products
             });
         },

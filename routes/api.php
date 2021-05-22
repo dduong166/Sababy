@@ -33,11 +33,12 @@ Route::prefix('product')->group(function () {
     Route::get('/', 'ProductController@index');
     Route::get('/cities', 'ProductController@getProductCity');   
     Route::middleware('auth:api')->get('/selling', 'ProductController@sellingProducts');
+    Route::middleware('auth:api')->get('/sold', 'ProductController@soldProducts');
     Route::get('/category/{category_id}', 'ProductController@getProductByCategoryID');
     Route::post('/filter', 'ProductController@filter');
     Route::middleware('auth:api')->post('/', 'ProductController@store');
     Route::get('/{product_id}', 'ProductController@getProductByID');
-    
+    Route::put('/{product_id}', 'ProductController@update');
 });
 
 Route::middleware('auth:api')->prefix('bookmark')->group(function () {
