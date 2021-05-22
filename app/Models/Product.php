@@ -13,10 +13,11 @@ class Product extends Model
         'product_name',
         'description',
         'price',
-        'discount',
-        'amount',
+        'quantity',
         'location',
-        'city'
+        'city',
+        'outside_status',
+        'function_status'
     ];
 
     protected $hidden = [

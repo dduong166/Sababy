@@ -46,10 +46,6 @@ class ProductDetail extends Component {
                 return media.media_url;
             });
         }
-        if(this.props.auth.currentUser) {
-            console.log(1111);
-        }
-        console.log(this.props);
 
         return (
             <div className="product-detail">

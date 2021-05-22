@@ -39,7 +39,7 @@ class ProductController extends Controller
             $auth = false;
         }
 
-        $products = Product::all();
+        $products = Product::where('sold', 0)->get();
         $products = $products->load('productMedias');
         if ($auth) {
             $user = JWTAuth::parseToken()->authenticate();
@@ -58,7 +58,28 @@ class ProductController extends Controller
         }
         if ($auth) {
             $user = JWTAuth::parseToken()->authenticate();
-            $products = Product::where('owner_id', $user->id)->get();
+            $products = Product::where('owner_id', $user->id)->where('sold', 0)->get();
+            $products = $products->load('productMedias');
+            $products = $products->load(['bookmarks' => function ($query) use ($user) {
+                $query->where('user_id', $user->id);
+            }]);
+        }else{
+            return response()->json([
+                'message' => "Not authenticated"
+            ]);
+        }
+        return response()->json($products);
+    }
+
+    public function soldProducts(){
+        if (JWTAuth::getToken()) {
+            $auth = JWTAuth::parseToken()->check();
+        } else {
+            $auth = false;
+        }
+        if ($auth) {
+            $user = JWTAuth::parseToken()->authenticate();
+            $products = Product::where('owner_id', $user->id)->where('sold', 1)->get();
             $products = $products->load('productMedias');
             $products = $products->load(['bookmarks' => function ($query) use ($user) {
                 $query->where('user_id', $user->id);
@@ -72,7 +93,7 @@ class ProductController extends Controller
     }
 
     public function getProductCity() {
-        $cities = Product::groupBy('city')->pluck('city');
+        $cities = Product::groupBy('city')->pluck('city')->sortBy('city');
         return response()->json($cities);
     }
 
@@ -121,7 +142,6 @@ class ProductController extends Controller
                 ->setParamByKey('destinations', $locations)
                 ->getResponseByKey('rows.elements');
             // return response()->json($distance);         
-            // dd($distance);
             $distance = $distance["rows"][0]["elements"];
             foreach ($products as $key => $product) {
                 $product->distance = $distance[$key]["distance"]["value"];
@@ -273,15 +293,18 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update($product_id, Request $request)
     {
-        //
+        $input = $request->all();
+        $product = Product::where('id', $product_id)->update($input);
+        return response()->json($product);
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\Product  $products
      * @return \Illuminate\Http\Response
      */
     public function destroy(Product $product)

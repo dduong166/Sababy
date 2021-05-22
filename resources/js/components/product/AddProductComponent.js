@@ -234,7 +234,7 @@ class AddProductComponent extends Component {
                     quantity: this.state.quantity,
                     outside_status: this.state.outside_status,
                     function_status: this.state.function_status,
-                    location: `(${this.state.lat},${this.state.lng})`,
+                    location: `${this.state.lat},${this.state.lng}`,
                     city: this.state.city,
                     images: this.state.images
                 };

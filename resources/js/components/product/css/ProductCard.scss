@@ -25,7 +25,7 @@
         }
         .bookmark {
             position: absolute;
-            right: 5px;   
+            right: 5px;
             top: 5px;
             padding: 0 6px 0 6px;
             border: 1px solid #3490dc;
@@ -39,7 +39,7 @@
                 background-color: white;
             }
         }
-        
+
         .product_image {
             width: 100%;
             text-align: center;
@@ -64,25 +64,22 @@
                 text-overflow: ellipsis;
                 margin: 0;
             }
-            .price-line {
-                margin-top: 25px;
-                .price {
-                    .old_price {
-                        font-size: 13px;
-                        font-weight: 500;
-                        color: #666;
-                        margin-right: 8px;
-                    }
-                    .new_price {
-                        color: #346aa0;
-                        border: 1px solid #346aa0;
-                        border-radius: 12px;
-                        font-size: 16px;
-                        padding: 0 12px;
-                    }
+            .price {
+                .old_price {
+                    font-size: 13px;
+                    font-weight: 500;
+                    color: #666;
+                    margin-right: 8px;
+                }
+                .new_price {
+                    color: #346aa0;
+                    border: 1px solid #346aa0;
+                    border-radius: 12px;
+                    font-size: 16px;
+                    padding: 0 12px;
                 }
             }
-            .product_address_and_rate {
+            .product_address_and_price {
                 margin-top: 10px;
                 .light_text {
                     font-size: 12px;
@@ -104,6 +101,12 @@
                 overflow: visible;
                 white-space: normal;
                 height: auto;
+            }
+        }
+        .product-footer {
+            margin-top: 20px;
+            .anticon svg {
+                display: block;
             }
         }
     }

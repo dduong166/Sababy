@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 import Http from "../../Http";
 import { withRouter, Link } from "react-router-dom";
+import { Button } from "antd";
+import {
+    EditOutlined,
+    DeleteOutlined,
+    CheckCircleOutlined,
+    DollarCircleOutlined
+} from "@ant-design/icons";
 import "./css/ProductCard.scss";
 import { connect } from "react-redux";
 
@@ -14,6 +21,7 @@ class ProductCard extends Component {
         this.BookmarkClick = this.BookmarkClick.bind(this);
         this.unBookmarkClick = this.unBookmarkClick.bind(this);
         this.handleShowDetail = this.handleShowDetail.bind(this);
+        this.changeSoldStatus = this.changeSoldStatus.bind(this);
         this.changeBookmarkEvent = this.changeBookmarkEvent.bind(this);
         this.changeUnBookmarkEvent = this.changeUnBookmarkEvent.bind(this);
     }
@@ -75,6 +83,18 @@ class ProductCard extends Component {
         this.props.history.push(`/product/${product.id}`);
     }
 
+    changeSoldStatus(e) {
+        e.stopPropagation();
+        const id = e.currentTarget.dataset.id;
+        let changeProduct = { sold: e.currentTarget.dataset.value };
+        const uri = `http://localhost:8000/api/product/${id}`;
+        Http.put(uri, changeProduct).then(response => {
+            if(response){
+                this.props.changeToSold(id);
+            }
+        });
+    }
+
     render() {
         let product = this.props.product;
         return (
@@ -120,8 +140,8 @@ class ProductCard extends Component {
                                 {product.product_name}
                             </div>
                         </div>
-                        <div className="product_address_and_rate d-flex flex-row justify-content-start">
-                            <div className="light_text">
+                        <div className="product_address_and_price d-flex flex-row justify-content-between">
+                            <div className="light_text d-flex align-items-center">
                                 {product.city}{" "}
                                 {product.distance ? (
                                     <span>
@@ -134,27 +154,41 @@ class ProductCard extends Component {
                                     </span>
                                 ) : null}
                             </div>
-                            <div className="sold_stars ml-auto">
-                                {" "}
-                                <i className="fa fa-star"></i>{" "}
-                                <i className="fa fa-star"></i>{" "}
-                                <i className="fa fa-star"></i>{" "}
-                                <i className="fa fa-star"></i>{" "}
-                                <i className="fa fa-star"></i>
-                                <span className="light_text rate_number">
-                                    (100)
-                                </span>
-                            </div>
-                        </div>
-                        <div className="price-line d-flex flex-row justify-content-end">
-                            <div className="price top-border d-flex flex-row justify-content-end align-items-center">
+                            <div className="price top-border d-flex flex-row align-items-center">
                                 <div className="new_price">
-                                    {product.price.toLocaleString()}{" "}
-                                    đ
+                                    {product.price.toLocaleString()} đ
                                 </div>
                             </div>
                         </div>
                     </div>
+                    {this.props.myProduct ? (
+                        <div className="product-footer d-flex justify-content-center">
+                            {this.props.soldProduct ? (
+                                <Button
+                                    icon={<DollarCircleOutlined />}
+                                    onClick={e => this.changeSoldStatus(e)}
+                                    data-id={product.id}
+                                    data-value={0}
+                                >
+                                    Mở bán
+                                </Button>
+                            ) : (
+                                <Button
+                                    icon={<CheckCircleOutlined />}
+                                    onClick={e => this.changeSoldStatus(e)}
+                                    data-id={product.id}
+                                    data-value={1}
+                                >
+                                    Đã bán
+                                </Button>
+                            )}
+
+                            <Button icon={<EditOutlined />}>Sửa</Button>
+                            <Button danger icon={<DeleteOutlined />}>
+                                Xóa
+                            </Button>
+                        </div>
+                    ) : null}
                 </div>
                 {/* </Link> */}
             </div>
@@ -168,4 +202,15 @@ const mapStateToProps = state => {
     };
 };
 
-export default withRouter(connect(mapStateToProps, null)(ProductCard));
+const mapDispatchToProps = dispatch => {
+    return {
+        changeToSold: product_id => {
+            dispatch({
+                type: "CHANGE_TO_SOLD_STATUS",
+                payload: product_id
+            });
+        }
+    };
+};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProductCard));
