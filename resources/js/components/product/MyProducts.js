@@ -35,7 +35,6 @@ class MyProducts extends Component {
     render() {
         var products = this.props.products;
         var sold_products = this.props.sold_products;
-
         return (
             <div className="my-products-page container">
                 <div className="my-products-banner">

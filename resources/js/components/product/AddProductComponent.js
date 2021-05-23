@@ -12,7 +12,7 @@ import {
     notification,
     Image
 } from "antd";
-import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
+import { EditOutlined } from "@ant-design/icons";
 import { Widget, WidgetLoader } from "react-cloudinary-upload-widget";
 import "./css/AddProductComponent.scss";
 import { connect } from "react-redux";
@@ -54,6 +54,12 @@ class AddProductComponent extends Component {
         this.onDeleteImage = this.onDeleteImage.bind(this);
         this.changeModalStep = this.changeModalStep.bind(this);
         this.initMap = this.initMap.bind(this);
+        this.onEditProduct = this.onEditProduct.bind(this);
+    }
+
+    onEditProduct(e){
+        e.stopPropagation();
+        this.setModalVisible(true);
     }
 
     onChangeCategory(value) {
@@ -245,7 +251,11 @@ class AddProductComponent extends Component {
                             message: "Thêm sản phẩm thành công.",
                             description:
                                 "Nhấn vào đây để chuyển sang màn xem chi tiết sản phẩm.",
-                            onClick: () => {this.props.history.push(`/product/${response.data.product.id}`)}
+                            onClick: () => {
+                                this.props.history.push(
+                                    `/product/${response.data.product.id}`
+                                );
+                            }
                         });
                     }
                 });
@@ -291,7 +301,6 @@ class AddProductComponent extends Component {
         }
     }
     render() {
-        console.log(this.state);
         let categories = this.props.categories;
         if (categories) {
             categories = categories.map((category, index) => ({
@@ -562,13 +571,19 @@ class AddProductComponent extends Component {
             ];
         }
         return (
-            <div className="add-product-btn d-flex justify-content-end">
-                <Button
-                    type="primary"
-                    onClick={() => this.setModalVisible(true)}
-                >
-                    Thêm sản phẩm mới
-                </Button>
+            <div className="d-flex justify-content-end">
+                {this.props.edit_product ? (
+                    <Button icon={<EditOutlined /> } onClick={e => this.onEditProduct(e)}>Sửa</Button>
+                ) : (
+                    <Button
+                        className="add-product-btn"
+                        type="primary"
+                        onClick={() => this.setModalVisible(true)}
+                    >
+                        Thêm sản phẩm mới
+                    </Button>
+                )}
+
                 <Modal
                     title={title}
                     visible={this.state.visible}
@@ -623,4 +638,6 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AddProductComponent));
+export default withRouter(
+    connect(mapStateToProps, mapDispatchToProps)(AddProductComponent)
+);

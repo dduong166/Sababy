@@ -8,6 +8,8 @@ const initialState = {
 export const productDetailReducer = (state = initialState, action) => {
     var index = null;
     var draft = null;
+    var id = null;
+    var move_product = null;
     switch (action.type) {
         case "SET_PRODUCTS":
             return {
@@ -55,7 +57,32 @@ export const productDetailReducer = (state = initialState, action) => {
             console.log("set unbm");
             return draft.toJS();
         case "CHANGE_TO_SOLD_STATUS":
-            console.log("action payload: ", action.payload);
+            id = Number(action.payload);
+            const products = state.products.filter(product => {
+                if(product.id === id) {
+                    move_product = product;
+                }
+                return product.id !== id;
+            });
+            return {
+                ...state,
+                products: products,
+                sold_products: [...state.sold_products, move_product]
+            };
+        case "CHANGE_TO_SELLING_STATUS":
+            id = Number(action.payload);
+            const sold_products = state.sold_products.filter(sold_product => {
+                if(sold_product.id === id) {
+                    move_product = sold_product;
+                }
+                return sold_product.id !== id;
+            });
+            return {
+                ...state,
+                products: [...state.products, move_product],
+                sold_products: sold_products
+            };
+
         default:
             return { ...state };
     }
