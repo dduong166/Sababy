@@ -259,11 +259,9 @@ class ProductController extends Controller
         }
 
         ProductMedia::insert($product_medias);
+        $product = $product->load('productMedias');
 
-        return response()->json([
-            'product' => $product, 
-            'product_media' => $product_medias
-        ]);
+        return response()->json($product);
     }
 
     /**
@@ -317,6 +315,7 @@ class ProductController extends Controller
             $product = Product::where('id', $product_id)->update($input);
         }
         $product = Product::where('id', $product_id)->first();
+        $product = $product->load('productMedias');
         return response()->json($product);
 
     }

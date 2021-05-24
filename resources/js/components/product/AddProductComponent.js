@@ -302,6 +302,7 @@ class AddProductComponent extends Component {
                     Http.put(uri, newProduct).then(response => {
                         if (response) {
                             console.log(response);
+                            this.props.updateProducts(response.data);
                             notification["success"]({
                                 message: "Sửa thông tin sản phẩm thành công.",
                                 description:
@@ -319,6 +320,7 @@ class AddProductComponent extends Component {
                     Http.post(uri, newProduct).then(response => {
                         if (response) {
                             console.log(response);
+                            this.props.addProduct(response.data);
                             notification["success"]({
                                 message: "Thêm sản phẩm thành công.",
                                 description:
@@ -692,6 +694,18 @@ const mapDispatchToProps = dispatch => {
             dispatch({
                 type: "SET_PRODUCTS",
                 payload: products
+            });
+        },
+        addProduct: product => {
+            dispatch({
+                type: "ADD_PRODUCT",
+                payload: product
+            });
+        },
+        updateProducts: product => {
+            dispatch({
+                type: "UPDATE_PRODUCT",
+                payload: product
             });
         },
         setBookmark: (bookmark, index) => {

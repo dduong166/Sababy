@@ -10,11 +10,29 @@ export const productDetailReducer = (state = initialState, action) => {
     var draft = null;
     var id = null;
     var move_product = null;
+    var products = null;
     switch (action.type) {
         case "SET_PRODUCTS":
             return {
                 ...state,
                 products: action.payload
+            };
+        case "ADD_PRODUCT":
+            return {
+                ...state,
+                products: [...state.products, action.payload]
+            };
+        case "UPDATE_PRODUCT":
+            id = action.payload.id;
+            products = state.products.map(product => {
+                if (product.id === id) {
+                    return action.payload;
+                }
+                return product;
+            });
+            return {
+                ...state,
+                products: products
             };
         case "SET_SOLD_PRODUCTS":
             return {
@@ -58,8 +76,8 @@ export const productDetailReducer = (state = initialState, action) => {
             return draft.toJS();
         case "CHANGE_TO_SOLD_STATUS":
             id = Number(action.payload);
-            const products = state.products.filter(product => {
-                if(product.id === id) {
+            products = state.products.filter(product => {
+                if (product.id === id) {
                     move_product = product;
                 }
                 return product.id !== id;
@@ -72,7 +90,7 @@ export const productDetailReducer = (state = initialState, action) => {
         case "CHANGE_TO_SELLING_STATUS":
             id = Number(action.payload);
             const sold_products = state.sold_products.filter(sold_product => {
-                if(sold_product.id === id) {
+                if (sold_product.id === id) {
                     move_product = sold_product;
                 }
                 return sold_product.id !== id;
