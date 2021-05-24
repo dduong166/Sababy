@@ -9,6 +9,7 @@ import {
     DollarCircleOutlined
 } from "@ant-design/icons";
 import "./css/ProductCard.scss";
+import AddProductComponent from "./AddProductComponent";
 import { connect } from "react-redux";
 
 class ProductCard extends Component {
@@ -86,11 +87,16 @@ class ProductCard extends Component {
     changeSoldStatus(e) {
         e.stopPropagation();
         const id = e.currentTarget.dataset.id;
-        let changeProduct = { sold: e.currentTarget.dataset.value };
+        const sold_status = Number(e.currentTarget.dataset.value);
+        let changeProduct = { sold: sold_status };
         const uri = `http://localhost:8000/api/product/${id}`;
         Http.put(uri, changeProduct).then(response => {
             if(response){
-                this.props.changeToSold(id);
+                if(sold_status){    //if sold_status === 1 -> from selling to sold
+                    this.props.changeToSold(id);
+                }else {
+                    this.props.changeToSelling(id);
+                }
             }
         });
     }
@@ -183,7 +189,7 @@ class ProductCard extends Component {
                                 </Button>
                             )}
 
-                            <Button icon={<EditOutlined />}>Sửa</Button>
+                            <AddProductComponent edit_product={product}/>
                             <Button danger icon={<DeleteOutlined />}>
                                 Xóa
                             </Button>
@@ -209,7 +215,13 @@ const mapDispatchToProps = dispatch => {
                 type: "CHANGE_TO_SOLD_STATUS",
                 payload: product_id
             });
-        }
+        },
+        changeToSelling: product_id => {
+            dispatch({
+                type: "CHANGE_TO_SELLING_STATUS",
+                payload: product_id
+            });
+        },
     };
 };
 

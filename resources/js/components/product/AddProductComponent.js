@@ -12,13 +12,16 @@ import {
     notification,
     Image
 } from "antd";
-import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
+import { EditOutlined } from "@ant-design/icons";
 import { Widget, WidgetLoader } from "react-cloudinary-upload-widget";
 import "./css/AddProductComponent.scss";
 import { connect } from "react-redux";
 import moment from "moment";
+import { times } from "lodash";
 
 const { TextArea } = Input;
+var map_id;
+var product_medias_edit;
 
 class AddProductComponent extends Component {
     constructor(props) {
@@ -54,6 +57,22 @@ class AddProductComponent extends Component {
         this.onDeleteImage = this.onDeleteImage.bind(this);
         this.changeModalStep = this.changeModalStep.bind(this);
         this.initMap = this.initMap.bind(this);
+        this.onEditProduct = this.onEditProduct.bind(this);
+    }
+
+    componentDidMount() {
+        if (!this.props.categories) {
+            //Nếu category list đã được lấy ra vào lưu vào redux
+            const uri = "http://localhost:8000/api/category";
+            Http.get(uri).then(response => {
+                this.props.setCategories(response.data);
+            });
+        }
+    }
+
+    onEditProduct(e) {
+        e.stopPropagation();
+        this.setModalVisible(true);
     }
 
     onChangeCategory(value) {
@@ -97,10 +116,34 @@ class AddProductComponent extends Component {
 
     setModalVisible(status) {
         if (status === true) {
-            if (!this.props.categories) {
-                const uri = "http://localhost:8000/api/category";
-                Http.get(uri).then(response => {
-                    this.props.setCategories(response.data);
+            if (this.props.edit_product) {
+                let edit_product = this.props.edit_product;
+                let category_cascader = [edit_product.category_id];
+                this.map_id = `map${edit_product.id}`;
+                product_medias_edit = edit_product.product_medias.map(
+                    media => media.media_url
+                );
+                this.props.categories.map(category => {
+                    category.sub_categories.map(sub_category => {
+                        if (sub_category.id === edit_product.category_id) {
+                            category_cascader.unshift(category.id);
+                        }
+                    });
+                });
+                const location = edit_product.location.split(",");
+                this.setState({
+                    category_id: edit_product.category_id,
+                    category_cascader: category_cascader,
+                    product_name: edit_product.product_name,
+                    description: edit_product.description,
+                    price: edit_product.price,
+                    quantity: edit_product.quantity,
+                    outside_status: edit_product.outside_status,
+                    function_status: edit_product.function_status,
+                    lat: parseFloat(location[0]),
+                    lng: parseFloat(location[1]),
+                    city: edit_product.city,
+                    images: product_medias_edit
                 });
             }
             this.setState({ visible: status });
@@ -115,13 +158,27 @@ class AddProductComponent extends Component {
     }
 
     initMap() {
+        console.log("init ne");
         //Mỗi lần modal step = 2, phải init lại 1 lần vì các thẻ html map đã bị reload lại chứ không tồn tại luôn luôn như bên sort
         if (this.state.visible) {
-            let map = new google.maps.Map(document.getElementById("map"), {
-                center: { lat: 21.0277644, lng: 105.8341598 },
-                zoom: 10,
-                gestureHandling: "greedy"
-            });
+            let map;
+            if (this.props.edit_product) {
+                map = new google.maps.Map(
+                    document.getElementById(this.map_id),
+                    {
+                        center: { lat: 21.0277644, lng: 105.8341598 },
+                        zoom: 10,
+                        gestureHandling: "greedy"
+                    }
+                );
+            } else {
+                map = new google.maps.Map(document.getElementById("map"), {
+                    center: { lat: 21.0277644, lng: 105.8341598 },
+                    zoom: 10,
+                    gestureHandling: "greedy"
+                });
+            }
+
             const card = document.getElementById("pac-card");
             const input = document.getElementById("pac-input");
             const options = {
@@ -225,7 +282,6 @@ class AddProductComponent extends Component {
         this.setConfirmLoading(true);
         if (this.state.modal_step === 3) {
             if (this.state.images.length) {
-                let uri = "http://localhost:8000/api/product";
                 const newProduct = {
                     category_id: this.state.category_id,
                     product_name: this.state.product_name,
@@ -238,17 +294,47 @@ class AddProductComponent extends Component {
                     city: this.state.city,
                     images: this.state.images
                 };
-                Http.post(uri, newProduct).then(response => {
-                    if (response) {
-                        console.log(response);
-                        notification["success"]({
-                            message: "Thêm sản phẩm thành công.",
-                            description:
-                                "Nhấn vào đây để chuyển sang màn xem chi tiết sản phẩm.",
-                            onClick: () => {this.props.history.push(`/product/${response.data.product.id}`)}
-                        });
+                if (this.props.edit_product) {
+                    if(JSON.stringify(this.state.images) == JSON.stringify(product_medias_edit)) {
+                        delete newProduct.images
                     }
-                });
+                    const uri = `http://localhost:8000/api/product/${this.props.edit_product.id}`;
+                    Http.put(uri, newProduct).then(response => {
+                        if (response) {
+                            console.log(response);
+                            this.props.updateProducts(response.data);
+                            notification["success"]({
+                                message: "Sửa thông tin sản phẩm thành công.",
+                                description:
+                                    "Nhấn vào đây để chuyển sang màn xem chi tiết sản phẩm.",
+                                onClick: () => {
+                                    this.props.history.push(
+                                        `/product/${response.data.id}`
+                                    );
+                                }
+                            });
+                        }
+                    });
+                } else {
+                    let uri = "http://localhost:8000/api/product";//them vao redux
+                    Http.post(uri, newProduct).then(response => {
+                        if (response) {
+                            console.log(response);
+                            this.props.addProduct(response.data);
+                            notification["success"]({
+                                message: "Thêm sản phẩm thành công.",
+                                description:
+                                    "Nhấn vào đây để chuyển sang màn xem chi tiết sản phẩm.",
+                                onClick: () => {
+                                    this.props.history.push(
+                                        `/product/${response.data.product.id}`
+                                    );
+                                }
+                            });
+                        }
+                    });
+                }
+
                 this.setModalVisible(false);
                 this.setConfirmLoading(false);
             } else {
@@ -287,11 +373,27 @@ class AddProductComponent extends Component {
                 });
             }
         } else {
-            this.changeModalStep(this.state.modal_step + 1);
+            if (
+                !(
+                    this.state.category_id &&
+                    this.state.product_name &&
+                    this.state.description &&
+                    this.state.price &&
+                    this.state.quantity &&
+                    this.state.outside_status &&
+                    this.state.function_status
+                )
+            ) {
+                notification["error"]({
+                    message: "Vui lòng nhập đầy đủ thông tin sản phẩm."
+                });
+            } else {
+                this.changeModalStep(this.state.modal_step + 1);
+            }
         }
     }
     render() {
-        console.log(this.state);
+        // console.log(this.state);
         let categories = this.props.categories;
         if (categories) {
             categories = categories.map((category, index) => ({
@@ -324,7 +426,7 @@ class AddProductComponent extends Component {
                     initialValues={{
                         size: "small"
                     }}
-                    onFinish={this.handleOk}
+                    // onFinish={this.handleOk}
                     fields={[
                         {
                             name: ["category"],
@@ -356,63 +458,27 @@ class AddProductComponent extends Component {
                         }
                     ]}
                 >
-                    <Form.Item
-                        label="Danh mục"
-                        name="category"
-                        rules={[
-                            {
-                                required: true,
-                                message: "Hãy chọn danh mục sản phẩm"
-                            }
-                        ]}
-                    >
+                    <Form.Item label="Danh mục" name="category">
                         <Cascader
                             placeholder="Lựa chọn danh mục sản phẩm"
                             options={categories}
                             onChange={this.onChangeCategory}
                         />
                     </Form.Item>
-                    <Form.Item
-                        label="Tên sản phẩm"
-                        name="productName"
-                        rules={[
-                            {
-                                required: true,
-                                message: "Hãy nhập tên sản phẩm"
-                            }
-                        ]}
-                    >
+                    <Form.Item label="Tên sản phẩm" name="productName">
                         <Input
                             onChange={this.onChangeProductName}
                             placeholder="Nhập tên sản phẩm"
                         />
                     </Form.Item>
-                    <Form.Item
-                        label="Mô tả"
-                        name="description"
-                        rules={[
-                            {
-                                required: true,
-                                message: "Hãy nhập mô tả sản phẩm"
-                            }
-                        ]}
-                    >
+                    <Form.Item label="Mô tả" name="description">
                         <TextArea
                             rows={4}
                             onChange={this.onChangeDescription}
                             placeholder="Thông tin của sản phẩm như kích cỡ, chất liệu, màu sắc, xuất xứ, thương hiệu,..."
                         />
                     </Form.Item>
-                    <Form.Item
-                        label="Giá tiền (VND)"
-                        name="price"
-                        rules={[
-                            {
-                                required: true,
-                                message: "Hãy nhập giá tiền"
-                            }
-                        ]}
-                    >
+                    <Form.Item label="Giá tiền (VND)" name="price">
                         <InputNumber
                             min={1}
                             step={50000}
@@ -425,13 +491,6 @@ class AddProductComponent extends Component {
                     <Form.Item
                         label="Tình trạng ngoại quan"
                         name="outsideStatus"
-                        rules={[
-                            {
-                                required: true,
-                                message:
-                                    "Hãy nhập tình trạng ngoại quan của sản phẩm"
-                            }
-                        ]}
                     >
                         <TextArea
                             rows={4}
@@ -442,13 +501,6 @@ class AddProductComponent extends Component {
                     <Form.Item
                         label="Tình trạng chức năng"
                         name="functionStatus"
-                        rules={[
-                            {
-                                required: true,
-                                message:
-                                    "Hãy nhập tình trạng về chức năng của sản phẩm"
-                            }
-                        ]}
                     >
                         <TextArea
                             rows={4}
@@ -471,7 +523,7 @@ class AddProductComponent extends Component {
                     key="submit"
                     type="primary"
                     htmlType="submit"
-                    // onClick={() => this.handleOk()}
+                    onClick={() => this.handleOk()}
                 >
                     Tiếp theo
                 </Button>
@@ -491,7 +543,12 @@ class AddProductComponent extends Component {
                             />
                         </div>
                     </div>
-                    <div id="map"></div>
+                    {this.props.edit_product ? (
+                        <div id={this.map_id} className="map_init"></div>
+                    ) : (
+                        <div id="map" className="map_init"></div>
+                    )}
+
                     <div id="infowindow-content">
                         <span id="place-name" className="title"></span>
                         <br />
@@ -557,29 +614,61 @@ class AddProductComponent extends Component {
                     type="primary"
                     onClick={() => this.handleOk()}
                 >
-                    Thêm sản phẩm
+                    {this.props.edit_product ? "Lưu thay đổi" : "Thêm sản phẩm"}
                 </Button>
             ];
         }
         return (
-            <div className="add-product-btn d-flex justify-content-end">
-                <Button
-                    type="primary"
-                    onClick={() => this.setModalVisible(true)}
-                >
-                    Thêm sản phẩm mới
-                </Button>
-                <Modal
-                    title={title}
-                    visible={this.state.visible}
-                    onOk={() => this.handleOk()}
-                    confirmLoading={this.state.confirmLoading}
-                    onCancel={() => this.setModalVisible(false)}
-                    width={800}
-                    footer={footer}
-                >
-                    {modal}
-                </Modal>
+            <div className="d-flex justify-content-end">
+                {this.props.edit_product ? (
+                    <React.Fragment>
+                        <Button
+                            icon={<EditOutlined />}
+                            onClick={e => this.onEditProduct(e)}
+                        >
+                            Sửa
+                        </Button>
+                        <div
+                            onKeyDown={e => e.stopPropagation()}
+                            onClick={e => e.stopPropagation()}
+                            onFocus={e => e.stopPropagation()}
+                            onMouseOver={e => e.stopPropagation()}
+                        >
+                            <Modal
+                                title={title}
+                                visible={this.state.visible}
+                                onOk={() => this.handleOk()}
+                                confirmLoading={this.state.confirmLoading}
+                                onCancel={() => this.setModalVisible(false)}
+                                width={800}
+                                footer={footer}
+                            >
+                                {modal}
+                            </Modal>
+                        </div>
+                    </React.Fragment>
+                ) : (
+                    <React.Fragment>
+                        <Button
+                            className="add-product-btn"
+                            type="primary"
+                            onClick={() => this.setModalVisible(true)}
+                        >
+                            Thêm sản phẩm mới
+                        </Button>
+                        <Modal
+                            title={title}
+                            visible={this.state.visible}
+                            onOk={() => this.handleOk()}
+                            confirmLoading={this.state.confirmLoading}
+                            onCancel={() => this.setModalVisible(false)}
+                            width={800}
+                            footer={footer}
+                        >
+                            {modal}
+                        </Modal>
+                    </React.Fragment>
+                )}
             </div>
         );
     }
@@ -607,6 +696,18 @@ const mapDispatchToProps = dispatch => {
                 payload: products
             });
         },
+        addProduct: product => {
+            dispatch({
+                type: "ADD_PRODUCT",
+                payload: product
+            });
+        },
+        updateProducts: product => {
+            dispatch({
+                type: "UPDATE_PRODUCT",
+                payload: product
+            });
+        },
         setBookmark: (bookmark, index) => {
             dispatch({
                 type: "SET_BOOKMARK",
@@ -623,4 +724,6 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AddProductComponent));
+export default withRouter(
+    connect(mapStateToProps, mapDispatchToProps)(AddProductComponent)
+);

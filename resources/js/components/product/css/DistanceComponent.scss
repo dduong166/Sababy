@@ -1,7 +1,7 @@
 .openMapButton {
     margin: 12px;
 }
-#map {
+.map_init {
     height: 400px;
     position: relative;
 }
@@ -13,22 +13,31 @@
     display: none;
 }
 
-#map #infowindow-content {
+.google-place-autocomplete {
+    .pac-card {
+        display: none;
+    }
+    .map_init {
+        .gm-style {
+            .pac-card {
+                display: block;
+                border-radius: 2px 0 0 2px;
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                outline: none;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+                background-color: #fff;
+                margin: 10px;
+            }
+        }
+    }
+}
+.map_init #infowindow-content {
     display: inline;
 }
 
 .ant-modal-body {
     padding: 0 !important;
-}
-
-.pac-card {
-    border-radius: 2px 0 0 2px;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    outline: none;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-    background-color: #fff;
-    margin: 10px;
 }
 
 .pac-container {
