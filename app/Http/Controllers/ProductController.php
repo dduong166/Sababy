@@ -59,7 +59,8 @@ class ProductController extends Controller
         if ($auth) {
             $user = JWTAuth::parseToken()->authenticate();
             $products = Product::where('owner_id', $user->id)->where('sold', 0)->get();
-            $products = $products->load('productMedias');
+            $products->makeVisible(['location']);
+            $products = $products->load('productMedias');            
             $products = $products->load(['bookmarks' => function ($query) use ($user) {
                 $query->where('user_id', $user->id);
             }]);
@@ -80,6 +81,7 @@ class ProductController extends Controller
         if ($auth) {
             $user = JWTAuth::parseToken()->authenticate();
             $products = Product::where('owner_id', $user->id)->where('sold', 1)->get();
+            $products->makeVisible(['location']);
             $products = $products->load('productMedias');
             $products = $products->load(['bookmarks' => function ($query) use ($user) {
                 $query->where('user_id', $user->id);
@@ -295,8 +297,26 @@ class ProductController extends Controller
      */
     public function update($product_id, Request $request)
     {
-        $input = $request->all();
-        $product = Product::where('id', $product_id)->update($input);
+        if($request->images){   //Nếu cần đổi medias thì xóa medias cũ -> thêm medias mới, update all except images
+            $input = $request->all();
+            unset($input['images']);
+
+            $product = Product::where('id', $product_id)->update($input);
+
+            $product_medias = ProductMedia::where('product_id', $product_id);
+            $product_medias->delete();
+
+            $images = $request->images;
+            $product_medias = [];
+            foreach($request->images as $image) {
+                $product_medias[] = ['product_id' => $product_id, 'media_url' => $image, 'media_type' => 0];
+            }
+            ProductMedia::insert($product_medias);
+        }else{  //Nếu k cần đổi medias -> update all thông tin input
+            $input = $request->all();
+            $product = Product::where('id', $product_id)->update($input);
+        }
+        $product = Product::where('id', $product_id)->first();
         return response()->json($product);
 
     }

@@ -40,6 +40,7 @@ class MyProducts extends Component {
                 <div className="my-products-banner">
                     <h2>SẢN PHẨM</h2>
                 </div>
+                <AddProductComponent />
                 <div className="product-detail-info row">
                     <div className="col-lg-12">
                         <nav>
@@ -79,7 +80,6 @@ class MyProducts extends Component {
                                 role="tabpanel"
                                 aria-labelledby="nav-onsale-tab"
                             >
-                                <AddProductComponent />
                                 <div className="product-list">
                                     <div className="container">
                                         <div className="row">
