@@ -22,7 +22,9 @@ class Homepage extends Component {
     }
 
     componentDidMount() {
-        this.getCategories();
+        if(!this.props.categories){
+            this.getCategories();
+        }
         this.getProducts();
     }
 

@@ -326,8 +326,18 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $products
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($product_id)
     {
-        //
+
+        $questions = Question::where('product_id', $product_id);
+        $question_ids = $questions->pluck('id');
+
+        Answer::whereIn('question_id', $question_ids)->delete();
+        ProductMedia::where('product_id', $product_id)->delete();
+
+        $questions->delete();
+        $product = Product::destroy($product_id);
+
+        return response()->json($product_id);
     }
 }

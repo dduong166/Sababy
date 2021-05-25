@@ -11,6 +11,8 @@ export const productDetailReducer = (state = initialState, action) => {
     var id = null;
     var move_product = null;
     var products = null;
+    var sold_products = null;
+    
     switch (action.type) {
         case "SET_PRODUCTS":
             return {
@@ -34,6 +36,31 @@ export const productDetailReducer = (state = initialState, action) => {
                 ...state,
                 products: products
             };
+        case "DELETE_PRODUCT":
+            if(action.payload.sold) {
+                sold_products = state.sold_products.filter(sold_product => {
+                    if (sold_product.id === action.payload.id) {
+                        return false;
+                    }
+                    return true;
+                });
+                return {
+                    ...state,
+                    sold_products: sold_products
+                };
+            }else{
+                products = state.products.filter(product => {
+                    if (product.id === action.payload.id) {
+                        return false;
+                    }
+                    return true;
+                });
+                return {
+                    ...state,
+                    products: products
+                };
+            }
+            
         case "SET_SOLD_PRODUCTS":
             return {
                 ...state,
@@ -89,7 +116,7 @@ export const productDetailReducer = (state = initialState, action) => {
             };
         case "CHANGE_TO_SELLING_STATUS":
             id = Number(action.payload);
-            const sold_products = state.sold_products.filter(sold_product => {
+            sold_products = state.sold_products.filter(sold_product => {
                 if (sold_product.id === id) {
                     move_product = sold_product;
                 }
