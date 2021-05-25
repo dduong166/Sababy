@@ -246,7 +246,7 @@ class DistanceSort extends Component {
                             />
                         </div>
                     </div>
-                    <div id="map"></div>
+                    <div id="map" className="map_init"></div>
                     <div id="infowindow-content">
                         <span id="place-name" className="title"></span>
                         <br />

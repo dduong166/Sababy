@@ -4,9 +4,9 @@ import { Link, withRouter } from "react-router-dom";
 import "./css/CategoryDetail.scss";
 import CategoryList from "../category-list-component/CategoryListComponent";
 import ProductCard from "../product/ProductCard";
-import FilterSort from "../product/FilterSortComponent";
 import { connect } from "react-redux";
 import { createBrowserHistory } from "history";
+import { Spin } from "antd";
 
 const history = createBrowserHistory();
 
@@ -14,7 +14,7 @@ class CategoryDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            loading: true
+            isLoading: true
         };
         this.getProductsAndCategory = this.getProductsAndCategory.bind(this);
     }
@@ -39,7 +39,7 @@ class CategoryDetail extends Component {
         Http.get(uri)
             .then(response => {
                 this.props.setCategoryDetail(response.data);
-                this.setState({ loading: false });
+                this.setState({ isLoading: false });
             })
             .catch(error => console.log(error));
     }
@@ -49,7 +49,7 @@ class CategoryDetail extends Component {
         var products = this.props.products;
         return (
             <div className="homepage-body">
-                {!this.state.loading && category ? (
+                {!this.state.isLoading && category ? (
                     <div className="container">
                         <nav aria-label="breadcrumb">
                             <ol className="breadcrumb">
@@ -85,9 +85,7 @@ class CategoryDetail extends Component {
                         <div className="category-banner">
                             <h2>{category.category_name}</h2>
                         </div>
-                        <CategoryList
-                            categories={category.sub_categories}
-                        />
+                        <CategoryList categories={category.sub_categories} />
                         <div className="product-list">
                             <div className="container">
                                 <div className="row">
@@ -111,7 +109,9 @@ class CategoryDetail extends Component {
                         </div>
                     </div>
                 ) : (
-                    "Loading..."
+                    <div className="loading d-flex justify-content-center align-items-center">
+                        <Spin />
+                    </div>
                 )}
             </div>
         );
@@ -149,4 +149,6 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CategoryDetail));
+export default withRouter(
+    connect(mapStateToProps, mapDispatchToProps)(CategoryDetail)
+);
