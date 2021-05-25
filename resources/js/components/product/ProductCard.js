@@ -27,6 +27,15 @@ class ProductCard extends Component {
         this.changeUnBookmarkEvent = this.changeUnBookmarkEvent.bind(this);
         this.onDeleteProduct = this.onDeleteProduct.bind(this);
     }
+
+    componentWillUnmount() {
+        // fix Warning: Can't perform a React state update on an unmounted component
+        // return null when escapse component, it will no longer hold any data in memory
+        this.setState = (state,callback)=>{
+            return;
+        };
+    }
+    
     changeBookmarkEvent(value) {
         this.setState({
             bookmarkEvent: value
