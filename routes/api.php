@@ -38,7 +38,8 @@ Route::prefix('product')->group(function () {
     Route::post('/filter', 'ProductController@filter');
     Route::middleware('auth:api')->post('/', 'ProductController@store');
     Route::get('/{product_id}', 'ProductController@getProductByID');
-    Route::put('/{product_id}', 'ProductController@update');
+    Route::middleware('auth:api')->put('/{product_id}', 'ProductController@update');
+    Route::middleware('auth:api')->delete('/{product_id}', 'ProductController@destroy');
 });
 
 Route::middleware('auth:api')->prefix('bookmark')->group(function () {

@@ -12,7 +12,7 @@ import {
     notification,
     Image
 } from "antd";
-import { EditOutlined } from "@ant-design/icons";
+import { EditOutlined, PlusOutlined } from "@ant-design/icons";
 import { Widget, WidgetLoader } from "react-cloudinary-upload-widget";
 import "./css/AddProductComponent.scss";
 import { connect } from "react-redux";
@@ -619,7 +619,7 @@ class AddProductComponent extends Component {
             ];
         }
         return (
-            <div className="d-flex justify-content-end">
+            <div className="d-flex justify-content-center">
                 {this.props.edit_product ? (
                     <React.Fragment>
                         <Button
@@ -653,8 +653,9 @@ class AddProductComponent extends Component {
                             className="add-product-btn"
                             type="primary"
                             onClick={() => this.setModalVisible(true)}
+                            icon={<PlusOutlined />}
                         >
-                            Thêm sản phẩm mới
+                            Thêm sản phẩm
                         </Button>
                         <Modal
                             title={title}

@@ -17,7 +17,9 @@ class MyProducts extends Component {
     }
 
     componentDidMount() {
-        this.getProducts();
+        if (!(this.props.products && this.props.sold_products)) {
+            this.getProducts();
+        }
     }
 
     getProducts() {

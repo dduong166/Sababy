@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import Http from "../../Http";
 import { withRouter, Link } from "react-router-dom";
-import { Button } from "antd";
+import { Button, Popconfirm } from "antd";
 import {
-    EditOutlined,
     DeleteOutlined,
     CheckCircleOutlined,
     DollarCircleOutlined
@@ -25,6 +24,7 @@ class ProductCard extends Component {
         this.changeSoldStatus = this.changeSoldStatus.bind(this);
         this.changeBookmarkEvent = this.changeBookmarkEvent.bind(this);
         this.changeUnBookmarkEvent = this.changeUnBookmarkEvent.bind(this);
+        this.onDeleteProduct = this.onDeleteProduct.bind(this);
     }
     changeBookmarkEvent(value) {
         this.setState({
@@ -91,12 +91,23 @@ class ProductCard extends Component {
         let changeProduct = { sold: sold_status };
         const uri = `http://localhost:8000/api/product/${id}`;
         Http.put(uri, changeProduct).then(response => {
-            if(response){
-                if(sold_status){    //if sold_status === 1 -> from selling to sold
+            if (response) {
+                if (sold_status) {
+                    //if sold_status === 1 -> from selling to sold
                     this.props.changeToSold(id);
-                }else {
+                } else {
                     this.props.changeToSelling(id);
                 }
+            }
+        });
+    }
+
+    onDeleteProduct(){
+        console.log(this.props.product);
+        const uri = `http://localhost:8000/api/product/${this.props.product.id}`;
+        Http.delete(uri).then(response => {
+            if (response.data) {
+                this.props.deleteProduct(this.props.product);
             }
         });
     }
@@ -189,10 +200,20 @@ class ProductCard extends Component {
                                 </Button>
                             )}
 
-                            <AddProductComponent edit_product={product}/>
-                            <Button danger icon={<DeleteOutlined />}>
-                                Xóa
-                            </Button>
+                            <AddProductComponent edit_product={product} />
+                            <div onClick={(e) => e.stopPropagation()}>
+                                <Popconfirm
+                                    placement="top"
+                                    title="Bạn muốn xóa sản phẩm này?"
+                                    onConfirm={() => this.onDeleteProduct()}
+                                    okText="Xóa"
+                                    cancelText="Quay lại"
+                                >
+                                    <Button danger icon={<DeleteOutlined />}>
+                                        Xóa
+                                    </Button>
+                                </Popconfirm>
+                            </div>
                         </div>
                     ) : null}
                 </div>
@@ -222,7 +243,15 @@ const mapDispatchToProps = dispatch => {
                 payload: product_id
             });
         },
+        deleteProduct: product => {
+            dispatch({
+                type: "DELETE_PRODUCT",
+                payload: product
+            });
+        }
     };
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProductCard));
+export default withRouter(
+    connect(mapStateToProps, mapDispatchToProps)(ProductCard)
+);
