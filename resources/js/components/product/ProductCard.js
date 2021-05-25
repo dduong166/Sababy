@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Http from "../../Http";
 import { withRouter, Link } from "react-router-dom";
-import { Button, Popconfirm } from "antd";
+import { Button, Popconfirm, Spin, notification } from "antd";
 import {
     DeleteOutlined,
     CheckCircleOutlined,
@@ -16,7 +16,8 @@ class ProductCard extends Component {
         super(props);
         this.state = {
             bookmarkEvent: false,
-            unBookmarkEvent: false
+            unBookmarkEvent: false,
+            isLoading: false
         };
         this.BookmarkClick = this.BookmarkClick.bind(this);
         this.unBookmarkClick = this.unBookmarkClick.bind(this);
@@ -86,6 +87,7 @@ class ProductCard extends Component {
 
     changeSoldStatus(e) {
         e.stopPropagation();
+        this.setState({ isLoading: true });
         const id = e.currentTarget.dataset.id;
         const sold_status = Number(e.currentTarget.dataset.value);
         let changeProduct = { sold: sold_status };
@@ -99,21 +101,67 @@ class ProductCard extends Component {
                     this.props.changeToSelling(id);
                 }
             }
+            notification["success"]({
+                message: "Chuyển trạng thái thành công.",
+            });
+            this.setState({ isLoading: false });
         });
     }
 
-    onDeleteProduct(){
-        console.log(this.props.product);
+    onDeleteProduct() {
+        this.setState({ isLoading: true });
         const uri = `http://localhost:8000/api/product/${this.props.product.id}`;
         Http.delete(uri).then(response => {
             if (response.data) {
                 this.props.deleteProduct(this.props.product);
             }
+            notification["success"]({
+                message: "Xóa sản phẩm thành công.",
+            });
+            this.setState({ isLoading: false });
         });
     }
 
     render() {
         let product = this.props.product;
+        const card_footer = (
+            <div className="product-footer d-flex justify-content-center">
+                {this.props.soldProduct ? (
+                    <Button
+                        icon={<DollarCircleOutlined />}
+                        onClick={e => this.changeSoldStatus(e)}
+                        data-id={product.id}
+                        data-value={0}
+                    >
+                        Mở bán
+                    </Button>
+                ) : (
+                    <Button
+                        icon={<CheckCircleOutlined />}
+                        onClick={e => this.changeSoldStatus(e)}
+                        data-id={product.id}
+                        data-value={1}
+                    >
+                        Đã bán
+                    </Button>
+                )}
+
+                <AddProductComponent edit_product={product} />
+                <div onClick={e => e.stopPropagation()}>
+                    <Popconfirm
+                        placement="top"
+                        title="Bạn muốn xóa sản phẩm này?"
+                        onConfirm={() => this.onDeleteProduct()}
+                        okText="Xóa"
+                        cancelText="Quay lại"
+                    >
+                        <Button danger icon={<DeleteOutlined />}>
+                            Xóa
+                        </Button>
+                    </Popconfirm>
+                </div>
+            </div>
+        );
         return (
             <div className="product-card col-md-4">
                 {/* <Link to={"/product/" + product.id} key={product.id}> */}
@@ -122,22 +170,22 @@ class ProductCard extends Component {
                     onClick={this.handleShowDetail}
                 >
                     {/* {this.props.currentUser ? (
-                        <div className="bookmark">
-                            {product.bookmarks && product.bookmarks.length ? (
-                                <i
-                                    className="fa fa-heart"
-                                    data-productid={product.id}
-                                    onClick={e => this.unBookmarkClick(e)}
-                                ></i>
-                            ) : (
-                                <i
-                                    className="fa fa-heart-o"
-                                    data-productid={product.id}
-                                    onClick={e => this.BookmarkClick(e)}
-                                ></i>
-                            )}
-                        </div>
-                    ) : null} */}
+                    <div className="bookmark">
+                        {product.bookmarks && product.bookmarks.length ? (
+                            <i
+                                className="fa fa-heart"
+                                data-productid={product.id}
+                                onClick={e => this.unBookmarkClick(e)}
+                            ></i>
+                        ) : (
+                            <i
+                                className="fa fa-heart-o"
+                                data-productid={product.id}
+                                onClick={e => this.BookmarkClick(e)}
+                            ></i>
+                        )}
+                    </div>
+                ) : null} */}
                     <div className="product_image">
                         {product.product_medias[0] ? (
                             <img
@@ -179,45 +227,15 @@ class ProductCard extends Component {
                         </div>
                     </div>
                     {this.props.myProduct ? (
-                        <div className="product-footer d-flex justify-content-center">
-                            {this.props.soldProduct ? (
-                                <Button
-                                    icon={<DollarCircleOutlined />}
-                                    onClick={e => this.changeSoldStatus(e)}
-                                    data-id={product.id}
-                                    data-value={0}
-                                >
-                                    Mở bán
-                                </Button>
+                        <React.Fragment>
+                            {this.state.isLoading ? (
+                                <Spin tip="Đang xử lý...">{card_footer}</Spin>
                             ) : (
-                                <Button
-                                    icon={<CheckCircleOutlined />}
-                                    onClick={e => this.changeSoldStatus(e)}
-                                    data-id={product.id}
-                                    data-value={1}
-                                >
-                                    Đã bán
-                                </Button>
+                                <React.Fragment>{card_footer}</React.Fragment>
                             )}
-
-                            <AddProductComponent edit_product={product} />
-                            <div onClick={(e) => e.stopPropagation()}>
-                                <Popconfirm
-                                    placement="top"
-                                    title="Bạn muốn xóa sản phẩm này?"
-                                    onConfirm={() => this.onDeleteProduct()}
-                                    okText="Xóa"
-                                    cancelText="Quay lại"
-                                >
-                                    <Button danger icon={<DeleteOutlined />}>
-                                        Xóa
-                                    </Button>
-                                </Popconfirm>
-                            </div>
-                        </div>
+                        </React.Fragment>
                     ) : null}
                 </div>
-                {/* </Link> */}
             </div>
         );
     }

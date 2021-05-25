@@ -5,6 +5,7 @@ import "./css/MyProducts.scss";
 import { connect } from "react-redux";
 import AddProductComponent from "./AddProductComponent";
 import ProductCard from "./ProductCard";
+import { Spin } from "antd";
 
 class MyProducts extends Component {
     constructor(props) {
@@ -28,7 +29,7 @@ class MyProducts extends Component {
         const sold = "http://localhost:8000/api/product/sold";
         Http.get(sold).then(response => {
             this.props.setSoldProducts(response.data);
-            console.log(response);
+            this.setState({ isLoading: false });
         });
     }
 
@@ -73,71 +74,91 @@ class MyProducts extends Component {
                                 </a>
                             </div>
                         </nav>
-                        <div className="tab-content" id="nav-tabContent">
-                            <div
-                                className="tab-pane fade show active"
-                                id="nav-onsale"
-                                role="tabpanel"
-                                aria-labelledby="nav-onsale-tab"
-                            >
-                                <div className="product-list">
-                                    <div className="container">
-                                        <div className="row">
-                                            {products
-                                                ? products.map(
-                                                      (product, index) => (
-                                                          <ProductCard
-                                                              key={product.id}
-                                                              product={product}
-                                                              index={index}
-                                                              myProduct={true}
-                                                              //   setBookmark={
-                                                              //       this.props.setBookmark
-                                                              //   }
-                                                              //   setUnbookmark={
-                                                              //       this.props.setUnbookmark
-                                                              //   }
-                                                          />
+                        {!this.state.isLoading ? (
+                            <div className="tab-content" id="nav-tabContent">
+                                <div
+                                    className="tab-pane fade show active"
+                                    id="nav-onsale"
+                                    role="tabpanel"
+                                    aria-labelledby="nav-onsale-tab"
+                                >
+                                    <div className="product-list">
+                                        <div className="container">
+                                            <div className="row">
+                                                {products
+                                                    ? products.map(
+                                                          (product, index) => (
+                                                              <ProductCard
+                                                                  key={
+                                                                      product.id
+                                                                  }
+                                                                  product={
+                                                                      product
+                                                                  }
+                                                                  index={index}
+                                                                  myProduct={
+                                                                      true
+                                                                  }
+                                                                  //   setBookmark={
+                                                                  //       this.props.setBookmark
+                                                                  //   }
+                                                                  //   setUnbookmark={
+                                                                  //       this.props.setUnbookmark
+                                                                  //   }
+                                                              />
+                                                          )
                                                       )
-                                                  )
-                                                : ""}
+                                                    : ""}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    className="tab-pane fade"
+                                    id="nav-sold"
+                                    role="tabpanel"
+                                    aria-labelledby="nav-sold-tab"
+                                >
+                                    <div className="product-list">
+                                        <div className="container">
+                                            <div className="row">
+                                                {sold_products
+                                                    ? sold_products.map(
+                                                          (product, index) => (
+                                                              <ProductCard
+                                                                  key={
+                                                                      product.id
+                                                                  }
+                                                                  product={
+                                                                      product
+                                                                  }
+                                                                  index={index}
+                                                                  myProduct={
+                                                                      true
+                                                                  }
+                                                                  soldProduct={
+                                                                      true
+                                                                  }
+                                                                  //   setBookmark={
+                                                                  //       this.props.setBookmark
+                                                                  //   }
+                                                                  //   setUnbookmark={
+                                                                  //       this.props.setUnbookmark
+                                                                  //   }
+                                                              />
+                                                          )
+                                                      )
+                                                    : ""}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div
-                                className="tab-pane fade"
-                                id="nav-sold"
-                                role="tabpanel"
-                                aria-labelledby="nav-sold-tab"
-                            >
-                                <div className="product-list">
-                                    <div className="container">
-                                        <div className="row">
-                                            {sold_products
-                                                ? sold_products.map(
-                                                      (product, index) => (
-                                                          <ProductCard
-                                                              key={product.id}
-                                                              product={product}
-                                                              index={index}
-                                                              myProduct={true}
-                                                              soldProduct={true}
-                                                              //   setBookmark={
-                                                              //       this.props.setBookmark
-                                                              //   }
-                                                              //   setUnbookmark={
-                                                              //       this.props.setUnbookmark
-                                                              //   }
-                                                          />
-                                                      )
-                                                  )
-                                                : ""}
-                                        </div>
-                                    </div>
-                                </div>
+                        ) : (
+                            <div className="loading d-flex justify-content-center align-items-center">
+                                <Spin />
                             </div>
-                        </div>
+                        )}
                     </div>
                 </div>
             </div>
