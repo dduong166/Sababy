@@ -126,8 +126,7 @@ class Login extends Component {
             } else {
                 console.log(response);
                 notification["error"]({
-                    message:
-                        "Đăng ký tài khoản thất bại."
+                    message: "Đăng ký tài khoản thất bại."
                 });
             }
         });
@@ -149,7 +148,8 @@ class Login extends Component {
             if (response.data.success) {
                 var currentUser = {
                     id: response.data.user_id,
-                    name: response.data.username
+                    name: response.data.username,
+                    is_admin: response.data.is_admin
                 };
                 this.props.login(currentUser);
                 this.setState({ loading: false });
@@ -163,10 +163,14 @@ class Login extends Component {
                         email: ""
                     });
                 }
-                if (window.history.length > 1) {
-                    window.history.back();
+                if (response.data.is_admin) {
+                    this.props.history.push("/admin");
                 } else {
-                    this.props.history.push("/");
+                    if (window.history.length > 1) {
+                        window.history.back();
+                    } else {
+                        this.props.history.push("/");
+                    }
                 }
             }
         });
@@ -190,7 +194,7 @@ class Login extends Component {
 
                     <div className="tab-content">
                         <div id="login">
-                            <h1>Hãy tận hưởng dịch vụ của Latner!</h1>
+                            <h1>Hãy tận hưởng dịch vụ của Sababy!</h1>
 
                             <form onSubmit={this.onLoginSubmit}>
                                 <div className="field-wrap">
@@ -218,9 +222,9 @@ class Login extends Component {
                                     />
                                 </div>
 
-                                <p className="forgot">
+                                {/* <p className="forgot">
                                     <Link to="/">Quên mật khẩu?</Link>
-                                </p>
+                                </p> */}
 
                                 <button
                                     id="login-button"

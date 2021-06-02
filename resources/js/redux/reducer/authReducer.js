@@ -1,6 +1,6 @@
 const initialState = {
     currentUser: "",
-    loading: true // k thay hien tren redux
+    loading: true 
 };
 
 export const AuthReducer = (state = initialState, action) => {

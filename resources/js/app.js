@@ -12,6 +12,7 @@ import rootReducer from "./redux/reducer/rootReducer";
 import PrivateRoute from "./PrivateRoute";
 
 import Login from "./components/auth/Login";
+import AdminHomepage from "./components/admin/AdminHomepage";
 import Homepage from "./components/homepage/Homepage";
 import CategoryDetail from "./components/category-detail/CategoryDetail";
 import ProductDetail from "./components/product/ProductDetail";
@@ -33,6 +34,7 @@ class AppMain extends Component {
             <Provider store={store}>
                 <Router history={history}>
                     <Switch>
+                        <Route path="/admin" component={AdminHomepage} />
                         <App>
                             <Navbar history={history} />
                             <Route path="/login" exact component={Login} />
