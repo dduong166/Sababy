@@ -135,7 +135,7 @@ class QuestionComponent extends Component {
                         </div>
                         <div className="question-answer-datetime">
                             {moment(question.created_at).format(
-                                "hh:mm, DD/MM/YYYY"
+                                "HH:mm, DD/MM/YYYY"
                             )}
                         </div>
                         <div className="question-answer-content">
@@ -153,7 +153,7 @@ class QuestionComponent extends Component {
                                           </div>
                                           <div className="question-answer-datetime">
                                               {moment(answer.created_at).format(
-                                                  "hh:mm, DD/MM/YYYY"
+                                                  "HH:mm, DD/MM/YYYY"
                                               )}
                                           </div>
                                           <div className="question-answer-content">

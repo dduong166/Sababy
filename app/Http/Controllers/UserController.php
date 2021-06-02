@@ -95,9 +95,9 @@ class UserController extends Controller
             $token = self::getToken($request->email, $request->password);
             $user->auth_token = $token;
             $user->save();
-            $response = ['success' => true, 'auth_token' => $user->auth_token, 'username' => $user->name, 'user_id' => $user->id];
+            $response = ['success' => true, 'auth_token' => $user->auth_token, 'username' => $user->name, 'user_id' => $user->id, 'is_admin' => $user->is_admin];
         } else
-            $response = ['success' => false, 'data' => 'User doesnt exist'];
+            $response = ['success' => false, 'data' => 'Login fail'];
 
         return response()->json($response, 201);
     }

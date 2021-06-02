@@ -53,6 +53,7 @@ class DistanceSort extends Component {
         }
     }
     initMap() {
+        console.log("init map ne");
         if (this.state.visible) {
             let map = new google.maps.Map(document.getElementById("map"), {
                 center: { lat: 21.0277644, lng: 105.8341598 },

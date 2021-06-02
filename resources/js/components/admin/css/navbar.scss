@@ -1,0 +1,69 @@
+@import "https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap";
+@import "https://fonts.googleapis.com/css?family=Odibee+Sans&display=swap";
+* {
+    margin: 0;
+    padding: 0;
+}
+.navbar-section {
+    body {
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+    header.top-black-style {
+        width: 100%;
+        height: 70px;
+        background-color: #efefef;
+        .logo {
+            width: 8%;
+            margin-left: 40px;
+        }
+        img {
+            width: 90%;
+        }
+        .admin-navbar-title {
+            font-weight: 400;
+            font-size: 26px;
+            letter-spacing: 8px;
+        }
+        .my-product-and-login-logout {
+            max-width: 30%;
+            a {
+                color: #333;
+                text-decoration: none;
+                &:hover {
+                    color: #346aa0;
+                }
+            }
+            &:hover {
+                color: #346aa0;
+            }
+            .login-logout {
+                display: inline-block;
+                color: #333;
+                font-size: 14px;
+                font-weight: 400;
+                margin: 20px;
+                transition: 0.3s;
+                cursor: pointer;
+                .logout {
+                    a {
+                        color: #333;
+                        text-decoration: none;
+                        &:hover {
+                            color: #346aa0;
+                        }
+                    }
+                    &:hover {
+                        color: #346aa0;
+                    }
+                }
+            }
+        }
+    }
+    .menu {
+        color: #fffcec;
+        &:hover {
+            color: #e4ebf1;
+        }
+    }
+}
