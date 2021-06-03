@@ -2,14 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
+
 use Illuminate\Http\Request;
 use App\Models\User;
 use JWTAuth;
 use JWTAuthException;
 use Validator;
+use Carbon\Carbon;   
 
 class UserController extends Controller
 {
+    public function index()
+    {
+        $users = User::all();
+        $users = $users->each(function($item, $key){
+            $item->key = $item->id;
+            $item->created_at_date = Carbon::parse($item->created_at)->toDateString();
+        });
+        return response()->json($users);
+    }
+
     //Check if user is logged in? 
     public function getAuthenticatedUser()
     {
@@ -101,4 +114,15 @@ class UserController extends Controller
 
         return response()->json($response, 201);
     }
+
+    public function CountUserByDate(){
+        $userByDate = DB::table('users')
+                ->select(DB::raw("COUNT(*) `người dùng`, DATE_FORMAT(created_at, '%Y-%m-%d') date"))
+                ->groupBy('date')
+                ->orderBy('date')
+                ->get();
+        $countAll = User::all()->count();
+        return response()->json(['userByDate' => $userByDate, 'countAll' => $countAll]);
+    }
+
 }

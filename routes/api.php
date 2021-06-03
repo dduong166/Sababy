@@ -26,6 +26,13 @@ Route::prefix('user')->group(function () {
     Route::post('/register', 'UserController@register');
     Route::get('/isLoggedIn', 'UserController@getAuthenticatedUser');
 });
+
+Route::prefix('admin')->group(function () {
+    Route::get('/users', 'UserController@index');
+    Route::get('/count_user', 'UserController@CountUserByDate');
+    Route::get('/count_product', 'ProductController@CountProductByDate');
+});
+
 Route::prefix('category')->group(function () {
     Route::get('/', 'CategoryController@index');
 });

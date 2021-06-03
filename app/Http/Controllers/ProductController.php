@@ -50,6 +50,16 @@ class ProductController extends Controller
         return response()->json($products);
     }
 
+    public function CountProductByDate(){
+        $productByDate = DB::table('products')
+                ->select(DB::raw("COUNT(*) `sản phẩm`, DATE_FORMAT(created_at, '%Y-%m-%d') date"))
+                ->groupBy('date')
+                ->orderBy('date')
+                ->get();
+        $countAll = Product::all()->count();
+        return response()->json(['productByDate' => $productByDate, 'countAll' => $countAll]);
+    }
+
     public function sellingProducts(){
         if (JWTAuth::getToken()) {
             $auth = JWTAuth::parseToken()->check();
