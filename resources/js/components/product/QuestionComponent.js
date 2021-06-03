@@ -131,7 +131,9 @@ class QuestionComponent extends Component {
                     <React.Fragment key={index}>
                         <hr />
                         <div className="asker-answerer-name">
-                            {question.asker.name}
+                            {question.asker
+                                ? question.asker.name
+                                : <del>Deleted user</del>}
                         </div>
                         <div className="question-answer-datetime">
                             {moment(question.created_at).format(
@@ -149,7 +151,7 @@ class QuestionComponent extends Component {
                                           <div className="asker-answerer-name">
                                               {answer.answerer
                                                   ? answer.answerer.name
-                                                  : null}
+                                                  : <del>Deleted user</del>}
                                           </div>
                                           <div className="question-answer-datetime">
                                               {moment(answer.created_at).format(

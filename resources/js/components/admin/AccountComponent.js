@@ -29,7 +29,7 @@ class AccountComponent extends Component {
 
     onDeleteAccount(key) {
         this.setState({ isLoading: true });
-        const uri = `http://localhost:8000/api/product/${key}`;
+        const uri = `http://localhost:8000/api/admin/user/${key}`;
         Http.delete(uri)
             .then(response => {
                 console.log(22);

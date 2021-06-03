@@ -31,6 +31,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/users', 'UserController@index');
     Route::get('/count_user', 'UserController@CountUserByDate');
     Route::get('/count_product', 'ProductController@CountProductByDate');
+    Route::delete('/user/{user_id}', 'UserController@delete');
 });
 
 Route::prefix('category')->group(function () {
@@ -38,7 +39,8 @@ Route::prefix('category')->group(function () {
 });
 Route::prefix('product')->group(function () {
     Route::get('/', 'ProductController@index');
-    Route::get('/cities', 'ProductController@getProductCity');   
+    Route::get('/cities', 'ProductController@getProductCity');  
+    Route::get('/repo_test', 'ProductController@repo_test');   
     Route::middleware('auth:api')->get('/selling', 'ProductController@sellingProducts');
     Route::middleware('auth:api')->get('/sold', 'ProductController@soldProducts');
     Route::get('/category/{category_id}', 'ProductController@getProductByCategoryID');

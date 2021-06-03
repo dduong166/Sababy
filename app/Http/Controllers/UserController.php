@@ -3,9 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
+use App\Repositories\ProductRepositoryInterface;
+use App\Repositories\UserRepositoryInterface;
+use App\Models\Product;
+use App\Models\User;
+use App\Models\ProductMedia;
+use App\Models\Category;
+use App\Models\Question;
+use App\Models\Answer;
 
 use Illuminate\Http\Request;
-use App\Models\User;
 use JWTAuth;
 use JWTAuthException;
 use Validator;
@@ -13,6 +20,15 @@ use Carbon\Carbon;
 
 class UserController extends Controller
 {
+    protected $user;
+    protected $product;
+
+    public function __construct(UserRepositoryInterface $user, ProductRepositoryInterface $product)
+    {
+        $this->user = $user;
+        $this->product = $product;
+    }
+
     public function index()
     {
         $users = User::all();
@@ -123,6 +139,16 @@ class UserController extends Controller
                 ->get();
         $countAll = User::all()->count();
         return response()->json(['userByDate' => $userByDate, 'countAll' => $countAll]);
+    }
+
+    public function delete($user_id){
+        $user = $this->user->delete($user_id);
+        $products = Product::where('owner_id', $user_id)->pluck('id');
+        foreach ($products as $key => $product) {
+            $this->product->delete($product);
+        }
+
+        return response()->json($user_id);
     }
 
 }

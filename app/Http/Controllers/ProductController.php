@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
+use App\Repositories\ProductRepositoryInterface;
 
 use App\Models\Product;
 use App\Http\Controllers\CategoryController;
@@ -16,15 +17,21 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 class ProductController extends Controller
 {
     protected $CategoryController;
+    protected $product;
 
-    public function __construct(CategoryController $CategoryController)
+    public function __construct(CategoryController $CategoryController, ProductRepositoryInterface $product)
     {
         // header('Access-Control-Allow-Origin: *'); 
         // dd(123);
         $this->CategoryController = $CategoryController;
+        $this->product = $product;
     }
 
+    public function repo_test(){
+        $products = $this->product->get(3);
 
+        return response()->json($products);
+    }
 
     /**
      * Display a listing of the resource.
@@ -336,18 +343,26 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $products
      * @return \Illuminate\Http\Response
      */
+    // public function destroy($product_id)
+    // {
+
+    //     $questions = Question::where('product_id', $product_id);
+    //     $question_ids = $questions->pluck('id');
+
+    //     Answer::whereIn('question_id', $question_ids)->delete();
+    //     ProductMedia::where('product_id', $product_id)->delete();
+
+    //     $questions->delete();
+    //     $product = Product::destroy($product_id);
+
+    //     return response()->json($product_id);
+    // }
+
     public function destroy($product_id)
     {
-
-        $questions = Question::where('product_id', $product_id);
-        $question_ids = $questions->pluck('id');
-
-        Answer::whereIn('question_id', $question_ids)->delete();
-        ProductMedia::where('product_id', $product_id)->delete();
-
-        $questions->delete();
-        $product = Product::destroy($product_id);
+        $product = $this->product->delete($product_id);
 
         return response()->json($product_id);
     }
+    
 }
