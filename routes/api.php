@@ -27,10 +27,12 @@ Route::prefix('user')->group(function () {
     Route::get('/isLoggedIn', 'UserController@getAuthenticatedUser');
 });
 
-Route::prefix('admin')->group(function () {
+Route::group(['prefix'=> 'admin', 'middleware' => ['auth:api', 'is-admin']], function () {
     Route::get('/users', 'UserController@index');
     Route::get('/count_user', 'UserController@CountUserByDate');
     Route::get('/count_product', 'ProductController@CountProductByDate');
+    Route::get('/selling', 'ProductController@adminSellingProducts');
+    Route::get('/sold', 'ProductController@adminSoldProducts');
     Route::delete('/user/{user_id}', 'UserController@delete');
 });
 

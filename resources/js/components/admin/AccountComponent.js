@@ -32,7 +32,6 @@ class AccountComponent extends Component {
         const uri = `http://localhost:8000/api/admin/user/${key}`;
         Http.delete(uri)
             .then(response => {
-                console.log(22);
                 notification["success"]({
                     message: "Xóa sản phẩm thành công."
                 });
@@ -44,12 +43,10 @@ class AccountComponent extends Component {
                 });
             })
             .catch(error => {
-                console.log(11);
                 this.setState({ isLoading: false });
                 notification["error"]({
                     message: "Xóa tài khoản thất bại"
                 });
-                console.log(1331);
             });
     }
 

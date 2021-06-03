@@ -6,6 +6,7 @@ use App\Models\ProductMedia;
 use App\Models\Category;
 use App\Models\Question;
 use App\Models\Answer;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class ProductRepository implements ProductRepositoryInterface
 {
@@ -15,6 +16,22 @@ class ProductRepository implements ProductRepositoryInterface
      * @param int
      * @return collection
      */
+    public function adminSellingProducts()
+    {
+        $products = Product::where('sold', 0)->get();
+        $products->makeVisible(['location']);
+        $products = $products->load('productMedias');  
+        return response()->json($products);
+    }
+
+    public function adminSoldProducts()
+    {
+        $products = Product::where('sold', 1)->get();
+        $products->makeVisible(['location']);
+        $products = $products->load('productMedias');  
+        return response()->json($products);
+    }
+
     public function get($product_id)
     {
         return Product::find($product_id);

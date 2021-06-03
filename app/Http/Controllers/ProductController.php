@@ -28,7 +28,7 @@ class ProductController extends Controller
     }
 
     public function repo_test(){
-        $products = $this->product->get(3);
+        $products = $this->product->all();
 
         return response()->json($products);
     }
@@ -48,12 +48,12 @@ class ProductController extends Controller
 
         $products = Product::where('sold', 0)->get();
         $products = $products->load('productMedias');
-        if ($auth) {
-            $user = JWTAuth::parseToken()->authenticate();
-            $products = $products->load(['bookmarks' => function ($query) use ($user) {
-                $query->where('user_id', $user->id);
-            }]);
-        }
+        // if ($auth) {
+        //     $user = JWTAuth::parseToken()->authenticate();
+        //     $products = $products->load(['bookmarks' => function ($query) use ($user) {
+        //         $query->where('user_id', $user->id);
+        //     }]);
+        // }
         return response()->json($products);
     }
 
@@ -67,6 +67,18 @@ class ProductController extends Controller
         return response()->json(['productByDate' => $productByDate, 'countAll' => $countAll]);
     }
 
+    public function adminSellingProducts(){
+        $products = $this->product->adminSellingProducts();
+
+        return response()->json($products->original);
+    }
+
+    public function adminSoldProducts(){
+        $products = $this->product->adminSoldProducts();
+
+        return response()->json($products->original);
+    }
+
     public function sellingProducts(){
         if (JWTAuth::getToken()) {
             $auth = JWTAuth::parseToken()->check();
@@ -78,9 +90,9 @@ class ProductController extends Controller
             $products = Product::where('owner_id', $user->id)->where('sold', 0)->get();
             $products->makeVisible(['location']);
             $products = $products->load('productMedias');            
-            $products = $products->load(['bookmarks' => function ($query) use ($user) {
-                $query->where('user_id', $user->id);
-            }]);
+            // $products = $products->load(['bookmarks' => function ($query) use ($user) {
+            //     $query->where('user_id', $user->id);
+            // }]);
         }else{
             return response()->json([
                 'message' => "Not authenticated"
@@ -100,9 +112,9 @@ class ProductController extends Controller
             $products = Product::where('owner_id', $user->id)->where('sold', 1)->get();
             $products->makeVisible(['location']);
             $products = $products->load('productMedias');
-            $products = $products->load(['bookmarks' => function ($query) use ($user) {
-                $query->where('user_id', $user->id);
-            }]);
+            // $products = $products->load(['bookmarks' => function ($query) use ($user) {
+            //     $query->where('user_id', $user->id);
+            // }]);
         }else{
             return response()->json([
                 'message' => "Not authenticated"
@@ -174,12 +186,12 @@ class ProductController extends Controller
             $auth = false;
         }
         $products = $products->load('productMedias');
-        if ($auth) {
-            $user = JWTAuth::parseToken()->authenticate();
-            $products = $products->load(['bookmarks' => function ($query) use ($user) {
-                $query->where('user_id', $user->id);
-            }]);
-        }
+        // if ($auth) {
+        //     $user = JWTAuth::parseToken()->authenticate();
+        //     $products = $products->load(['bookmarks' => function ($query) use ($user) {
+        //         $query->where('user_id', $user->id);
+        //     }]);
+        // }
         return response()->json($products);
     }
 

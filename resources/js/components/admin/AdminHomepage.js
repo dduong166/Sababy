@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import Navbar from "./Navbar";
 import OverviewComponent from "./OverviewComponent";
 import AccountComponent from "./AccountComponent";
+import MyProducts from "../product/MyProducts";
 
 class AdminHomepage extends Component {
     constructor(props) {
@@ -45,7 +46,7 @@ class AdminHomepage extends Component {
                     ) : this.state.tab == 2 ? (
                         <AccountComponent />
                     ) : (
-                        <div>tab 3 ne</div>
+                        <MyProducts isAdminPage={true} />
                     )}
                 </div>
             </div>
