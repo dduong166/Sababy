@@ -34,31 +34,36 @@ class AppMain extends Component {
             <Provider store={store}>
                 <Router history={history}>
                     <Switch>
-                        <Route path="/admin" component={AdminHomepage} />
+                        {/* <Route path="/admin" component={AdminHomepage} /> */}
+                        <PrivateRoute
+                                path="/admin"
+                                component={AdminHomepage}
+                                adminOnly={true}
+                            />
                         <App>
-                            <Navbar history={history} />
-                            <Route path="/login" exact component={Login} />
-                            <Route path="/" exact component={Homepage} />
-                            <Route
-                                path="/category/:category_id"
-                                exact
-                                component={CategoryDetail}
-                            />
-                            <Route
-                                path="/product/:product_id"
-                                exact
-                                component={ProductDetail}
-                            />
-                            <Route
-                                path="/search"
-                                exact
-                                component={ProductSearch}
-                            />
-                            <PrivateRoute
-                                path="/my-products"
-                                component={MyProducts}
-                            />
-                            <Footer />
+                                <Navbar history={history} />
+                                <Route path="/login" exact component={Login} />
+                                <Route path="/" exact component={Homepage} />
+                                <Route
+                                    path="/category/:category_id"
+                                    exact
+                                    component={CategoryDetail}
+                                />
+                                <Route
+                                    path="/product/:product_id"
+                                    exact
+                                    component={ProductDetail}
+                                />
+                                <Route
+                                    path="/search"
+                                    exact
+                                    component={ProductSearch}
+                                />
+                                <PrivateRoute
+                                    path="/my-products"
+                                    component={MyProducts}
+                                />
+                                <Footer />
                         </App>
                     </Switch>
                 </Router>

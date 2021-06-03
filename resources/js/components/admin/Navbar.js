@@ -24,7 +24,8 @@ class Navbar extends Component {
                     if (response.data.user) {
                         var currentUser = {
                             id: response.data.user.id,
-                            name: response.data.user.name
+                            name: response.data.user.name,
+                            is_admin: response.data.user.is_admin
                         };
                         this.props.login(currentUser);
                     } else {
