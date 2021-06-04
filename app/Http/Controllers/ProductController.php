@@ -143,8 +143,6 @@ class ProductController extends Controller
             $product->parent_category = $parent_category;
         }
 
-        $product->function_status = nl2br ($product->function_status);
-        // dd(gettype($product->questions->answers));
         return response()->json($product);
     }
 
