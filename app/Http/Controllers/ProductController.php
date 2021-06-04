@@ -178,6 +178,8 @@ class ProductController extends Controller
                 $product->distance = $distance[$key]["distance"]["value"];
             }
             $products = $products->sortBy('distance')->values();
+        } else {
+            $products = $products->sortByDesc('created_at')->values();
         }
         //get media and bookmark
         if (JWTAuth::getToken()) {
