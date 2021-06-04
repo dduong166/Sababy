@@ -33,7 +33,7 @@ class AccountComponent extends Component {
         Http.delete(uri)
             .then(response => {
                 notification["success"]({
-                    message: "Xóa sản phẩm thành công."
+                    message: "Xóa tài khoản thành công."
                 });
                 this.setState({
                     isLoading: false,

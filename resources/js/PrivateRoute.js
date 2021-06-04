@@ -3,27 +3,14 @@ import { Redirect, Route, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-const PrivateRoute = ({ component: Component, auth, adminOnly, ...rest }) => {
+const PrivateRoute = ({ component: Component, auth, ...rest }) => {
     return (
         <Route
             {...rest}
             render={props =>
                 !auth.loading ? (
                     auth.currentUser ? (
-                        adminOnly ? (
-                            auth.currentUser.is_admin ? (
-                                <Component {...props} />
-                            ) : (
-                                <Redirect
-                                    to={{
-                                        pathname: "/login",
-                                        state: { from: props.location }
-                                    }}
-                                />
-                            )
-                        ) : (
-                            <Component {...props} />
-                        )
+                        <Component {...props} />
                     ) : (
                         <Redirect
                             to={{
@@ -33,9 +20,9 @@ const PrivateRoute = ({ component: Component, auth, adminOnly, ...rest }) => {
                         />
                     )
                 ) : (
-                    <div>
-                        Vui lòng 
-                        <Link to="/login">đăng nhập</Link> bằng tài khoản Admin
+                    <div className="not-auth-text d-flex justify-content-center align-items-center">
+                        Vui lòng
+                        <Link to="/login">&nbsp;đăng nhập&nbsp;</Link> để xem thông tin
                     </div>
                 )
             }

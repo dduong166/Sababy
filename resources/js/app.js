@@ -34,12 +34,7 @@ class AppMain extends Component {
             <Provider store={store}>
                 <Router history={history}>
                     <Switch>
-                        {/* <Route path="/admin" component={AdminHomepage} /> */}
-                        <PrivateRoute
-                                path="/admin"
-                                component={AdminHomepage}
-                                adminOnly={true}
-                            />
+                        <Route path="/admin" component={AdminHomepage} />
                         <App>
                                 <Navbar history={history} />
                                 <Route path="/login" exact component={Login} />

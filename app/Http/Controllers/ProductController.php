@@ -46,7 +46,7 @@ class ProductController extends Controller
             $auth = false;
         }
 
-        $products = Product::where('sold', 0)->get();
+        $products = Product::where('sold', 0)->orderBy('created_at', 'DESC')->get();
         $products = $products->load('productMedias');
         // if ($auth) {
         //     $user = JWTAuth::parseToken()->authenticate();
@@ -87,7 +87,7 @@ class ProductController extends Controller
         }
         if ($auth) {
             $user = JWTAuth::parseToken()->authenticate();
-            $products = Product::where('owner_id', $user->id)->where('sold', 0)->get();
+            $products = Product::where('owner_id', $user->id)->where('sold', 0)->orderBy('created_at', 'DESC')->get();
             $products->makeVisible(['location']);
             $products = $products->load('productMedias');            
             // $products = $products->load(['bookmarks' => function ($query) use ($user) {
@@ -109,7 +109,7 @@ class ProductController extends Controller
         }
         if ($auth) {
             $user = JWTAuth::parseToken()->authenticate();
-            $products = Product::where('owner_id', $user->id)->where('sold', 1)->get();
+            $products = Product::where('owner_id', $user->id)->where('sold', 1)->orderBy('created_at', 'DESC')->get();
             $products->makeVisible(['location']);
             $products = $products->load('productMedias');
             // $products = $products->load(['bookmarks' => function ($query) use ($user) {
@@ -142,6 +142,8 @@ class ProductController extends Controller
             $parent_category = Category::where('id', $product->category->parent_category_id)->get();
             $product->parent_category = $parent_category;
         }
+
+        $product->function_status = nl2br ($product->function_status);
         // dd(gettype($product->questions->answers));
         return response()->json($product);
     }

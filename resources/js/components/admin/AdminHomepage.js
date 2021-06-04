@@ -30,25 +30,33 @@ class AdminHomepage extends Component {
         return (
             <div className="admin-homepage">
                 <Navbar />
-                <div className="d-flex justify-content-start">
-                    <Menu
-                        onClick={e => this.handleMenuClick(e)}
-                        style={{ width: 150 }}
-                        defaultSelectedKeys={["1"]}
-                        mode="inline"
-                    >
-                        <Menu.Item key="1">Tổng quan</Menu.Item>
-                        <Menu.Item key="2">Tài khoản</Menu.Item>
-                        <Menu.Item key="3">Sản phẩm</Menu.Item>
-                    </Menu>
-                    {this.state.tab == 1 ? (
-                        <OverviewComponent />
-                    ) : this.state.tab == 2 ? (
-                        <AccountComponent />
-                    ) : (
-                        <MyProducts isAdminPage={true} />
-                    )}
-                </div>
+                {this.props.currentUser && this.props.currentUser.is_admin ? (
+                    <div className="d-flex justify-content-start">
+                        <Menu
+                            onClick={e => this.handleMenuClick(e)}
+                            style={{ width: 150 }}
+                            defaultSelectedKeys={["1"]}
+                            mode="inline"
+                        >
+                            <Menu.Item key="1">Tổng quan</Menu.Item>
+                            <Menu.Item key="2">Tài khoản</Menu.Item>
+                            <Menu.Item key="3">Sản phẩm</Menu.Item>
+                        </Menu>
+                        {this.state.tab == 1 ? (
+                            <OverviewComponent />
+                        ) : this.state.tab == 2 ? (
+                            <AccountComponent />
+                        ) : (
+                            <MyProducts isAdminPage={true} />
+                        )}
+                    </div>
+                ) : (
+                    <div className="not-auth-text d-flex justify-content-center align-items-center">
+                        Vui lòng
+                        <Link to="/login">&nbsp;đăng nhập&nbsp;</Link> bằng tài
+                        khoản Admin
+                    </div>
+                )}
             </div>
         );
     }

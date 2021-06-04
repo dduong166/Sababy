@@ -18,7 +18,7 @@ class ProductRepository implements ProductRepositoryInterface
      */
     public function adminSellingProducts()
     {
-        $products = Product::where('sold', 0)->get();
+        $products = Product::where('sold', 0)->orderBy('created_at', 'DESC')->get();
         $products->makeVisible(['location']);
         $products = $products->load('productMedias');  
         return response()->json($products);
@@ -26,7 +26,7 @@ class ProductRepository implements ProductRepositoryInterface
 
     public function adminSoldProducts()
     {
-        $products = Product::where('sold', 1)->get();
+        $products = Product::where('sold', 1)->orderBy('created_at', 'DESC')->get();
         $products->makeVisible(['location']);
         $products = $products->load('productMedias');  
         return response()->json($products);
