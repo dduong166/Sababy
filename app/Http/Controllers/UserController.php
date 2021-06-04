@@ -124,7 +124,7 @@ class UserController extends Controller
             $token = self::getToken($request->email, $request->password);
             $user->auth_token = $token;
             $user->save();
-            $response = ['success' => true, 'auth_token' => $user->auth_token, 'username' => $user->name, 'user_id' => $user->id, 'is_admin' => $user->is_admin];
+            $response = ['success' => true, 'user' => $user];
         } else
             $response = ['success' => false, 'data' => 'Login fail'];
 

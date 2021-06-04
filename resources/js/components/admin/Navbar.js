@@ -67,7 +67,9 @@ class Navbar extends Component {
                             {this.props.currentUser ? (
                                 <div>
                                     <div className="username">
-                                        Chào {this.props.currentUser.name}
+                                        <Link to="/profile">
+                                            Chào {this.props.currentUser.name}
+                                        </Link>
                                     </div>
                                     <div
                                         className="logout"

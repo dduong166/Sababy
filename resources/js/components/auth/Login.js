@@ -146,16 +146,11 @@ class Login extends Component {
         };
         Http.post(uri, loginUser).then(response => {
             if (response.data.success) {
-                var currentUser = {
-                    id: response.data.user_id,
-                    name: response.data.username,
-                    is_admin: response.data.is_admin
-                };
-                this.props.login(currentUser);
+                this.props.login(response.data.user);
                 this.setState({ loading: false });
-                localStorage.setItem("auth_token", response.data.auth_token);
+                localStorage.setItem("auth_token", response.data.user.auth_token);
                 Http.defaults.headers.common["Authorization"] =
-                    "Bearer " + response.data.auth_token;
+                    "Bearer " + response.data.user.auth_token;
                 if (!this.state.loading) {
                     this.setState({
                         username: "",
@@ -163,7 +158,7 @@ class Login extends Component {
                         email: ""
                     });
                 }
-                if (response.data.is_admin) {
+                if (response.data.user.is_admin) {
                     this.props.history.push("/admin");
                 } else {
                     if (window.history.length > 1) {

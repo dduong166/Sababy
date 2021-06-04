@@ -12,6 +12,7 @@ import rootReducer from "./redux/reducer/rootReducer";
 import PrivateRoute from "./PrivateRoute";
 
 import Login from "./components/auth/Login";
+import Profile from "./components/auth/Profile";
 import AdminHomepage from "./components/admin/AdminHomepage";
 import Homepage from "./components/homepage/Homepage";
 import CategoryDetail from "./components/category-detail/CategoryDetail";
@@ -38,6 +39,7 @@ class AppMain extends Component {
                         <App>
                                 <Navbar history={history} />
                                 <Route path="/login" exact component={Login} />
+                                <Route path="/profile" exact component={Profile} />
                                 <Route path="/" exact component={Homepage} />
                                 <Route
                                     path="/category/:category_id"

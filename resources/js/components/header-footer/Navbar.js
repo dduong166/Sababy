@@ -43,7 +43,6 @@ class Navbar extends Component {
             pathname: "/search",
             search: stringified
         });
-
     }
 
     isLoggedIn() {
@@ -53,13 +52,8 @@ class Navbar extends Component {
             Http.get("http://localhost:8000/api/user/isLoggedIn")
                 .then(response => {
                     if (response.data.user) {
-                        var currentUser = {
-                            id: response.data.user.id,
-                            name: response.data.user.name,
-                            is_admin: response.data.user.is_admin
-                        };
-                        this.props.login(currentUser);
-                    }else {
+                        this.props.login(response.data.user);
+                    } else {
                         this.props.logout();
                     }
                 })
@@ -99,13 +93,17 @@ class Navbar extends Component {
                     </div>
                     <div className="my-product-and-login-logout d-flex justify-content-start align-items-center">
                         {this.props.currentUser ? (
-                            <Link className="my-products" to="/my-products">SẢN PHẨM CỦA TÔI</Link>
+                            <Link className="my-products" to="/my-products">
+                                SẢN PHẨM CỦA TÔI
+                            </Link>
                         ) : null}
                         <div className="login-logout">
                             {this.props.currentUser ? (
                                 <div>
                                     <div className="username">
-                                        Chào {this.props.currentUser.name}
+                                        <Link to="/profile">
+                                            Chào {this.props.currentUser.name}
+                                        </Link>
                                     </div>
                                     <div
                                         className="logout"
