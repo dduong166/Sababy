@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
+use App\Repositories\ProductRepositoryInterface;
 
 use App\Models\Product;
 use App\Http\Controllers\CategoryController;
@@ -16,15 +17,21 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 class ProductController extends Controller
 {
     protected $CategoryController;
+    protected $product;
 
-    public function __construct(CategoryController $CategoryController)
+    public function __construct(CategoryController $CategoryController, ProductRepositoryInterface $product)
     {
         // header('Access-Control-Allow-Origin: *'); 
         // dd(123);
         $this->CategoryController = $CategoryController;
+        $this->product = $product;
     }
 
+    public function repo_test(){
+        $products = $this->product->all();
 
+        return response()->json($products);
+    }
 
     /**
      * Display a listing of the resource.
@@ -39,15 +46,37 @@ class ProductController extends Controller
             $auth = false;
         }
 
-        $products = Product::where('sold', 0)->get();
+        $products = Product::where('sold', 0)->orderBy('created_at', 'DESC')->get();
         $products = $products->load('productMedias');
-        if ($auth) {
-            $user = JWTAuth::parseToken()->authenticate();
-            $products = $products->load(['bookmarks' => function ($query) use ($user) {
-                $query->where('user_id', $user->id);
-            }]);
-        }
+        // if ($auth) {
+        //     $user = JWTAuth::parseToken()->authenticate();
+        //     $products = $products->load(['bookmarks' => function ($query) use ($user) {
+        //         $query->where('user_id', $user->id);
+        //     }]);
+        // }
         return response()->json($products);
+    }
+
+    public function CountProductByDate(){
+        $productByDate = DB::table('products')
+                ->select(DB::raw("COUNT(*) `sản phẩm`, DATE_FORMAT(created_at, '%Y-%m-%d') date"))
+                ->groupBy('date')
+                ->orderBy('date')
+                ->get();
+        $countAll = Product::all()->count();
+        return response()->json(['productByDate' => $productByDate, 'countAll' => $countAll]);
+    }
+
+    public function adminSellingProducts(){
+        $products = $this->product->adminSellingProducts();
+
+        return response()->json($products->original);
+    }
+
+    public function adminSoldProducts(){
+        $products = $this->product->adminSoldProducts();
+
+        return response()->json($products->original);
     }
 
     public function sellingProducts(){
@@ -58,12 +87,12 @@ class ProductController extends Controller
         }
         if ($auth) {
             $user = JWTAuth::parseToken()->authenticate();
-            $products = Product::where('owner_id', $user->id)->where('sold', 0)->get();
+            $products = Product::where('owner_id', $user->id)->where('sold', 0)->orderBy('created_at', 'DESC')->get();
             $products->makeVisible(['location']);
             $products = $products->load('productMedias');            
-            $products = $products->load(['bookmarks' => function ($query) use ($user) {
-                $query->where('user_id', $user->id);
-            }]);
+            // $products = $products->load(['bookmarks' => function ($query) use ($user) {
+            //     $query->where('user_id', $user->id);
+            // }]);
         }else{
             return response()->json([
                 'message' => "Not authenticated"
@@ -80,12 +109,12 @@ class ProductController extends Controller
         }
         if ($auth) {
             $user = JWTAuth::parseToken()->authenticate();
-            $products = Product::where('owner_id', $user->id)->where('sold', 1)->get();
+            $products = Product::where('owner_id', $user->id)->where('sold', 1)->orderBy('created_at', 'DESC')->get();
             $products->makeVisible(['location']);
             $products = $products->load('productMedias');
-            $products = $products->load(['bookmarks' => function ($query) use ($user) {
-                $query->where('user_id', $user->id);
-            }]);
+            // $products = $products->load(['bookmarks' => function ($query) use ($user) {
+            //     $query->where('user_id', $user->id);
+            // }]);
         }else{
             return response()->json([
                 'message' => "Not authenticated"
@@ -113,7 +142,7 @@ class ProductController extends Controller
             $parent_category = Category::where('id', $product->category->parent_category_id)->get();
             $product->parent_category = $parent_category;
         }
-        // dd(gettype($product->questions->answers));
+
         return response()->json($product);
     }
 
@@ -149,6 +178,8 @@ class ProductController extends Controller
                 $product->distance = $distance[$key]["distance"]["value"];
             }
             $products = $products->sortBy('distance')->values();
+        } else {
+            $products = $products->sortByDesc('created_at')->values();
         }
         //get media and bookmark
         if (JWTAuth::getToken()) {
@@ -157,12 +188,12 @@ class ProductController extends Controller
             $auth = false;
         }
         $products = $products->load('productMedias');
-        if ($auth) {
-            $user = JWTAuth::parseToken()->authenticate();
-            $products = $products->load(['bookmarks' => function ($query) use ($user) {
-                $query->where('user_id', $user->id);
-            }]);
-        }
+        // if ($auth) {
+        //     $user = JWTAuth::parseToken()->authenticate();
+        //     $products = $products->load(['bookmarks' => function ($query) use ($user) {
+        //         $query->where('user_id', $user->id);
+        //     }]);
+        // }
         return response()->json($products);
     }
 
@@ -326,18 +357,26 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $products
      * @return \Illuminate\Http\Response
      */
+    // public function destroy($product_id)
+    // {
+
+    //     $questions = Question::where('product_id', $product_id);
+    //     $question_ids = $questions->pluck('id');
+
+    //     Answer::whereIn('question_id', $question_ids)->delete();
+    //     ProductMedia::where('product_id', $product_id)->delete();
+
+    //     $questions->delete();
+    //     $product = Product::destroy($product_id);
+
+    //     return response()->json($product_id);
+    // }
+
     public function destroy($product_id)
     {
-
-        $questions = Question::where('product_id', $product_id);
-        $question_ids = $questions->pluck('id');
-
-        Answer::whereIn('question_id', $question_ids)->delete();
-        ProductMedia::where('product_id', $product_id)->delete();
-
-        $questions->delete();
-        $product = Product::destroy($product_id);
+        $product = $this->product->delete($product_id);
 
         return response()->json($product_id);
     }
+    
 }

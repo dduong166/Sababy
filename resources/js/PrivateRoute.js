@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect, Route } from "react-router-dom";
+import { Redirect, Route, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
@@ -19,7 +19,12 @@ const PrivateRoute = ({ component: Component, auth, ...rest }) => {
                             }}
                         />
                     )
-                ) : null
+                ) : (
+                    <div className="not-auth-text d-flex justify-content-center align-items-center">
+                        Vui lòng
+                        <Link to="/login">&nbsp;đăng nhập&nbsp;</Link> để xem thông tin
+                    </div>
+                )
             }
         />
     );

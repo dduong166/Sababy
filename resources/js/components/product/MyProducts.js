@@ -22,11 +22,15 @@ class MyProducts extends Component {
     }
 
     getProducts() {
-        const selling = "http://localhost:8000/api/product/selling";
+        const selling = this.props.isAdminPage
+            ? "http://localhost:8000/api/admin/selling"
+            : "http://localhost:8000/api/product/selling";
         Http.get(selling).then(response => {
             this.props.setProducts(response.data);
         });
-        const sold = "http://localhost:8000/api/product/sold";
+        const sold = this.props.isAdminPage
+            ? "http://localhost:8000/api/admin/sold"
+            : "http://localhost:8000/api/product/sold";
         Http.get(sold).then(response => {
             this.props.setSoldProducts(response.data);
             this.setState({ isLoading: false });
@@ -38,10 +42,14 @@ class MyProducts extends Component {
         var sold_products = this.props.sold_products;
         return (
             <div className="my-products-page container">
-                <div className="my-products-banner">
-                    <h2>SẢN PHẨM</h2>
-                </div>
-                <AddProductComponent />
+                {!this.props.isAdminPage ? (
+                    <React.Fragment>
+                        <div className="my-products-banner">
+                            <h2>SẢN PHẨM</h2>
+                        </div>
+                        <AddProductComponent />
+                    </React.Fragment>
+                ) : null}
                 <div className="product-detail-info row">
                     <div className="col-lg-12">
                         <nav>

@@ -6,6 +6,7 @@ import { Spin } from "antd";
 import SlideShow from "react-image-show";
 import { connect } from "react-redux";
 import QuestionComponent from "./QuestionComponent";
+import moment from "moment";
 
 class ProductDetail extends Component {
     constructor(props) {
@@ -46,6 +47,7 @@ class ProductDetail extends Component {
                 return media.media_url;
             });
         }
+        var created_at = moment(detail.created_at).format("DD/MM/YYYY");
 
         return (
             <div className="product-detail">
@@ -107,13 +109,13 @@ class ProductDetail extends Component {
                                     <table>
                                         <tbody>
                                             <tr>
-                                                <th>TÌNH TRẠNG NGOẠI QUAN</th>
-                                                <td>{detail.outside_status}</td>
+                                                <th>NGƯỜI BÁN</th>
+                                                <td>{detail.owner.name}</td>
                                             </tr>
                                             <tr>
-                                                <th>TÌNH TRẠNG SỬ DỤNG</th>
+                                                <th>SỐ ĐIỆN THOẠI</th>
                                                 <td>
-                                                    {detail.function_status}
+                                                    {detail.owner.phonenumber}
                                                 </td>
                                             </tr>
                                             <tr>
@@ -125,13 +127,23 @@ class ProductDetail extends Component {
                                                 <td>{detail.city}</td>
                                             </tr>
                                             <tr>
-                                                <th>SỐ ĐIỆN THOẠI</th>
+                                                <th>TÌNH TRẠNG NGOẠI QUAN</th>
+                                                <td>{detail.outside_status}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>TÌNH TRẠNG SỬ DỤNG</th>
                                                 <td>
-                                                    {detail.owner.phonenumber}
+                                                    {detail.function_status}
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th>GIÁ</th>
+                                                <th>NGÀY ĐĂNG BÁN</th>
+                                                <td>
+                                                    {created_at}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>GIÁ SẢN PHẨM</th>
                                                 <td>
                                                     <div className="price d-flex flex-row justify-content-start align-items-center">
                                                         <div className="new_price">

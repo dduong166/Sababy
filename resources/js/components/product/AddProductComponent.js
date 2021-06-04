@@ -16,7 +16,6 @@ import { EditOutlined, PlusOutlined } from "@ant-design/icons";
 import { Widget, WidgetLoader } from "react-cloudinary-upload-widget";
 import "./css/AddProductComponent.scss";
 import { connect } from "react-redux";
-import moment from "moment";
 import { times } from "lodash";
 
 const { TextArea } = Input;

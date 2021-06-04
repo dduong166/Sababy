@@ -10,6 +10,7 @@ import {
 import "./css/ProductCard.scss";
 import AddProductComponent from "./AddProductComponent";
 import { connect } from "react-redux";
+import moment from "moment";
 
 class ProductCard extends Component {
     constructor(props) {
@@ -31,11 +32,11 @@ class ProductCard extends Component {
     componentWillUnmount() {
         // fix Warning: Can't perform a React state update on an unmounted component
         // return null when escapse component, it will no longer hold any data in memory
-        this.setState = (state,callback)=>{
+        this.setState = (state, callback) => {
             return;
         };
     }
-    
+
     changeBookmarkEvent(value) {
         this.setState({
             bookmarkEvent: value
@@ -111,7 +112,7 @@ class ProductCard extends Component {
                 }
             }
             notification["success"]({
-                message: "Chuyển trạng thái thành công.",
+                message: "Chuyển trạng thái thành công."
             });
             this.setState({ isLoading: false });
         });
@@ -125,7 +126,7 @@ class ProductCard extends Component {
                 this.props.deleteProduct(this.props.product);
             }
             notification["success"]({
-                message: "Xóa sản phẩm thành công.",
+                message: "Xóa sản phẩm thành công."
             });
             this.setState({ isLoading: false });
         });
@@ -133,6 +134,9 @@ class ProductCard extends Component {
 
     render() {
         let product = this.props.product;
+        moment.locale('vi');
+        let past_created_time = moment(product.created_at);
+        past_created_time = past_created_time.fromNow();
         const card_footer = (
             <div className="product-footer d-flex justify-content-center">
                 {this.props.soldProduct ? (
@@ -215,23 +219,25 @@ class ProductCard extends Component {
                             </div>
                         </div>
                         <div className="product_address_and_price d-flex flex-row justify-content-between">
-                            <div className="light_text d-flex align-items-center">
-                                {product.city}{" "}
-                                {product.distance ? (
-                                    <span>
-                                        (cách{" "}
-                                        {(
-                                            Math.round(product.distance / 100) /
-                                            10
-                                        ).toLocaleString()}
-                                        km)
-                                    </span>
-                                ) : null}
+                            <div className="d-flex flex-column justify-content-between">
+                                <div className="small_text">
+                                    {product.city}{" "}
+                                    {product.distance ? (
+                                        <span>
+                                            (cách{" "}
+                                            {(
+                                                Math.round(
+                                                    product.distance / 100
+                                                ) / 10
+                                            ).toLocaleString()}
+                                            km)
+                                        </span>
+                                    ) : null}
+                                </div>
+                                <div className="light_text">{past_created_time}</div>
                             </div>
                             <div className="price top-border d-flex flex-row align-items-center">
-                                <div className="new_price">
-                                    {product.price.toLocaleString()} đ
-                                </div>
+                                {product.price.toLocaleString()} đ
                             </div>
                         </div>
                     </div>

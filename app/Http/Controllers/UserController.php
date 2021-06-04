@@ -2,14 +2,43 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Repositories\ProductRepositoryInterface;
+use App\Repositories\UserRepositoryInterface;
+use App\Models\Product;
 use App\Models\User;
+use App\Models\ProductMedia;
+use App\Models\Category;
+use App\Models\Question;
+use App\Models\Answer;
+
+use Illuminate\Http\Request;
 use JWTAuth;
 use JWTAuthException;
 use Validator;
+use Carbon\Carbon;   
 
 class UserController extends Controller
 {
+    protected $user;
+    protected $product;
+
+    public function __construct(UserRepositoryInterface $user, ProductRepositoryInterface $product)
+    {
+        $this->user = $user;
+        $this->product = $product;
+    }
+
+    public function index()
+    {
+        $users = User::all();
+        $users = $users->each(function($item, $key){
+            $item->key = $item->id;
+            $item->created_at_date = Carbon::parse($item->created_at)->toDateString();
+        });
+        return response()->json($users);
+    }
+
     //Check if user is logged in? 
     public function getAuthenticatedUser()
     {
@@ -101,4 +130,25 @@ class UserController extends Controller
 
         return response()->json($response, 201);
     }
+
+    public function CountUserByDate(){
+        $userByDate = DB::table('users')
+                ->select(DB::raw("COUNT(*) `người dùng`, DATE_FORMAT(created_at, '%Y-%m-%d') date"))
+                ->groupBy('date')
+                ->orderBy('date')
+                ->get();
+        $countAll = User::all()->count();
+        return response()->json(['userByDate' => $userByDate, 'countAll' => $countAll]);
+    }
+
+    public function delete($user_id){
+        $user = $this->user->delete($user_id);
+        $products = Product::where('owner_id', $user_id)->pluck('id');
+        foreach ($products as $key => $product) {
+            $this->product->delete($product);
+        }
+
+        return response()->json($user_id);
+    }
+
 }
