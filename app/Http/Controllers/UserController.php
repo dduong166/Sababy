@@ -151,4 +151,12 @@ class UserController extends Controller
         return response()->json($user_id);
     }
 
+    public function update($user_id, Request $request){
+        $input = $request->all();
+        $user = $this->user->update($user_id, $input);
+        
+        return response()->json($user->original->first());
+    }
+
+
 }

@@ -1,6 +1,9 @@
 .profile {
     margin-top: 30px;
     color: #444;
+    .anticon svg {
+        display: block;
+    }
     .profile-banner {
         h2 {
             font-weight: 400;
@@ -11,9 +14,6 @@
     }
     .edit-btn {
         padding-bottom: 10px;
-        .anticon svg {
-            display: block;
-        }
     }
     table {
         border-top: 1px solid #0062cc;
@@ -30,5 +30,8 @@
                 white-space: pre-line;
             }
         }
+    }
+    .submit-btn {
+        margin-top: 12px;
     }
 }

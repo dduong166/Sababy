@@ -39,7 +39,10 @@ class AppMain extends Component {
                         <App>
                                 <Navbar history={history} />
                                 <Route path="/login" exact component={Login} />
-                                <Route path="/profile" exact component={Profile} />
+                                <PrivateRoute
+                                    path="/profile"
+                                    component={Profile}
+                                />
                                 <Route path="/" exact component={Homepage} />
                                 <Route
                                     path="/category/:category_id"

@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import "./css/profile.scss";
 import Http from "../../Http";
-import { Button, Input, Modal, notification } from "antd";
-import { EditOutlined } from "@ant-design/icons";
+import { Button, Input, Modal, notification, Space, Tooltip } from "antd";
+import { EditOutlined, InfoCircleOutlined } from "@ant-design/icons";
 import { connect } from "react-redux";
 
 class Profile extends Component {
@@ -17,24 +17,54 @@ class Profile extends Component {
             address: "",
             lat: null,
             lng: null,
-            address: null,
             visible: false,
             inited: false,
-            isLoading: true
+            isLoading: true,
+            isSetValueToState: false
         };
-        this.onClickEditBtn = this.onClickEditBtn.bind(this);
+        this.onChangeEditStatus = this.onChangeEditStatus.bind(this);
         this.onChangeName = this.onChangeName.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePhonenumber = this.onChangePhonenumber.bind(this);
         this.initMap = this.initMap.bind(this);
         this.setModalVisible = this.setModalVisible.bind(this);
-        // this.onChangeAddress = this.onChangeAddress.bind(this);
+        this.onEditSubmit = this.onEditSubmit.bind(this);
     }
 
-    onClickEditBtn() {
+    onChangeEditStatus(value) {
         this.setState({
-            edit: 1
+            edit: value
         });
+    }
+
+    onEditSubmit() {
+        if (
+            this.state.name &&
+            this.state.email &&
+            this.state.phonenumber &&
+            this.state.lat &&
+            this.state.lng
+        ) {
+            let uri =
+                "http://localhost:8000/api/user/" + this.props.currentUser.id;
+            let profile = {
+                name: this.state.name,
+                email: this.state.email,
+                phonenumber: this.state.phonenumber,
+                address: `${this.state.lat},${this.state.lng}`
+            };
+            Http.put(uri, profile)
+                .then(response => {
+                    console.log(response.data);
+                    this.props.login(response.data);
+                })
+                .catch(error => console.log(error));
+            this.onChangeEditStatus(0);
+        } else {
+            notification["error"]({
+                message: "Vui lòng nhập đầy đủ thông tin."
+            });
+        }
     }
 
     onChangeName(e) {
@@ -193,11 +223,15 @@ class Profile extends Component {
     render() {
         console.log(this.state);
         let currentUser = this.props.currentUser;
-        if (currentUser && !this.state.lat && !this.state.lng) {
+        if (currentUser && !this.state.isSetValueToState) {
             let address = currentUser.address.split(",");
             this.setState({
+                name: currentUser.name,
+                email: currentUser.email,
+                phonenumber: currentUser.phonenumber,
                 lat: parseFloat(address[0]),
-                lng: parseFloat(address[1])
+                lng: parseFloat(address[1]),
+                isSetValueToState: true
             });
         }
         return (
@@ -205,14 +239,16 @@ class Profile extends Component {
                 <div className="profile-banner">
                     <h2>THÔNG TIN CÁ NHÂN</h2>
                 </div>
-                <div className="edit-btn d-flex justify-content-center">
-                    <Button
-                        icon={<EditOutlined />}
-                        onClick={() => this.onClickEditBtn()}
-                    >
-                        Sửa
-                    </Button>
-                </div>
+                {!this.state.edit ? (
+                    <div className="edit-btn d-flex justify-content-center">
+                        <Button
+                            icon={<EditOutlined />}
+                            onClick={() => this.onChangeEditStatus(1)}
+                        >
+                            Sửa
+                        </Button>
+                    </div>
+                ) : null}
                 <table>
                     <tbody>
                         <tr>
@@ -244,7 +280,7 @@ class Profile extends Component {
                             </td>
                         </tr>
                         <tr>
-                            <th>SỐ ĐIỆN THOẠI</th>
+                            <th>SỐ ĐIỆN THOẠI <Tooltip title="Người mua sẽ liên hệ với bạn thông qua số điện thoại này"><InfoCircleOutlined /></Tooltip></th>
                             <td>
                                 {this.state.edit ? (
                                     <Input
@@ -260,7 +296,7 @@ class Profile extends Component {
                             </td>
                         </tr>
                         <tr>
-                            <th>ĐỊA CHỈ</th>
+                            <th>TỌA ĐỘ ĐỊA CHỈ <Tooltip title="Thông tin này phục vụ cho chức năng sắp xếp sản phẩm theo khoảng cách và không được công khai"><InfoCircleOutlined /></Tooltip></th>
                             <td>
                                 {this.state.edit ? (
                                     <Button
@@ -281,6 +317,22 @@ class Profile extends Component {
                         </tr>
                     </tbody>
                 </table>
+                {this.state.edit ? (
+                    <div className="submit-btn d-flex justify-content-center">
+                        <Space>
+                            <Button onClick={() => this.onChangeEditStatus(0)}>
+                                Hủy
+                            </Button>
+                            <Button
+                                key="submit"
+                                type="primary"
+                                onClick={() => this.onEditSubmit()}
+                            >
+                                Xác nhận
+                            </Button>
+                        </Space>
+                    </div>
+                ) : null}
                 <Modal
                     title="Xác định vị trí của bạn"
                     centered

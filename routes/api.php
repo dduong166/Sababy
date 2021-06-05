@@ -25,6 +25,7 @@ Route::prefix('user')->group(function () {
     Route::post('/login', 'UserController@login')->name('login');
     Route::post('/register', 'UserController@register');
     Route::get('/isLoggedIn', 'UserController@getAuthenticatedUser');
+    Route::middleware('auth:api')->put('/{user_id}', 'UserController@update');
 });
 
 Route::group(['prefix'=> 'admin', 'middleware' => ['auth:api', 'is-admin']], function () {

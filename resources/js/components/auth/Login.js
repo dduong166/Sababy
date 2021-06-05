@@ -161,11 +161,11 @@ class Login extends Component {
                 if (response.data.user.is_admin) {
                     this.props.history.push("/admin");
                 } else {
-                    if (window.history.length > 1) {
-                        window.history.back();
-                    } else {
+                    // if (window.history.length > 1) {
+                    //     window.history.back();
+                    // } else {
                         this.props.history.push("/");
-                    }
+                    // }
                 }
             }
         });
