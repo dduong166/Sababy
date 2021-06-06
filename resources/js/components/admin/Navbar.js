@@ -22,12 +22,7 @@ class Navbar extends Component {
             Http.get("http://localhost:8000/api/user/isLoggedIn")
                 .then(response => {
                     if (response.data.user) {
-                        var currentUser = {
-                            id: response.data.user.id,
-                            name: response.data.user.name,
-                            is_admin: response.data.user.is_admin
-                        };
-                        this.props.login(currentUser);
+                        this.props.login(response.data.user);
                     } else {
                         this.props.logout();
                     }
@@ -51,13 +46,12 @@ class Navbar extends Component {
         return (
             <div className="navbar-section">
                 <header className="top-black-style d-flex justify-content-between align-items-center">
-                    <Link className="logo" to="/admin">
+                    <Link className="logo" to="/">
                         <img
                             src="https://res.cloudinary.com/dbzfjnlhl/image/upload/v1613919232/27b6792e-38bd-471c-b46e-177a0e5a1af0_200x200_lb4mcd.png"
                             alt="logo"
                         />
                     </Link>
-
                     <div className="admin-navbar-title">
                         TRANG QUẢN LÝ SABABY
                     </div>
@@ -67,7 +61,9 @@ class Navbar extends Component {
                             {this.props.currentUser ? (
                                 <div>
                                     <div className="username">
-                                        Chào {this.props.currentUser.name}
+                                        <Link to="/profile">
+                                            Chào {this.props.currentUser.name}
+                                        </Link>
                                     </div>
                                     <div
                                         className="logout"

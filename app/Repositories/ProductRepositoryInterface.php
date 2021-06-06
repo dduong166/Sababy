@@ -9,6 +9,8 @@ interface ProductRepositoryInterface
      * @param int
      */
     public function get($product_id);
+    public function adminSellingProducts();
+    public function adminSoldProducts();
 
     /**
      * Get's all posts.

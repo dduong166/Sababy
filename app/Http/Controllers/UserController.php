@@ -36,6 +36,7 @@ class UserController extends Controller
             $item->key = $item->id;
             $item->created_at_date = Carbon::parse($item->created_at)->toDateString();
         });
+        $users = $users->sortByDesc('created_at')->values();
         return response()->json($users);
     }
 
@@ -124,7 +125,7 @@ class UserController extends Controller
             $token = self::getToken($request->email, $request->password);
             $user->auth_token = $token;
             $user->save();
-            $response = ['success' => true, 'auth_token' => $user->auth_token, 'username' => $user->name, 'user_id' => $user->id, 'is_admin' => $user->is_admin];
+            $response = ['success' => true, 'user' => $user];
         } else
             $response = ['success' => false, 'data' => 'Login fail'];
 
@@ -150,5 +151,13 @@ class UserController extends Controller
 
         return response()->json($user_id);
     }
+
+    public function update($user_id, Request $request){
+        $input = $request->all();
+        $user = $this->user->update($user_id, $input);
+        
+        return response()->json($user->original->first());
+    }
+
 
 }

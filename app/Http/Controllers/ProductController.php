@@ -206,7 +206,7 @@ class ProductController extends Controller
             array_push($sub_categories_id, $sub_category->id);
         }
         array_push($sub_categories_id, (int) $category_id);
-        $products = Product::whereIn('category_id', $sub_categories_id)->get();
+        $products = Product::whereIn('category_id', $sub_categories_id)->orderBy('created_at', 'DESC')->get();
         $products = $products->load('productMedias');
         if (JWTAuth::getToken()) {
             $auth = JWTAuth::parseToken()->check();
@@ -350,27 +350,6 @@ class ProductController extends Controller
         return response()->json($product);
 
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Product  $products
-     * @return \Illuminate\Http\Response
-     */
-    // public function destroy($product_id)
-    // {
-
-    //     $questions = Question::where('product_id', $product_id);
-    //     $question_ids = $questions->pluck('id');
-
-    //     Answer::whereIn('question_id', $question_ids)->delete();
-    //     ProductMedia::where('product_id', $product_id)->delete();
-
-    //     $questions->delete();
-    //     $product = Product::destroy($product_id);
-
-    //     return response()->json($product_id);
-    // }
 
     public function destroy($product_id)
     {

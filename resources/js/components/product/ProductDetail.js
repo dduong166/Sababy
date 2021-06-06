@@ -110,12 +110,12 @@ class ProductDetail extends Component {
                                         <tbody>
                                             <tr>
                                                 <th>NGƯỜI BÁN</th>
-                                                <td>{detail.owner.name}</td>
+                                                <td>{detail.owner ? detail.owner.name : <del>Tài khoản đã bị xóa</del>}</td>
                                             </tr>
                                             <tr>
                                                 <th>SỐ ĐIỆN THOẠI</th>
                                                 <td>
-                                                    {detail.owner.phonenumber}
+                                                    {detail.owner ? detail.owner.phonenumber : <del>Tài khoản đã bị xóa</del>}
                                                 </td>
                                             </tr>
                                             <tr>

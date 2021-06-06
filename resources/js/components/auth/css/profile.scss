@@ -1,0 +1,37 @@
+.profile {
+    margin-top: 30px;
+    color: #444;
+    .anticon svg {
+        display: block;
+    }
+    .profile-banner {
+        h2 {
+            font-weight: 400;
+        }
+        letter-spacing: 8px;
+        text-align: center;
+        margin: 30px 0 30px 0;
+    }
+    .edit-btn {
+        padding-bottom: 10px;
+    }
+    table {
+        border-top: 1px solid #0062cc;
+        width: 100%;
+        tr {
+            th {
+                padding-right: 50px;
+                padding-top: 12px;
+                font-weight: 400;
+            }
+            td {
+                padding-top: 12px;
+                width: 55%;
+                white-space: pre-line;
+            }
+        }
+    }
+    .submit-btn {
+        margin-top: 12px;
+    }
+}

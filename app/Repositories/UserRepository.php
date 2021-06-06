@@ -51,6 +51,9 @@ class UserRepository implements UserRepositoryInterface
      */
     public function update($user_id, array $user_data)
     {
-        User::find($user_id)->update($user_data);
+        $user = tap(User::where('id', $user_id))->update($user_data);
+        // $user->update($user_data); 
+        // $user = User::where('id', $user_id);
+        return response()->json($user);//Đang lấy dữ liệu cũ
     }
 }
