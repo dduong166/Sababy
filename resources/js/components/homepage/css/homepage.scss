@@ -14,13 +14,15 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 .homepage-body{
-    overflow: auto;
     margin-top: 20px;
     margin-bottom: 20px;
     .product-list {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+    }
+    .anticon svg {
+        display: block;
     }
 }
 

@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Question;
 use App\Models\Answer;
 use Tymon\JWTAuth\Facades\JWTAuth;
+use Illuminate\Support\Facades\DB;
 
 class ProductRepository implements ProductRepositoryInterface
 {
@@ -44,7 +45,7 @@ class ProductRepository implements ProductRepositoryInterface
      */
     public function all()
     {
-        return Product::all();
+        return Product::where('sold', 0)->orderBy('created_at', 'DESC')->paginate(2);
     }
 
     /**

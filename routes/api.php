@@ -43,7 +43,7 @@ Route::prefix('category')->group(function () {
 Route::prefix('product')->group(function () {
     Route::get('/', 'ProductController@index');
     Route::get('/cities', 'ProductController@getProductCity');  
-    Route::get('/repo_test', 'ProductController@repo_test');   
+    Route::get('/pagination', 'ProductController@getProductsPagination');   
     Route::middleware('auth:api')->get('/selling', 'ProductController@sellingProducts');
     Route::middleware('auth:api')->get('/sold', 'ProductController@soldProducts');
     Route::get('/category/{category_id}', 'ProductController@getProductByCategoryID');
