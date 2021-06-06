@@ -13,6 +13,7 @@ class Login extends Component {
         this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
+        this.onChangePhonenumber = this.onChangePhonenumber.bind(this);
         this.onSignupSubmit = this.onSignupSubmit.bind(this);
         this.onLoginSubmit = this.onLoginSubmit.bind(this);
 
@@ -20,6 +21,7 @@ class Login extends Component {
             username: "",
             password: "",
             email: "",
+            phonenumber: "",
             loading: true
         };
     }
@@ -111,18 +113,28 @@ class Login extends Component {
         });
     }
 
+    onChangePhonenumber(e) {
+        this.setState({
+            phonenumber: e.target.value
+        });
+    }
+
     onSignupSubmit(e) {
         e.preventDefault();
         let uri = "api/user/register";
         const newUser = {
             name: this.state.username,
             password: this.state.password,
-            email: this.state.email
+            email: this.state.email,
+            phonenumber: this.state.phonenumber
         };
         Http.post(uri, newUser).then(response => {
             if (response.data.success) {
                 console.log(response);
                 window.location.reload();
+                notification["success"]({
+                    message: "Đăng ký tài khoản thành công."
+                });
             } else {
                 console.log(response);
                 notification["error"]({
@@ -167,6 +179,10 @@ class Login extends Component {
                         this.props.history.push("/");
                     // }
                 }
+            }else{
+                notification["error"]({
+                    message: "Đăng nhập thất bại"
+                });
             }
         });
     }
@@ -200,7 +216,7 @@ class Login extends Component {
                                         type="text"
                                         required
                                         value={this.state.email}
-                                        onChange={this.onChangeEmail}
+                                        onChange={e => this.onChangeEmail(e)}
                                         name="email"
                                     />
                                 </div>
@@ -212,7 +228,7 @@ class Login extends Component {
                                     <input
                                         type="password"
                                         required
-                                        onChange={this.onChangePassword}
+                                        onChange={e => this.onChangePassword(e)}
                                         name="password"
                                     />
                                 </div>
@@ -243,7 +259,7 @@ class Login extends Component {
                                     <input
                                         type="text"
                                         required
-                                        onChange={this.onChangeUsername}
+                                        onChange={e => this.onChangeUsername(e)}
                                         name="username"
                                         minLength="3"
                                     />
@@ -256,7 +272,18 @@ class Login extends Component {
                                     <input
                                         type="email"
                                         required
-                                        onChange={this.onChangeEmail}
+                                        onChange={e => this.onChangeEmail(e)}
+                                    />
+                                </div>
+
+                                <div className="field-wrap">
+                                    <label>
+                                        Số điện thoại<span className="req">*</span>
+                                    </label>
+                                    <input
+                                        type="phonenumber"
+                                        required
+                                        onChange={e => this.onChangePhonenumber(e)}
                                     />
                                 </div>
 
@@ -268,7 +295,7 @@ class Login extends Component {
                                         id="new_password"
                                         type="password"
                                         required
-                                        onChange={this.onChangePassword}
+                                        onChange={e => this.onChangePassword(e)}
                                         name="password"
                                     />
                                 </div>

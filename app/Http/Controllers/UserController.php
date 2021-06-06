@@ -36,6 +36,7 @@ class UserController extends Controller
             $item->key = $item->id;
             $item->created_at_date = Carbon::parse($item->created_at)->toDateString();
         });
+        $users = $users->sortByDesc('created_at')->values();
         return response()->json($users);
     }
 

@@ -60,6 +60,9 @@ class Profile extends Component {
                 })
                 .catch(error => console.log(error));
             this.onChangeEditStatus(0);
+            notification["success"]({
+                message: "Cập nhật thông tin thành công;"
+            });
         } else {
             notification["error"]({
                 message: "Vui lòng nhập đầy đủ thông tin."
