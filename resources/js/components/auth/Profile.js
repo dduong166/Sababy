@@ -12,7 +12,6 @@ class Profile extends Component {
         this.state = {
             edit: 0,
             name: "",
-            email: "",
             phonenumber: "",
             address: "",
             lat: null,
@@ -24,7 +23,6 @@ class Profile extends Component {
         };
         this.onChangeEditStatus = this.onChangeEditStatus.bind(this);
         this.onChangeName = this.onChangeName.bind(this);
-        this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePhonenumber = this.onChangePhonenumber.bind(this);
         this.initMap = this.initMap.bind(this);
         this.setModalVisible = this.setModalVisible.bind(this);
@@ -40,7 +38,6 @@ class Profile extends Component {
     onEditSubmit() {
         if (
             this.state.name &&
-            this.state.email &&
             this.state.phonenumber &&
             this.state.lat &&
             this.state.lng
@@ -49,7 +46,6 @@ class Profile extends Component {
                 "http://localhost:8000/api/user/" + this.props.currentUser.id;
             let profile = {
                 name: this.state.name,
-                email: this.state.email,
                 phonenumber: this.state.phonenumber,
                 address: `${this.state.lat},${this.state.lng}`
             };
@@ -73,12 +69,6 @@ class Profile extends Component {
     onChangeName(e) {
         this.setState({
             name: e.target.value
-        });
-    }
-
-    onChangeEmail(e) {
-        this.setState({
-            email: e.target.value
         });
     }
 
@@ -230,7 +220,6 @@ class Profile extends Component {
             let address = currentUser.address.split(",");
             this.setState({
                 name: currentUser.name,
-                email: currentUser.email,
                 phonenumber: currentUser.phonenumber,
                 lat: parseFloat(address[0]),
                 lng: parseFloat(address[1]),
@@ -265,20 +254,6 @@ class Profile extends Component {
                                     />
                                 ) : (
                                     currentUser.name
-                                )}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>ĐỊA CHỈ EMAIL</th>
-                            <td>
-                                {this.state.edit ? (
-                                    <Input
-                                        placeholder="Nhập email"
-                                        defaultValue={currentUser.email}
-                                        onChange={e => this.onChangeEmail(e)}
-                                    />
-                                ) : (
-                                    currentUser.email
                                 )}
                             </td>
                         </tr>

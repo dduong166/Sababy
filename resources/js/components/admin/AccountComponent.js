@@ -14,7 +14,6 @@ class AccountComponent extends Component {
             users: [],
             edit: 0,
             name: "",
-            email: "",
             phonenumber: "",
             lat: "",
             lng: "",
@@ -24,7 +23,6 @@ class AccountComponent extends Component {
         this.onChangeEditStatus = this.onChangeEditStatus.bind(this);
         this.onEditSubmit = this.onEditSubmit.bind(this);
         this.onChangeName = this.onChangeName.bind(this);
-        this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePhonenumber = this.onChangePhonenumber.bind(this);
         this.initMap = this.initMap.bind(this);
         this.setModalVisible = this.setModalVisible.bind(this);
@@ -80,7 +78,6 @@ class AccountComponent extends Component {
             this.setState({
                 edit: currentUser.key,
                 name: currentUser.name,
-                email: currentUser.email,
                 phonenumber: currentUser.phonenumber,
                 lat: parseFloat(address[0]),
                 lng: parseFloat(address[1])
@@ -96,12 +93,6 @@ class AccountComponent extends Component {
     onChangeName(e) {
         this.setState({
             name: e.target.value
-        });
-    }
-
-    onChangeEmail(e) {
-        this.setState({
-            email: e.target.value
         });
     }
 
@@ -238,7 +229,6 @@ class AccountComponent extends Component {
         //state.edit == 0 -> not edit; state.edit == key -> editting record 'key'
         if (
             this.state.name &&
-            this.state.email &&
             this.state.phonenumber &&
             this.state.lat &&
             this.state.lng
@@ -246,7 +236,6 @@ class AccountComponent extends Component {
             let uri = "http://localhost:8000/api/user/" + this.state.edit;
             let profile = {
                 name: this.state.name,
-                email: this.state.email,
                 phonenumber: this.state.phonenumber,
                 address: `${this.state.lat},${this.state.lng}`
             };
@@ -258,7 +247,6 @@ class AccountComponent extends Component {
                                 //Tìm kiếm và thay thế user được edit
                                 if (user.key === this.state.edit) {
                                     user.name = profile.name;
-                                    user.email = profile.email;
                                     user.phonenumber = profile.phonenumber;
                                     user.address = profile.address;
                                 }
@@ -302,23 +290,6 @@ class AccountComponent extends Component {
                         />
                     ) : (
                         record.name
-                    )
-            },
-            {
-                title: "Email",
-                width: 100,
-                dataIndex: "email",
-                key: "email",
-                fixed: "left",
-                render: (text, record) =>
-                    this.state.edit == record.key ? (
-                        <Input
-                            placeholder="Nhập email"
-                            defaultValue={record.email}
-                            onChange={e => this.onChangeEmail(e)}
-                        />
-                    ) : (
-                        record.email
                     )
             },
             {
