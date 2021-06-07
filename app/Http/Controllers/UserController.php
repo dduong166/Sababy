@@ -62,14 +62,14 @@ class UserController extends Controller
         return response()->json(compact('user'));
     }
 
-    private function getToken($email, $password)
+    private function getToken($phonenumber, $password)
     {
         $token = null;
         try {
-            if (!$token = JWTAuth::attempt(['email' => $email, 'password' => $password])) {
+            if (!$token = JWTAuth::attempt(['phonenumber' => $phonenumber, 'password' => $password])) {
                 return response()->json([
                     'response' => 'error',
-                    'message' => 'Password or email is invalid',
+                    'message' => 'Password or phonenumber is invalid',
                     'token' => $token
                 ]);
             }
@@ -86,7 +86,7 @@ class UserController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'email' => 'required|unique:users',
+            'phonenumber' => 'required|unique:users',
             'password' => 'required',
         ]);
 
@@ -96,7 +96,7 @@ class UserController extends Controller
 
         $payload = [
             'password' => \Hash::make($request->password),
-            'email' => $request->email,
+            'phonenumber' => $request->phonenumber,
             'name' => $request->name,
             'auth_token' => ''
         ];
@@ -104,10 +104,10 @@ class UserController extends Controller
         $user = new User($payload);
         if ($user->save()) {
 
-            $token = self::getToken($request->email, $request->password);
+            $token = self::getToken($request->phonenumber, $request->password);
             if (!is_string($token))  return response()->json(['success' => false, 'data' => 'Token generation failed'], 201);
 
-            $user = User::where('email', $request->email)->get()->first();
+            $user = User::where('phonenumber', $request->phonenumber)->get()->first();
 
             $user->auth_token = $token;
             $user->save();
@@ -120,9 +120,9 @@ class UserController extends Controller
 
     public function login(Request $request)
     {
-        $user = User::where('email', $request->email)->get()->first();
+        $user = User::where('phonenumber', $request->phonenumber)->get()->first();
         if ($user && \Hash::check($request->password, $user->password)) {
-            $token = self::getToken($request->email, $request->password);
+            $token = self::getToken($request->phonenumber, $request->password);
             $user->auth_token = $token;
             $user->save();
             $response = ['success' => true, 'user' => $user];

@@ -11,7 +11,6 @@ class Login extends Component {
         super(props);
 
         this.onChangeUsername = this.onChangeUsername.bind(this);
-        this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
         this.onChangePhonenumber = this.onChangePhonenumber.bind(this);
         this.onSignupSubmit = this.onSignupSubmit.bind(this);
@@ -20,7 +19,6 @@ class Login extends Component {
         this.state = {
             username: "",
             password: "",
-            email: "",
             phonenumber: "",
             loading: true
         };
@@ -107,12 +105,6 @@ class Login extends Component {
         });
     }
 
-    onChangeEmail(e) {
-        this.setState({
-            email: e.target.value
-        });
-    }
-
     onChangePhonenumber(e) {
         this.setState({
             phonenumber: e.target.value
@@ -125,7 +117,6 @@ class Login extends Component {
         const newUser = {
             name: this.state.username,
             password: this.state.password,
-            email: this.state.email,
             phonenumber: this.state.phonenumber
         };
         Http.post(uri, newUser).then(response => {
@@ -144,8 +135,7 @@ class Login extends Component {
         });
         this.setState({
             username: "",
-            password: "",
-            email: ""
+            password: ""
         });
     }
 
@@ -153,7 +143,7 @@ class Login extends Component {
         e.preventDefault();
         let uri = "api/user/login";
         const loginUser = {
-            email: this.state.email,
+            phonenumber: this.state.phonenumber,
             password: this.state.password
         };
         Http.post(uri, loginUser).then(response => {
@@ -167,7 +157,7 @@ class Login extends Component {
                     this.setState({
                         username: "",
                         password: "",
-                        email: ""
+                        phonenumber: ""
                     });
                 }
                 if (response.data.user.is_admin) {
@@ -210,14 +200,14 @@ class Login extends Component {
                             <form onSubmit={this.onLoginSubmit}>
                                 <div className="field-wrap">
                                     <label>
-                                        Email<span className="req">*</span>
+                                        Số điện thoại<span className="req">*</span>
                                     </label>
                                     <input
                                         type="text"
                                         required
-                                        value={this.state.email}
-                                        onChange={e => this.onChangeEmail(e)}
-                                        name="email"
+                                        value={this.state.phonenumber}
+                                        onChange={e => this.onChangePhonenumber(e)}
+                                        name="phonenumber"
                                     />
                                 </div>
 
@@ -248,7 +238,7 @@ class Login extends Component {
                         </div>
 
                         <div id="signup">
-                            <h1>Đăng ký miễn phí ngay</h1>
+                            <h1>Đăng ký tài khoản chỉ với 20 giây</h1>
 
                             <form onSubmit={this.onSignupSubmit}>
                                 <div className="field-wrap">
@@ -262,17 +252,6 @@ class Login extends Component {
                                         onChange={e => this.onChangeUsername(e)}
                                         name="username"
                                         minLength="3"
-                                    />
-                                </div>
-
-                                <div className="field-wrap">
-                                    <label>
-                                        Email<span className="req">*</span>
-                                    </label>
-                                    <input
-                                        type="email"
-                                        required
-                                        onChange={e => this.onChangeEmail(e)}
                                     />
                                 </div>
 

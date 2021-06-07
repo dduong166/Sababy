@@ -50,7 +50,7 @@ class ProductDetail extends Component {
         var created_at = moment(detail.created_at).format("DD/MM/YYYY");
 
         return (
-            <div className="product-detail">
+            <div className="product-detail fullscreen-min-height">
                 {!this.state.loading && detail ? (
                     <div className="container">
                         <nav aria-label="breadcrumb">

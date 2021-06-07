@@ -41,7 +41,7 @@ class MyProducts extends Component {
         var products = this.props.products;
         var sold_products = this.props.sold_products;
         return (
-            <div className="my-products-page container">
+            <div className="my-products-page fullscreen-min-height container">
                 {!this.props.isAdminPage ? (
                     <React.Fragment>
                         <div className="my-products-banner">

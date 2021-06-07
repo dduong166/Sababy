@@ -48,7 +48,7 @@ class CategoryDetail extends Component {
         var category = this.props.category_detail;
         var products = this.props.products;
         return (
-            <div className="homepage-body">
+            <div className="homepage-body fullscreen-min-height">
                 {!this.state.isLoading && category ? (
                     <div className="container">
                         <nav aria-label="breadcrumb">

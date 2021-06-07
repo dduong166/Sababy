@@ -27,7 +27,7 @@ class ProductController extends Controller
         $this->product = $product;
     }
 
-    public function repo_test(){
+    public function getProductsPagination(){
         $products = $this->product->all();
 
         return response()->json($products);
@@ -40,21 +40,22 @@ class ProductController extends Controller
      */
     public function index()
     {
-        if (JWTAuth::getToken()) {
-            $auth = JWTAuth::parseToken()->check();
-        } else {
-            $auth = false;
-        }
+        // if (JWTAuth::getToken()) {
+        //     $auth = JWTAuth::parseToken()->check();
+        // } else {
+        //     $auth = false;
+        // }
 
-        $products = Product::where('sold', 0)->orderBy('created_at', 'DESC')->get();
-        $products = $products->load('productMedias');
+        $products = Product::where('sold', 0)->orderBy('created_at', 'DESC')->paginate(15);
+        $productsWithMedia = $products;
+        $productsWithMedia->data = $products->load('productMedias');
         // if ($auth) {
         //     $user = JWTAuth::parseToken()->authenticate();
         //     $products = $products->load(['bookmarks' => function ($query) use ($user) {
         //         $query->where('user_id', $user->id);
         //     }]);
         // }
-        return response()->json($products);
+        return response()->json($productsWithMedia);
     }
 
     public function CountProductByDate(){

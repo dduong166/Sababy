@@ -20,7 +20,7 @@ const PrivateRoute = ({ component: Component, auth, ...rest }) => {
                         />
                     )
                 ) : (
-                    <div className="not-auth-text d-flex justify-content-center align-items-center">
+                    <div className="not-auth-text fullscreen-min-height d-flex justify-content-center align-items-center">
                         Vui lòng
                         <Link to="/login">&nbsp;đăng nhập&nbsp;</Link> để xem thông tin
                     </div>

@@ -45,7 +45,7 @@ class Homepage extends Component {
     }
     render() {
         return (
-            <div className="homepage-body">
+            <div className="homepage-body fullscreen-min-height">
                 {!this.state.isLoading ? (
                     <div className="container">
                         <FilterSort location={this.props.location} history={this.props.history}/>
