@@ -227,7 +227,7 @@ class Profile extends Component {
             });
         }
         return (
-            <div className="profile container">
+            <div className="profile container fullscreen-min-height">
                 <div className="profile-banner">
                     <h2>THÔNG TIN CÁ NHÂN</h2>
                 </div>

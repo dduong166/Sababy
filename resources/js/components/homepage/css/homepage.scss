@@ -13,9 +13,14 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+.fullscreen-min-height {
+    min-height: 73vh;
+}
+.loading {
+    height: 50vh;
+}
 .homepage-body{
-    margin-top: 20px;
-    margin-bottom: 20px;
+    padding: 20px 0 20px 0;
     .product-list {
         display: flex;
         flex-wrap: wrap;
