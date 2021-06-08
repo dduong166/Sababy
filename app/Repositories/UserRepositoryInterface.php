@@ -31,4 +31,5 @@ interface UserRepositoryInterface
      * @param array
      */
     public function update($user_id, array $user_data);
+    public function updatePassword(array $user_data);
 }

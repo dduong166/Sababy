@@ -159,5 +159,11 @@ class UserController extends Controller
         return response()->json($user->original->first());
     }
 
+    public function updatePassword(Request $request){
+        $input = $request->all();
+        $user = $this->user->updatePassword($request);
+        
+        return response()->json($user->original);
+    }
 
 }

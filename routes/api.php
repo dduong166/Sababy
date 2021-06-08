@@ -24,6 +24,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::prefix('user')->group(function () {
     Route::post('/login', 'UserController@login')->name('login');
     Route::post('/register', 'UserController@register');
+    Route::put('/password', 'UserController@updatePassword');
     Route::get('/isLoggedIn', 'UserController@getAuthenticatedUser');
     Route::middleware('auth:api')->put('/{user_id}', 'UserController@update');
 });

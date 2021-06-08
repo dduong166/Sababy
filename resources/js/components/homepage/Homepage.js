@@ -13,7 +13,8 @@ class Homepage extends Component {
         this.state = {
             categories: [],
             currentPage: 1,
-            totalPage: 1,
+            totalItem: 1,
+            pageSize: 12,
             isLoading: true,
             isProductLoading: true
         };
@@ -27,7 +28,7 @@ class Homepage extends Component {
         if (!this.props.categories) {
             this.getCategories();
         }
-        this.getProducts(1);
+        this.getProducts(this.state.currentPage);    //pagination page=1
     }
 
     setIsProductLoading(status) {
@@ -49,7 +50,8 @@ class Homepage extends Component {
             this.setState({
                 isLoading: false,
                 isProductLoading: false,
-                totalPage: response.data.total
+                totalItem: response.data.total,
+                pageSize: response.data.per_page
             });
         });
     }
@@ -104,8 +106,8 @@ class Homepage extends Component {
                         <div className="pagination d-flex justify-content-end">
                             <Pagination
                                 defaultCurrent={this.state.currentPage}
-                                total={this.state.totalPage}
-                                pageSize={15}
+                                total={this.state.totalItem}
+                                pageSize={this.state.pageSize}
                                 onChange={page => this.onPageChange(page)}
                             />
                         </div>

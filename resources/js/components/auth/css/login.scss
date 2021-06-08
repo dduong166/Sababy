@@ -166,16 +166,6 @@
         display: block;
         width: 100%;
     }
-    .forgot {
-        margin-top: -20px;
-        text-align: right;
-        a {
-            color: #346AA0;
-            &:hover {
-                color: #00b454;
-            }
-        }
-    }
     #confirm-password-error-message {
         color: #1ab188;
         float: right;

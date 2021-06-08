@@ -5,7 +5,6 @@ import Http from "../../Http";
 import { Card, Spin } from "antd";
 import { Line } from "@ant-design/charts";
 import { connect } from "react-redux";
-import Navbar from "./Navbar";
 
 class OverviewComponent extends Component {
     constructor(props) {

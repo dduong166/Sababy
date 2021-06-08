@@ -5,36 +5,53 @@ import "./css/MyProducts.scss";
 import { connect } from "react-redux";
 import AddProductComponent from "./AddProductComponent";
 import ProductCard from "./ProductCard";
-import { Spin } from "antd";
+import { Spin, Pagination } from "antd";
 
 class MyProducts extends Component {
     constructor(props) {
         super(props);
         this.state = {
             categories: [],
-            isLoading: true
+            isLoading: true,
+            currentPage: 1,
+            totalItem: 1,
+            pageSize: 12
         };
-        this.getProducts = this.getProducts.bind(this);
+        this.getSellingProducts = this.getSellingProducts.bind(this);
+        this.getSoldProducts = this.getSoldProducts.bind(this);
+        this.onPageChange = this.onPageChange.bind(this);
     }
 
     componentDidMount() {
-        this.getProducts();
+        this.getSellingProducts(this.state.currentPage);
+        this.getSoldProducts(this.state.currentPage);
     }
 
-    getProducts() {
+    getSellingProducts(page) {
         const selling = this.props.isAdminPage
-            ? "http://localhost:8000/api/admin/selling"
-            : "http://localhost:8000/api/product/selling";
+            ? "http://localhost:8000/api/admin/selling?page=" + page
+            : "http://localhost:8000/api/product/selling?page=" + page;
         Http.get(selling).then(response => {
-            this.props.setProducts(response.data);
+            this.props.setProducts(response.data.data);
         });
+    }
+
+    getSoldProducts(page) {
         const sold = this.props.isAdminPage
-            ? "http://localhost:8000/api/admin/sold"
-            : "http://localhost:8000/api/product/sold";
+            ? "http://localhost:8000/api/admin/sold?page=" + page
+            : "http://localhost:8000/api/product/sold?page=" + page;
         Http.get(sold).then(response => {
-            this.props.setSoldProducts(response.data);
-            this.setState({ isLoading: false });
+            this.props.setSoldProducts(response.data.data);
+            this.setState({
+                isLoading: false,
+                totalItem: response.data.total,
+                pageSize: response.data.per_page
+            });
         });
+    }
+
+    onPageChange(page) {
+        this.getProducts(page);
     }
 
     render() {
@@ -120,6 +137,18 @@ class MyProducts extends Component {
                                             </div>
                                         </div>
                                     </div>
+                                    <div className="pagination d-flex justify-content-end">
+                                        <Pagination
+                                            defaultCurrent={
+                                                this.state.currentPage
+                                            }
+                                            total={this.state.totalItem}
+                                            pageSize={this.state.pageSize}
+                                            onChange={page =>
+                                                this.onPageChange(page)
+                                            }
+                                        />
+                                    </div>
                                 </div>
                                 <div
                                     className="tab-pane fade"
@@ -158,7 +187,19 @@ class MyProducts extends Component {
                                                       )
                                                     : ""}
                                             </div>
-                                        </div>
+                                        </div>s
+                                    </div>
+                                    <div className="pagination d-flex justify-content-end">
+                                        <Pagination
+                                            defaultCurrent={
+                                                this.state.currentPage
+                                            }
+                                            total={this.state.totalItem}
+                                            pageSize={this.state.pageSize}
+                                            onChange={page =>
+                                                this.onPageChange(page)
+                                            }
+                                        />
                                     </div>
                                 </div>
                             </div>

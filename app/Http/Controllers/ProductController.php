@@ -18,6 +18,7 @@ class ProductController extends Controller
 {
     protected $CategoryController;
     protected $product;
+    protected $pageSize = 12;
 
     public function __construct(CategoryController $CategoryController, ProductRepositoryInterface $product)
     {
@@ -46,16 +47,15 @@ class ProductController extends Controller
         //     $auth = false;
         // }
 
-        $products = Product::where('sold', 0)->orderBy('created_at', 'DESC')->paginate(15);
-        $productsWithMedia = $products;
-        $productsWithMedia->data = $products->load('productMedias');
+        $products = Product::where('sold', 0)->orderBy('created_at', 'DESC')->paginate($this->pageSize);
+        $products->load('productMedias');
         // if ($auth) {
         //     $user = JWTAuth::parseToken()->authenticate();
         //     $products = $products->load(['bookmarks' => function ($query) use ($user) {
         //         $query->where('user_id', $user->id);
         //     }]);
         // }
-        return response()->json($productsWithMedia);
+        return response()->json($products);
     }
 
     public function CountProductByDate(){
@@ -88,9 +88,9 @@ class ProductController extends Controller
         }
         if ($auth) {
             $user = JWTAuth::parseToken()->authenticate();
-            $products = Product::where('owner_id', $user->id)->where('sold', 0)->orderBy('created_at', 'DESC')->get();
+            $products = Product::where('owner_id', $user->id)->where('sold', 0)->orderBy('created_at', 'DESC')->paginate($this->pageSize);
             $products->makeVisible(['location']);
-            $products = $products->load('productMedias');            
+            $products->load('productMedias');
             // $products = $products->load(['bookmarks' => function ($query) use ($user) {
             //     $query->where('user_id', $user->id);
             // }]);
@@ -110,9 +110,9 @@ class ProductController extends Controller
         }
         if ($auth) {
             $user = JWTAuth::parseToken()->authenticate();
-            $products = Product::where('owner_id', $user->id)->where('sold', 1)->orderBy('created_at', 'DESC')->get();
+            $products = Product::where('owner_id', $user->id)->where('sold', 1)->orderBy('created_at', 'DESC')->paginate($this->pageSize);
             $products->makeVisible(['location']);
-            $products = $products->load('productMedias');
+            $products->load('productMedias');
             // $products = $products->load(['bookmarks' => function ($query) use ($user) {
             //     $query->where('user_id', $user->id);
             // }]);

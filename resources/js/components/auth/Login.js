@@ -5,6 +5,7 @@ import $ from "jquery";
 import "./css/login.scss";
 import { notification } from "antd";
 import { connect } from "react-redux";
+import ChangePassword from "./ChangePassword"
 
 class Login extends Component {
     constructor(props) {
@@ -223,9 +224,7 @@ class Login extends Component {
                                     />
                                 </div>
 
-                                {/* <p className="forgot">
-                                    <Link to="/">Quên mật khẩu?</Link>
-                                </p> */}
+                                <ChangePassword />
 
                                 <button
                                     id="login-button"
