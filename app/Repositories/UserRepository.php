@@ -52,8 +52,21 @@ class UserRepository implements UserRepositoryInterface
     public function update($user_id, array $user_data)
     {
         $user = tap(User::where('id', $user_id))->update($user_data);
-        // $user->update($user_data); 
-        // $user = User::where('id', $user_id);
-        return response()->json($user);//Đang lấy dữ liệu cũ
+        return response()->json($user);
+    }
+
+    public function updatePassword($user_data){
+        $user = User::where('phonenumber', $user_data->phonenumber)->get()->first();
+        if (!$user){
+            return response()->json(["message" => "Số điện thoại chưa được đăng ký tài khoản."]);
+        }
+        if(\Hash::check($user_data->password, $user->password)) {
+            $newPassword = \Hash::make($user_data->newPassword);
+            $user->password = $newPassword;
+            $user->save();
+        } else
+            return response()->json(["message" => "Mật khẩu không đúng."]);
+        
+        return response()->json(["message" => "Đổi mật khẩu thành công.", "data" => $user]);
     }
 }

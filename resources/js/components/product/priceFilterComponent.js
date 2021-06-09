@@ -90,7 +90,6 @@ class PriceFilterComponent extends Component {
     }
 
     render() {
-        console.log(this.props);
         return (
             <div className="price-filter">
                 {this.state.is_set_range ? (
@@ -134,7 +133,7 @@ class PriceFilterComponent extends Component {
                         <Slider
                             className="slider-main-div"
                             min={0}
-                            max={5000000}
+                            max={3000000}
                             onChange={this.onPriceChange}
                             range={true}
                             step={100000}

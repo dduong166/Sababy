@@ -179,6 +179,7 @@ class DistanceSort extends Component {
             });
         }
     }
+
     SortByDistance() {
         if (this.state.lat && this.state.lng) {
             this.setModalVisible(false);
