@@ -16,13 +16,13 @@ class Homepage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLoading: false, 
+            isLoading: true,
             keyword: "",
             cities: []
         };
         this.handleBookmark = this.handleBookmark.bind(this);
         this.setStateKeyword = this.setStateKeyword.bind(this);
-
+        this.changeLoading = this.changeLoading.bind(this);
     }
     componentDidMount() {
         const condition = queryString.parse(location.search);
@@ -33,7 +33,7 @@ class Homepage extends Component {
             search: ""
         });
     }
-    setStateKeyword(value){
+    setStateKeyword(value) {
         this.setState({ keyword: value });
     }
 
@@ -43,13 +43,24 @@ class Homepage extends Component {
         console.log(this.props);
         // this.props.setBookmark(bookmark, index);
     }
+
+    changeLoading(value) {
+        console.log(value);
+        this.setState({ isLoading: value });
+    }
     render() {
+        console.log(this.state);
         return (
             <div className="homepage-body fullscreen-min-height">
-                {!this.state.isLoading ? (
-                    <div className="container">
-                        <FilterSort location={this.props.location} history={this.props.history}/>
-                        {this.props.products ? (
+                <div className="container">
+                    <FilterSort
+                        location={this.props.location}
+                        history={this.props.history}
+                        changeLoading={value => this.changeLoading(value)}
+                        isLoading={this.state.isLoading}
+                    />
+                    {!this.state.isLoading ? (
+                        this.props.products.length ? (
                             <React.Fragment>
                                 {this.state.keyword ? (
                                     <div className="search-result-text">
@@ -64,18 +75,15 @@ class Homepage extends Component {
                                 <div className="product-list">
                                     <div className="container">
                                         <div className="row">
-                                            {
-                                                this.props.isLoading && 'loading....'
-                                            }
                                             {this.props.products.map(
                                                 (product, index) => (
                                                     <ProductCard
                                                         key={product.id}
                                                         product={product}
                                                         index={index}
-                                                        setBookmark={
-                                                            this.handleBookmark
-                                                        }
+                                                        // setBookmark={
+                                                        //     this.handleBookmark
+                                                        // }
                                                     />
                                                 )
                                             )}
@@ -88,13 +96,13 @@ class Homepage extends Component {
                                 Không có kết quả tìm kiếm cho từ khóa '
                                 <strong>{this.state.keyword}</strong>'
                             </div>
-                        )}
-                    </div>
-                ) : (
-                    <div className="loading d-flex justify-content-center align-items-center">
-                        <Spin />
-                    </div>
-                )}
+                        )
+                    ) : (
+                        <div className="loading d-flex justify-content-center align-items-center">
+                            <Spin />
+                        </div>
+                    )}
+                </div>
             </div>
         );
     }
@@ -124,4 +132,6 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Homepage));
+export default withRouter(
+    connect(mapStateToProps, mapDispatchToProps)(Homepage)
+);

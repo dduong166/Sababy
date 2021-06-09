@@ -69,13 +69,13 @@ class ProductController extends Controller
     }
 
     public function adminSellingProducts(){
-        $products = $this->product->adminSellingProducts();
+        $products = $this->product->adminSellingProducts($this->pageSize);
 
         return response()->json($products->original);
     }
 
     public function adminSoldProducts(){
-        $products = $this->product->adminSoldProducts();
+        $products = $this->product->adminSoldProducts($this->pageSize);
 
         return response()->json($products->original);
     }

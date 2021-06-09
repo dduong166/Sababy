@@ -323,7 +323,7 @@ class AddProductComponent extends Component {
                             notification["success"]({
                                 message: "Thêm sản phẩm thành công.",
                                 description:
-                                    "Nhấn vào đây để chuyển sang màn xem chi tiết sản phẩm.",
+                                    "Sản phẩm đã được thêm vào danh sách sản phẩm đang bán trong [Sản phẩm của tôi]. Nhấn vào đây để chuyển sang màn xem chi tiết sản phẩm.",
                                 onClick: () => {
                                     this.props.history.push(
                                         `/product/${response.data.product.id}`
@@ -392,7 +392,9 @@ class AddProductComponent extends Component {
         }
     }
     render() {
-        // console.log(this.state);
+        if(this.state.visible && !this.props.currentUser){
+            this.props.history.push("/login");
+        }
         let categories = this.props.categories;
         if (categories) {
             categories = categories.map((category, index) => ({
@@ -654,7 +656,7 @@ class AddProductComponent extends Component {
                             onClick={() => this.setModalVisible(true)}
                             icon={<PlusOutlined />}
                         >
-                            Thêm sản phẩm
+                            Đăng bán sản phẩm
                         </Button>
                         <Modal
                             title={title}

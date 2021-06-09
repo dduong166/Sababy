@@ -3,6 +3,7 @@ import Http from "../../Http";
 import { Link, withRouter } from "react-router-dom";
 import "./css/CategoryDetail.scss";
 import CategoryList from "../category-list-component/CategoryListComponent";
+import AddProductComponent from "../product/AddProductComponent";
 import ProductCard from "../product/ProductCard";
 import { connect } from "react-redux";
 import { createBrowserHistory } from "history";
@@ -20,6 +21,7 @@ class CategoryDetail extends Component {
     }
 
     componentDidMount() {
+        this.setState({ isLoading: true });
         this.getProductsAndCategory();
     }
 
@@ -28,6 +30,7 @@ class CategoryDetail extends Component {
             this.props.match.params.category_id !==
             prevProps.match.params.category_id
         ) {
+            this.setState({ isLoading: true });
             this.getProductsAndCategory();
         }
     }
@@ -47,6 +50,7 @@ class CategoryDetail extends Component {
     render() {
         var category = this.props.category_detail;
         var products = this.props.products;
+        console.log(this.state);
         return (
             <div className="homepage-body fullscreen-min-height">
                 {!this.state.isLoading && category ? (
@@ -85,11 +89,25 @@ class CategoryDetail extends Component {
                         <div className="category-banner">
                             <h2>{category.category_name}</h2>
                         </div>
-                        <CategoryList categories={category.sub_categories} />
+                        {category.sub_categories.length ? (
+                            <React.Fragment>
+                                <h3 className="light-title">
+                                    DANH MỤC SẢN PHẨM
+                                </h3>
+                                <CategoryList
+                                    categories={category.sub_categories}
+                                />
+                            </React.Fragment>
+                        ) : null}
+
+                        <div className="title-products-and-add d-flex justify-content-between">
+                            <h3 className="light-title">TẤT CẢ SẢN PHẨM</h3>
+                            <AddProductComponent />
+                        </div>
                         <div className="product-list">
                             <div className="container">
                                 <div className="row">
-                                    {products
+                                    {products.length
                                         ? products.map((product, index) => (
                                               <ProductCard
                                                   key={product.id}
@@ -103,7 +121,7 @@ class CategoryDetail extends Component {
                                                   }
                                               />
                                           ))
-                                        : ""}
+                                        : <p>Chưa có sản phẩm nào thuộc danh mục này.</p>}
                                 </div>
                             </div>
                         </div>

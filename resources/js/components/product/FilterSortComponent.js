@@ -7,6 +7,7 @@ import "./css/FilterSortComponent.scss";
 import DistanceSort from "./DistanceComponent";
 import PriceFilterComponent from "./priceFilterComponent";
 import { connect } from "react-redux";
+import AddProductComponent from "./AddProductComponent";
 
 const queryString = require("query-string");
 const { Option } = Select;
@@ -16,12 +17,11 @@ class FilterSort extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLoading: true,
             keyword: "",
             cities: [],
             city: undefined,
             price: [], //min=price[0]; max=price[1];
-            location: [], //lat=location[0]; lng=location[1];
+            location: [] //lat=location[0]; lng=location[1];
         };
         this.getProductSearchResult = this.getProductSearchResult.bind(this);
         this.onCityChange = this.onCityChange.bind(this);
@@ -43,11 +43,7 @@ class FilterSort extends Component {
     }
 
     getCityList() {
-        Http.defaults.headers.common["token"] =
-            "08ed659a-4f05-11eb-b7e7-eeaa791b204b";
-        Http.get(
-            "http://localhost:8000/api/product/cities"
-        )
+        Http.get("http://localhost:8000/api/product/cities")
             .then(response => {
                 if (response.data) {
                     this.setState({ cities: response.data });
@@ -79,11 +75,16 @@ class FilterSort extends Component {
     }
 
     getProductSearchResult() {
+        this.props.changeLoading(true);
         const condition = queryString.parse(location.search);
-        if(condition.price){
+        if (condition.price) {
             condition.price = condition.price.split("-");
         }
-        this.setState({ city: condition.city, price: condition.price, location: condition.location });
+        this.setState({
+            city: condition.city,
+            price: condition.price,
+            location: condition.location
+        });
         const uri = "http://localhost:8000/api/product/filter";
         const request = {
             product_name: condition.k,
@@ -94,9 +95,10 @@ class FilterSort extends Component {
         Http.post(uri, request).then(response => {
             if (response) {
                 this.props.setProducts(response.data);
-                this.setState({ isLoading: false });
+                this.props.changeLoading(false);
             } else {
                 console.log("Tìm kiếm thất bại");
+                this.props.changeLoading(false);
             }
         });
     }
@@ -104,39 +106,45 @@ class FilterSort extends Component {
     render() {
         console.log(this.state);
         return (
-            <div className="filter-and-sort d-flex justify-content-end">
-                {!this.state.isLoading ? (
-                    <Space>
-                        <Select
-                            className={this.state.city ? "city-seletected" : "city-not-seletected"}
-                            allowClear
-                            defaultValue={this.state.city}
-                            showSearch
-                            style={{ width: 110 }}
-                            placeholder="Toàn quốc"
-                            optionFilterProp="children"
-                            onChange={this.onCityChange}
-                            filterOption={(input, option) =>
-                                option.children
-                                    .toLowerCase()
-                                    .indexOf(input.toLowerCase()) >= 0
-                            }
-                        >
-                            {this.state.cities
-                                ? this.state.cities.map((city, index) => (
-                                      <Option
-                                          value={city}
-                                          key={index}
-                                      >
-                                          {city}
-                                      </Option>
-                                  ))
-                                : null}
-                        </Select>
-                        <PriceFilterComponent location={this.props.location} history={this.props.history} />
-                        <DistanceSort location={this.props.location} history={this.props.history} />
-                    </Space>
-                ) : null}
+            <div className="filter-and-sort d-flex justify-content-between">
+                <Space>
+                    <Select
+                        className={
+                            this.state.city
+                                ? "city-seletected"
+                                : "city-not-seletected"
+                        }
+                        allowClear
+                        value={this.state.city}
+                        showSearch
+                        style={{ width: 110 }}
+                        placeholder="Toàn quốc"
+                        optionFilterProp="children"
+                        onChange={this.onCityChange}
+                        filterOption={(input, option) =>
+                            option.children
+                                .toLowerCase()
+                                .indexOf(input.toLowerCase()) >= 0
+                        }
+                    >
+                        {this.state.cities
+                            ? this.state.cities.map((city, index) => (
+                                  <Option value={city} key={index}>
+                                      {city}
+                                  </Option>
+                              ))
+                            : null}
+                    </Select>
+                    <PriceFilterComponent
+                        location={this.props.location}
+                        history={this.props.history}
+                    />
+                    <DistanceSort
+                        location={this.props.location}
+                        history={this.props.history}
+                    />
+                </Space>
+                <AddProductComponent />
             </div>
         );
     }

@@ -17,19 +17,19 @@ class ProductRepository implements ProductRepositoryInterface
      * @param int
      * @return collection
      */
-    public function adminSellingProducts()
+    public function adminSellingProducts($pageSize)
     {
-        $products = Product::where('sold', 0)->orderBy('created_at', 'DESC')->get();
+        $products = Product::where('sold', 0)->orderBy('created_at', 'DESC')->paginate($pageSize);
         $products->makeVisible(['location']);
-        $products = $products->load('productMedias');  
+        $products->load('productMedias');  
         return response()->json($products);
     }
 
-    public function adminSoldProducts()
+    public function adminSoldProducts($pageSize)
     {
-        $products = Product::where('sold', 1)->orderBy('created_at', 'DESC')->get();
+        $products = Product::where('sold', 1)->orderBy('created_at', 'DESC')->paginate($pageSize);
         $products->makeVisible(['location']);
-        $products = $products->load('productMedias');  
+        $products->load('productMedias');  
         return response()->json($products);
     }
 

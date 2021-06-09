@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "./css/homepage.scss";
 import { Spin, Pagination } from "antd";
 import ProductCard from "../product/ProductCard";
+import AddProductComponent from "../product/AddProductComponent";
 import CategoryList from "../category-list-component/CategoryListComponent";
 import { connect } from "react-redux";
 
@@ -28,7 +29,14 @@ class Homepage extends Component {
         if (!this.props.categories) {
             this.getCategories();
         }
-        this.getProducts(this.state.currentPage);    //pagination page=1
+        this.getProducts(this.state.currentPage); //pagination page=1
+    }
+
+    componentWillUnmount() {
+        // fix Warning: Can't perform a React state update on an unmounted component
+        this.setState = (state, callback) => {
+            return;
+        };
     }
 
     setIsProductLoading(status) {
@@ -72,9 +80,12 @@ class Homepage extends Component {
             <div className="homepage-body fullscreen-min-height">
                 {!this.state.isLoading ? (
                     <div className="container">
-                        <h3>DANH MỤC SẢN PHẨM</h3>
+                        <h3 className="light-title">DANH MỤC SẢN PHẨM</h3>
                         <CategoryList categories={this.props.categories} />
-                        <h3 className="trending_title">TẤT CẢ SẢN PHẨM</h3>
+                        <div className="title-products-and-add d-flex justify-content-between">
+                            <h3 className="light-title">TẤT CẢ SẢN PHẨM</h3>
+                            <AddProductComponent />
+                        </div>
                         <div className="product-list">
                             <div className="container">
                                 <div className="row">

@@ -27,6 +27,13 @@ class MyProducts extends Component {
         this.getSoldProducts(this.state.currentPage);
     }
 
+    componentWillUnmount() {
+        // fix Warning: Can't perform a React state update on an unmounted component
+        this.setState = (state, callback) => {
+            return;
+        };
+    }
+
     getSellingProducts(page) {
         const selling = this.props.isAdminPage
             ? "http://localhost:8000/api/admin/selling?page=" + page
@@ -187,7 +194,7 @@ class MyProducts extends Component {
                                                       )
                                                     : ""}
                                             </div>
-                                        </div>s
+                                        </div>
                                     </div>
                                     <div className="pagination d-flex justify-content-end">
                                         <Pagination

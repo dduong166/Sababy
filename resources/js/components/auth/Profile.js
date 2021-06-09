@@ -29,6 +29,13 @@ class Profile extends Component {
         this.onEditSubmit = this.onEditSubmit.bind(this);
     }
 
+    componentWillUnmount() {
+        // fix Warning: Can't perform a React state update on an unmounted component
+        this.setState = (state, callback) => {
+            return;
+        };
+    }
+
     onChangeEditStatus(value) {
         this.setState({
             edit: value
