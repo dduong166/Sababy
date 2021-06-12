@@ -155,7 +155,7 @@ class ProductCard extends Component {
                         data-id={product.id}
                         data-value={1}
                     >
-                        Đã bán
+                        Bán hết
                     </Button>
                 )}
 

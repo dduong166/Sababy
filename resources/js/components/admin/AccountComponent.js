@@ -330,7 +330,7 @@ class AccountComponent extends Component {
                 title: "Sửa",
                 key: "operation",
                 fixed: "right",
-                width: 50,
+                width: 80,
                 render: (text, record) =>
                     this.state.edit == record.key ? (
                         <div className="submit-btn d-flex justify-content-center">

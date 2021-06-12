@@ -20,6 +20,6 @@
     <body>
         <div id="app"></div>
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJ9plyaJ15PWpNBnrLd47SpeD3tiDWzwY&libraries=places&language=vi"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDayLXA1sj_q1ICHo0s3Fc9RKloQXyIE9k&libraries=places&language=vi"></script>
     </body>
 </html>

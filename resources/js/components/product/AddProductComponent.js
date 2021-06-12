@@ -652,7 +652,7 @@ class AddProductComponent extends Component {
                     <React.Fragment>
                         <Button
                             className="add-product-btn"
-                            type="primary"
+                            // type="primary"
                             onClick={() => this.setModalVisible(true)}
                             icon={<PlusOutlined />}
                         >

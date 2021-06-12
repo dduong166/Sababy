@@ -102,7 +102,7 @@ class MyProducts extends Component {
                                     aria-controls="nav-sold"
                                     aria-selected="false"
                                 >
-                                    ĐÃ BÁN
+                                    ĐÃ BÁN HẾT
                                 </a>
                             </div>
                         </nav>
