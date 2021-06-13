@@ -24,6 +24,7 @@ class AccountComponent extends Component {
         this.onEditSubmit = this.onEditSubmit.bind(this);
         this.onChangeName = this.onChangeName.bind(this);
         this.onChangePhonenumber = this.onChangePhonenumber.bind(this);
+        this.onOk = this.onOk.bind(this);
         this.initMap = this.initMap.bind(this);
         this.setModalVisible = this.setModalVisible.bind(this);
     }
@@ -256,7 +257,7 @@ class AccountComponent extends Component {
                         () => this.onChangeEditStatus(0)
                     );
                     notification["success"]({
-                        message: "Cập nhật thông tin thành công;"
+                        message: "Cập nhật thông tin thành công."
                     });
                 })
                 .catch(error =>
@@ -270,6 +271,10 @@ class AccountComponent extends Component {
                 message: "Vui lòng nhập đầy đủ thông tin."
             });
         }
+    }
+
+    onOk(){
+        this.setModalVisible(false);
     }
 
     render() {
@@ -316,7 +321,7 @@ class AccountComponent extends Component {
                 render: (text, record) =>
                     this.state.edit == record.key ? (
                         <Button onClick={() => this.setModalVisible(true)}>
-                            {record.address}
+                            {this.state.lat},{this.state.lng}
                         </Button>
                     ) : record.address
             },
