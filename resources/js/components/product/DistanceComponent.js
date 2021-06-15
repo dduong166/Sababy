@@ -42,7 +42,7 @@ class DistanceSort extends Component {
                 const address = this.props.currentUser.address.split(",");
                 this.setState({
                     lat: parseFloat(address[0]),
-                    lng: parseFloat(address[1]),
+                    lng: parseFloat(address[1])
                 });
             }
             this.setState(
@@ -169,7 +169,7 @@ class DistanceSort extends Component {
 
     onReset() {
         this.setModalVisible(false);
-        this.setState({ lat: null, lng: null, is_sorted: false });
+        this.setState({ is_sorted: false });
         const condition = queryString.parse(location.search);
         if (condition.location) {
             delete condition.location;
@@ -203,7 +203,43 @@ class DistanceSort extends Component {
     }
 
     render() {
-        console.log(this.state);
+        let footer;
+        if (this.state.is_sorted) {
+            footer = [
+                <Button
+                    key="cancel"
+                    onClick={() => this.setModalVisible(false)}
+                >
+                    Đóng
+                </Button>,
+                <Button key="reset" onClick={this.onReset}>
+                    Bỏ sắp xếp
+                </Button>,
+                <Button
+                    key="submit"
+                    type="primary"
+                    onClick={this.SortByDistance}
+                >
+                    Xác nhận
+                </Button>
+            ];
+        } else {
+            footer = [
+                <Button
+                    key="cancel"
+                    onClick={() => this.setModalVisible(false)}
+                >
+                    Đóng
+                </Button>,
+                <Button
+                    key="submit"
+                    type="primary"
+                    onClick={this.SortByDistance}
+                >
+                    Xác nhận
+                </Button>
+            ];
+        }
         return (
             <div className="google-place-autocomplete">
                 {this.state.is_sorted ? (
@@ -220,24 +256,7 @@ class DistanceSort extends Component {
                     title="Xác định vị trí nhận hàng"
                     centered
                     visible={this.state.visible}
-                    footer={[
-                        <Button
-                            key="cancel"
-                            onClick={() => this.setModalVisible(false)}
-                        >
-                            Đóng
-                        </Button>,
-                        <Button key="reset" onClick={this.onReset}>
-                            Bỏ sắp xếp
-                        </Button>,
-                        <Button
-                            key="submit"
-                            type="primary"
-                            onClick={this.SortByDistance}
-                        >
-                            Xác nhận
-                        </Button>
-                    ]}
+                    footer={footer}
                     onOk={() => this.SortByDistance()}
                     onCancel={() => this.setModalVisible(false)}
                     width={1000}

@@ -166,7 +166,7 @@ class ProductController extends Controller
             $products = $products->sortByDesc('created_at')->values();
         }     
         $products = $products->load('productMedias');
-
+        
         return response()->json($products);
     }
 

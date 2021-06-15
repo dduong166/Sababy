@@ -90,6 +90,43 @@ class PriceFilterComponent extends Component {
     }
 
     render() {
+        let footer;
+        if (this.state.is_set_range) {
+            footer = [
+                <Button
+                    key="cancel"
+                    onClick={() => this.setModalVisible(false)}
+                >
+                    Đóng
+                </Button>,
+                <Button key="reset" onClick={this.onReset}>
+                    Bỏ lọc
+                </Button>,
+                <Button
+                    key="submit"
+                    type="primary"
+                    onClick={() => this.filterByPrice()}
+                >
+                    Xác nhận
+                </Button>
+            ];
+        } else {
+            footer = [
+                <Button
+                    key="cancel"
+                    onClick={() => this.setModalVisible(false)}
+                >
+                    Đóng
+                </Button>,
+                <Button
+                    key="submit"
+                    type="primary"
+                    onClick={() => this.filterByPrice()}
+                >
+                    Xác nhận
+                </Button>
+            ];
+        }
         return (
             <div className="price-filter">
                 {this.state.is_set_range ? (
@@ -107,24 +144,7 @@ class PriceFilterComponent extends Component {
                     width="500px"
                     centered
                     visible={this.state.visible}
-                    footer={[
-                        <Button
-                            key="cancel"
-                            onClick={() => this.setModalVisible(false)}
-                        >
-                            Đóng
-                        </Button>,
-                        <Button key="reset" onClick={this.onReset}>
-                            Bỏ lọc
-                        </Button>,
-                        <Button
-                            key="submit"
-                            type="primary"
-                            onClick={this.filterByPrice}
-                        >
-                            Xác nhận
-                        </Button>
-                    ]}
+                    footer={footer}
                     onOk={() => this.filterByPrice()}
                     onCancel={() => this.setModalVisible(false)}
                     width={500}
