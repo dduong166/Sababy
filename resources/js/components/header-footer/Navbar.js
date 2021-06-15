@@ -11,6 +11,10 @@ const { Search } = Input;
 class Navbar extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            keyword: "",
+            isLoading: true
+        };
         this.logoutAccount = this.logoutAccount.bind(this);
         this.isLoggedIn = this.isLoggedIn.bind(this);
         this.onSearch = this.onSearch.bind(this);
@@ -18,6 +22,18 @@ class Navbar extends Component {
 
     componentDidMount() {
         this.isLoggedIn();
+        const condition = queryString.parse(location.search);
+        console.log(condition);
+        if (condition.k) {
+            this.setState({
+                keyword: condition.k,
+                isLoading: false
+            });
+        }else{
+            this.setState({
+                isLoading: false
+            });
+        }
     }
 
     componentWillReceiveProps(nextProps) {
@@ -73,6 +89,7 @@ class Navbar extends Component {
     }
 
     render() {
+        console.log(this.state);
         return (
             <div className="navbar-section">
                 <header className="top-black-style d-flex justify-content-between align-items-center">
@@ -83,13 +100,16 @@ class Navbar extends Component {
                         />
                     </Link>
                     <div className="searchbar">
-                        <Search
-                            ref={c => (this.searchRef = c)}
-                            placeholder="Nhập tên sản phẩm"
-                            allowClear
-                            enterButton
-                            onSearch={this.onSearch}
-                        />
+                        {!this.state.isLoading ? (
+                            <Search
+                                ref={c => (this.searchRef = c)}
+                                placeholder="Nhập tên sản phẩm"
+                                allowClear
+                                enterButton
+                                defaultValue={this.state.keyword}
+                                onSearch={this.onSearch}
+                            />
+                        ) : null}
                     </div>
                     <div className="my-product-and-login-logout d-flex justify-content-start align-items-center">
                         {this.props.currentUser ? (

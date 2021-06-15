@@ -15,7 +15,7 @@ class DistanceSort extends Component {
             lng: null,
             visible: false,
             inited: false,
-            is_sort: false
+            is_sorted: false
         };
         this.SortByDistance = this.SortByDistance.bind(this);
         this.initMap = this.initMap.bind(this);
@@ -28,8 +28,9 @@ class DistanceSort extends Component {
         if (condition.location) {
             condition.location = condition.location.split(",");
             this.setState({
-                lat: condition.location[0],
-                lng: condition.location[1]
+                lat: parseFloat(condition.location[0]),
+                lng: parseFloat(condition.location[1]),
+                is_sorted: true
             });
         }
     }
@@ -160,12 +161,15 @@ class DistanceSort extends Component {
                     place.formatted_address;
                 infowindow.open(map, marker);
             });
+            // google.maps.event.addListener(map, 'reset', () => {
+            //     document.body.innerHTML = 'edited!';
+            // });
         }
     }
 
     onReset() {
         this.setModalVisible(false);
-        this.setState({ lat: null, lng: null, is_sort: false });
+        this.setState({ is_sorted: false });
         const condition = queryString.parse(location.search);
         if (condition.location) {
             delete condition.location;
@@ -181,7 +185,7 @@ class DistanceSort extends Component {
     SortByDistance() {
         if (this.state.lat && this.state.lng) {
             this.setModalVisible(false);
-            this.setState({ is_sort: true });
+            this.setState({ is_sorted: true });
             const condition = queryString.parse(location.search);
             condition.location = `${this.state.lat},${this.state.lng}`;
             let stringified = queryString.stringify(condition);
@@ -199,9 +203,46 @@ class DistanceSort extends Component {
     }
 
     render() {
+        let footer;
+        if (this.state.is_sorted) {
+            footer = [
+                <Button
+                    key="cancel"
+                    onClick={() => this.setModalVisible(false)}
+                >
+                    Đóng
+                </Button>,
+                <Button key="reset" onClick={this.onReset}>
+                    Bỏ sắp xếp
+                </Button>,
+                <Button
+                    key="submit"
+                    type="primary"
+                    onClick={this.SortByDistance}
+                >
+                    Xác nhận
+                </Button>
+            ];
+        } else {
+            footer = [
+                <Button
+                    key="cancel"
+                    onClick={() => this.setModalVisible(false)}
+                >
+                    Đóng
+                </Button>,
+                <Button
+                    key="submit"
+                    type="primary"
+                    onClick={this.SortByDistance}
+                >
+                    Xác nhận
+                </Button>
+            ];
+        }
         return (
             <div className="google-place-autocomplete">
-                {this.state.is_sort ? (
+                {this.state.is_sorted ? (
                     <Button onClick={() => this.setModalVisible(true)} danger>
                         Khoảng cách từ ({this.state.lat},{this.state.lng})
                     </Button>
@@ -215,24 +256,7 @@ class DistanceSort extends Component {
                     title="Xác định vị trí nhận hàng"
                     centered
                     visible={this.state.visible}
-                    footer={[
-                        <Button
-                            key="cancel"
-                            onClick={() => this.setModalVisible(false)}
-                        >
-                            Đóng
-                        </Button>,
-                        <Button key="reset" onClick={this.onReset}>
-                            Bỏ sắp xếp
-                        </Button>,
-                        <Button
-                            key="submit"
-                            type="primary"
-                            onClick={this.SortByDistance}
-                        >
-                            Xác nhận
-                        </Button>
-                    ]}
+                    footer={footer}
                     onOk={() => this.SortByDistance()}
                     onCancel={() => this.setModalVisible(false)}
                     width={1000}
