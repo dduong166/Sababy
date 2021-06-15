@@ -10,12 +10,14 @@ class Product extends Model
     use HasFactory;
     
     protected $fillable = [
+        'category_id',
         'product_name',
         'description',
         'price',
         'quantity',
         'location',
         'city',
+        'sold',
         'outside_status',
         'function_status'
     ];
@@ -26,12 +28,6 @@ class Product extends Model
 
     public function productMedias(){
         return $this->hasMany(ProductMedia::class, 'product_id');
-    }
-    public function deals(){
-        return $this->hasMany(Deal::class, 'product_id');
-    }
-    public function bookmarks(){
-        return $this->hasMany(Bookmark::class, 'product_id');
     }
     public function questions(){
         return $this->hasMany(Question::class, 'product_id');
@@ -44,6 +40,4 @@ class Product extends Model
     {
         return $this->belongsTo(User::class, 'owner_id');
     }
-
-
 }

@@ -55,10 +55,6 @@ Route::prefix('product')->group(function () {
     Route::middleware('auth:api')->delete('/{product_id}', 'ProductController@destroy');
 });
 
-Route::middleware('auth:api')->prefix('bookmark')->group(function () {
-    Route::post('/', 'BookmarkController@store');
-    Route::delete('/{product_id}', 'BookmarkController@destroy');
-});
 Route::prefix('question')->group(function () {
     Route::middleware('auth:api')->post('/', 'QuestionController@store');
 });

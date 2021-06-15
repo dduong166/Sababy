@@ -16,16 +16,10 @@ class ProductCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            bookmarkEvent: false,
-            unBookmarkEvent: false,
             isLoading: false
         };
-        this.BookmarkClick = this.BookmarkClick.bind(this);
-        this.unBookmarkClick = this.unBookmarkClick.bind(this);
         this.handleShowDetail = this.handleShowDetail.bind(this);
         this.changeSoldStatus = this.changeSoldStatus.bind(this);
-        this.changeBookmarkEvent = this.changeBookmarkEvent.bind(this);
-        this.changeUnBookmarkEvent = this.changeUnBookmarkEvent.bind(this);
         this.onDeleteProduct = this.onDeleteProduct.bind(this);
     }
 
@@ -35,59 +29,6 @@ class ProductCard extends Component {
         this.setState = (state, callback) => {
             return;
         };
-    }
-
-    changeBookmarkEvent(value) {
-        this.setState({
-            bookmarkEvent: value
-        });
-    }
-    changeUnBookmarkEvent(value) {
-        this.setState({
-            unBookmarkEvent: value
-        });
-    }
-    BookmarkClick(e) {
-        e.stopPropagation();
-        console.log(1, e.target.dataset.productid);
-        if (this.state.bookmarkEvent) {
-            console.log("click bookmark it thoi!!");
-            return;
-        } else {
-            this.changeBookmarkEvent(true);
-            var productId = e.target.dataset.productid;
-            console.log(productId);
-            let uri = "http://localhost:8000/api/bookmark";
-            const newBookmark = {
-                product_id: productId
-            };
-            Http.post(uri, newBookmark).then(response => {
-                if (response.data) {
-                    this.props.setBookmark(response.data, this.props.index);
-                }
-                this.changeBookmarkEvent(false);
-            });
-        }
-    }
-    unBookmarkClick(e) {
-        e.stopPropagation();
-        if (this.state.unBookmarkEvent) {
-            console.log("click unbookmark it thoi!!");
-            return;
-        } else {
-            this.changeUnBookmarkEvent(true);
-            var productId = e.target.dataset.productid;
-            let uri = `http://localhost:8000/api/bookmark/${productId}`;
-            Http.delete(uri)
-                .then(response => {
-                    if (response.data) {
-                        console.log(1, response.data);
-                        this.props.setUnbookmark(this.props.index);
-                    }
-                    this.changeUnBookmarkEvent(false);
-                })
-                .catch(error => console.log(error));
-        }
     }
 
     handleShowDetail() {
@@ -182,23 +123,6 @@ class ProductCard extends Component {
                     className="product_card_content"
                     onClick={this.handleShowDetail}
                 >
-                    {/* {this.props.currentUser ? (
-                    <div className="bookmark">
-                        {product.bookmarks && product.bookmarks.length ? (
-                            <i
-                                className="fa fa-heart"
-                                data-productid={product.id}
-                                onClick={e => this.unBookmarkClick(e)}
-                            ></i>
-                        ) : (
-                            <i
-                                className="fa fa-heart-o"
-                                data-productid={product.id}
-                                onClick={e => this.BookmarkClick(e)}
-                            ></i>
-                        )}
-                    </div>
-                ) : null} */}
                     <div className="product_image">
                         {product.product_medias[0] ? (
                             <img

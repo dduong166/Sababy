@@ -41,20 +41,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        // if (JWTAuth::getToken()) {
-        //     $auth = JWTAuth::parseToken()->check();
-        // } else {
-        //     $auth = false;
-        // }
-
         $products = Product::where('sold', 0)->orderBy('created_at', 'DESC')->paginate($this->pageSize);
         $products->load('productMedias');
-        // if ($auth) {
-        //     $user = JWTAuth::parseToken()->authenticate();
-        //     $products = $products->load(['bookmarks' => function ($query) use ($user) {
-        //         $query->where('user_id', $user->id);
-        //     }]);
-        // }
+    
         return response()->json($products);
     }
 
@@ -91,9 +80,6 @@ class ProductController extends Controller
             $products = Product::where('owner_id', $user->id)->where('sold', 0)->orderBy('created_at', 'DESC')->paginate($this->pageSize);
             $products->makeVisible(['location']);
             $products->load('productMedias');
-            // $products = $products->load(['bookmarks' => function ($query) use ($user) {
-            //     $query->where('user_id', $user->id);
-            // }]);
         }else{
             return response()->json([
                 'message' => "Not authenticated"
@@ -113,9 +99,6 @@ class ProductController extends Controller
             $products = Product::where('owner_id', $user->id)->where('sold', 1)->orderBy('created_at', 'DESC')->paginate($this->pageSize);
             $products->makeVisible(['location']);
             $products->load('productMedias');
-            // $products = $products->load(['bookmarks' => function ($query) use ($user) {
-            //     $query->where('user_id', $user->id);
-            // }]);
         }else{
             return response()->json([
                 'message' => "Not authenticated"
@@ -181,20 +164,9 @@ class ProductController extends Controller
             $products = $products->sortBy('distance')->values();
         } else {
             $products = $products->sortByDesc('created_at')->values();
-        }
-        //get media and bookmark
-        if (JWTAuth::getToken()) {
-            $auth = JWTAuth::parseToken()->check();
-        } else {
-            $auth = false;
-        }
+        }     
         $products = $products->load('productMedias');
-        // if ($auth) {
-        //     $user = JWTAuth::parseToken()->authenticate();
-        //     $products = $products->load(['bookmarks' => function ($query) use ($user) {
-        //         $query->where('user_id', $user->id);
-        //     }]);
-        // }
+
         return response()->json($products);
     }
 
@@ -209,18 +181,6 @@ class ProductController extends Controller
         array_push($sub_categories_id, (int) $category_id);
         $products = Product::whereIn('category_id', $sub_categories_id)->orderBy('created_at', 'DESC')->get();
         $products = $products->load('productMedias');
-        if (JWTAuth::getToken()) {
-            $auth = JWTAuth::parseToken()->check();
-        } else {
-            $auth = false;
-        }
-        if ($auth) {
-            if ($user = JWTAuth::parseToken()->authenticate()) {
-                $products = $products->load(['bookmarks' => function ($query) use ($user) {
-                    $query->where('user_id', $user->id);
-                }]);
-            }
-        }
 
         //get category
         $category = Category::where('id', $category_id)->get()->first();
@@ -287,7 +247,7 @@ class ProductController extends Controller
         $product_medias = [];
 
         foreach($request->images as $image) {
-            $product_medias[] = ['product_id' => $product->id, 'media_url' => $image, 'media_type' => 0];
+            $product_medias[] = ['product_id' => $product->id, 'media_url' => $image];
         }
 
         ProductMedia::insert($product_medias);
@@ -339,7 +299,7 @@ class ProductController extends Controller
             $images = $request->images;
             $product_medias = [];
             foreach($request->images as $image) {
-                $product_medias[] = ['product_id' => $product_id, 'media_url' => $image, 'media_type' => 0];
+                $product_medias[] = ['product_id' => $product_id, 'media_url' => $image];
             }
             ProductMedia::insert($product_medias);
         }else{  //Nếu k cần đổi medias -> update all thông tin input

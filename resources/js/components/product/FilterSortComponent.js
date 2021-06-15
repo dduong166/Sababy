@@ -164,13 +164,6 @@ const mapDispatchToProps = dispatch => {
                 type: "SET_PRODUCTS",
                 payload: products
             });
-        },
-        setBookmark: (bookmark, index) => {
-            dispatch({
-                type: "SET_BOOKMARK",
-                payload: bookmark,
-                index: index
-            });
         }
     };
 };

@@ -326,7 +326,7 @@ class AddProductComponent extends Component {
                                     "Sản phẩm đã được thêm vào danh sách sản phẩm đang bán trong [Sản phẩm của tôi]. Nhấn vào đây để chuyển sang màn xem chi tiết sản phẩm.",
                                 onClick: () => {
                                     this.props.history.push(
-                                        `/product/${response.data.product.id}`
+                                        `/product/${response.data.id}`
                                     );
                                 }
                             });
@@ -570,7 +570,7 @@ class AddProductComponent extends Component {
                 </Button>
             ];
         } else {
-            title = "Tải lên ảnh/video sản phẩm";
+            title = "Tải lên ảnh sản phẩm";
             modal = (
                 <React.Fragment>
                     {this.state.images.length
@@ -708,19 +708,6 @@ const mapDispatchToProps = dispatch => {
             dispatch({
                 type: "UPDATE_PRODUCT",
                 payload: product
-            });
-        },
-        setBookmark: (bookmark, index) => {
-            dispatch({
-                type: "SET_BOOKMARK",
-                payload: bookmark,
-                index: index
-            });
-        },
-        setUnbookmark: index => {
-            dispatch({
-                type: "SET_UNBOOKMARK",
-                index: index
             });
         }
     };

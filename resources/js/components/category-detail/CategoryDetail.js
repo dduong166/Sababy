@@ -113,12 +113,6 @@ class CategoryDetail extends Component {
                                                   key={product.id}
                                                   product={product}
                                                   index={index}
-                                                  setBookmark={
-                                                      this.props.setBookmark
-                                                  }
-                                                  setUnbookmark={
-                                                      this.props.setUnbookmark
-                                                  }
                                               />
                                           ))
                                         : <p>Chưa có sản phẩm nào thuộc danh mục này.</p>}
@@ -149,19 +143,6 @@ const mapDispatchToProps = dispatch => {
             dispatch({
                 type: "SET_CATEGORY_DETAIL",
                 payload: detail
-            });
-        },
-        setBookmark: (bookmark, index) => {
-            dispatch({
-                type: "SET_BOOKMARK",
-                payload: bookmark,
-                index: index
-            });
-        },
-        setUnbookmark: index => {
-            dispatch({
-                type: "SET_UNBOOKMARK",
-                index: index
             });
         }
     };

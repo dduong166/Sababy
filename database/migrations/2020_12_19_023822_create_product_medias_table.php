@@ -16,8 +16,7 @@ class CreateProductMediasTable extends Migration
         Schema::create('product_medias', function (Blueprint $table) {
             $table->id();
             $table->integer('product_id');
-            $table->string('media_url');
-            $table->integer('media_type'); //0: image, 1: video
+            $table->text('media_url');
             $table->timestamps();
         });
     }

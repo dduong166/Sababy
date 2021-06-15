@@ -17,7 +17,7 @@ class CreateQuestionsTable extends Migration
             $table->id();
             $table->integer('product_id');
             $table->integer('asker_id');
-            $table->string('content');
+            $table->text('content');
             $table->timestamps();
         });
     }
