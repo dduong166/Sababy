@@ -221,17 +221,24 @@ class Profile extends Component {
     }
 
     render() {
-        console.log(this.state);
         let currentUser = this.props.currentUser;
         if (currentUser && !this.state.isSetValueToState) {
-            let address = currentUser.address.split(",");
-            this.setState({
-                name: currentUser.name,
-                phonenumber: currentUser.phonenumber,
-                lat: parseFloat(address[0]),
-                lng: parseFloat(address[1]),
-                isSetValueToState: true
-            });
+            if (currentUser.address) {
+                let address = currentUser.address.split(",");
+                this.setState({
+                    name: currentUser.name,
+                    phonenumber: currentUser.phonenumber,
+                    lat: parseFloat(address[0]),
+                    lng: parseFloat(address[1]),
+                    isSetValueToState: true
+                });
+            } else {
+                this.setState({
+                    name: currentUser.name,
+                    phonenumber: currentUser.phonenumber,
+                    isSetValueToState: true
+                });
+            }
         }
         return (
             <div className="profile container fullscreen-min-height">
@@ -265,7 +272,12 @@ class Profile extends Component {
                             </td>
                         </tr>
                         <tr>
-                            <th>SỐ ĐIỆN THOẠI <Tooltip title="Người mua sẽ liên hệ với bạn thông qua số điện thoại này"><InfoCircleOutlined /></Tooltip></th>
+                            <th>
+                                SỐ ĐIỆN THOẠI{" "}
+                                <Tooltip title="Người mua sẽ liên hệ với bạn thông qua số điện thoại này">
+                                    <InfoCircleOutlined />
+                                </Tooltip>
+                            </th>
                             <td>
                                 {this.state.edit ? (
                                     <Input
@@ -281,7 +293,12 @@ class Profile extends Component {
                             </td>
                         </tr>
                         <tr>
-                            <th>TỌA ĐỘ ĐỊA CHỈ <Tooltip title="Thông tin này phục vụ cho chức năng sắp xếp sản phẩm theo khoảng cách và không được công khai"><InfoCircleOutlined /></Tooltip></th>
+                            <th>
+                                TỌA ĐỘ ĐỊA CHỈ{" "}
+                                <Tooltip title="Thông tin này phục vụ cho chức năng sắp xếp sản phẩm theo khoảng cách và không được công khai">
+                                    <InfoCircleOutlined />
+                                </Tooltip>
+                            </th>
                             <td>
                                 {this.state.edit ? (
                                     <Button

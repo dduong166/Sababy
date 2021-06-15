@@ -64,12 +64,6 @@ class Homepage extends Component {
         });
     }
 
-    handleBookmark(bookmark, index) {
-        console.log("handle Bookmark");
-        console.log(index);
-        console.log(this.props);
-    }
-
     onPageChange(page) {
         this.getProducts(page);
     }
@@ -97,12 +91,6 @@ class Homepage extends Component {
                                                     key={product.id}
                                                     product={product}
                                                     index={index}
-                                                    setBookmark={
-                                                        this.props.setBookmark
-                                                    }
-                                                    setUnbookmark={
-                                                        this.props.setUnbookmark
-                                                    }
                                                 />
                                             )
                                         )
@@ -151,19 +139,6 @@ const mapDispatchToProps = dispatch => {
             dispatch({
                 type: "SET_PRODUCTS",
                 payload: products
-            });
-        },
-        setBookmark: (bookmark, index) => {
-            dispatch({
-                type: "SET_BOOKMARK",
-                payload: bookmark,
-                index: index
-            });
-        },
-        setUnbookmark: index => {
-            dispatch({
-                type: "SET_UNBOOKMARK",
-                index: index
             });
         }
     };

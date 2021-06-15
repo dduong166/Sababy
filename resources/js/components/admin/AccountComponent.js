@@ -2,7 +2,15 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import "./css/AccountComponent.scss";
 import Http from "../../Http";
-import { Table, Button, Popconfirm, notification, Space, Input, Modal } from "antd";
+import {
+    Table,
+    Button,
+    Popconfirm,
+    notification,
+    Space,
+    Input,
+    Modal
+} from "antd";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { connect } from "react-redux";
 
@@ -24,6 +32,7 @@ class AccountComponent extends Component {
         this.onEditSubmit = this.onEditSubmit.bind(this);
         this.onChangeName = this.onChangeName.bind(this);
         this.onChangePhonenumber = this.onChangePhonenumber.bind(this);
+        this.onOk = this.onOk.bind(this);
         this.initMap = this.initMap.bind(this);
         this.setModalVisible = this.setModalVisible.bind(this);
     }
@@ -73,7 +82,8 @@ class AccountComponent extends Component {
     }
 
     onChangeEditStatus(currentUser) {
-        if (currentUser !== 0) { //Neu param là 1 user object -> open edit
+        if (currentUser !== 0) {
+            //Neu param là 1 user object -> open edit
             let address = currentUser.address.split(",");
             this.setState({
                 edit: currentUser.key,
@@ -256,7 +266,7 @@ class AccountComponent extends Component {
                         () => this.onChangeEditStatus(0)
                     );
                     notification["success"]({
-                        message: "Cập nhật thông tin thành công;"
+                        message: "Cập nhật thông tin thành công."
                     });
                 })
                 .catch(error =>
@@ -270,6 +280,10 @@ class AccountComponent extends Component {
                 message: "Vui lòng nhập đầy đủ thông tin."
             });
         }
+    }
+
+    onOk() {
+        this.setModalVisible(false);
     }
 
     render() {
@@ -316,9 +330,19 @@ class AccountComponent extends Component {
                 render: (text, record) =>
                     this.state.edit == record.key ? (
                         <Button onClick={() => this.setModalVisible(true)}>
-                            {record.address}
+                            {this.state.lat && this.state.lng ? (
+                                <React.Fragment>
+                                    {this.state.lat},{this.state.lng}
+                                </React.Fragment>
+                            ) : (
+                                "Chưa đăng ký"
+                            )}
                         </Button>
-                    ) : record.address
+                    ) : record.address ? (
+                        record.address
+                    ) : (
+                        "Chưa đăng ký"
+                    )
             },
             {
                 title: "Ngày đăng ký",
@@ -330,7 +354,7 @@ class AccountComponent extends Component {
                 title: "Sửa",
                 key: "operation",
                 fixed: "right",
-                width: 50,
+                width: 80,
                 render: (text, record) =>
                     this.state.edit == record.key ? (
                         <div className="submit-btn d-flex justify-content-center">

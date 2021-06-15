@@ -104,7 +104,6 @@ class FilterSort extends Component {
     }
 
     render() {
-        console.log(this.state);
         return (
             <div className="filter-and-sort d-flex justify-content-between">
                 <Space>
@@ -163,13 +162,6 @@ const mapDispatchToProps = dispatch => {
             dispatch({
                 type: "SET_PRODUCTS",
                 payload: products
-            });
-        },
-        setBookmark: (bookmark, index) => {
-            dispatch({
-                type: "SET_BOOKMARK",
-                payload: bookmark,
-                index: index
             });
         }
     };

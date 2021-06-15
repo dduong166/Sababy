@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import Http from "../../Http";
+import { withRouter } from "react-router-dom";
 import "./css/DistanceComponent.scss";
 import { Modal, Button, notification } from "antd";
 import "antd/dist/antd.css";
-import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+
 const queryString = require("query-string");
 
 class DistanceSort extends Component {
@@ -36,6 +37,13 @@ class DistanceSort extends Component {
     setModalVisible(status) {
         if (!this.state.inited) {
             //Khi chưa init map lần nào (chưa từng mở modal)
+            if (this.props.currentUser && this.props.currentUser.address) {
+                const address = this.props.currentUser.address.split(",");
+                this.setState({
+                    lat: parseFloat(address[0]),
+                    lng: parseFloat(address[1])
+                });
+            }
             this.setState(
                 {
                     visible: true,
@@ -100,68 +108,58 @@ class DistanceSort extends Component {
                 infowindowContent.children["place-address"].textContent = "";
                 infowindow.open(map, marker);
             }
-            google.maps.event.addListener(
-                map,
-                "click",
-                e => {
-                    var latLng = e.latLng;
-                    this.setState({
-                        lat: e.latLng.lat(),
-                        lng: e.latLng.lng()
-                    });
-                    if (marker && marker.setMap) {
-                        marker.setMap(null);
-                    }
-                    marker = new google.maps.Marker({
-                        position: latLng,
-                        map: map
-                    });
-                    input.value = "";
-                    map.setZoom(16);
-                    infowindowContent.children[
-                        "place-name"
-                    ].textContent = latLng;
-                    infowindowContent.children["place-address"].textContent =
-                        "";
-                    infowindow.open(map, marker);
+            google.maps.event.addListener(map, "click", e => {
+                var latLng = e.latLng;
+                this.setState({
+                    lat: e.latLng.lat(),
+                    lng: e.latLng.lng()
+                });
+                if (marker && marker.setMap) {
+                    marker.setMap(null);
                 }
-            );
-            autocomplete.addListener(
-                "place_changed",
-                () => {
-                    infowindow.close();
-                    const place = autocomplete.getPlace();
-                    console.log(place);
+                marker = new google.maps.Marker({
+                    position: latLng,
+                    map: map
+                });
+                input.value = "";
+                map.setZoom(16);
+                infowindowContent.children["place-name"].textContent = latLng;
+                infowindowContent.children["place-address"].textContent = "";
+                infowindow.open(map, marker);
+            });
+            autocomplete.addListener("place_changed", () => {
+                infowindow.close();
+                const place = autocomplete.getPlace();
+                console.log(place);
 
-                    if (!place.geometry || !place.geometry.location) {
-                        notification["error"]({
-                            message:
-                                "Không tìm thấy vị trí " +
-                                place.name +
-                                " .Vui lòng chọn trên bản đồ."
-                        });
-                        return;
-                    }
-                    this.setState({
-                        lat: place.geometry.location.lat(),
-                        lng: place.geometry.location.lng()
+                if (!place.geometry || !place.geometry.location) {
+                    notification["error"]({
+                        message:
+                            "Không tìm thấy vị trí " +
+                            place.name +
+                            " .Vui lòng chọn trên bản đồ."
                     });
-                    if (marker && marker.setMap) {
-                        marker.setMap(null);
-                    }
-                    marker = new google.maps.Marker({
-                        position: place.geometry.location,
-                        map: map
-                    });
-                    map.panTo(marker.getPosition());
-                    map.setZoom(16);
-                    infowindowContent.children["place-name"].textContent =
-                        place.name;
-                    infowindowContent.children["place-address"].textContent =
-                        place.formatted_address;
-                    infowindow.open(map, marker);
+                    return;
                 }
-            );
+                this.setState({
+                    lat: place.geometry.location.lat(),
+                    lng: place.geometry.location.lng()
+                });
+                if (marker && marker.setMap) {
+                    marker.setMap(null);
+                }
+                marker = new google.maps.Marker({
+                    position: place.geometry.location,
+                    map: map
+                });
+                map.panTo(marker.getPosition());
+                map.setZoom(16);
+                infowindowContent.children["place-name"].textContent =
+                    place.name;
+                infowindowContent.children["place-address"].textContent =
+                    place.formatted_address;
+                infowindow.open(map, marker);
+            });
         }
     }
 
@@ -260,7 +258,10 @@ class DistanceSort extends Component {
     }
 }
 
-export default DistanceSort;
-// export default GoogleApiWrapper({
-//     apiKey: "AIzaSyDL-mENJ7NamXqaEropaAeCsFC42q9lLb4"
-// })(DistanceSort);
+const mapStateToProps = state => {
+    return {
+        currentUser: state.auth.currentUser
+    };
+};
+
+export default withRouter(connect(mapStateToProps, null)(DistanceSort));

@@ -144,6 +144,12 @@ class AddProductComponent extends Component {
                     city: edit_product.city,
                     images: product_medias_edit
                 });
+            } else if (this.props.currentUser && this.props.currentUser.address) {
+                const location = this.props.currentUser.address.split(",");
+                this.setState({
+                    lat: parseFloat(location[0]),
+                    lng: parseFloat(location[1])
+                });
             }
             this.setState({ visible: status });
         }
@@ -171,7 +177,7 @@ class AddProductComponent extends Component {
                     }
                 );
             } else {
-                map = new google.maps.Map(document.getElementById("map"), {
+                map = new google.maps.Map(document.getElementById("map_add_product"), {
                     center: { lat: 21.0277644, lng: 105.8341598 },
                     zoom: 10,
                     gestureHandling: "greedy"
@@ -294,8 +300,11 @@ class AddProductComponent extends Component {
                     images: this.state.images
                 };
                 if (this.props.edit_product) {
-                    if(JSON.stringify(this.state.images) == JSON.stringify(product_medias_edit)) {
-                        delete newProduct.images
+                    if (
+                        JSON.stringify(this.state.images) ==
+                        JSON.stringify(product_medias_edit)
+                    ) {
+                        delete newProduct.images;
                     }
                     const uri = `http://localhost:8000/api/product/${this.props.edit_product.id}`;
                     Http.put(uri, newProduct).then(response => {
@@ -315,7 +324,7 @@ class AddProductComponent extends Component {
                         }
                     });
                 } else {
-                    let uri = "http://localhost:8000/api/product";//them vao redux
+                    let uri = "http://localhost:8000/api/product"; //them vao redux
                     Http.post(uri, newProduct).then(response => {
                         if (response) {
                             console.log(response);
@@ -326,7 +335,7 @@ class AddProductComponent extends Component {
                                     "Sản phẩm đã được thêm vào danh sách sản phẩm đang bán trong [Sản phẩm của tôi]. Nhấn vào đây để chuyển sang màn xem chi tiết sản phẩm.",
                                 onClick: () => {
                                     this.props.history.push(
-                                        `/product/${response.data.product.id}`
+                                        `/product/${response.data.id}`
                                     );
                                 }
                             });
@@ -392,7 +401,7 @@ class AddProductComponent extends Component {
         }
     }
     render() {
-        if(this.state.visible && !this.props.currentUser){
+        if (this.state.visible && !this.props.currentUser) {
             this.props.history.push("/login");
         }
         let categories = this.props.categories;
@@ -547,7 +556,7 @@ class AddProductComponent extends Component {
                     {this.props.edit_product ? (
                         <div id={this.map_id} className="map_init"></div>
                     ) : (
-                        <div id="map" className="map_init"></div>
+                        <div id="map_add_product" className="map_init"></div>
                     )}
 
                     <div id="infowindow-content">
@@ -570,7 +579,7 @@ class AddProductComponent extends Component {
                 </Button>
             ];
         } else {
-            title = "Tải lên ảnh/video sản phẩm";
+            title = "Tải lên ảnh sản phẩm";
             modal = (
                 <React.Fragment>
                     {this.state.images.length
@@ -630,10 +639,10 @@ class AddProductComponent extends Component {
                             Sửa
                         </Button>
                         <div
-                            onKeyDown={e => e.stopPropagation()}
+                            // onKeyDown={e => e.stopPropagation()}
                             onClick={e => e.stopPropagation()}
-                            onFocus={e => e.stopPropagation()}
-                            onMouseOver={e => e.stopPropagation()}
+                            // onFocus={e => e.stopPropagation()}
+                            // onMouseOver={e => e.stopPropagation()}
                         >
                             <Modal
                                 title={title}
@@ -652,7 +661,7 @@ class AddProductComponent extends Component {
                     <React.Fragment>
                         <Button
                             className="add-product-btn"
-                            type="primary"
+                            // type="primary"
                             onClick={() => this.setModalVisible(true)}
                             icon={<PlusOutlined />}
                         >
@@ -708,19 +717,6 @@ const mapDispatchToProps = dispatch => {
             dispatch({
                 type: "UPDATE_PRODUCT",
                 payload: product
-            });
-        },
-        setBookmark: (bookmark, index) => {
-            dispatch({
-                type: "SET_BOOKMARK",
-                payload: bookmark,
-                index: index
-            });
-        },
-        setUnbookmark: index => {
-            dispatch({
-                type: "SET_UNBOOKMARK",
-                index: index
             });
         }
     };

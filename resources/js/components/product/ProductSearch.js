@@ -20,7 +20,6 @@ class Homepage extends Component {
             keyword: "",
             cities: []
         };
-        this.handleBookmark = this.handleBookmark.bind(this);
         this.setStateKeyword = this.setStateKeyword.bind(this);
         this.changeLoading = this.changeLoading.bind(this);
     }
@@ -37,19 +36,11 @@ class Homepage extends Component {
         this.setState({ keyword: value });
     }
 
-    handleBookmark(bookmark, index) {
-        console.log("handle Bookmark");
-        console.log(index);
-        console.log(this.props);
-        // this.props.setBookmark(bookmark, index);
-    }
-
     changeLoading(value) {
         console.log(value);
         this.setState({ isLoading: value });
     }
     render() {
-        console.log(this.state);
         return (
             <div className="homepage-body fullscreen-min-height">
                 <div className="container">
@@ -81,9 +72,6 @@ class Homepage extends Component {
                                                         key={product.id}
                                                         product={product}
                                                         index={index}
-                                                        // setBookmark={
-                                                        //     this.handleBookmark
-                                                        // }
                                                     />
                                                 )
                                             )}
@@ -120,13 +108,6 @@ const mapDispatchToProps = dispatch => {
             dispatch({
                 type: "SET_PRODUCTS",
                 payload: products
-            });
-        },
-        setBookmark: (bookmark, index) => {
-            dispatch({
-                type: "SET_BOOKMARK",
-                payload: bookmark,
-                index: index
             });
         }
     };

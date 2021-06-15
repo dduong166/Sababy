@@ -8,19 +8,29 @@ class CategoryList extends Component {
         let categories = this.props.categories;
         return (
             <div className="category-list">
-                {categories ? categories.map((category, index) => (
-                    <Link
-                        to={"/category/" + category.id}
-                        key={category.id}
-                    >
-                        <div className="category-card">
-                            <img src={category.category_image_url} />
-                            <div className="category-card-title">
-                                {category.category_name}
-                            </div>
-                        </div>
-                    </Link>
-                )) : null }
+                {categories
+                    ? categories.map((category, index) => (
+                          <Link
+                              to={"/category/" + category.id}
+                              key={category.id}
+                          >
+                              {category.category_image_url ? (
+                                  <div className="category-card">
+                                      <img src={category.category_image_url} />
+                                      <div className="category-card-title">
+                                          {category.category_name}
+                                      </div>
+                                  </div>
+                              ) : (
+                                  <div className="category-card">
+                                      <div className="category-card-title-no-img">
+                                          {category.category_name}
+                                      </div>
+                                  </div>
+                              )}
+                          </Link>
+                      ))
+                    : null}
             </div>
         );
     }

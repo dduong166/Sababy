@@ -17,15 +17,16 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->integer('owner_id');
             $table->integer('category_id');
-            $table->string('product_name');
-            $table->text('description')->nullable();
-            $table->string('outside_status');
-            $table->string('function_status');
+            $table->text('product_name');
+            $table->text('description');
+            $table->text('outside_status');
+            $table->text('function_status');
 
-            $table->double('price')->nullable();
+            $table->double('price');
             $table->integer('quantity');
             $table->string('location');
             $table->string('city');
+            $table->integer('sold')->default(0);  //0: selling, 1: sold
 
             $table->timestamps();
         });

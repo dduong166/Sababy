@@ -87,20 +87,6 @@ export const productDetailReducer = (state = initialState, action) => {
                 list => list.push(action.payload)
             );
             return draft.toJS();
-        case "SET_BOOKMARK":
-            index = action.index;
-            draft = fromJS({ ...state });
-            draft = draft.updateIn(["products", index, "bookmarks"], list =>
-                list.push(action.payload)
-            );
-            console.log("set bm");
-            return draft.toJS();
-        case "SET_UNBOOKMARK":
-            index = action.index;
-            draft = fromJS({ ...state });
-            draft = removeIn(draft, ["products", index, "bookmarks", 0]);
-            console.log("set unbm");
-            return draft.toJS();
         case "CHANGE_TO_SOLD_STATUS":
             id = Number(action.payload);
             products = state.products.filter(product => {

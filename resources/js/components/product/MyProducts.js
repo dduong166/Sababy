@@ -102,7 +102,7 @@ class MyProducts extends Component {
                                     aria-controls="nav-sold"
                                     aria-selected="false"
                                 >
-                                    ĐÃ BÁN
+                                    ĐÃ BÁN HẾT
                                 </a>
                             </div>
                         </nav>
@@ -131,12 +131,6 @@ class MyProducts extends Component {
                                                                   myProduct={
                                                                       true
                                                                   }
-                                                                  //   setBookmark={
-                                                                  //       this.props.setBookmark
-                                                                  //   }
-                                                                  //   setUnbookmark={
-                                                                  //       this.props.setUnbookmark
-                                                                  //   }
                                                               />
                                                           )
                                                       )
@@ -183,12 +177,6 @@ class MyProducts extends Component {
                                                                   soldProduct={
                                                                       true
                                                                   }
-                                                                  //   setBookmark={
-                                                                  //       this.props.setBookmark
-                                                                  //   }
-                                                                  //   setUnbookmark={
-                                                                  //       this.props.setUnbookmark
-                                                                  //   }
                                                               />
                                                           )
                                                       )
@@ -248,19 +236,6 @@ const mapDispatchToProps = dispatch => {
             dispatch({
                 type: "SET_SOLD_PRODUCTS",
                 payload: products
-            });
-        },
-        setBookmark: (bookmark, index) => {
-            dispatch({
-                type: "SET_BOOKMARK",
-                payload: bookmark,
-                index: index
-            });
-        },
-        setUnbookmark: index => {
-            dispatch({
-                type: "SET_UNBOOKMARK",
-                index: index
             });
         }
     };

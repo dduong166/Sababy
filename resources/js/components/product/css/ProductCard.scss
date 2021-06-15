@@ -23,22 +23,6 @@
             border-radius: 8px;
             transform: scale(1.01);
         }
-        .bookmark {
-            position: absolute;
-            right: 5px;
-            top: 5px;
-            padding: 0 6px 0 6px;
-            border: 1px solid #3490dc;
-            border-radius: 30px;
-            font-size: 20px;
-            color: #3490dc;
-            transition: 0.2s ease-out;
-            background-color: transparent;
-            &:hover {
-                transform: scale(1.05);
-                background-color: white;
-            }
-        }
 
         .product_image {
             width: 100%;
