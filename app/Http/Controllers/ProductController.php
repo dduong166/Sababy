@@ -252,6 +252,7 @@ class ProductController extends Controller
 
         ProductMedia::insert($product_medias);
         $product = $product->load('productMedias');
+        $product->makeVisible(['location']);
 
         return response()->json($product);
     }
@@ -308,6 +309,8 @@ class ProductController extends Controller
         }
         $product = Product::where('id', $product_id)->first();
         $product = $product->load('productMedias');
+        $product->makeVisible(['location']);
+
         return response()->json($product);
 
     }

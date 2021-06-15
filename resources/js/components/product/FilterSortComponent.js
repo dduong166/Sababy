@@ -85,6 +85,7 @@ class FilterSort extends Component {
             price: condition.price,
             location: condition.location
         });
+        this.props.changeKeyword(condition.k);
         const uri = "http://localhost:8000/api/product/filter";
         const request = {
             product_name: condition.k,

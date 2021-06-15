@@ -48,6 +48,7 @@ class Homepage extends Component {
                         location={this.props.location}
                         history={this.props.history}
                         changeLoading={value => this.changeLoading(value)}
+                        changeKeyword={value => this.setStateKeyword(value)}
                         isLoading={this.state.isLoading}
                     />
                     {!this.state.isLoading ? (
