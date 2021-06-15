@@ -146,7 +146,7 @@ class ProductCard extends Component {
                             <div className="d-flex flex-column justify-content-between">
                                 <div className="small_text">
                                     {product.city}{" "}
-                                    {product.distance ? (
+                                    {product.distance !== undefined ? (
                                         <span>
                                             (cách{" "}
                                             {(

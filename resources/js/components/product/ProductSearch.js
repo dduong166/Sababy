@@ -41,7 +41,6 @@ class Homepage extends Component {
         this.setState({ isLoading: value });
     }
     render() {
-        console.log(this.state);
         return (
             <div className="homepage-body fullscreen-min-height">
                 <div className="container">

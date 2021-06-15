@@ -104,7 +104,6 @@ class FilterSort extends Component {
     }
 
     render() {
-        console.log(this.state);
         return (
             <div className="filter-and-sort d-flex justify-content-between">
                 <Space>
