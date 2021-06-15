@@ -630,10 +630,10 @@ class AddProductComponent extends Component {
                             Sửa
                         </Button>
                         <div
-                            onKeyDown={e => e.stopPropagation()}
+                            // onKeyDown={e => e.stopPropagation()}
                             onClick={e => e.stopPropagation()}
-                            onFocus={e => e.stopPropagation()}
-                            onMouseOver={e => e.stopPropagation()}
+                            // onFocus={e => e.stopPropagation()}
+                            // onMouseOver={e => e.stopPropagation()}
                         >
                             <Modal
                                 title={title}
