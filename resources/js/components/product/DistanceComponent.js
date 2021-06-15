@@ -199,7 +199,6 @@ class DistanceSort extends Component {
     }
 
     render() {
-        console.log(this.state);
         return (
             <div className="google-place-autocomplete">
                 {this.state.is_sort ? (

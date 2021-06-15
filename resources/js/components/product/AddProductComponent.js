@@ -144,7 +144,7 @@ class AddProductComponent extends Component {
                     city: edit_product.city,
                     images: product_medias_edit
                 });
-            } else if (this.props.currentUser) {
+            } else if (this.props.currentUser && this.props.currentUser.address) {
                 const location = this.props.currentUser.address.split(",");
                 this.setState({
                     lat: parseFloat(location[0]),
@@ -401,7 +401,6 @@ class AddProductComponent extends Component {
         }
     }
     render() {
-        console.log(this.state);
         if (this.state.visible && !this.props.currentUser) {
             this.props.history.push("/login");
         }

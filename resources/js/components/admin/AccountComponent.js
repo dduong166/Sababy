@@ -2,7 +2,15 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import "./css/AccountComponent.scss";
 import Http from "../../Http";
-import { Table, Button, Popconfirm, notification, Space, Input, Modal } from "antd";
+import {
+    Table,
+    Button,
+    Popconfirm,
+    notification,
+    Space,
+    Input,
+    Modal
+} from "antd";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { connect } from "react-redux";
 
@@ -74,7 +82,8 @@ class AccountComponent extends Component {
     }
 
     onChangeEditStatus(currentUser) {
-        if (currentUser !== 0) { //Neu param là 1 user object -> open edit
+        if (currentUser !== 0) {
+            //Neu param là 1 user object -> open edit
             let address = currentUser.address.split(",");
             this.setState({
                 edit: currentUser.key,
@@ -273,7 +282,7 @@ class AccountComponent extends Component {
         }
     }
 
-    onOk(){
+    onOk() {
         this.setModalVisible(false);
     }
 
@@ -321,9 +330,19 @@ class AccountComponent extends Component {
                 render: (text, record) =>
                     this.state.edit == record.key ? (
                         <Button onClick={() => this.setModalVisible(true)}>
-                            {this.state.lat},{this.state.lng}
+                            {this.state.lat && this.state.lng ? (
+                                <React.Fragment>
+                                    {this.state.lat},{this.state.lng}
+                                </React.Fragment>
+                            ) : (
+                                "Chưa đăng ký"
+                            )}
                         </Button>
-                    ) : record.address
+                    ) : record.address ? (
+                        record.address
+                    ) : (
+                        "Chưa đăng ký"
+                    )
             },
             {
                 title: "Ngày đăng ký",
