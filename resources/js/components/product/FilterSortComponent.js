@@ -43,7 +43,7 @@ class FilterSort extends Component {
     }
 
     getCityList() {
-        Http.get("http://localhost:8000/api/product/cities")
+        Http.get(process.env.MIX_API_URL + "api/product/cities")
             .then(response => {
                 if (response.data) {
                     this.setState({ cities: response.data });
@@ -88,8 +88,8 @@ class FilterSort extends Component {
         });
         // this.props.changeKeyword(condition.k);
         const uri = condition.page
-            ? "http://localhost:8000/api/product/filter?page=" + condition.page
-            : "http://localhost:8000/api/product/filter";
+            ? process.env.MIX_API_URL + "api/product/filter?page=" + condition.page
+            : process.env.MIX_API_URL + "api/product/filter";
         const request = {
             product_name: condition.k,
             city: condition.city,

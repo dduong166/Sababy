@@ -42,7 +42,7 @@ class ProductCard extends Component {
         const id = e.currentTarget.dataset.id;
         const sold_status = Number(e.currentTarget.dataset.value);
         let changeProduct = { sold: sold_status };
-        const uri = `http://localhost:8000/api/product/${id}`;
+        const uri = process.env.MIX_API_URL + `api/product/${id}`;
         Http.put(uri, changeProduct).then(response => {
             if (response) {
                 if (sold_status) {
@@ -61,7 +61,7 @@ class ProductCard extends Component {
 
     onDeleteProduct() {
         this.setState({ isLoading: true });
-        const uri = `http://localhost:8000/api/product/${this.props.product.id}`;
+        const uri = process.env.MIX_API_URL + `api/product/${this.props.product.id}`;
         Http.delete(uri).then(response => {
             if (response.data) {
                 this.props.deleteProduct(this.props.product);

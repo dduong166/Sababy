@@ -27,7 +27,7 @@ class ProductDetail extends Component {
 
     getProductDetail() {
         let uri =
-            "http://localhost:8000/api/product/" +
+            process.env.MIX_API_URL + "api/product/" +
             this.props.match.params.product_id;
         Http.get(uri)
             .then(response => {

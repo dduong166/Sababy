@@ -50,7 +50,7 @@ class QuestionComponent extends Component {
             } else {
                 console.log("Chưa login");
             }
-            let uri = "http://localhost:8000/api/question";
+            let uri = process.env.MIX_API_URL + "api/question";
             const newQuestion = {
                 product_id: this.props.detail.id,
                 content: this.state.question
@@ -88,7 +88,7 @@ class QuestionComponent extends Component {
             });
         } else {
             this.setState({ isAnswerLoading: true });
-            let uri = "http://localhost:8000/api/answer";
+            let uri = process.env.MIX_API_URL + "api/answer";
             const newAnswer = {
                 question_id: e.currentTarget.dataset.questionid,
                 content: this.state.answer[index]

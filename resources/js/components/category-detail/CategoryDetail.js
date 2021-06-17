@@ -37,7 +37,7 @@ class CategoryDetail extends Component {
 
     getProductsAndCategory() {
         let uri =
-            "http://localhost:8000/api/product/category/" +
+            process.env.MIX_API_URL + "api/product/category/" +
             this.props.match.params.category_id;
         Http.get(uri)
             .then(response => {

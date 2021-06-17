@@ -39,7 +39,7 @@ class OverviewComponent extends Component {
     }
 
     countUserByDate() {
-        const uri = "http://localhost:8000/api/admin/count_user";
+        const uri = process.env.MIX_API_URL + "api/admin/count_user";
         Http.get(uri).then(response => {
             this.setState({
                 userByDate: response.data.userByDate,
@@ -49,7 +49,7 @@ class OverviewComponent extends Component {
     }
 
     countProductByDate() {
-        const uri = "http://localhost:8000/api/admin/count_product";
+        const uri = process.env.MIX_API_URL + "api/admin/count_product";
         Http.get(uri).then(response => {
             this.setState({
                 productByDate: response.data.productByDate,

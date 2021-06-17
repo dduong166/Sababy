@@ -8,7 +8,7 @@
         <title>Sababy</title>
         <link rel="stylesheet" type="text/css" href="/css/app.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-        <link rel="shortcut icon" href="https://res.cloudinary.com/dbzfjnlhl/image/upload/v1611499902/latner-logo_d0ohbi.png" type="image/x-icon" /> 
+        <link rel="shortcut icon" href="https://res.cloudinary.com/dbzfjnlhl/image/upload/v1613919232/27b6792e-38bd-471c-b46e-177a0e5a1af0_200x200_lb4mcd.png" type="image/x-icon" /> 
         <script type="text/javascript">
             window.Laravel = {!! json_encode([
                 'baseUrl' => url('/'),
