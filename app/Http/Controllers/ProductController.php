@@ -166,8 +166,16 @@ class ProductController extends Controller
             $products = $products->sortByDesc('created_at')->values();
         }     
         $products = $products->load('productMedias');
-        
-        return response()->json($products);
+        $currentPage = 1;
+        if ($request->has('page')) {
+            $currentPage = $request->input('page');
+        }
+        $currentPageResults = (object)[];
+        $currentPageResults->data = $products->slice(($currentPage - 1) * $this->pageSize, $this->pageSize)->values();
+        $currentPageResults->total = $products->count();
+        $currentPageResults->per_page = $this->pageSize;
+
+        return response()->json($currentPageResults);
     }
 
     public function getProductByCategoryID($category_id) //category detail

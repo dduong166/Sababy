@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Http from "../../Http";
 import { Link, withRouter } from "react-router-dom";
-import { Spin, Select } from "antd";
+import { Spin, Select, Pagination } from "antd";
 import "./css/ProductSearch.scss";
 import ProductCard from "./ProductCard";
 import FilterSort from "./FilterSortComponent";
@@ -18,29 +18,77 @@ class Homepage extends Component {
         this.state = {
             isLoading: true,
             keyword: "",
+            defaultCurrent: 1,
+            totalItem: 1,
+            pageSize: 12,
             cities: []
         };
         this.setStateKeyword = this.setStateKeyword.bind(this);
         this.changeLoading = this.changeLoading.bind(this);
+        this.onPageChange = this.onPageChange.bind(this);
+        this.changePagination = this.changePagination.bind(this);
     }
     componentDidMount() {
         const condition = queryString.parse(location.search);
         this.setStateKeyword(condition.k);
+        if (condition.page) {
+            this.setState({
+                defaultCurrent: Number(condition.page)
+            });
+        }
     }
+
+    componentDidUpdate(prevProps) {
+        if (
+            location.search !== undefined &&
+            location.search !== prevProps.location.search
+        ) {
+            const condition = queryString.parse(location.search);
+            this.setStateKeyword(condition.k);
+            if (condition.page) {
+                this.setState({
+                    defaultCurrent: Number(condition.page)
+                });
+            }
+        }
+    }
+
     componentWillUnmount() {
         this.props.history.push({
             search: ""
         });
     }
-    setStateKeyword(value) {
+    setStateKeyword(value) {    //dùng để hiển thị keyword ra ngoài
         this.setState({ keyword: value });
     }
 
     changeLoading(value) {
-        console.log(value);
         this.setState({ isLoading: value });
     }
+
+    onPageChange(page) {    //page change when click in Pagination
+        this.setState({
+            defaultCurrent: page
+        });
+        const condition = queryString.parse(location.search);
+        condition.page = page;
+        let stringified = queryString.stringify(condition);
+        if (stringified) stringified = "?" + stringified;
+        this.props.history.push({
+            pathname: location.pathname,
+            search: stringified
+        });
+    }
+
+    changePagination(totalItem, pageSize) { // nhận 1 số thông tin về Pagination sau khi nhận dữ liệu từ hàm filter
+        this.setState({
+            totalItem: totalItem,
+            pageSize: pageSize
+        });
+    }
+
     render() {
+        console.log(this.state);
         return (
             <div className="homepage-body fullscreen-min-height">
                 <div className="container">
@@ -49,6 +97,9 @@ class Homepage extends Component {
                         history={this.props.history}
                         changeLoading={value => this.changeLoading(value)}
                         changeKeyword={value => this.setStateKeyword(value)}
+                        changePagination={(totalItem, pageSize) =>
+                            this.changePagination(totalItem, pageSize)
+                        }
                         isLoading={this.state.isLoading}
                     />
                     {!this.state.isLoading ? (
@@ -78,6 +129,18 @@ class Homepage extends Component {
                                             )}
                                         </div>
                                     </div>
+                                </div>
+                                <div className="pagination d-flex justify-content-end">
+                                    <Pagination
+                                        defaultCurrent={
+                                            this.state.defaultCurrent
+                                        }
+                                        total={this.state.totalItem}
+                                        pageSize={this.state.pageSize}
+                                        onChange={page =>
+                                            this.onPageChange(page)
+                                        }
+                                    />
                                 </div>
                             </React.Fragment>
                         ) : (

@@ -13,7 +13,7 @@ class Homepage extends Component {
         super(props);
         this.state = {
             categories: [],
-            currentPage: 1,
+            defaultCurrent: 1,
             totalItem: 1,
             pageSize: 12,
             isLoading: true,
@@ -29,7 +29,7 @@ class Homepage extends Component {
         if (!this.props.categories) {
             this.getCategories();
         }
-        this.getProducts(this.state.currentPage); //pagination page=1
+        this.getProducts(this.state.defaultCurrent); //pagination page=1
     }
 
     componentWillUnmount() {
@@ -104,7 +104,7 @@ class Homepage extends Component {
                         </div>
                         <div className="pagination d-flex justify-content-end">
                             <Pagination
-                                defaultCurrent={this.state.currentPage}
+                                defaultCurrent={this.state.defaultCurrent}
                                 total={this.state.totalItem}
                                 pageSize={this.state.pageSize}
                                 onChange={page => this.onPageChange(page)}

@@ -13,8 +13,9 @@ class MyProducts extends Component {
         this.state = {
             categories: [],
             isLoading: true,
-            currentPage: 1,
-            totalItem: 1,
+            defaultCurrent: 1,
+            totalSellingItem: 1,
+            totalSoldItem: 1,
             pageSize: 12
         };
         this.getSellingProducts = this.getSellingProducts.bind(this);
@@ -23,8 +24,8 @@ class MyProducts extends Component {
     }
 
     componentDidMount() {
-        this.getSellingProducts(this.state.currentPage);
-        this.getSoldProducts(this.state.currentPage);
+        this.getSellingProducts(this.state.defaultCurrent);
+        this.getSoldProducts(this.state.defaultCurrent);
     }
 
     componentWillUnmount() {
@@ -40,6 +41,9 @@ class MyProducts extends Component {
             : "http://localhost:8000/api/product/selling?page=" + page;
         Http.get(selling).then(response => {
             this.props.setProducts(response.data.data);
+            this.setState({
+                totalSellingItem: response.data.total
+            })
         });
     }
 
@@ -51,7 +55,7 @@ class MyProducts extends Component {
             this.props.setSoldProducts(response.data.data);
             this.setState({
                 isLoading: false,
-                totalItem: response.data.total,
+                totalSoldItem: response.data.total,
                 pageSize: response.data.per_page
             });
         });
@@ -64,6 +68,7 @@ class MyProducts extends Component {
     render() {
         var products = this.props.products;
         var sold_products = this.props.sold_products;
+        console.log(this.state);
         return (
             <div className="my-products-page fullscreen-min-height container">
                 {!this.props.isAdminPage ? (
@@ -141,9 +146,9 @@ class MyProducts extends Component {
                                     <div className="pagination d-flex justify-content-end">
                                         <Pagination
                                             defaultCurrent={
-                                                this.state.currentPage
+                                                this.state.defaultCurrent
                                             }
-                                            total={this.state.totalItem}
+                                            total={this.state.totalSellingItem}
                                             pageSize={this.state.pageSize}
                                             onChange={page =>
                                                 this.onPageChange(page)
@@ -187,9 +192,9 @@ class MyProducts extends Component {
                                     <div className="pagination d-flex justify-content-end">
                                         <Pagination
                                             defaultCurrent={
-                                                this.state.currentPage
+                                                this.state.defaultCurrent
                                             }
-                                            total={this.state.totalItem}
+                                            total={this.state.totalSoldItem}
                                             pageSize={this.state.pageSize}
                                             onChange={page =>
                                                 this.onPageChange(page)
