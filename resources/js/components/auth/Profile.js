@@ -50,7 +50,7 @@ class Profile extends Component {
             this.state.lng
         ) {
             let uri =
-                "http://localhost:8000/api/user/" + this.props.currentUser.id;
+                process.env.MIX_API_URL + "api/user/" + this.props.currentUser.id;
             let profile = {
                 name: this.state.name,
                 phonenumber: this.state.phonenumber,

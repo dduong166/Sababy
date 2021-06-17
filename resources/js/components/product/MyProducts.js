@@ -37,8 +37,8 @@ class MyProducts extends Component {
 
     getSellingProducts(page) {
         const selling = this.props.isAdminPage
-            ? "http://localhost:8000/api/admin/selling?page=" + page
-            : "http://localhost:8000/api/product/selling?page=" + page;
+            ? process.env.MIX_API_URL + "api/admin/selling?page=" + page
+            : process.env.MIX_API_URL + "api/product/selling?page=" + page;
         Http.get(selling).then(response => {
             this.props.setProducts(response.data.data);
             this.setState({
@@ -49,8 +49,8 @@ class MyProducts extends Component {
 
     getSoldProducts(page) {
         const sold = this.props.isAdminPage
-            ? "http://localhost:8000/api/admin/sold?page=" + page
-            : "http://localhost:8000/api/product/sold?page=" + page;
+            ? process.env.MIX_API_URL + "api/admin/sold?page=" + page
+            : process.env.MIX_API_URL + "api/product/sold?page=" + page;
         Http.get(sold).then(response => {
             this.props.setSoldProducts(response.data.data);
             this.setState({

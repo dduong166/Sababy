@@ -62,7 +62,7 @@ class AddProductComponent extends Component {
     componentDidMount() {
         if (!this.props.categories) {
             //Nếu category list đã được lấy ra vào lưu vào redux
-            const uri = "http://localhost:8000/api/category";
+            const uri = process.env.MIX_API_URL + "api/category";
             Http.get(uri).then(response => {
                 this.props.setCategories(response.data);
             });
@@ -306,7 +306,7 @@ class AddProductComponent extends Component {
                     ) {
                         delete newProduct.images;
                     }
-                    const uri = `http://localhost:8000/api/product/${this.props.edit_product.id}`;
+                    const uri = process.env.MIX_API_URL + `api/product/${this.props.edit_product.id}`;
                     Http.put(uri, newProduct).then(response => {
                         if (response) {
                             console.log(response);
@@ -324,7 +324,7 @@ class AddProductComponent extends Component {
                         }
                     });
                 } else {
-                    let uri = "http://localhost:8000/api/product"; //them vao redux
+                    let uri = process.env.MIX_API_URL + "api/product"; //them vao redux
                     Http.post(uri, newProduct).then(response => {
                         if (response) {
                             console.log(response);

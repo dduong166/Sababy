@@ -77,7 +77,7 @@ class ChangePassword extends Component {
                     "Vui lòng nhập xác nhận mật khẩu giống với mật khẩu mới."
             });
         } else {
-            let uri = "http://localhost:8000/api/user/password";
+            let uri = process.env.MIX_API_URL + "api/user/password";
             let password_profile = {
                 phonenumber: this.state.phonenumber,
                 password: this.state.password,

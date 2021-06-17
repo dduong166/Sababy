@@ -114,7 +114,7 @@ class Login extends Component {
 
     onSignupSubmit(e) {
         e.preventDefault();
-        let uri = "api/user/register";
+        let uri = process.env.MIX_API_URL + "api/user/register";
         const newUser = {
             name: this.state.username,
             password: this.state.password,
@@ -142,7 +142,7 @@ class Login extends Component {
 
     onLoginSubmit(e) {
         e.preventDefault();
-        let uri = "api/user/login";
+        let uri = process.env.MIX_API_URL + "api/user/login";
         const loginUser = {
             phonenumber: this.state.phonenumber,
             password: this.state.password

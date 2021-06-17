@@ -50,7 +50,7 @@ class AccountComponent extends Component {
 
     onDeleteAccount(key) {
         this.setState({ isLoading: true });
-        const uri = `http://localhost:8000/api/admin/user/${key}`;
+        const uri = process.env.MIX_API_URL + `api/admin/user/${key}`;
         Http.delete(uri)
             .then(response => {
                 notification["success"]({
@@ -72,7 +72,7 @@ class AccountComponent extends Component {
     }
 
     getUsers() {
-        const uri = "http://localhost:8000/api/admin/users";
+        const uri = process.env.MIX_API_URL + "api/admin/users";
         Http.get(uri).then(response => {
             this.setState({
                 users: response.data,
@@ -243,7 +243,7 @@ class AccountComponent extends Component {
             this.state.lat &&
             this.state.lng
         ) {
-            let uri = "http://localhost:8000/api/user/" + this.state.edit;
+            let uri = process.env.MIX_API_URL + "api/user/" + this.state.edit;
             let profile = {
                 name: this.state.name,
                 phonenumber: this.state.phonenumber,

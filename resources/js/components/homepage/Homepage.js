@@ -46,13 +46,15 @@ class Homepage extends Component {
     }
 
     getCategories() {
-        const uri = "http://localhost:8000/api/category";
+        const uri = process.env.MIX_API_URL + "api/category";
+        // const uri = process.env.REACT_APP_API_URL + "/api/product?page=" + page;
+        console.log(process.env.MIX_API_URL);
         Http.get(uri).then(response => {
             this.props.setCategories(response.data);
         });
     }
     getProducts(page) {
-        const uri = "http://localhost:8000/api/product?page=" + page;
+        const uri = process.env.MIX_API_URL + "api/product?page=" + page;
         Http.get(uri).then(response => {
             this.props.setProducts(response.data.data);
             this.setState({

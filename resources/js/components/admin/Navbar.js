@@ -19,7 +19,7 @@ class Navbar extends Component {
         if (localStorage.getItem("auth_token")) {
             Http.defaults.headers.common["Authorization"] =
                 "Bearer " + localStorage["auth_token"];
-            Http.get("http://localhost:8000/api/user/isLoggedIn")
+            Http.get(process.env.MIX_API_URL + "api/user/isLoggedIn")
                 .then(response => {
                     if (response.data.user) {
                         this.props.login(response.data.user);
