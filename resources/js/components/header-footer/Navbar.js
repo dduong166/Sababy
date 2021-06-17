@@ -53,6 +53,7 @@ class Navbar extends Component {
         } else {
             condition.k = value;
         }
+        condition.page = 1;
         let stringified = queryString.stringify(condition);
         if (stringified) stringified = "?" + stringified;
         this.props.history.push({

@@ -57,7 +57,8 @@ class FilterSort extends Component {
     }
     onCityChange(value) {
         const condition = queryString.parse(location.search);
-        if (value === undefined) {
+        condition.page = 1;
+        if (value === undefined) {  //Nếu xóa city
             if (condition.city) {
                 delete condition.city;
             } else {
@@ -85,8 +86,10 @@ class FilterSort extends Component {
             price: condition.price,
             location: condition.location
         });
-        this.props.changeKeyword(condition.k);
-        const uri = "http://localhost:8000/api/product/filter";
+        // this.props.changeKeyword(condition.k);
+        const uri = condition.page
+            ? "http://localhost:8000/api/product/filter?page=" + condition.page
+            : "http://localhost:8000/api/product/filter";
         const request = {
             product_name: condition.k,
             city: condition.city,
@@ -95,7 +98,9 @@ class FilterSort extends Component {
         };
         Http.post(uri, request).then(response => {
             if (response) {
-                this.props.setProducts(response.data);
+                console.log(response.data);
+                this.props.setProducts(response.data.data);
+                this.props.changePagination(response.data.total, response.data.per_page);
                 this.props.changeLoading(false);
             } else {
                 console.log("Tìm kiếm thất bại");

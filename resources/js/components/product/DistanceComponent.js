@@ -161,9 +161,6 @@ class DistanceSort extends Component {
                     place.formatted_address;
                 infowindow.open(map, marker);
             });
-            // google.maps.event.addListener(map, 'reset', () => {
-            //     document.body.innerHTML = 'edited!';
-            // });
         }
     }
 
@@ -171,6 +168,7 @@ class DistanceSort extends Component {
         this.setModalVisible(false);
         this.setState({ is_sorted: false });
         const condition = queryString.parse(location.search);
+        condition.page = 1;
         if (condition.location) {
             delete condition.location;
             let stringified = queryString.stringify(condition);
@@ -187,6 +185,7 @@ class DistanceSort extends Component {
             this.setModalVisible(false);
             this.setState({ is_sorted: true });
             const condition = queryString.parse(location.search);
+            condition.page = 1;
             condition.location = `${this.state.lat},${this.state.lng}`;
             let stringified = queryString.stringify(condition);
             if (stringified) stringified = "?" + stringified;

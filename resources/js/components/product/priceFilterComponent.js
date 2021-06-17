@@ -65,6 +65,7 @@ class PriceFilterComponent extends Component {
             visible: false
         });
         const condition = queryString.parse(location.search);
+        condition.page = 1;
         if (condition.price) {
             delete condition.price;
             let stringified = queryString.stringify(condition);
@@ -80,6 +81,7 @@ class PriceFilterComponent extends Component {
         this.setState({ is_set_range: true });
         this.setModalVisible(false);
         const condition = queryString.parse(location.search);
+        condition.page = 1;
         condition.price = `${this.state.min}-${this.state.max}`;
         let stringified = queryString.stringify(condition);
         if (stringified) stringified = "?" + stringified;
