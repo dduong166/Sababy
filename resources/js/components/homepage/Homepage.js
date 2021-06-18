@@ -54,6 +54,7 @@ class Homepage extends Component {
         });
     }
     getProducts(page) {
+        this.setIsProductLoading(true);
         const uri = process.env.MIX_API_URL + "api/product?page=" + page;
         Http.get(uri).then(response => {
             this.props.setProducts(response.data.data);
@@ -80,7 +81,7 @@ class Homepage extends Component {
                         <CategoryList categories={this.props.categories} />
                         <div className="title-products-and-add d-flex justify-content-between">
                             <h3 className="light-title">TẤT CẢ SẢN PHẨM</h3>
-                            <AddProductComponent />
+                            <AddProductComponent updateProductList={() => this.getProducts(1)} />
                         </div>
                         <div className="product-list">
                             <div className="container">

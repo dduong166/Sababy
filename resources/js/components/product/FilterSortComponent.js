@@ -149,7 +149,7 @@ class FilterSort extends Component {
                         history={this.props.history}
                     />
                 </Space>
-                <AddProductComponent />
+                <AddProductComponent updateProductList={() => this.getProductSearchResult()} />
             </div>
         );
     }

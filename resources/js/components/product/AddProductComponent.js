@@ -144,7 +144,10 @@ class AddProductComponent extends Component {
                     city: edit_product.city,
                     images: product_medias_edit
                 });
-            } else if (this.props.currentUser && this.props.currentUser.address) {
+            } else if (
+                this.props.currentUser &&
+                this.props.currentUser.address
+            ) {
                 const location = this.props.currentUser.address.split(",");
                 this.setState({
                     lat: parseFloat(location[0]),
@@ -177,11 +180,14 @@ class AddProductComponent extends Component {
                     }
                 );
             } else {
-                map = new google.maps.Map(document.getElementById("map_add_product"), {
-                    center: { lat: 21.0277644, lng: 105.8341598 },
-                    zoom: 10,
-                    gestureHandling: "greedy"
-                });
+                map = new google.maps.Map(
+                    document.getElementById("map_add_product"),
+                    {
+                        center: { lat: 21.0277644, lng: 105.8341598 },
+                        zoom: 10,
+                        gestureHandling: "greedy"
+                    }
+                );
             }
 
             const card = document.getElementById("pac-card");
@@ -306,7 +312,9 @@ class AddProductComponent extends Component {
                     ) {
                         delete newProduct.images;
                     }
-                    const uri = process.env.MIX_API_URL + `api/product/${this.props.edit_product.id}`;
+                    const uri =
+                        process.env.MIX_API_URL +
+                        `api/product/${this.props.edit_product.id}`;
                     Http.put(uri, newProduct).then(response => {
                         if (response) {
                             console.log(response);
@@ -327,8 +335,18 @@ class AddProductComponent extends Component {
                     let uri = process.env.MIX_API_URL + "api/product"; //them vao redux
                     Http.post(uri, newProduct).then(response => {
                         if (response) {
-                            console.log(response);
-                            this.props.addProduct(response.data);
+                            this.props.updateProductList();
+                            this.setState({
+                                category_id: null,
+                                category_cascader: [],
+                                product_name: null,
+                                description: null,
+                                price: null,
+                                quantity: 1,
+                                outside_status: null,
+                                function_status: null,
+                                images: []
+                            });
                             notification["success"]({
                                 message: "Thêm sản phẩm thành công.",
                                 description:
@@ -499,7 +517,7 @@ class AddProductComponent extends Component {
                         <InputNumber min={1} onChange={this.onChangeQuantity} />
                     </Form.Item>
                     <Form.Item
-                        label="Tình trạng ngoại quan"
+                        label="Tình trạng bên ngoài"
                         name="outsideStatus"
                     >
                         <TextArea

@@ -127,7 +127,7 @@ class ProductDetail extends Component {
                                                 <td>{detail.city}</td>
                                             </tr>
                                             <tr>
-                                                <th>TÌNH TRẠNG NGOẠI QUAN</th>
+                                                <th>TÌNH TRẠNG BÊN NGOÀI</th>
                                                 <td>{detail.outside_status}</td>
                                             </tr>
                                             <tr>

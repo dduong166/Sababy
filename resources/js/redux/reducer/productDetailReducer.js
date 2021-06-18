@@ -12,7 +12,7 @@ export const productDetailReducer = (state = initialState, action) => {
     var move_product = null;
     var products = null;
     var sold_products = null;
-    
+
     switch (action.type) {
         case "SET_PRODUCTS":
             return {
@@ -24,20 +24,34 @@ export const productDetailReducer = (state = initialState, action) => {
                 ...state,
                 products: [...state.products, action.payload]
             };
-        case "UPDATE_PRODUCT":
+        case "UPDATE_PRODUCT": //update product trong những màn hiển thị danh sách sold và selling
             id = action.payload.id;
-            products = state.products.map(product => {
-                if (product.id === id) {
-                    return action.payload;
-                }
-                return product;
-            });
-            return {
-                ...state,
-                products: products
-            };
+            if (action.payload.sold) {
+                sold_products = state.sold_products.map(sold_product => {
+                    if (sold_product.id === id) {
+                        return action.payload;
+                    }
+                    return sold_product;
+                });
+                return {
+                    ...state,
+                    sold_products: sold_products
+                };
+            } else {
+                products = state.products.map(product => {
+                    if (product.id === id) {
+                        return action.payload;
+                    }
+                    return product;
+                });
+                return {
+                    ...state,
+                    products: products
+                };
+            }
+
         case "DELETE_PRODUCT":
-            if(action.payload.sold) {
+            if (action.payload.sold) {
                 sold_products = state.sold_products.filter(sold_product => {
                     if (sold_product.id === action.payload.id) {
                         return false;
@@ -48,7 +62,7 @@ export const productDetailReducer = (state = initialState, action) => {
                     ...state,
                     sold_products: sold_products
                 };
-            }else{
+            } else {
                 products = state.products.filter(product => {
                     if (product.id === action.payload.id) {
                         return false;
@@ -60,7 +74,7 @@ export const productDetailReducer = (state = initialState, action) => {
                     products: products
                 };
             }
-            
+
         case "SET_SOLD_PRODUCTS":
             return {
                 ...state,

@@ -12,6 +12,7 @@ npm install
 
 Tạo key cho dự án:
 php artisan key:generate
+php artisan jwt:secret
 
 Tạo các bảng cho database (nếu dùng database local)
 php artisan migrate

@@ -102,7 +102,7 @@ class CategoryDetail extends Component {
 
                         <div className="title-products-and-add d-flex justify-content-between">
                             <h3 className="light-title">TẤT CẢ SẢN PHẨM</h3>
-                            <AddProductComponent />
+                            <AddProductComponent updateProductList={() => this.getProductsAndCategory()} />
                         </div>
                         <div className="product-list">
                             <div className="container">

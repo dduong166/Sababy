@@ -76,7 +76,7 @@ class MyProducts extends Component {
                         <div className="my-products-banner">
                             <h2>SẢN PHẨM</h2>
                         </div>
-                        <AddProductComponent />
+                        <AddProductComponent updateProductList={() => this.getSellingProducts(1)} />
                     </React.Fragment>
                 ) : null}
                 <div className="product-detail-info row">
