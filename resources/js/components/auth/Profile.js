@@ -50,7 +50,9 @@ class Profile extends Component {
             this.state.lng
         ) {
             let uri =
-                process.env.MIX_API_URL + "api/user/" + this.props.currentUser.id;
+                process.env.MIX_API_URL +
+                "api/user/" +
+                this.props.currentUser.id;
             let profile = {
                 name: this.state.name,
                 phonenumber: this.state.phonenumber,
@@ -59,13 +61,23 @@ class Profile extends Component {
             Http.put(uri, profile)
                 .then(response => {
                     console.log(response.data);
-                    this.props.login(response.data);
+                    if (!response.data.error) {
+                        this.props.login(response.data);
+                        this.onChangeEditStatus(0);
+                        notification["success"]({
+                            message: "Cập nhật thông tin thành công"
+                        });
+                    } else {
+                        notification["error"]({
+                            message: response.data.error
+                        });
+                    }
                 })
-                .catch(error => console.log(error));
-            this.onChangeEditStatus(0);
-            notification["success"]({
-                message: "Cập nhật thông tin thành công;"
-            });
+                .catch(error =>
+                    notification["error"]({
+                        message: "Cập nhật thông tin thất bại."
+                    })
+                );
         } else {
             notification["error"]({
                 message: "Vui lòng nhập đầy đủ thông tin."

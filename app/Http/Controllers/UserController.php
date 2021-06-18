@@ -91,7 +91,8 @@ class UserController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json($validator->errors());
+            // return response()->json($validator->errors());
+            return response()->json(['success' => false, 'data' => "Số điện thoại đã được đăng ký."]);
         }
 
         $payload = [
@@ -113,7 +114,7 @@ class UserController extends Controller
             $user->save();
             $response = ['success' => true, 'auth_token' => $token, 'username' => $user->name];
         } else
-            $response = ['success' => false, 'data' => 'Register Failed'];
+            $response = ['success' => false, 'data' => "Đăng ký tài khoản thất bại."];
 
         return response()->json($response, 201);
     }
@@ -153,6 +154,15 @@ class UserController extends Controller
     }
 
     public function update($user_id, Request $request){
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'phonenumber' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => "Số điện thoại đã được đăng ký.", $validator->errors()]);
+        }
+
         $input = $request->all();
         $user = $this->user->update($user_id, $input);
         

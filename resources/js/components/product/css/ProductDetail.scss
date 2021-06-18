@@ -59,6 +59,9 @@
     .product-detail-info {
         background-color: white;
         margin-top: 20px;
+        .tab-content {
+            padding: 10px 0 16px 0;
+        }
         #tabs {
             background: #007b5e;
             color: #eee;

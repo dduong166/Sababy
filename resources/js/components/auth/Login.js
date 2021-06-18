@@ -33,11 +33,11 @@ class Login extends Component {
                 $("#confirm-password-error-message").empty();
             else if (password !== confirmPassword) {
                 $("#confirm-password-error-message").html(
-                    "Password do not match! Please enter again"
+                    "Hãy xác nhận lại mật khẩu."
                 );
                 $("#signup-button").prop("disabled", true);
             } else {
-                $("#confirm-password-error-message").html("Password match <3");
+                $("#confirm-password-error-message").html("Xác nhận mật khẩu thành công.");
                 $("#signup-button").prop("disabled", false);
             }
         }
@@ -130,13 +130,9 @@ class Login extends Component {
             } else {
                 console.log(response);
                 notification["error"]({
-                    message: "Đăng ký tài khoản thất bại."
+                    message: response.data.data
                 });
             }
-        });
-        this.setState({
-            username: "",
-            password: ""
         });
     }
 
@@ -154,13 +150,6 @@ class Login extends Component {
                 localStorage.setItem("auth_token", response.data.user.auth_token);
                 Http.defaults.headers.common["Authorization"] =
                     "Bearer " + response.data.user.auth_token;
-                if (!this.state.loading) {
-                    this.setState({
-                        username: "",
-                        password: "",
-                        phonenumber: ""
-                    });
-                }
                 if (response.data.user.is_admin) {
                     this.props.history.push("/admin");
                 } else {
@@ -178,6 +167,7 @@ class Login extends Component {
         });
     }
     render() {
+        console.log(this.state);
         return (
             <div className="login-app">
                 <div className="form">

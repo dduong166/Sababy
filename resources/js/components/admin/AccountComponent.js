@@ -84,14 +84,25 @@ class AccountComponent extends Component {
     onChangeEditStatus(currentUser) {
         if (currentUser !== 0) {
             //Neu param là 1 user object -> open edit
-            let address = currentUser.address.split(",");
-            this.setState({
-                edit: currentUser.key,
-                name: currentUser.name,
-                phonenumber: currentUser.phonenumber,
-                lat: parseFloat(address[0]),
-                lng: parseFloat(address[1])
-            });
+            if(currentUser.address) {
+                let address = currentUser.address.split(",");
+                this.setState({
+                    edit: currentUser.key,
+                    name: currentUser.name,
+                    phonenumber: currentUser.phonenumber,
+                    lat: parseFloat(address[0]),
+                    lng: parseFloat(address[1])
+                });
+            }else{
+                this.setState({
+                    edit: currentUser.key,
+                    name: currentUser.name,
+                    phonenumber: currentUser.phonenumber,
+                    lat: "",
+                    lng: ""
+                });
+            }
+            
         } else {
             //Neu param la 0 -> Close edit
             this.setState({
@@ -251,28 +262,34 @@ class AccountComponent extends Component {
             };
             Http.put(uri, profile)
                 .then(response => {
-                    this.setState(
-                        {
-                            users: this.state.users.map((user, index) => {
-                                //Tìm kiếm và thay thế user được edit
-                                if (user.key === this.state.edit) {
-                                    user.name = profile.name;
-                                    user.phonenumber = profile.phonenumber;
-                                    user.address = profile.address;
-                                }
-                                return user;
-                            })
-                        },
-                        () => this.onChangeEditStatus(0)
-                    );
-                    notification["success"]({
-                        message: "Cập nhật thông tin thành công."
-                    });
+                    if (!response.data.error) {
+                        this.setState(
+                            {
+                                users: this.state.users.map((user, index) => {
+                                    //Tìm kiếm và thay thế user được edit
+                                    if (user.key === this.state.edit) {
+                                        user.name = profile.name;
+                                        user.phonenumber = profile.phonenumber;
+                                        user.address = profile.address;
+                                    }
+                                    return user;
+                                })
+                            },
+                            () => this.onChangeEditStatus(0)
+                        );
+                        notification["success"]({
+                            message: "Cập nhật thông tin thành công."
+                        });
+                    } else {
+                        notification["error"]({
+                            message: "Cập nhật thông tin thất bại.",
+                            description: response.data.error
+                        });
+                    }
                 })
                 .catch(error =>
                     notification["error"]({
-                        message: "Cập nhật thông tin thất bại.",
-                        description: error
+                        message: "Cập nhật thông tin thất bại."
                     })
                 );
         } else {

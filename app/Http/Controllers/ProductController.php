@@ -133,7 +133,8 @@ class ProductController extends Controller
     public function filter(Request $request)
     {
         //filter
-        $products = Product::query();
+        $products = Product::where('sold', 0);
+        
         if ($request->has('product_name')) {
             $products->where('product_name', 'LIKE', '%' . $request->product_name . '%');
         }
@@ -187,7 +188,7 @@ class ProductController extends Controller
             array_push($sub_categories_id, $sub_category->id);
         }
         array_push($sub_categories_id, (int) $category_id);
-        $products = Product::whereIn('category_id', $sub_categories_id)->orderBy('created_at', 'DESC')->get();
+        $products = Product::where('sold', 0)->whereIn('category_id', $sub_categories_id)->orderBy('created_at', 'DESC')->get();
         $products = $products->load('productMedias');
 
         //get category
