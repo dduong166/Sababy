@@ -7,6 +7,12 @@
         background-color: white;
         .product-image {
             width: 50%;
+            .ss-images {
+                img {
+                    height: 450px;
+                    object-fit: contain;
+                }
+            }
         }
         .product-short-info {
             .product-name {
@@ -29,7 +35,6 @@
                         white-space: pre-line;
                     }
                 }
-               
             }
             .product-quantity {
                 .quantity-title {
