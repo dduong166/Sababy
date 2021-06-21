@@ -136,7 +136,7 @@ class ProductController extends Controller
         $products = Product::where('sold', 0);
         
         if ($request->has('product_name')) {
-            $products->where('product_name', 'RLIKE', '[[:<:]]' . $request->product_name . '[[:>:]]');
+            $products->where('product_name', 'LIKE', '%' . $request->product_name . '%');
         }
         if ($request->has('city')) {
             $products->where('city', 'LIKE', '%' . $request->city . '%');
