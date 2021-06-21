@@ -5,11 +5,12 @@
 }
 .ant-modal-content {
     .ant-modal-body {
-        #product-basic-info {
-            padding-top: 8px;
-        }
         .ant-image-img {
             width: auto !important;
         }
     }
+}
+.add-product-hint {
+    color: #0062cc;
+    padding-top: 5px;
 }

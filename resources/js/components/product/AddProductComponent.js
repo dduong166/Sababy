@@ -441,13 +441,15 @@ class AddProductComponent extends Component {
         if (this.state.modal_step === 1) {
             title = "Nhập thông tin cơ bản của sản phẩm";
             modal = (
+                <div>
+                <p className="add-product-hint d-flex justify-content-center">Để sớm bán được sản phẩm, hãy nhập thông tin sản phẩm một cách chi tiết.</p>
                 <Form
                     id="product-basic-info"
                     labelCol={{
                         span: 6
                     }}
                     wrapperCol={{
-                        span: 16
+                        span: 15
                     }}
                     layout="horizontal"
                     size="small"
@@ -537,6 +539,7 @@ class AddProductComponent extends Component {
                         />
                     </Form.Item>
                 </Form>
+                </div>
             );
 
             footer = [
