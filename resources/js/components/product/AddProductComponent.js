@@ -441,105 +441,111 @@ class AddProductComponent extends Component {
         if (this.state.modal_step === 1) {
             title = "Nhập thông tin cơ bản của sản phẩm";
             modal = (
-                <div>
-                <p className="add-product-hint d-flex justify-content-center">Để sớm bán được sản phẩm, hãy nhập thông tin sản phẩm một cách chi tiết.</p>
-                <Form
-                    id="product-basic-info"
-                    labelCol={{
-                        span: 6
-                    }}
-                    wrapperCol={{
-                        span: 15
-                    }}
-                    layout="horizontal"
-                    size="small"
-                    initialValues={{
-                        size: "small"
-                    }}
-                    // onFinish={this.handleOk}
-                    fields={[
-                        {
-                            name: ["category"],
-                            value: this.state.category_cascader
-                        },
-                        {
-                            name: ["productName"],
-                            value: this.state.product_name
-                        },
-                        {
-                            name: ["description"],
-                            value: this.state.description
-                        },
-                        {
-                            name: ["price"],
-                            value: this.state.price
-                        },
-                        {
-                            name: ["quantity"],
-                            value: this.state.quantity
-                        },
-                        {
-                            name: ["outsideStatus"],
-                            value: this.state.outside_status
-                        },
-                        {
-                            name: ["functionStatus"],
-                            value: this.state.function_status
-                        }
-                    ]}
-                >
-                    <Form.Item label="Danh mục" name="category">
-                        <Cascader
-                            placeholder="Lựa chọn danh mục sản phẩm"
-                            options={categories}
-                            onChange={this.onChangeCategory}
-                        />
-                    </Form.Item>
-                    <Form.Item label="Tên sản phẩm" name="productName">
-                        <Input
-                            onChange={this.onChangeProductName}
-                            placeholder="Nhập tên sản phẩm"
-                        />
-                    </Form.Item>
-                    <Form.Item label="Mô tả" name="description">
-                        <TextArea
-                            rows={4}
-                            onChange={this.onChangeDescription}
-                            placeholder="Thông tin của sản phẩm như kích cỡ, chất liệu, màu sắc, xuất xứ, thương hiệu,..."
-                        />
-                    </Form.Item>
-                    <Form.Item label="Giá tiền (VND)" name="price">
-                        <InputNumber
-                            min={1}
-                            step={50000}
-                            onChange={this.onChangePrice}
-                        />
-                    </Form.Item>
-                    <Form.Item label="Số lượng" name="quantity">
-                        <InputNumber min={1} onChange={this.onChangeQuantity} />
-                    </Form.Item>
-                    <Form.Item
-                        label="Tình trạng bên ngoài"
-                        name="outsideStatus"
+                <React.Fragment>
+                    <p className="add-product-hint d-flex justify-content-center">
+                        Để sớm bán được sản phẩm, hãy nhập thông tin sản phẩm
+                        một cách chi tiết.
+                    </p>
+                    <Form
+                        id="product-basic-info"
+                        labelCol={{
+                            span: 6
+                        }}
+                        wrapperCol={{
+                            span: 15
+                        }}
+                        layout="horizontal"
+                        size="small"
+                        initialValues={{
+                            size: "small"
+                        }}
+                        // onFinish={this.handleOk}
+                        fields={[
+                            {
+                                name: ["category"],
+                                value: this.state.category_cascader
+                            },
+                            {
+                                name: ["productName"],
+                                value: this.state.product_name
+                            },
+                            {
+                                name: ["description"],
+                                value: this.state.description
+                            },
+                            {
+                                name: ["price"],
+                                value: this.state.price
+                            },
+                            {
+                                name: ["quantity"],
+                                value: this.state.quantity
+                            },
+                            {
+                                name: ["outsideStatus"],
+                                value: this.state.outside_status
+                            },
+                            {
+                                name: ["functionStatus"],
+                                value: this.state.function_status
+                            }
+                        ]}
                     >
-                        <TextArea
-                            rows={4}
-                            placeholder="Mô tả chi tiết tình trạng bên ngoài của sản phẩm như xước nhẹ ở vị trí nào, bị ngả màu vàng ố hay không,..."
-                            onChange={this.onChangeOutsideStatus}
-                        />
-                    </Form.Item>
-                    <Form.Item
-                        label="Tình trạng chức năng"
-                        name="functionStatus"
-                    >
-                        <TextArea
-                            rows={4}
-                            placeholder="Mô tả chi tiết tình trạng về khả năng sử dụng sản phẩm như: sử dụng còn tốt, có tiếng kêu nhỏ khi di chuyển (xe đẩy),...."
-                            onChange={this.onChangeFunctionStatus}
-                        />
-                    </Form.Item>
-                </Form>
-                </div>
+                        <Form.Item label="Danh mục" name="category">
+                            <Cascader
+                                placeholder="Lựa chọn danh mục sản phẩm"
+                                options={categories}
+                                onChange={this.onChangeCategory}
+                            />
+                        </Form.Item>
+                        <Form.Item label="Tên sản phẩm" name="productName">
+                            <Input
+                                onChange={this.onChangeProductName}
+                                placeholder="Nhập tên sản phẩm"
+                            />
+                        </Form.Item>
+                        <Form.Item label="Mô tả" name="description">
+                            <TextArea
+                                rows={4}
+                                onChange={this.onChangeDescription}
+                                placeholder="Thông tin của sản phẩm như kích cỡ, chất liệu, màu sắc, xuất xứ, thương hiệu,..."
+                            />
+                        </Form.Item>
+                        <Form.Item label="Giá tiền (VND)" name="price">
+                            <InputNumber
+                                min={1}
+                                step={50000}
+                                onChange={this.onChangePrice}
+                            />
+                        </Form.Item>
+                        <Form.Item label="Số lượng" name="quantity">
+                            <InputNumber
+                                min={1}
+                                onChange={this.onChangeQuantity}
+                            />
+                        </Form.Item>
+                        <Form.Item
+                            label="Tình trạng bên ngoài"
+                            name="outsideStatus"
+                        >
+                            <TextArea
+                                rows={4}
+                                placeholder="Mô tả chi tiết tình trạng bên ngoài của sản phẩm như xước nhẹ ở vị trí nào, bị ngả màu vàng ố hay không,..."
+                                onChange={this.onChangeOutsideStatus}
+                            />
+                        </Form.Item>
+                        <Form.Item
+                            label="Tình trạng chức năng"
+                            name="functionStatus"
+                        >
+                            <TextArea
+                                rows={4}
+                                placeholder="Mô tả chi tiết tình trạng về khả năng sử dụng sản phẩm như: sử dụng còn tốt, có tiếng kêu nhỏ khi di chuyển (xe đẩy),...."
+                                onChange={this.onChangeFunctionStatus}
+                            />
+                        </Form.Item>
+                    </Form>
+                </React.Fragment>
             );
 
             footer = [
@@ -649,6 +655,7 @@ class AddProductComponent extends Component {
                 </Button>
             ];
         }
+        console.log(this.state);
         return (
             <div className="d-flex justify-content-center">
                 {this.props.edit_product ? (
