@@ -7,6 +7,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta property="og:title" content="Trao đổi sản phẩm mẹ và bé đã qua sử dụng"> 
         <meta property="og:url" content="https://sababy.herokuapp.com/"> 
+        <meta property="og:description" content="Nền tảng đăng tải và tìm kiếm sản phẩm mẹ và bé đã qua sử dụng một cách tiện lợi"> 
         <meta property="og:image" content="https://res.cloudinary.com/dbzfjnlhl/image/upload/v1613919232/27b6792e-38bd-471c-b46e-177a0e5a1af0_200x200_lb4mcd.png">
         <title>Sababy</title>
         <link rel="stylesheet" type="text/css" href="/css/app.css">
