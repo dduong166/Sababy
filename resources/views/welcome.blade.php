@@ -5,10 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <meta property="og:title" content="Trao đổi sản phẩm mẹ và bé đã qua sử dụng"> 
-        <meta property="og:url" content="https://sababy.herokuapp.com/"> 
-        <meta property="description" content="Nền tảng đăng tải và tìm kiếm sản phẩm mẹ và bé đã qua sử dụng một cách tiện lợi"> 
-        <meta property="og:image" content="https://res.cloudinary.com/dbzfjnlhl/image/upload/v1613919232/27b6792e-38bd-471c-b46e-177a0e5a1af0_200x200_lb4mcd.png">
+        <meta property="description" content="Trao đổi sản phẩm mẹ và bé đã qua sử dụng"> 
         <title>Sababy</title>
         <link rel="stylesheet" type="text/css" href="/css/app.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
