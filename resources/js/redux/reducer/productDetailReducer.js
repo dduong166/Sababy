@@ -51,6 +51,7 @@ export const productDetailReducer = (state = initialState, action) => {
             }
 
         case "DELETE_PRODUCT":
+            console.log(action.payload);
             if (action.payload.sold) {
                 sold_products = state.sold_products.filter(sold_product => {
                     if (sold_product.id === action.payload.id) {
@@ -109,6 +110,7 @@ export const productDetailReducer = (state = initialState, action) => {
                 }
                 return product.id !== id;
             });
+            move_product.sold = 1;
             return {
                 ...state,
                 products: products,
@@ -122,6 +124,7 @@ export const productDetailReducer = (state = initialState, action) => {
                 }
                 return sold_product.id !== id;
             });
+            move_product.sold = 0;
             return {
                 ...state,
                 products: [...state.products, move_product],
