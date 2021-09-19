@@ -27,6 +27,5 @@
         <script type="text/javascript" src="/js/app.js"></script>
         <script src="{{mix("js/manifest.js")}}"></script>
         <script src="{{mix("js/vendor.js")}}"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDayLXA1sj_q1ICHo0s3Fc9RKloQXyIE9k&libraries=places&language=vi"></script>
     </body>
 </html>
