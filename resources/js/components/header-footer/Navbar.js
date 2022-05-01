@@ -104,7 +104,7 @@ class Navbar extends Component {
                         {!this.state.isLoading ? (
                             <Search
                                 ref={c => (this.searchRef = c)}
-                                placeholder="Nhập tên sản phẩm"
+                                placeholder="商品名を入力してください"
                                 allowClear
                                 enterButton
                                 defaultValue={this.state.keyword}
@@ -123,19 +123,19 @@ class Navbar extends Component {
                                 <div>
                                     <div className="username">
                                         <Link to="/profile">
-                                            Chào {this.props.currentUser.name}
+                                            {this.props.currentUser.name}
                                         </Link>
                                     </div>
                                     <div
                                         className="logout"
                                         onClick={this.logoutAccount}
                                     >
-                                        Đăng xuất
+                                        ログアウト
                                     </div>
                                 </div>
                             ) : (
                                 <div className="special">
-                                    <Link to="/login">Đăng nhập</Link>
+                                    <Link to="/login">ログイン</Link>
                                 </div>
                             )}
                         </div>

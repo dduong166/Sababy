@@ -174,24 +174,24 @@ class Login extends Component {
                     <ul className="tab-group">
                         <li className="tab">
                             <h2 name="#signup">
-                                <Link to="">Đăng ký</Link>
+                                <Link to="">会員登録</Link>
                             </h2>
                         </li>
                         <li className="tab active">
                             <h2 name="#login">
-                                <Link to="">Đăng nhập</Link>
+                                <Link to="">ログイン</Link>
                             </h2>
                         </li>
                     </ul>
 
                     <div className="tab-content">
                         <div id="login">
-                            <h1>Hãy tận hưởng dịch vụ của Sababy!</h1>
+                            <h1>Sababyのサービスを楽しんで！</h1>
 
                             <form onSubmit={this.onLoginSubmit}>
                                 <div className="field-wrap">
                                     <label>
-                                        Số điện thoại<span className="req">*</span>
+                                        電話番号<span className="req">*</span>
                                     </label>
                                     <input
                                         type="text"
@@ -204,7 +204,7 @@ class Login extends Component {
 
                                 <div className="field-wrap">
                                     <label>
-                                        Mật khẩu<span className="req">*</span>
+                                        パスワード<span className="req">*</span>
                                     </label>
                                     <input
                                         type="password"
@@ -221,18 +221,18 @@ class Login extends Component {
                                     type="submit"
                                     className="button button-block"
                                 >
-                                    Đăng nhập
+                                    ログイン
                                 </button>
                             </form>
                         </div>
 
                         <div id="signup">
-                            <h1>Đăng ký tài khoản chỉ với 20 giây</h1>
+                            <h1>20秒で会員登録をしよう！</h1>
 
                             <form onSubmit={this.onSignupSubmit}>
                                 <div className="field-wrap">
                                     <label>
-                                        Tên người dùng
+                                        ユーザー名
                                         <span className="req">*</span>
                                     </label>
                                     <input
@@ -246,7 +246,7 @@ class Login extends Component {
 
                                 <div className="field-wrap">
                                     <label>
-                                        Số điện thoại<span className="req">*</span>
+                                        電話番号<span className="req">*</span>
                                     </label>
                                     <input
                                         type="phonenumber"
@@ -257,7 +257,7 @@ class Login extends Component {
 
                                 <div className="field-wrap">
                                     <label>
-                                        Mật khẩu<span className="req">*</span>
+                                        パスワード<span className="req">*</span>
                                     </label>
                                     <input
                                         id="new_password"
@@ -270,7 +270,7 @@ class Login extends Component {
 
                                 <div className="field-wrap">
                                     <label>
-                                        Nhập lại mật khẩu
+                                        パスワード確認
                                         <span className="req">*</span>
                                     </label>
                                     <input
@@ -288,7 +288,7 @@ class Login extends Component {
                                     type="submit"
                                     className="button button-block"
                                 >
-                                    Tạo tài khoản
+                                    登録
                                 </button>
                             </form>
                         </div>

@@ -77,10 +77,10 @@ class Homepage extends Component {
             <div className="homepage-body fullscreen-min-height">
                 {!this.state.isLoading ? (
                     <div className="container">
-                        <h3 className="light-title">DANH MỤC SẢN PHẨM</h3>
+                        <h3 className="light-title">カテゴリー</h3>
                         <CategoryList categories={this.props.categories} />
                         <div className="title-products-and-add d-flex justify-content-between">
-                            <h3 className="light-title">TẤT CẢ SẢN PHẨM</h3>
+                            <h3 className="light-title">すべて</h3>
                             <AddProductComponent updateProductList={() => this.getProducts(1)} />
                         </div>
                         <div className="product-list">

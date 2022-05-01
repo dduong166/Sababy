@@ -693,7 +693,7 @@ class AddProductComponent extends Component {
                             onClick={() => this.setModalVisible(true)}
                             icon={<PlusOutlined />}
                         >
-                            Đăng bán sản phẩm
+                            商品登録
                         </Button>
                         <Modal
                             title={title}
